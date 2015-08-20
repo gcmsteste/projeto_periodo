@@ -27,4 +27,14 @@ public class Semana {
 		this.observacoes = observacoes;
 	}
 
+	public Collection<Atividade> getAtividades() {
+
+		return atividades;
+	}
+
+	public void setAtividades(Collection<Atividade> atividades) {
+
+		this.atividades = atividades;
+	}
+
 }
