@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Collection;
 import java.util.Date;
 
 public class RelatorioFrequencia {
@@ -11,6 +12,7 @@ public class RelatorioFrequencia {
 	private Date dataEntregaRelatorio;
 	private Orientador orientador;
 	private Funcionario funcionario;
+	private Collection<Semana> semanas;
 	
 	public int getMes() {
 
@@ -61,5 +63,29 @@ public class RelatorioFrequencia {
 	public void setMonitor(Monitor monitor) {
 
 		this.monitor = monitor;
+	}
+	public Date getDataEntregaRelatorio() {
+
+		return dataEntregaRelatorio;
+	}
+	public void setDataEntregaRelatorio(Date dataEntregaRelatorio) {
+
+		this.dataEntregaRelatorio = dataEntregaRelatorio;
+	}
+	public Funcionario getFuncionario() {
+
+		return funcionario;
+	}
+	public void setFuncionario(Funcionario funcionario) {
+
+		this.funcionario = funcionario;
+	}
+	public Collection<Semana> getSemanas() {
+
+		return semanas;
+	}
+	public void setSemanas(Collection<Semana> semanas) {
+
+		this.semanas = semanas;
 	}
 }

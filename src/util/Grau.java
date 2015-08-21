@@ -1,4 +1,4 @@
-package enumeracoes;
+package util;
 
 
 public enum Grau {

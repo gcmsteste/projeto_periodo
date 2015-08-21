@@ -2,7 +2,7 @@ package model;
 
 import java.util.Collection;
 
-import enumeracoes.Modalidade;
+import util.Modalidade;
 
 public class Monitor extends Aluno
 {

@@ -2,7 +2,7 @@ package model;
 
 import java.util.Collection;
 
-import enumeracoes.Grau;
+import util.Grau;
 
 public class Curso {
 	private String descricao;
