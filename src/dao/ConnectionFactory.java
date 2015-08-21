@@ -15,6 +15,7 @@ public class ConnectionFactory {
 		}
 		catch (SQLException e ) {
 			throw new RuntimeException(e);
+			
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}

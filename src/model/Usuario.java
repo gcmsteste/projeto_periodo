@@ -40,5 +40,9 @@ public class Usuario {
 
 		this.email = email;
 	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 }

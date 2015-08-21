@@ -1,14 +1,21 @@
 package dao;
 
+import java.sql.Connection;
 import java.util.Collection;
+
+import model.RelatorioFrequencia;
 
 public class RelatorioFrequenciaDao implements DAO
 {
-
+	Connection connection;
+	public RelatorioFrequenciaDao(Connection connection) {
+		this.connection = connection;
+	}
 	@Override
 	public void inserir(Object object) {
-
-		// TODO Auto-generated method stub
+		RelatorioFrequencia relatorioFrequencia = (RelatorioFrequencia)object;
+		
+		
 		
 	}
 

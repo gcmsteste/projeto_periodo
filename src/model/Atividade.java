@@ -4,8 +4,8 @@ import java.security.Timestamp;
 import java.util.Date;
 
 public class Atividade {
-	private Timestamp horario_entrada;
-	private Timestamp horario_saida;
+	private String horario_entrada;
+	private String horario_saida;
 	private Date data;
 	
 	public Date getData() {
@@ -16,24 +16,24 @@ public class Atividade {
 		this.data = data;
 	}
 
-	public Timestamp getHorarioSaida() {
-
-		return horario_saida;
-	}
-
-	public void setHorarioSaida(Timestamp horario_saida) {
-
-		this.horario_saida = horario_saida;
-	}
-
-	public Timestamp getHorarioEntrada() {
+	public String getHorarioEntrada() {
 
 		return horario_entrada;
 	}
 
-	public void setHorarioEntrada(Timestamp horario_entrada) {
+	public void setHorarioEntrada(String horarioEntrada) {
 
-		this.horario_entrada = horario_entrada;
+		this.horario_entrada = horarioEntrada;
+	}
+
+	public String getHorarioSaida() {
+
+		return horario_saida;
+	}
+
+	public void setHorarioSaida(String horarioSaida) {
+
+		this.horario_saida = horarioSaida;
 	}
 
 
