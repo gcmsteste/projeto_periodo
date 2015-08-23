@@ -1,4 +1,4 @@
-package util;
+package util.constantes;
 
 
 public enum Modalidade {

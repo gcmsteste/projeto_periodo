@@ -21,14 +21,14 @@ public class Usuario {
 		return senha;
 	}
 
-	public String setLogin() {
+	public void setLogin(String login) {
 
-		return login;
+		this.login = login;
 	}
 
-	public String setSenha() {
+	public void setSenha(String senha) {
 
-		return senha;
+		this.senha = senha;
 	}
 
 	public String getEmail() {

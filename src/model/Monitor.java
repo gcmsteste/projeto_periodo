@@ -2,7 +2,7 @@ package model;
 
 import java.util.Collection;
 
-import util.Modalidade;
+import util.constantes.Modalidade;
 
 public class Monitor extends Aluno
 {

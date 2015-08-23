@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Date;
 
 public class RelatorioFrequencia {
+	
+	private int chavePrimaria;
 	private int mes;
 	private int ano;
 	private int cargaHorariaMensal;
@@ -87,5 +89,13 @@ public class RelatorioFrequencia {
 	public void setSemanas(Collection<Semana> semanas) {
 
 		this.semanas = semanas;
+	}
+	public int getChavePrimaria() {
+
+		return chavePrimaria;
+	}
+	public void setChavePrimaria(int chavePrimaria) {
+
+		this.chavePrimaria = chavePrimaria;
 	}
 }

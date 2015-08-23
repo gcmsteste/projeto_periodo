@@ -10,8 +10,10 @@ public class ConnectionFactory {
 			Class.forName("com.mysql.jdbc.Driver");
 			DriverManager.registerDriver( new 
 							com.mysql.jdbc.Driver());
-			return DriverManager.getConnection("jdbc:mysql://localhost:3306/"
+			Connection connection =  DriverManager.getConnection("jdbc:mysql://localhost:3306/"
 							+ "projeto_periodo", "root", "eddiemanoel234@@");
+			connection.setAutoCommit(false);
+			return connection;
 		}
 		catch (SQLException e ) {
 			throw new RuntimeException(e);

@@ -5,11 +5,15 @@ import static org.junit.Assert.*;
 
 import java.lang.reflect.Array;
 import java.security.Timestamp;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,52 +32,32 @@ import model.Semana;
 public class TesteRelatorioFrequenciaDao {
 
 	private DAO dao;
-	private ConnectionFactory connection;
-	private Orientador orientador;
-	private Funcionario funcionario;
-	private Disciplina disciplina;
-	private Monitor monitor;
-	private RelatorioFrequencia relatorioFrequencia;
-	private Semana semana;
-	private Atividade atividade;
+	private Connection connection;
 	
 	@Before
 	public void setUp() {
 
-		connection = new ConnectionFactory();
-		dao = new RelatorioFrequenciaDao(connection.getConnection());
-
+		connection = new ConnectionFactory().getConnection();
+		dao = new RelatorioFrequenciaDao(connection);
 	}
-
+	
+	@After
+	public void tearDown() throws SQLException {
+		connection.close();
+	}
+	
 	@Test
-	public void testeInserirRelatorioFrequenciaDao() {
-
-		dao.inserir(this.relatorioFrequencia);
-		Collection<Object> lista = dao.listar();
-		assertNotNull(lista);
-		RelatorioFrequencia relatorio = (RelatorioFrequencia)lista.iterator().next();
-		
-
+	public void testeInserirRelatorioFrequencia() {
+		int qtdIncio = dao.listar().size();
+		dao.inserir(montarObjetoRelatorioFrequencia());
+		int qtdFim = dao.listar().size();
+		assertEquals(qtdIncio + 1, qtdFim);	
 	}
 
 	public Monitor montarObjetoMonitor() {
-
 		Monitor monitor = new Monitor();
-		monitor.setEmail("edmilsonsantana2@hotmail.com");
 		monitor.setMatricula("20141Y6-RC0323");
-		monitor.setNome("Edmilson Santana");
 		return monitor;
-	}
-
-	public Disciplina montarObjetoDisciplina() {
-
-		Disciplina disciplina = new Disciplina();
-		disciplina.setDescricao("Padrões de Projeto");
-		ArrayList<Aluno> pagantes = new ArrayList<Aluno>();
-		pagantes.add(this.monitor);
-		disciplina.setPagantes(pagantes);
-		return disciplina;
-
 	}
 
 	public RelatorioFrequencia montarObjetoRelatorioFrequencia() {
@@ -82,30 +66,29 @@ public class TesteRelatorioFrequenciaDao {
 		relatorioFrequencia.setAno(2015);
 		relatorioFrequencia.setMes(8);
 		relatorioFrequencia.setCargaHorariaMensal(80);
-		relatorioFrequencia.setOrientador(this.orientador);
-		relatorioFrequencia.setFuncionario(this.funcionario);
-		relatorioFrequencia.setMonitor(this.monitor);
+		relatorioFrequencia.setOrientador(montarObjetoOrientador());
+		relatorioFrequencia.setFuncionario(montarObjetoFuncionario());
+		relatorioFrequencia.setMonitor(montarObjetoMonitor());
 		Collection<Semana> semanas = new ArrayList<Semana>();
-		semanas.add(this.semana);
+		for( int i = 0; i < 5; i++ ) {
+			semanas.add(montarObjetoSemana());
+		}
 		relatorioFrequencia.setSemanas(semanas);
 		relatorioFrequencia.setEdital("2015.1");
+		relatorioFrequencia.setDataEntregaRelatorio( new Date() );
 		return relatorioFrequencia;
 	}
 
 	public Funcionario montarObjetoFuncionario() {
 
 		Funcionario funcionario = new Funcionario();
-		funcionario.setSiape("1234567");
-		funcionario.setEmail("funcionario@ifpe.com.br");
-		funcionario.setNome("João");
+		funcionario.setSiape("5847560");
 		return funcionario;
 	}
 
 	public Orientador montarObjetoOrientador() {
 		Orientador orientador = new Orientador();
-		orientador.setSiape("2934834");
-		orientador.setNome("Marcos André");
-		orientador.setDisciplina(this.disciplina);
+		orientador.setSiape("1428475");
 		return orientador;
 	}
 	
@@ -114,32 +97,26 @@ public class TesteRelatorioFrequenciaDao {
 		semana.setDescricao("Fazendo levantamento bibliográfico");
 		semana.setObservacoes("Atividade realizada fora da instituição");
 		Collection<Atividade> atividades = new ArrayList<Atividade>();
-		atividades.add(this.atividade);
+		for( int i = 0; i < 5; i++ ) {
+			atividades.add(montarObjetoAtividade());
+		}
 		semana.setAtividades(atividades);
 		return semana;
 	}
 	
 	public Atividade montarObjetoAtividade() {
+	
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.YEAR, 2015);
+		calendar.set(Calendar.MONTH, Calendar.AUGUST);
+		calendar.set(Calendar.DAY_OF_MONTH, 
+						Calendar.getInstance().getFirstDayOfWeek());
 		Atividade atividade = new Atividade();
-		atividade.setData( new Date());
+		atividade.setData( calendar.getTime() );
 		atividade.setHorarioEntrada( "14:00" );
 		atividade.setHorarioSaida( "18:00" );
 		return atividade;
 	}
 	
-	public void montarCenario() {
-		this.funcionario = montarObjetoFuncionario();
-		this.orientador = montarObjetoOrientador();
-		this.monitor = montarObjetoMonitor();
-		this.disciplina = montarObjetoDisciplina();
-		this.monitor.setDisciplina(this.disciplina);
-		Collection<Aluno> pagantes = new ArrayList<Aluno>();
-		pagantes.add(this.monitor);
-		this.disciplina.setPagantes(pagantes);
-		this.orientador = montarObjetoOrientador();
-		this.atividade = montarObjetoAtividade();
-		this.semana = montarObjetoSemana();
-		
-	}
 
 }

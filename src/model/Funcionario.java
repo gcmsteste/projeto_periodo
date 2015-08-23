@@ -3,7 +3,7 @@ package model;
 public class Funcionario extends Usuario
 {
 	private String siape;
-	private String departamento;
+	private Departamento departamento;
 	
 	public String getSiape() {
 
@@ -15,15 +15,17 @@ public class Funcionario extends Usuario
 		this.siape = siape;
 	}
 
-	public String getDepartamento() {
+	public Departamento getDepartamento() {
 
 		return departamento;
 	}
 
-	public void setDepartamento(String departamento) {
+	public void setDepartamento(Departamento departamento) {
 
 		this.departamento = departamento;
 	}
+
+	
 	
 	
 	
