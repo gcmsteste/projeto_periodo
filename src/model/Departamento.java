@@ -4,6 +4,7 @@ package model;
 public class Departamento {
 	private String descricao;
 	private String descricaoAbreviada;
+	
 	public String getDescricaoAbreviada() {
 
 		return descricaoAbreviada;
