@@ -11,7 +11,7 @@ public class ConnectionFactory {
 			DriverManager.registerDriver( new 
 							com.mysql.jdbc.Driver());
 			Connection connection =  DriverManager.getConnection("jdbc:mysql://localhost:3306/"
-							+ "projeto_periodo", "root", "eddiemanoel234@@");
+							+ "projeto_periodo", "root", "");
 			connection.setAutoCommit(false);
 			return connection;
 		}

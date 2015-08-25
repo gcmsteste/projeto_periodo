@@ -201,7 +201,17 @@ public class RelatorioFrequenciaDao implements DAO {
 	@Override
 	public void remover(Object object) {
 
-		// TODO Auto-generated method stub
+		RelatorioFrequencia relatorio = (RelatorioFrequencia) object;
+		final String SQL_DELETE = "DELETE FROM PROJETO_PERIODO.RELATORIO_FREQUENCIA "
+						        + "WHERE RELATORIO_CD = ? AND RELATORIO_DS = ?"; 
+		try {
+			PreparedStatement ptmt = connection.prepareStatement(SQL_DELETE);
+			ptmt.setInt(1, relatorio.getChavePrimaria());
+			
+			
+		} catch ( SQLException e ) {
+			
+		}
 
 	}
 
