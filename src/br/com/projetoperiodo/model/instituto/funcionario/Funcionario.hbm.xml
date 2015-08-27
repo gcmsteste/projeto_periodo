@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="model.instituto.funcionario.Funcionario" table="FUNCIONARIO">
+		<id name="siape" column="FUNCIONARIO_SIAPE">
+			<generator class="" />
+		</id>
+		<many-to-one name="departamento" column="DEPARTAMENTO_CD" not-null="true"/>
+		<many-to-one name=
+	</class>
+</hibernate-mapping>

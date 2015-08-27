@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="projeto_periodo" basedir="." default="build" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+	
+
+	<property name="web.dir" value="WebContent/WEB_INF" />
+	<property name="lib.dir" value="${web.dir}/lib" />
+	<property name="class.dir" value="${web.dir}/classes" />
+	<property name="src.dir" value="src" />
+	<property name="views.dir" value="${web.dir}/view" />
+	<property name="jsp.dir" value="${views.dir}/jsp" />
+	<property name="model.dir" value="${src.dir}/java/com/web2/model" />
+	<property name="controller.dir" value="${src.dir}/java/com/web2/controller" />
+	<property name="util.dir" value="${src.dir}/java/com/web2/util" />
+
+	<path id="maven-ant-tasks.classpath" path="${lib.dir}/maven-ant-tasks-2.1.3.jar" />
+		<typedef resource="org/apache/maven/artifact/ant/antlib.xml"
+			           uri="antlib:org.apache.maven.artifact.ant"
+			           classpathref="maven-ant-tasks.classpath" />
+	
+	<target name="init">
+		<mkdir dir="${views.dir}" />
+		<mkdir dir="${model.dir}" />
+		<mkdir dir="${controller.dir}" />
+		<mkdir dir="${util.dir}"/>
+	</target>
+
+	<path id="master-classpath" description="Master CLASSPATH for this script">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement location="${class.dir}" />
+	</path>
+	
+	<target name="updateLib">
+		<copy todir="${lib.dir}">
+			<fileset refid="dependency.fileset" />
+		</copy>
+	</target>
+
+	<artifact:dependencies pathId="dependency.classpath" filesetId="dependency.fileset">
+		<dependency groupId="junit" artifactId="junit" version="4.12" />
+		<dependency groupId="mysql" artifactId="mysql-connector-java" version="5.1.36" />
+		<dependency groupId="org.hibernate" artifactId="hibernate-core" version="5.0.0.Final" />
+		<dependency groupId="org.slf4j" artifactId="slf4j-api" version="1.7.12"/>
+		<dependency groupId="org.slf4j" artifactId="slf4j-log4j12" version="1.7.12"/>
+	</artifact:dependencies>
+	<artifact:localRepository path="${web.dir}" />
+	
+	<target name="compile">
+		<javac srcdir="${src.dir}" destdir="${class.dir}" debug="true" 
+			failonerror="true" classpathref="master-classpath" />
+	</target>
+
+	<target name="build" depends="init, updateLib, compile" />
+	
+	
+	 
+
+</project>
