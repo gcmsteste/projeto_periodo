@@ -5,7 +5,7 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
    
    <hibernate-mapping>
-   	<class name="br.com.projetoperiodo.model.instituto.usuario" table="USUARIO">
+   	<class name="br.com.projetoperiodo.model.usuario.Usuario" table="USUARIO">
 		   <id name="login" column="USUARIO_LOGIN" type="string">
 		   	<generator class="assigned"></generator>
 		   </id>
