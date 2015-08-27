@@ -196,18 +196,74 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 	}
 
 	@Override
-	public void remover(Object object) {
+	public void remover(Object object) 
+	{
+		Connection con = null;
 
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs = null;
+		
 		RelatorioFrequencia relatorio = (RelatorioFrequencia) object;
+		
+		final Long[] chaves = new Long[10];
+		
+		
 		final String SQL_DELETE = "DELETE FROM PROJETO_PERIODO.RELATORIO_FREQUENCIA "
-						        + "WHERE RELATORIO_CD = ? AND RELATORIO_DS = ?"; 
-		try {
-			PreparedStatement ptmt = connection.prepareStatement(SQL_DELETE);
-			ptmt.setInt(1, relatorio.getChavePrimaria());
+						        + "WHERE RELATORIO_CD = ? AND RELATORIO_CD = ?"; 
+		
+		try 
+		{	
+			PreparedStatement stmt = connection.prepareStatement(SQL_DELETE);
+			pstmt.setLong(1, new Long(chaves[0]));
+			pstmt.executeUpdate();
+			con.commit();
 			
 			
-		} catch ( SQLException e ) {
-			
+		} 
+		catch (ClassNotFoundException ex) 
+		{
+
+			ex.printStackTrace();
+
+		} 
+		catch (SQLException ex) 
+		{
+
+		try 
+		{
+
+		} 
+		catch (SQLException ex1) 
+		{
+
+			con.rollback(); 
+	
+			ex1.printStackTrace();
+
+		}
+
+		} 
+		finally 
+		{
+
+		try 
+		{
+
+			if (rs != null) rs.close();
+	
+			if (pstmt != null) pstmt.close();
+	
+			if (con != null) con.close();
+
+		} 
+		catch (SQLException ex) 
+		{
+
+		ex.printStackTrace();
+
+		}
+
 		}
 
 	}
