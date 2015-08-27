@@ -52,15 +52,13 @@ public class RemoverRelatorioFrequencia extends RelatorioFrequencia {
 
 		try {
 
-			Class.forName("com.mysql.jdbc.Driver");
-
-			con = DriverManager.getConnection(url, "usuario", "senha");
+			stmt = connection.prepareStatement(sql);
 
 			con.setAutoCommit(false);
 
-			pstmt = con.prepareStatement("DELETE FROM users WHERE id = ?");
+			pstmt = con.prepareStatement("DELETE FROM RelatorioFrequencia WHERE id = ?");
 
-			pstmt.setLong(1, new Long(args[0]));
+			stmt.setInt(1, relatorioFrequencia.getChavePrimaria());
 
 			pstmt.executeUpdate();
 
