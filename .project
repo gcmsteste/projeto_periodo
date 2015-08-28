@@ -36,6 +36,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>src/br/com/projetoperiodo/model/instituto/curso/Curso.hbm.xml</name>
+			<type>1</type>
+			<location>C:/Users/Notebook/Desktop/Curso.hbm.xml</location>
+		</link>
+		<link>
 			<name>src/br/com/projetoperiodo/model/instituto/orientador/Orientador.hbm.xml</name>
 			<type>1</type>
 			<location>C:/Users/Notebook/Desktop/Orientador.hbm.xml</location>
