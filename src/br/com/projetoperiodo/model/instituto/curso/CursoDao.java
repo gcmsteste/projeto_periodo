@@ -10,8 +10,10 @@ public interface CursoDao
 	
 	public void salvar(Curso curso);
 	
-	public void remover(Curso curso);
+	public void remover(Curso curso) throws Exception;
 	
-	public void atualizar(Curso curso);
+	public void atualizar(Curso curso) throws Exception;
+
+	Curso salvar(String descricao, String condicao) throws Exception;
 
 }
