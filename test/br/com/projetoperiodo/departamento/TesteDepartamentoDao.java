@@ -28,6 +28,17 @@ public class TesteDepartamentoDao {
 		int qtdFim = departamentoDao.listar().size();
 		Assert.assertEquals(qtdInicio + 1, qtdFim);
 	}
+	
+	@Test
+	public void testeRemoverDepartamento() {
+		Departamento departamentoInserido = montarObjetoDepartamento();
+		departamentoDao.salvar(departamentoInserido);
+		
+		int qtdInicio = departamentoDao.listar().size();
+		departamentoDao.remover(departamentoInserido);
+		int qtdFim = departamentoDao.listar().size();
+		Assert.assertEquals(qtdInicio - 1, qtdFim);
+	}
 
 	private Departamento montarObjetoDepartamento() {
 		Departamento departamento = new Departamento();
@@ -38,6 +49,6 @@ public class TesteDepartamentoDao {
 
 	@After
 	public void close() {
-		HibernateUtil.getSessionFactory().close();
+		
 	}
 }

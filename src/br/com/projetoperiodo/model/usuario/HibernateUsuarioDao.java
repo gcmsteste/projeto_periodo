@@ -2,12 +2,16 @@ package br.com.projetoperiodo.model.usuario;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import br.com.projetoperiodo.util.persistencia.HibernateUtil;
 
 public class HibernateUsuarioDao implements UsuarioDao{
 
 	@Override
-	public void insert(Usuario usuario) {
+	public void salvar(Usuario usuario) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 		try{
@@ -15,8 +19,7 @@ public class HibernateUsuarioDao implements UsuarioDao{
 			transaction.commit();
 		}catch(HibernateException e)
 		{
-			e.printStackTrace();
-			e throw;
+			throw e;
 		}finally
 		{
 			session.close();
@@ -34,8 +37,7 @@ public class HibernateUsuarioDao implements UsuarioDao{
 			transaction.commit();
 		}catch(HibernateException e)
 		{
-			e.printStackTrace();
-			e throw;
+			throw e;
 		}finally
 		{
 			session.close();
@@ -52,7 +54,7 @@ public class HibernateUsuarioDao implements UsuarioDao{
 		}catch(HibernateException e)
 		{
 			e.printStackTrace();
-			e throw;
+			throw e;
 		}finally
 		{
 			session.close();
@@ -64,12 +66,11 @@ public class HibernateUsuarioDao implements UsuarioDao{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 		try{
-			List<Usuario> usuarios = session.createQuery("from Usurio").list();
-			return usuarios;
+			/* Coloquei o retorno imediato*/
+			return session.createQuery("from Usuario").list();
 		}catch(HibernateException e)
 		{
-			e.printStackTrace();
-			e throw;
+			throw e;
 		}finally
 		{
 			session.close();

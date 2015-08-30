@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface UsuarioDao {
 
-	public void insert(Usuario usuario);
+	public void salvar(Usuario usuario);
 	
 	public void atualizar(Usuario usuario);
 	
