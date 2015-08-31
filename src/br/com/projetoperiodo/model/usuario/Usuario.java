@@ -1,14 +1,34 @@
 
 package br.com.projetoperiodo.model.usuario;
 
-public class Usuario {
+import java.io.Serializable;
 
-	public String nome;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "USUARIO")
+@Inheritance( strategy = InheritanceType.JOINED )
+public class Usuario implements Serializable
+{
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "USUARIO_ID")
+	private Long id;
+	
+	@Column(name = "USUARIO_NOME", nullable = false)
+	private String nome;
+	@Column(name = "USUARIO_LOGIN", nullable = false)
 	private String login;
-
+	@Column(name = "USUARIO_SENHA", nullable = false)
 	private String senha;
-
+	@Column(name = "USUARIO_EMAIL", nullable = false)
 	private String email;
 
 	public String getLogin() {
@@ -47,5 +67,15 @@ public class Usuario {
 	
 	public String getNome() {
 		return nome;
+	}
+
+	public Long getId() {
+
+		return id;
+	}
+
+	public void setId(Long id) {
+
+		this.id = id;
 	}
 }

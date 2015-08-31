@@ -5,6 +5,10 @@ import java.util.List;
 import javax.security.auth.login.AppConfigurationEntry;
 import javax.security.auth.login.Configuration;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import br.com.projetoperiodo.util.persistencia.HibernateUtil;
 
 public class HibernateAlunoDao implements AlunoDao{

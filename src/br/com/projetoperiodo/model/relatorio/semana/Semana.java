@@ -1,6 +1,8 @@
-package br.com.projetoperiodo.model.relatorio;
+package br.com.projetoperiodo.model.relatorio.semana;
 
 import java.util.Collection;
+
+import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 
 public class Semana {
 	private String descricao;

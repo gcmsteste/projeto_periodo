@@ -6,6 +6,7 @@ import java.util.Date;
 import br.com.projetoperiodo.model.instituto.aluno.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.funcionario.Funcionario;
 import br.com.projetoperiodo.model.instituto.orientador.Orientador;
+import br.com.projetoperiodo.model.relatorio.semana.Semana;
 
 public class RelatorioFrequencia {
 	

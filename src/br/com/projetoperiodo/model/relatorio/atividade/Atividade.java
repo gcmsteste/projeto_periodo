@@ -1,9 +1,10 @@
-package br.com.projetoperiodo.model.relatorio;
+package br.com.projetoperiodo.model.relatorio.atividade;
 
 import java.security.Timestamp;
 import java.util.Date;
 
 public class Atividade {
+	private int id;
 	private String horario_entrada;
 	private String horario_saida;
 	private Date data;
@@ -34,6 +35,16 @@ public class Atividade {
 	public void setHorarioSaida(String horarioSaida) {
 
 		this.horario_saida = horarioSaida;
+	}
+
+	public int getId() {
+
+		return id;
+	}
+
+	private void setId(int id) {
+
+		this.id = id;
 	}
 
 

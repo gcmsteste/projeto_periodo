@@ -14,6 +14,8 @@ import br.com.projetoperiodo.model.instituto.aluno.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.curso.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.funcionario.Funcionario;
 import br.com.projetoperiodo.model.instituto.orientador.Orientador;
+import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
+import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.util.constantes.Modalidade;
 
 public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
