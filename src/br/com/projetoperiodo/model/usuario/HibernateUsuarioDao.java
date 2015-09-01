@@ -78,4 +78,13 @@ public class HibernateUsuarioDao implements UsuarioDao{
 		
 	}
 
+	
+
+	@Override
+	public Usuario buscar(int i) {
+
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

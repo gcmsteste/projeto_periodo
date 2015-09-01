@@ -6,8 +6,15 @@ import javax.persistence.Persistence;
 public class JPAUtil {
 	private static EntityManagerFactory factory;
 	static {
-		factory = Persistence.
-						createEntityManagerFactory("mysqllocal");
+		try {
+			factory = Persistence.
+							createEntityManagerFactory("mysqllocal");
+			
+		} catch( Throwable e) {
+			e.printStackTrace();
+		
+		}
+		
 	}
 	
 	public static EntityManagerFactory getEntityManagerFactory() {

@@ -1,9 +1,22 @@
 package br.com.projetoperiodo.model.instituto.departamento;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "DEPARTAMENTO")
 public class Departamento {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column( name = "DEPARTAMENTO_ID")
 	private int id;
+	@Column(name = "DEPARTAMENTO_DS")
 	private String descricao;
+	@Column(name = "DEPARTAMENTO_DS_ABREV")
 	private String descricaoAbreviada;
 	
 	public String getDescricaoAbreviada() {

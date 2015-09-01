@@ -1,55 +1,55 @@
 
 package br.com.projetoperiodo.relatorio;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.lang.reflect.Array;
-import java.security.Timestamp;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.monitor.Monitor;
-import br.com.projetoperiodo.model.instituto.curso.disciplina.Disciplina;
+import br.com.projetoperiodo.model.instituto.curso.Curso;
+import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.funcionario.Funcionario;
 import br.com.projetoperiodo.model.instituto.orientador.Orientador;
-import br.com.projetoperiodo.model.relatorio.JDBCRelatorioFrequencia;
-import br.com.projetoperiodo.model.relatorio.RelatorioFrequencia;
-import br.com.projetoperiodo.model.relatorio.RelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
+import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
+import br.com.projetoperiodo.model.relatorio.frequencia.dao.JPARelatorioFrequenciaDao;
+import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
-import br.com.projetoperiodo.util.persistencia.ConnectionFactory;
+import br.com.projetoperiodo.util.Util;
+import br.com.projetoperiodo.util.constantes.Grau;
+import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 public class TesteRelatorioFrequenciaDao {
 
 	private RelatorioFrequenciaDao dao;
-	private Connection connection;
 	
 	@Before
 	public void setUp() {
 
-		connection = new ConnectionFactory().getConnection();
-		dao = new JDBCRelatorioFrequencia(connection);
+		dao = new JPARelatorioFrequenciaDao();
+		montarCenario();
 	}
 	
 	@After
 	public void tearDown() throws SQLException {
-		connection.close();
+		JPAUtil.getEntityManagerFactory().close();
 	}
 	
 	@Test
 	public void testeInserirRelatorioFrequencia() {
 		int qtdIncio = dao.listar().size();
-		dao.inserir(montarObjetoRelatorioFrequencia());
+		dao.salvar(montarObjetoRelatorioFrequencia());
 		int qtdFim = dao.listar().size();
 		assertEquals(qtdIncio + 1, qtdFim);	
 	}
@@ -57,6 +57,18 @@ public class TesteRelatorioFrequenciaDao {
 	public Monitor montarObjetoMonitor() {
 		Monitor monitor = new Monitor();
 		monitor.setMatricula("20141Y6-RC0323");
+		monitor.setEmail("monitor@email.com");
+		monitor.setLogin("Monitor");
+		monitor.setNome("Fernando");
+		monitor.setSenha(Util.criptografarSenha("monitor123", 
+						Util.CONSTANTE_CRIPTOGRAFIA));
+		Curso curso = new Curso();
+		curso.setDescricao("Análise de Sistemas");
+		curso.setModalidade(Grau.SUPERIOR);
+		Disciplina disciplina = new Disciplina();
+		disciplina.setDescricao("Engenharia de Software");
+		//curso.setDisciplinas(disciplinas);
+		monitor.setCurso(curso);
 		return monitor;
 	}
 
@@ -83,14 +95,25 @@ public class TesteRelatorioFrequenciaDao {
 
 		Funcionario funcionario = new Funcionario();
 		funcionario.setSiape("5847560");
+		
 		return funcionario;
 	}
 
 	public Orientador montarObjetoOrientador() {
 		Orientador orientador = new Orientador();
 		orientador.setSiape("1428475");
+		orientador.setNome("Roberto");
+		//orientador.setDisciplina();
 		return orientador;
 	}
+	
+	public Disciplina montarObjetoDisciplina() {
+		Disciplina disciplina = new Disciplina();
+		disciplina.setDescricao("Desenvolvimento WEB 2");
+		//disciplina.setPagantes(pagantes);
+		return null;
+	}
+	
 	
 	public Semana montarObjetoSemana() {
 		Semana semana = new Semana();
@@ -118,14 +141,17 @@ public class TesteRelatorioFrequenciaDao {
 		return atividade;
 	}
 	
-
-	public void testeAtualizarRelatorioFrequencialDao(){
-		Collection<Object> relatorios = dao.listar();
-		RelatorioFrequencia relatorio = (RelatorioFrequencia)relatorios.iterator().next();
-		
-		//dao.atualizar();
-		
+	public void montarCenario() {
+		EntityManager entityManager = JPAUtil.
+						getEntityManagerFactory().createEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		entityManager.persist(montarObjetoSemana());
+		entityTransaction.commit();
+		entityManager.close();
 	}
+
+	
 	/*
 	public Monitor montarObjetoMonitorParaUpdate(){
 		Monitor monitor = new Monitor();

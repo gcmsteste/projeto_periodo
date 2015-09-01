@@ -1,11 +1,24 @@
 package br.com.projetoperiodo.model.instituto.funcionario;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 import br.com.projetoperiodo.model.instituto.departamento.Departamento;
 import br.com.projetoperiodo.model.usuario.Usuario;
-
+@Entity
+@Table(name = "FUNCIONARIO")
+@PrimaryKeyJoinColumn( name = "FUNCIONARIO_ID")
 public class Funcionario extends Usuario
 {
+	@Column( name = "FUNCIONARIO_SIAPE")
 	private String siape;
+	@ManyToOne(fetch=FetchType.LAZY, optional = false)
+	@JoinColumn(name="DEPARTAMENTO_ID", referencedColumnName= "DEPARTAMENTO_ID")
 	private Departamento departamento;
 	
 	public String getSiape() {
@@ -27,10 +40,4 @@ public class Funcionario extends Usuario
 
 		this.departamento = departamento;
 	}
-
-	
-	
-	
-	
-
 }

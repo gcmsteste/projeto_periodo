@@ -12,4 +12,6 @@ public interface UsuarioDao {
 	
 	public List<Usuario> listar();
 	
+	public Usuario buscar(int i);
+	
 }

@@ -1,5 +1,5 @@
 
-package br.com.projetoperiodo.model.relatorio;
+package br.com.projetoperiodo.model.relatorio.frequencia.dao;
 
 import java.sql.BatchUpdateException;
 import java.sql.Connection;
@@ -11,10 +11,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import br.com.projetoperiodo.model.instituto.aluno.monitor.Monitor;
-import br.com.projetoperiodo.model.instituto.curso.disciplina.Disciplina;
+import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.funcionario.Funcionario;
 import br.com.projetoperiodo.model.instituto.orientador.Orientador;
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
+import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.util.constantes.Modalidade;
 
@@ -27,9 +28,9 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 	}
 
 	@Override
-	public void inserir(Object object) {
+	public void salvar(RelatorioFrequencia relatorioFrequencia) {
 
-		RelatorioFrequencia relatorioFrequencia = (RelatorioFrequencia) object;
+		
 		final String SQL_INSERT = "INSERT INTO PROJETO_PERIODO.RELATORIO_FREQUENCIA"
 						+ "(RELATORIO_ANO, RELATORIO_MES, RELATORIO_CARGA_HORARIA, RELATORIO_EDITAL,"
 						+ " ORIENTADOR_SIAPE, FUNCIONARIO_SIAPE, DATA_ENTREGA, ALUNO_MATRICULA)" + " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
@@ -156,16 +157,14 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 	}
 
 	@Override
-	public void atualizar(Object object) {
-
-		RelatorioFrequencia relatorioFrequencia = (RelatorioFrequencia) object;
+	public void atualizar(RelatorioFrequencia relatorioFrequencia) {
 
 		String sql = "update PROJETO_PERIODO.RELATORIO_FREQUENCIA" + "(RELATORIO_CD, RELATORIO_ANO,RELATORIO_MES,RELATORIO_CARGA_HORARIA,"
 						+ "ALUNO_MATRICULA, RELATORIO_EDITAL ,ORIENTADOR_SIAPE,FUNCIONARIO_SIAPE,DATA_ENTREGA)" + "values(?,?,?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
 		try {
 			stmt = connection.prepareStatement(sql);
-			stmt.setInt(1, relatorioFrequencia.getChavePrimaria());
+			stmt.setInt(1, relatorioFrequencia.getId());
 			stmt.setInt(2, relatorioFrequencia.getAno());
 			stmt.setInt(3, relatorioFrequencia.getMes());
 			stmt.setInt(4, relatorioFrequencia.getCargaHorariaMensal());
@@ -198,15 +197,13 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 	}
 
 	@Override
-	public void remover(Object object) 
+	public void remover(RelatorioFrequencia relatorioFrequencia) 
 	{
 		Connection con = null;
 
 		PreparedStatement pstmt = null;
 		
 		ResultSet rs = null;
-		
-		RelatorioFrequencia relatorio = (RelatorioFrequencia) object;
 		
 		final Long[] chaves = new Long[10];
 		
@@ -223,27 +220,8 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 			
 			
 		} 
-		catch (ClassNotFoundException ex) 
-		{
-
-			ex.printStackTrace();
-
-		} 
 		catch (SQLException ex) 
 		{
-
-		try 
-		{
-
-		} 
-		catch (SQLException ex1) 
-		{
-
-			con.rollback(); 
-	
-			ex1.printStackTrace();
-
-		}
 
 		} 
 		finally 
@@ -271,7 +249,7 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 	}
 
 	@Override
-	public Collection<Object> listar() {
+	public Collection<RelatorioFrequencia> listar() {
 
 		final String SQL_SELECT_RELATORIO = "SELECT * " + "FROM RELATORIO_FREQUENCIA AS R "
 						+ "INNER JOIN MONITOR AS M ON M.ALUNO_MATRICULA = R.ALUNO_MATRICULA "
@@ -285,13 +263,13 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 		final String SQL_SELECT_ATIVIDADE = "SELECT * FROM ATIVIDADE" + "WHERE SEMANA_CD = ?";
 		PreparedStatement ptmt = null;
 		ResultSet rs = null;
-		Collection<Object> relatorios = new ArrayList<>();
+		Collection<RelatorioFrequencia> relatorios = new ArrayList<RelatorioFrequencia>();
 		try {
 			ptmt = connection.prepareStatement(SQL_SELECT_RELATORIO);
 			rs = ptmt.executeQuery();
 			while (rs.next()) {
 				RelatorioFrequencia relatorio = new RelatorioFrequencia();
-				relatorio.setChavePrimaria(rs.getInt("RELATORIO_CD"));
+				relatorio.setId(rs.getInt("RELATORIO_CD"));
 				relatorio.setAno(rs.getInt("RELATORIO_ANO"));
 				relatorio.setMes(rs.getInt("RELATORIO_MES"));
 				relatorio.setEdital(rs.getString("RELATORIO_EDITAL"));
@@ -311,7 +289,7 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 	}
 
 	@Override
-	public Object buscar(Object object) {
+	public RelatorioFrequencia buscar(int id) {
 
 		// TODO Auto-generated method stub
 		return null;

@@ -36,6 +36,8 @@ public class TesteUsuarioDao {
 	@Test
 	public void testeRemoverUsuario() {
 		Usuario usuario = montarObjetoUsuario();
+		dao.salvar(usuario);
+		System.out.println(usuario.getId());
 		int qtdInicio = dao.listar().size();
 		dao.remover(usuario);
 		int qtdFim = dao.listar().size();
@@ -44,15 +46,17 @@ public class TesteUsuarioDao {
 	
 	@Test
 	public void testeAtualizarUsuario() {
-	/*
+	
 		Usuario usuarioInserido = montarObjetoUsuario();
 		dao.salvar(usuarioInserido);
-		String senhaAntesAlteracao = usuario.getSenha();
+		
+		Usuario usuarioPesquisado = dao.buscar(usuarioInserido.getId());
+		String senhaAntesAlteracao = usuarioPesquisado.getSenha();
 		usuarioPesquisado.setSenha(Util.criptografarSenha("admin321", Util.CONSTANTE_CRIPTOGRAFIA));
 		dao.atualizar(usuarioPesquisado);
-		String senhaPosAlteracao = session.get(Usuario.class, usuario.getLogin()).getSenha();
+		String senhaPosAlteracao = dao.buscar(usuarioPesquisado.getId()).getSenha();
 		Assert.assertNotNull(senhaPosAlteracao);
-		Assert.assertNotEquals(senhaAntesAlteracao, senhaPosAlteracao); */
+		Assert.assertNotEquals(senhaAntesAlteracao, senhaPosAlteracao); 
 	}
 	
 	@After

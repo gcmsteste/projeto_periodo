@@ -1,24 +1,55 @@
-package br.com.projetoperiodo.model.relatorio;
+package br.com.projetoperiodo.model.relatorio.frequencia;
 
 import java.util.Collection;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 import br.com.projetoperiodo.model.instituto.aluno.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.funcionario.Funcionario;
 import br.com.projetoperiodo.model.instituto.orientador.Orientador;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
-
+@Entity
+@Table(name = "RELATORIO_FREQUENCIA")
 public class RelatorioFrequencia {
-	
-	private int chavePrimaria;
+	@Id
+	@GeneratedValue ( strategy = GenerationType.IDENTITY )
+	@Column( name = "RELATORIO_ID")
+	private int id;
+	@Column( name = "RELATORIO_MES", nullable = false)
 	private int mes;
+	@Column( name = "RELATORIO_ANO", nullable = false)
 	private int ano;
+	@Column( name = "RELATORIO_CARGA_HORARIA", nullable = false)
 	private int cargaHorariaMensal;
+	@Column( name = "RELATORIO_EDITAL", nullable = false)
 	private String edital;
+	@ManyToOne( fetch = FetchType.LAZY, optional = false)
+	@JoinColumn( name = "MONITOR_ID", referencedColumnName = "MONITOR_ID")
 	private Monitor monitor;
+	@Column( name = "DATA_ENTREGA", nullable = false)
+	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dataEntregaRelatorio;
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ORIENTADOR_ID", referencedColumnName = "ORIENTADOR_ID")
 	private Orientador orientador;
+	@ManyToOne( fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "FUNCIONARIO_ID", referencedColumnName = "FUNCIONARIO_ID")
 	private Funcionario funcionario;
+	@OneToMany(mappedBy="relatorio",
+			   cascade = CascadeType.ALL,
+			   fetch = FetchType.EAGER)
 	private Collection<Semana> semanas;
 	
 	public int getMes() {
@@ -95,12 +126,12 @@ public class RelatorioFrequencia {
 
 		this.semanas = semanas;
 	}
-	public int getChavePrimaria() {
-
-		return chavePrimaria;
+	
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setChavePrimaria(int chavePrimaria) {
-
-		this.chavePrimaria = chavePrimaria;
+	public int getId() {
+		return id;
 	}
+	
 }

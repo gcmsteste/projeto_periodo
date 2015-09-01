@@ -18,9 +18,9 @@ import javax.persistence.Table;
 public class Usuario implements Serializable
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	@Column(name = "USUARIO_ID")
-	private Long id;
+	private int id;
 	
 	@Column(name = "USUARIO_NOME", nullable = false)
 	private String nome;
@@ -69,12 +69,12 @@ public class Usuario implements Serializable
 		return nome;
 	}
 
-	public Long getId() {
+	public int getId() {
 
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 
 		this.id = id;
 	}

@@ -42,7 +42,8 @@ public class JPAUsuarioDao implements UsuarioDao
 						JPAUtil.getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
-		entityManager.remove(usuario);
+		Object object = entityManager.merge(usuario);
+		entityManager.remove(object);
 		entityTransaction.commit();
 		entityManager.close();
 		
@@ -58,6 +59,17 @@ public class JPAUsuarioDao implements UsuarioDao
 		List<Usuario> usuarios = entityManager.createQuery("from Usuario").getResultList();
 		entityManager.close();
 		return usuarios;
+	}
+
+	@Override
+	public Usuario buscar(int primaryKey) {
+
+
+		EntityManager entityManager = 
+						JPAUtil.getEntityManagerFactory().createEntityManager();
+		Usuario usuario = entityManager.find(Usuario.class, primaryKey);
+		entityManager.close();
+		return usuario;
 	}
 
 }
