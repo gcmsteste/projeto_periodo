@@ -26,7 +26,7 @@ public class Monitor extends Aluno
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('BOLSISTA', 'VOLUNTARIO')")
 	private Modalidade modalidade;
-	@ManyToOne(fetch = FetchType.EAGER, optional=false)
+	@ManyToOne(fetch = FetchType.EAGER, optional= false, cascade = CascadeType.PERSIST)
 	@JoinColumn(name="DISCIPLINA_ID", referencedColumnName="DISCIPLINA_ID")
 	private Disciplina disciplina;
 	@OneToMany(mappedBy="monitor",

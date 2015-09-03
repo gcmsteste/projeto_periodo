@@ -30,6 +30,7 @@ public class JPASemanaDao implements SemanaDao
 						getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
+		semana  = (Semana)entityManager.merge(semana);
 		entityManager.remove(semana);
 		entityTransaction.commit();
 		entityManager.close();

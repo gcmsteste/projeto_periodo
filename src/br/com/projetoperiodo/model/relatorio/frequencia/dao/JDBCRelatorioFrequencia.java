@@ -53,7 +53,7 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 			try {
 				generatedKeys = ptmt.getGeneratedKeys();
 				if (generatedKeys.next()) {
-					inserirSemanasRelatorio(relatorioFrequencia.getSemanas(), generatedKeys.getInt(1));
+					//inserirSemanasRelatorio(relatorioFrequencia.getSemanas(), generatedKeys.getInt(1));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -94,7 +94,7 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 				try {
 					generatedKeys = ptmt.getGeneratedKeys();
 					if (generatedKeys.next()) {
-						inserirAtividadesSemana(semana.getAtividades(), generatedKeys.getInt(1));
+						//inserirAtividadesSemana(semana.getAtividades(), generatedKeys.getInt(1));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();

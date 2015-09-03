@@ -1,6 +1,7 @@
 package br.com.projetoperiodo.model.relatorio.semana;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,11 +31,14 @@ public class Semana {
 	@OneToMany(mappedBy="semana",
 			   cascade = CascadeType.ALL,
 			   fetch = FetchType.EAGER)
-	private Collection<Atividade> atividades;
-	@ManyToOne( fetch = FetchType.LAZY, optional = false)
+	private List<Atividade> atividades;
+	@ManyToOne( fetch = FetchType.LAZY, optional = true)
 	@JoinColumn( name = "RELATORIO_ID", referencedColumnName = "RELATORIO_ID")
 	private RelatorioFrequencia relatorio;
 	
+	public Semana() {
+		atividades = new ArrayList<Atividade>();
+	}
 	public String getDescricao() {
 		return this.descricao;
 	}
@@ -51,14 +55,14 @@ public class Semana {
 		this.observacoes = observacoes;
 	}
 
-	public Collection<Atividade> getAtividades() {
+	public Atividade getAtividades(int index) {
 
-		return atividades;
+		return atividades.get(index);
 	}
 
-	public void setAtividades(Collection<Atividade> atividades) {
+	public void setAtividades(Atividade atividade) {
 
-		this.atividades = atividades;
+		this.atividades.add(atividade);
 	}
 
 	public RelatorioFrequencia getRelatorio() {

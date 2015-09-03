@@ -29,7 +29,7 @@ public class Atividade {
 	@Column( name = "ATIVIDADE_DATA", nullable = false)
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date data;
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn( name = "SEMANA_ID", referencedColumnName = "SEMANA_ID" )
 	private Semana semana;
 	

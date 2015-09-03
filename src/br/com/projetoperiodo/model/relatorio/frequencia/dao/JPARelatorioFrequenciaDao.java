@@ -1,17 +1,17 @@
 package br.com.projetoperiodo.model.relatorio.frequencia.dao;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
+import br.com.projetoperiodo.model.relatorio.semana.SemanaDao;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 {
-
+	
 	@Override
 	public void salvar(RelatorioFrequencia relatorio) {
 
@@ -45,6 +45,7 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 						getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
+		relatorio = entityManager.merge(relatorio);
 		entityManager.remove(relatorio);
 		entityTransaction.commit();
 		entityManager.close();

@@ -1,7 +1,8 @@
 package br.com.projetoperiodo.model.relatorio.frequencia;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,23 +36,26 @@ public class RelatorioFrequencia {
 	private int cargaHorariaMensal;
 	@Column( name = "RELATORIO_EDITAL", nullable = false)
 	private String edital;
-	@ManyToOne( fetch = FetchType.LAZY, optional = false)
+	@ManyToOne( fetch = FetchType.LAZY, optional = true)
 	@JoinColumn( name = "MONITOR_ID", referencedColumnName = "MONITOR_ID")
 	private Monitor monitor;
 	@Column( name = "DATA_ENTREGA", nullable = false)
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dataEntregaRelatorio;
-	@ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "ORIENTADOR_ID", referencedColumnName = "ORIENTADOR_ID")
 	private Orientador orientador;
-	@ManyToOne( fetch = FetchType.EAGER, optional = false, cascade = CascadeType.PERSIST)
+	@ManyToOne( fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "FUNCIONARIO_ID", referencedColumnName = "FUNCIONARIO_ID")
 	private Funcionario funcionario;
 	@OneToMany(mappedBy="relatorio",
-			   cascade = CascadeType.REMOVE,
+			   cascade = CascadeType.ALL,
 			   fetch = FetchType.EAGER)
-	private Collection<Semana> semanas;
+	private List<Semana> semanas;
 	
+	public RelatorioFrequencia() {
+		semanas = new ArrayList<Semana>();
+	}
 	public int getMes() {
 
 		return mes;
@@ -118,13 +122,13 @@ public class RelatorioFrequencia {
 
 		this.funcionario = funcionario;
 	}
-	public Collection<Semana> getSemanas() {
+	public Semana getSemanas(int index) {
 
-		return semanas;
+		return semanas.get(index);
 	}
-	public void setSemanas(Collection<Semana> semanas) {
+	public void setSemanas(Semana semana) {
 
-		this.semanas = semanas;
+		this.semanas.add(semana);
 	}
 	
 	public void setId(int id) {
