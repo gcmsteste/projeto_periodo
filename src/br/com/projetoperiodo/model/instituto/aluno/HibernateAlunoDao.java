@@ -15,7 +15,7 @@ public class HibernateAlunoDao implements AlunoDao{
 
 	 	
 	@Override
-	public void inserir(Aluno aluno) {
+	public void salvar(Aluno aluno) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession(); 
 		Transaction transaction = session.beginTransaction();
@@ -76,6 +76,12 @@ public class HibernateAlunoDao implements AlunoDao{
 			session.close();
 		}
 		
+	}
+
+	@Override
+	public Aluno buscar(int primaryK) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

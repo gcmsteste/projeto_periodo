@@ -11,4 +11,6 @@ public interface FuncionarioDao {
 	public void remover(Funcionario funcionario);
 	
 	public void atualizar(Funcionario funcionario);
+	
+	public Funcionario buscar(int primaryK);
 }

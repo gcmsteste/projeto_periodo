@@ -59,4 +59,10 @@ public class HibernateFuncionarioDao implements FuncionarioDao
 		
 	}
 
+	@Override
+	public Funcionario buscar(int primaryK) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

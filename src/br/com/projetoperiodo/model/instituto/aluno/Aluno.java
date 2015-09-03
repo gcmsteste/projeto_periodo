@@ -27,6 +27,7 @@ public class Aluno extends Usuario
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "CURSO_ID", referencedColumnName = "CURSO_ID")
 	private Curso curso;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="DISCIPLINA_ALUNO",
 	           joinColumns = @JoinColumn( name = "ALUNO_ID"),
