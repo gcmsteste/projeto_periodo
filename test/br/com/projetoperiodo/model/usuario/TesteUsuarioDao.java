@@ -1,19 +1,13 @@
-package br.com.projetoperiodo.usuario;
+package br.com.projetoperiodo.model.usuario;
 
-import static org.junit.Assert.*;
-
-import org.hibernate.Session;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.projetoperiodo.model.usuario.HibernateUsuarioDao;
-import br.com.projetoperiodo.model.usuario.JPAUsuarioDao;
-import br.com.projetoperiodo.model.usuario.Usuario;
-import br.com.projetoperiodo.model.usuario.UsuarioDao;
 import br.com.projetoperiodo.util.Util;
-import br.com.projetoperiodo.util.persistencia.HibernateUtil;
+import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 
 public class TesteUsuarioDao {
@@ -37,7 +31,6 @@ public class TesteUsuarioDao {
 	public void testeRemoverUsuario() {
 		Usuario usuario = montarObjetoUsuario();
 		dao.salvar(usuario);
-		System.out.println(usuario.getId());
 		int qtdInicio = dao.listar().size();
 		dao.remover(usuario);
 		int qtdFim = dao.listar().size();
@@ -59,9 +52,9 @@ public class TesteUsuarioDao {
 		Assert.assertNotEquals(senhaAntesAlteracao, senhaPosAlteracao); 
 	}
 	
-	@After
-	public void close() {
-		//HibernateUtil.getSessionFactory().close();
+	@AfterClass
+	public static void tearDown() {
+		JPAUtil.closeEntityManagerFactory();
 	}
 	
 	public Usuario montarObjetoUsuario() {

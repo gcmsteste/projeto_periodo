@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import br.com.projetoperiodo.model.instituto.aluno.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
@@ -249,7 +250,7 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 	}
 
 	@Override
-	public Collection<RelatorioFrequencia> listar() {
+	public List<RelatorioFrequencia> listar() {
 
 		final String SQL_SELECT_RELATORIO = "SELECT * " + "FROM RELATORIO_FREQUENCIA AS R "
 						+ "INNER JOIN MONITOR AS M ON M.ALUNO_MATRICULA = R.ALUNO_MATRICULA "
@@ -263,7 +264,7 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 		final String SQL_SELECT_ATIVIDADE = "SELECT * FROM ATIVIDADE" + "WHERE SEMANA_CD = ?";
 		PreparedStatement ptmt = null;
 		ResultSet rs = null;
-		Collection<RelatorioFrequencia> relatorios = new ArrayList<RelatorioFrequencia>();
+		List<RelatorioFrequencia> relatorios = new ArrayList<RelatorioFrequencia>();
 		try {
 			ptmt = connection.prepareStatement(SQL_SELECT_RELATORIO);
 			rs = ptmt.executeQuery();

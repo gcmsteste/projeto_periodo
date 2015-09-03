@@ -11,5 +11,6 @@ public interface DepartamentoDao {
 	
 	public void atualizar(Departamento departamento);
 	
+	public Departamento buscar(int primaryKey);
 	
 }

@@ -1,5 +1,5 @@
 
-package br.com.projetoperiodo.departamento;
+package br.com.projetoperiodo.model.departamento;
 
 import org.junit.After;
 import org.junit.Assert;

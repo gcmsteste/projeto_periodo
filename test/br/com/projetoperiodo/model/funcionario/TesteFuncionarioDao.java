@@ -1,4 +1,4 @@
-package br.com.projetoperiodo.funcionario;
+package br.com.projetoperiodo.model.funcionario;
 
 import org.junit.Assert;
 import org.junit.Before;

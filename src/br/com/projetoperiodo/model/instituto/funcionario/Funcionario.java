@@ -1,5 +1,6 @@
 package br.com.projetoperiodo.model.instituto.funcionario;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +18,8 @@ public class Funcionario extends Usuario
 {
 	@Column( name = "FUNCIONARIO_SIAPE")
 	private String siape;
-	@ManyToOne(fetch=FetchType.LAZY, optional = false)
+	// Ao inserir um funcionario que possui departamento, insiro departamento também
+	@ManyToOne(fetch=FetchType.LAZY, optional = false, cascade=CascadeType.PERSIST)
 	@JoinColumn(name="DEPARTAMENTO_ID", referencedColumnName= "DEPARTAMENTO_ID")
 	private Departamento departamento;
 	

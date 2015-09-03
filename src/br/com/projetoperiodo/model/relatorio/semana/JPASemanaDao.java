@@ -1,70 +1,75 @@
-package br.com.projetoperiodo.model.relatorio.frequencia.dao;
+package br.com.projetoperiodo.model.relatorio.semana;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
-public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
+public class JPASemanaDao implements SemanaDao 
 {
 
 	@Override
-	public void salvar(RelatorioFrequencia relatorio) {
+	public void salvar(Semana semana) {
 
 		EntityManager entityManager = JPAUtil.
 						getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
-		entityManager.persist(relatorio);
+		entityManager.persist(semana);
 		entityTransaction.commit();
 		entityManager.close();
 		
 	}
 
 	@Override
-	public void atualizar(RelatorioFrequencia relatorio) {
+	public void remover(Semana semana) {
 
 		EntityManager entityManager = JPAUtil.
 						getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
-		entityManager.merge(relatorio);
+		entityManager.remove(semana);
 		entityTransaction.commit();
 		entityManager.close();
+		
 		
 	}
 
 	@Override
-	public void remover(RelatorioFrequencia relatorio) {
+	public void alterar(Semana semana) {
 
 		EntityManager entityManager = JPAUtil.
 						getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
-		entityManager.remove(relatorio);
+		entityManager.merge(semana);
 		entityTransaction.commit();
 		entityManager.close();
+		
 		
 	}
 
 	@Override
-	public List<RelatorioFrequencia> listar() {
+	public List<Semana> listar() {
 
 		EntityManager entityManager = JPAUtil.
 						getEntityManagerFactory().createEntityManager();
-		return entityManager.createQuery("from RelatorioFrequencia").getResultList();
+		List<Semana> semanas = entityManager.
+						createQuery("from Semana").getResultList();
+		entityManager.close();
+		return semanas;
 	}
 
 	@Override
-	public RelatorioFrequencia buscar(int primaryKey) {
+	public Semana buscar(int primaryKey) {
 
 		EntityManager entityManager = JPAUtil.
 						getEntityManagerFactory().createEntityManager();
-		return entityManager.find(RelatorioFrequencia.class, primaryKey);
+		Semana semana = entityManager.find(Semana.class, primaryKey);
+		entityManager.close();
+		return semana;
 	}
 
 }

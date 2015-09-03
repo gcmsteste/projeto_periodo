@@ -28,7 +28,7 @@ public class Curso {
 	private String descricao;
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('TECNICO', 'SUPERIOR')")
-	private Grau modalidade;
+	private Grau grau;
 	@OneToMany(mappedBy = "curso", 
 					   cascade = CascadeType.ALL,
 					   fetch = FetchType.EAGER)
@@ -64,11 +64,11 @@ public class Curso {
 	}
 	public Grau getModalidade() {
 
-		return modalidade;
+		return grau;
 	}
 	public void setModalidade(Grau modalidade) {
 
-		this.modalidade = modalidade;
+		this.grau = modalidade;
 	}
 	public int getId() {
 

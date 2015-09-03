@@ -10,6 +10,8 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 //import org.hibernate.sql.Delete;
 
+import br.com.projetoperiodo.util.persistencia.HibernateUtil;
+
 public class HibernateCursoDao implements CursoDao
 {
 
@@ -31,20 +33,21 @@ public class HibernateCursoDao implements CursoDao
 			}
 			return;
 		}
-		
-		public Object inserir(Curso curso) throws Exception
+		@Override
+		public void inserir(Curso curso) 
 		{
+			
 			Session session = factory.openSession();
 			Transaction transaction = session.beginTransaction();
 			session.save(curso);
 			transaction.commit();
 			session.close();
 			
-			return null;
+		
 		}
 
-		//@Override
-	/*	public List<Curso> getList(String condicao) throws Exception
+		@Override
+		public List<Curso> listar(String condicao)
 		{
 			Session session = factory.openSession();
 			Transaction transaction = session.beginTransaction();
@@ -52,7 +55,7 @@ public class HibernateCursoDao implements CursoDao
 			transaction.commit();
 			session.close();
 			return curso; 
-		} */
+		} 
 
 		@Override
 		public Curso salvar(String descricao, String condicao) throws Exception  
@@ -93,17 +96,9 @@ public class HibernateCursoDao implements CursoDao
 			factory.close();
 		}
 
-		@Override
-		public List<Curso> listar() {
-			// TODO Auto-generated method stub
-			return null;
-		}
+		
 
-		@Override
-		public void salvar(Curso curso) {
-			// TODO Auto-generated method stub
-			
-		}
+		
 
 		
 }

@@ -9,7 +9,7 @@ public class JPAUtil {
 		try {
 			factory = Persistence.
 							createEntityManagerFactory("mysqllocal");
-			
+			System.out.println("novo");
 		} catch( Throwable e) {
 			e.printStackTrace();
 		
@@ -19,5 +19,9 @@ public class JPAUtil {
 	
 	public static EntityManagerFactory getEntityManagerFactory() {
 		return factory;
+	}
+	
+	public static void closeEntityManagerFactory() {
+		factory.close();
 	}
 }

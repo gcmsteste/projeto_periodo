@@ -10,4 +10,6 @@ public interface AtividadeDao {
 	public void alterar(Atividade atividade);
 	
 	public List<Atividade> listar();
+	
+	public Atividade buscar(int primaryKey);
 }

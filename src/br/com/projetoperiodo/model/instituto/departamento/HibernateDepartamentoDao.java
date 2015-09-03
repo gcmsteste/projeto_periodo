@@ -79,5 +79,12 @@ public class HibernateDepartamentoDao implements DepartamentoDao
 		
 	}
 
+	@Override
+	public Departamento buscar(int primaryKey) {
+
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

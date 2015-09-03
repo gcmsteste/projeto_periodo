@@ -70,4 +70,11 @@ public class HibernateAtividadeDao implements AtividadeDao
 		}
 	}
 
+	@Override
+	public Atividade buscar(int primaryKey) {
+
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

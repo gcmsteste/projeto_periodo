@@ -24,7 +24,7 @@ public class Aluno extends Usuario
 {
 	@Column( name = "ALUNO_MATRICULA", nullable = false)
 	private String matricula;
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "CURSO_ID", referencedColumnName = "CURSO_ID")
 	private Curso curso;
 	@ManyToMany(cascade = CascadeType.ALL)

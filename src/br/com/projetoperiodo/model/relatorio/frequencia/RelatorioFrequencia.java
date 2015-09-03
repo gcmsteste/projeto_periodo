@@ -41,14 +41,14 @@ public class RelatorioFrequencia {
 	@Column( name = "DATA_ENTREGA", nullable = false)
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dataEntregaRelatorio;
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "ORIENTADOR_ID", referencedColumnName = "ORIENTADOR_ID")
 	private Orientador orientador;
-	@ManyToOne( fetch = FetchType.EAGER, optional = false)
+	@ManyToOne( fetch = FetchType.EAGER, optional = false, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "FUNCIONARIO_ID", referencedColumnName = "FUNCIONARIO_ID")
 	private Funcionario funcionario;
 	@OneToMany(mappedBy="relatorio",
-			   cascade = CascadeType.ALL,
+			   cascade = CascadeType.REMOVE,
 			   fetch = FetchType.EAGER)
 	private Collection<Semana> semanas;
 	

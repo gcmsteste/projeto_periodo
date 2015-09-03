@@ -6,9 +6,9 @@ import java.util.List;
 public interface CursoDao 
 {
 
-	public List<Curso> listar();
+	public List<Curso> listar(String condicao);
 	
-	public void salvar(Curso curso);
+	public void inserir(Curso curso);
 	
 	public void remover(Curso curso) throws Exception;
 	
