@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.projetoperiodo.util.Util;
@@ -14,7 +15,7 @@ public class TesteUsuarioDao {
 
 	
 	UsuarioDao dao;
-	@Before
+	@BeforeClass
 	public void setUp() {
 		dao = new JPAUsuarioDao();
 	}

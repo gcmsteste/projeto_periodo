@@ -8,6 +8,7 @@ import br.com.projetoperiodo.model.instituto.departamento.Departamento;
 import br.com.projetoperiodo.model.instituto.funcionario.Funcionario;
 import br.com.projetoperiodo.model.instituto.funcionario.FuncionarioDao;
 import br.com.projetoperiodo.model.instituto.funcionario.HibernateFuncionarioDao;
+import br.com.projetoperiodo.model.instituto.funcionario.JPAFuncionarioDao;
 import br.com.projetoperiodo.model.usuario.Usuario;
 
 public class TesteFuncionarioDao {
@@ -16,7 +17,7 @@ public class TesteFuncionarioDao {
 	
 	@Before
 	public void setUp() {
-		funcionarioDao = new HibernateFuncionarioDao();
+		funcionarioDao = new JPAFuncionarioDao();
 	}
 	@Test
 	public void testeInserirFuncionario() {

@@ -1,24 +1,26 @@
 
 package br.com.projetoperiodo.model.departamento;
 
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.projetoperiodo.model.instituto.departamento.Departamento;
 import br.com.projetoperiodo.model.instituto.departamento.DepartamentoDao;
 import br.com.projetoperiodo.model.instituto.departamento.HibernateDepartamentoDao;
+import br.com.projetoperiodo.model.instituto.departamento.JPADepartamentoDao;
 import br.com.projetoperiodo.util.persistencia.HibernateUtil;
 
 public class TesteDepartamentoDao {
 
 	private DepartamentoDao departamentoDao;
 
-	@Before
+	@BeforeClass
 	public void setUp() {
 
-		departamentoDao = new HibernateDepartamentoDao();
+		departamentoDao = new JPADepartamentoDao();
 	}
 
 	@Test
@@ -47,7 +49,7 @@ public class TesteDepartamentoDao {
 		return departamento;
 	}
 
-	@After
+	@AfterClass
 	public void close() {
 		
 	}
