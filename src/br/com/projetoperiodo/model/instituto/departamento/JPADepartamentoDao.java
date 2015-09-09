@@ -2,42 +2,68 @@ package br.com.projetoperiodo.model.instituto.departamento;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import br.com.projetoperiodo.util.persistencia.JPAUtil;
+import br.com.projetoperiodo.model.instituto.departamento.DepartamentoDao;
+
 public class JPADepartamentoDao implements DepartamentoDao
 {
-
-	@Override
-	public List<Departamento> listar() {
-
-		// TODO Auto-generated method stub
-		return null;
+	
+	public List<Departamento> listar()
+	{
+		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();
+		@SuppressWarnings("unchecked")
+		List<Departamento> departamento = entma.createQuery("from Departamento").getResultList();
+		entma.close();
+		return departamento;
 	}
 
-	@Override
-	public void salvar(Departamento departamento) {
 
-		// TODO Auto-generated method stub
-		
+	public void salvar(Departamento departamento)
+	{
+		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();
+		EntityTransaction transaction = entma.getTransaction();
+		transaction.begin();
+		entma.merge(departamento);
+		transaction.commit();
+		entma.close();
 	}
 
-	@Override
-	public void remover(Departamento departamento) {
+	public void remover(Departamento departamento)
+	{
+		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();
+		EntityTransaction transaction = entma.getTransaction();	
+		transaction.begin();
+		entma.merge(departamento);
+		entma.remove(departamento);
+		transaction.commit();
+		entma.close();
 
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
-	public void atualizar(Departamento departamento) {
-
-		// TODO Auto-generated method stub
-		
+	public void atualizar(Departamento departamento)
+	{
+		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();
+		EntityTransaction transaction = entma.getTransaction();
+		transaction.begin();
+		entma.merge(departamento);
+		transaction.commit();
+		entma.close();
 	}
 
-	@Override
-	public Departamento buscar(int primaryKey) {
+	public Departamento buscar(int primarykey)
+	{
+		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();
+		@SuppressWarnings("unused")
+		EntityTransaction transaction = entma.getTransaction();
+		Departamento departamento = (Departamento) entma.find
 
-		// TODO Auto-generated method stub
-		return null;
+	(Departamento.class,primarykey);
+		entma.close();
+		return departamento;
 	}
+
 
 }
