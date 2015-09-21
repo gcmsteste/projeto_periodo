@@ -17,7 +17,6 @@ import br.com.projetoperiodo.model.relatorio.frequencia.dao.JPARelatorioFrequenc
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.util.persistencia.FabricaJPA;
-import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 public class TesteRelatorioFrequenciaDao {
 

@@ -17,7 +17,7 @@ public class TesteDisciplinaDao {
 	@Test
 	public void testeInserirDisciplina(){
 		int quantidadeInicio = dao.listar().size();
-		dao.salvar(montarObjetoDisciplina());
+	//	dao.salvar(montarObjetoDisciplina());
 		int quantidadeFim = dao.listar().size();
 		Assert.assertEquals(quantidadeInicio + 1,quantidadeFim);
 
