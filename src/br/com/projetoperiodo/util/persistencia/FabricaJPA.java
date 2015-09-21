@@ -1,7 +1,9 @@
 package br.com.projetoperiodo.util.persistencia;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class FabricaJPA {
 
@@ -22,5 +24,12 @@ public class FabricaJPA {
 	
 	public EntityManagerFactory getEntityManagerFactory() {
 		return factory;
+	}
+	
+	public Object buscar(Class entity) {
+		EntityManager entityManager = getEntityManagerFactory().
+				createEntityManager();
+		Query query = entityManager.createQuery("from " + entity.getSimpleName());
+		return query.getSingleResult();
 	}
 }
