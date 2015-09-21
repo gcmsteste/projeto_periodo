@@ -26,6 +26,10 @@ public class FabricaJPA {
 		return factory;
 	}
 	
+	public void closeEntityManagerFactory() {
+		factory.close();
+	}
+	
 	public Object buscar(Class entity) {
 		EntityManager entityManager = getEntityManagerFactory().
 				createEntityManager();

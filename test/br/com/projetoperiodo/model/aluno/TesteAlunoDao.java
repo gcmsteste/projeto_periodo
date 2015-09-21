@@ -57,7 +57,7 @@ public class TesteAlunoDao {
 
 	@AfterClass
 	public static void tearDown() {
-		JPAUtil.closeEntityManagerFactory();
+		FabricaJPA.getInstancia().closeEntityManagerFactory();
 	}
 
 	public Aluno montarObjetoAluno() {

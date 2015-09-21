@@ -16,6 +16,7 @@ import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.JPARelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
+import br.com.projetoperiodo.util.persistencia.FabricaJPA;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 public class TesteRelatorioFrequenciaDao {
@@ -33,8 +34,9 @@ public class TesteRelatorioFrequenciaDao {
 	@AfterClass
 	public static void tearDown() throws SQLException {
 
-		JPAUtil.getEntityManagerFactory().close();
+		FabricaJPA.getInstancia().closeEntityManagerFactory();
 	}
+	
 	@Test
 	public void testeInserirRelatorioFrequencia() {
 

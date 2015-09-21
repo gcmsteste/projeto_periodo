@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.com.projetoperiodo.util.persistencia.FabricaJPA;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 
@@ -24,7 +25,7 @@ public class TesteAtividadeDao {
 	
 	@AfterClass
 	public static void close() {
-		JPAUtil.closeEntityManagerFactory();
+		FabricaJPA.getInstancia().closeEntityManagerFactory();
 	}
 	
 	@Test
