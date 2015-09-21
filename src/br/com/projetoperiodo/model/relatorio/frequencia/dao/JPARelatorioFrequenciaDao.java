@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.semana.SemanaDao;
+import br.com.projetoperiodo.util.persistencia.FabricaJPA;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
@@ -15,8 +16,8 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public void salvar(RelatorioFrequencia relatorio) {
 
-		EntityManager entityManager = JPAUtil.
-						getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager = FabricaJPA.getInstancia().
+				getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.persist(relatorio);
@@ -28,8 +29,8 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public void atualizar(RelatorioFrequencia relatorio) {
 
-		EntityManager entityManager = JPAUtil.
-						getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager = FabricaJPA.getInstancia().
+				getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.merge(relatorio);
@@ -41,8 +42,8 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public void remover(RelatorioFrequencia relatorio) {
 
-		EntityManager entityManager = JPAUtil.
-						getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager = FabricaJPA.getInstancia().
+				getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		relatorio = entityManager.merge(relatorio);
@@ -55,16 +56,16 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public List<RelatorioFrequencia> listar() {
 
-		EntityManager entityManager = JPAUtil.
-						getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager = FabricaJPA.getInstancia().
+				getEntityManagerFactory().createEntityManager();
 		return entityManager.createQuery("from RelatorioFrequencia").getResultList();
 	}
 
 	@Override
 	public RelatorioFrequencia buscar(int primaryKey) {
 
-		EntityManager entityManager = JPAUtil.
-						getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager = FabricaJPA.getInstancia().
+				getEntityManagerFactory().createEntityManager();
 		return entityManager.find(RelatorioFrequencia.class, primaryKey);
 	}
 
