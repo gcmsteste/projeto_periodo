@@ -14,4 +14,6 @@ public interface UsuarioDao {
 	
 	public Usuario buscar(int i);
 	
+	public Usuario buscar(String nome);
+	
 }
