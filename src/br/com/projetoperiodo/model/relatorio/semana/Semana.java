@@ -1,6 +1,7 @@
 package br.com.projetoperiodo.model.relatorio.semana;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -58,6 +59,10 @@ public class Semana {
 	public Atividade getAtividades(int index) {
 
 		return atividades.get(index);
+	}
+	
+	public Collection<Atividade> getAtividades() {
+		return atividades;
 	}
 
 	public void setAtividades(Atividade atividade) {
