@@ -1,4 +1,4 @@
-package br.com.projetoperiodo.util.documentos.pdf;
+package br.com.projetoperiodo.util.documentos;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

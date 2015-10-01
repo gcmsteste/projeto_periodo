@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
-import br.com.projetoperiodo.util.constantes.Modalidade;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 @Entity
 @Table(name = "MONITOR")
 @PrimaryKeyJoinColumn( name = "MONITOR_ID")

@@ -1,0 +1,81 @@
+form {
+    width: 275px;
+    font-size: 12px;
+    font-family: sans-serif;
+    border: 1px solid rgb(195, 212, 219);
+    border-radius: 5px 5px 5px 5px;
+    background-color: rgb(254, 254, 254);
+   
+}
+fieldset {
+    border: 0.5px solid rgb(221,224,232);
+    margin: 0;
+}
+fieldset:first-child {
+    position: relative;
+    
+}
+
+
+fieldset:last-child {
+    background-color: rgb(239,244,246);
+    padding: 16px;
+}
+fieldset:first-child  label {
+    
+     margin-top: 12px;
+     margin-bottom:  4px;
+     display: block;
+     padding-left: 5px;
+
+}
+
+fieldset:first-child  input {
+    
+    border: 1px solid rgb(228, 232, 233);
+    padding: 5px;
+    display: block;
+    color: rgb(163, 163, 163);
+    
+}
+
+div {
+    
+    border: 5px solid rgb(247, 249, 250);
+    border-radius: 4px 4px 4px 4px;
+    display: inline-block;
+}
+fieldset:first-child  input:focus{
+    color: #000;
+}
+p {
+    
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+    font-size: 9px;
+    color: rgb(163, 163, 163);
+   
+}
+
+[type="submit"]
+{
+    font-family: serif;
+    position: relative;
+    background-color: rgb(161, 216, 240);
+    color: #fff;
+    padding: 5px 22px;
+    background-color: rgb(161, 216, 240);
+    background: -webkit-linear-gradient(top,  rgb(203, 234, 247),rgb(161, 216, 240) );
+    border-radius: 12px 12px 12px 12px;
+    left: 27px;
+    font-weight: bold;
+    border: 1.3px solid rgb(125, 176, 204);
+    
+}
+
+[for="opcao"]
+{
+   
+    vertical-align: 2.3px;
+}

@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
-import br.com.projetoperiodo.util.constantes.Grau;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Grau;
 @Entity
 @Table( name = "CURSO")
 public class Curso {

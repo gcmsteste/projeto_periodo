@@ -1,4 +1,4 @@
-package br.com.projetoperiodo.util.constantes;
+package br.com.projetoperiodo.util.constantes.enumeracoes;
 
 
 public enum Modalidade {
