@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import br.com.projetoperiodo.model.instituto.aluno.Aluno;
+import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 public class JPADisciplinaDao implements DisciplinaDao{

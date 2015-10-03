@@ -23,10 +23,11 @@ public class ServletControleAcesso extends HttpServlet
 		HttpSession session = request.getSession(false);
 		RequestDispatcher rd;
 		if ( session == null ) {
-			request.getSession();
 			rd = request.getRequestDispatcher("/login.do");
+			rd.forward(request, response);
 		} else {
 			rd = request.getRequestDispatcher("/home.do");
+			rd.forward(request, response);
 		}
 	}
 

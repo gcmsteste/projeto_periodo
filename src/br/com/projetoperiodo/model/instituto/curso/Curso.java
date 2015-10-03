@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import br.com.projetoperiodo.model.instituto.aluno.Aluno;
+import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Grau;
 @Entity
@@ -36,7 +36,7 @@ public class Curso {
 	@OneToMany(mappedBy = "curso", 
 			   cascade = CascadeType.ALL,
 			   fetch = FetchType.EAGER)
-	private Collection<Aluno> alunos;
+	private Collection<AlunoImpl> alunos;
 	
 	public Collection<Disciplina> getDisciplinas() {
 
@@ -54,11 +54,11 @@ public class Curso {
 
 		this.descricao = descricao;
 	}
-	public Collection<Aluno> getAlunos() {
+	public Collection<AlunoImpl> getAlunos() {
 
 		return alunos;
 	}
-	public void setAlunos(Collection<Aluno> alunos) {
+	public void setAlunos(Collection<AlunoImpl> alunos) {
 
 		this.alunos = alunos;
 	}

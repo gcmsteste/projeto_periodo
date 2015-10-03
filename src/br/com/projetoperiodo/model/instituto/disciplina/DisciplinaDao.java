@@ -2,7 +2,7 @@ package br.com.projetoperiodo.model.instituto.disciplina;
 
 import java.util.List;
 
-import br.com.projetoperiodo.model.instituto.aluno.Aluno;
+import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 
 public interface DisciplinaDao {
 

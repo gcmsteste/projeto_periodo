@@ -1,5 +1,7 @@
 package br.com.projetoperiodo.model.usuario;
 
+import java.util.Date;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -7,6 +9,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.com.projetoperiodo.model.usuario.dao.JPAUsuarioDao;
+import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
+import br.com.projetoperiodo.model.usuario.impl.Usuario;
+import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
@@ -14,9 +20,9 @@ import br.com.projetoperiodo.util.persistencia.JPAUtil;
 public class TesteUsuarioDao {
 
 	
-	UsuarioDao dao;
+	private static UsuarioDao dao;
 	@BeforeClass
-	public void setUp() {
+	public static void setUp() {
 		dao = new JPAUsuarioDao();
 	}
 	
@@ -44,11 +50,11 @@ public class TesteUsuarioDao {
 		Usuario usuarioInserido = montarObjetoUsuario();
 		dao.salvar(usuarioInserido);
 		
-		Usuario usuarioPesquisado = dao.buscar(usuarioInserido.getId());
+		Usuario usuarioPesquisado = dao.buscar(usuarioInserido.getChavePrimaria());
 		String senhaAntesAlteracao = usuarioPesquisado.getSenha();
 		usuarioPesquisado.setSenha(Util.criptografarSenha("admin321", Util.CONSTANTE_CRIPTOGRAFIA));
 		dao.atualizar(usuarioPesquisado);
-		String senhaPosAlteracao = dao.buscar(usuarioPesquisado.getId()).getSenha();
+		String senhaPosAlteracao = dao.buscar(usuarioPesquisado.getChavePrimaria()).getSenha();
 		Assert.assertNotNull(senhaPosAlteracao);
 		Assert.assertNotEquals(senhaAntesAlteracao, senhaPosAlteracao); 
 	}
@@ -59,12 +65,14 @@ public class TesteUsuarioDao {
 	}
 	
 	public Usuario montarObjetoUsuario() {
-		Usuario usuario = new Usuario();
+		Usuario usuario = new UsuarioImpl();
 		usuario.setNome("admin");
 		usuario.setLogin("admin");
 		usuario.setEmail("admin@email.com");
 		usuario.setSenha(Util.criptografarSenha("admin123", 
 						Util.CONSTANTE_CRIPTOGRAFIA));
+		usuario.setUltimaAlteracao(new Date());
+		usuario.setUltimoAcesso(new Date());
 		return usuario;
 	}
 }

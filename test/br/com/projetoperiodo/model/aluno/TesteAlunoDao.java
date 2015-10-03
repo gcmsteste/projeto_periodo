@@ -6,12 +6,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
-import br.com.projetoperiodo.model.instituto.aluno.AlunoDao;
-import br.com.projetoperiodo.model.instituto.aluno.JPAAlunoDao;
+import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
+import br.com.projetoperiodo.model.instituto.aluno.dao.JPAAlunoDao;
+import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.curso.Curso;
+import br.com.projetoperiodo.model.usuario.impl.Usuario;
+import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.persistencia.FabricaJPA;
-import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 public class TesteAlunoDao {
 
@@ -43,14 +45,14 @@ public class TesteAlunoDao {
 
 	@Test
 	public void testeAtualizarAluno() {
-		Aluno alunoInserido = montarObjetoAluno();
+		AlunoImpl alunoInserido = montarObjetoAluno();
 		dao.salvar(alunoInserido);
-
-		Aluno alunoPesquisado = dao.buscar(alunoInserido.getId());
+	
+		AlunoImpl alunoPesquisado = (AlunoImpl) dao.buscar(alunoInserido.getChavePrimaria());
 		String senhaAntiga = alunoPesquisado.getSenha();
 		alunoPesquisado.setSenha(Util.criptografarSenha("admin321", Util.CONSTANTE_CRIPTOGRAFIA));
 		dao.atualizar(alunoPesquisado);
-		String senhaNova = dao.buscar(alunoPesquisado.getId()).getSenha();
+		String senhaNova = ((AlunoImpl) dao.buscar(alunoPesquisado.getChavePrimaria())).getSenha();
 		Assert.assertNotNull(senhaNova);
 		Assert.assertNotEquals(senhaAntiga, senhaNova);
 	}
@@ -60,15 +62,17 @@ public class TesteAlunoDao {
 		FabricaJPA.getInstancia().closeEntityManagerFactory();
 	}
 
-	public Aluno montarObjetoAluno() {
-		Aluno aluno = new Aluno();
-		aluno.setMatricula("20141Y6-RC0323");
-		aluno.setNome("Douglas");
-		aluno.setLogin("Doug");
-		aluno.setEmail("Douglas@gmail.com");
-		aluno.setSenha(Util.criptografarSenha("admin123", Util.CONSTANTE_CRIPTOGRAFIA));
+	public AlunoImpl montarObjetoAluno() {
+		AlunoImpl aluno = new AlunoImpl();
 		Curso curso = (Curso) FabricaJPA.getInstancia().buscar(Curso.class);
 		aluno.setCurso(curso);
+		Usuario usuario = (Usuario) aluno;
+		aluno.setMatricula("20141Y6-RC0323");
+		usuario.setNome("Douglas");
+		usuario.setLogin("Doug");
+		usuario.setEmail("Douglas@gmail.com");
+		usuario.setSenha(Util.criptografarSenha("admin123", Util.CONSTANTE_CRIPTOGRAFIA));
+		
 		return aluno;
 	}
 

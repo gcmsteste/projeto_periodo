@@ -10,11 +10,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import br.com.projetoperiodo.model.instituto.departamento.Departamento;
-import br.com.projetoperiodo.model.usuario.Usuario;
+import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 @Entity
 @Table(name = "FUNCIONARIO")
 @PrimaryKeyJoinColumn( name = "FUNCIONARIO_ID")
-public class Funcionario extends Usuario
+public class Funcionario extends UsuarioImpl
 {
 	@Column( name = "FUNCIONARIO_SIAPE")
 	private String siape;

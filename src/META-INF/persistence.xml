@@ -4,22 +4,14 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="mysqllocal" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>br.com.projetoperiodo.relatorio.frequencia.RelatorioFrequencia</class>
-		<class>br.com.projetoperiodo.relatorio.atividade.Atividade</class>
-		<class>br.com.projetoperiodo.relatorio.semana.Semana</class>
-		<class>br.com.projetoperiodo.instituto.aluno.Aluno</class>
-		<class>br.com.projetoperiodo.instituto.aluno.monitor.Monitor</class>
-		<class>br.com.projetoperiodo.instituto.funcionario.Funcionario</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/projeto_periodo" />
 			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="root"></property>
+			<property name="javax.persistence.jdbc.password" value=""></property>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
-
-	
 		</properties>
 	</persistence-unit>
 </persistence>

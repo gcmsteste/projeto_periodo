@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import br.com.projetoperiodo.model.usuario.Usuario;
-import br.com.projetoperiodo.negocio.usuario.ControladorUsuario;
-import br.com.projetoperiodo.negocio.usuario.impl.ControladorUsuarioImpl;
+import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
+import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImpl;
+import br.com.projetoperiodo.model.usuario.impl.Usuario;
+import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.exception.NegocioException;
 
 public class ServletLogin extends HttpServlet {
@@ -26,22 +27,29 @@ public class ServletLogin extends HttpServlet {
 	public static ControladorUsuario controladorUsuario = new ControladorUsuarioImpl();
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String login = request.getParameter(FORM_LOGIN);
-		String senha = request.getParameter(FORM_SENHA);
-		Usuario usuario = new Usuario();
-		usuario.setLogin(login);
-		usuario.setSenha(senha);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher requestDispatcher;
-		try {
-			Usuario usuarioAutenticado = controladorUsuario.autenticarUsuario(usuario);
-			HttpSession session = request.getSession();
-			session.setAttribute(ATRIBUTO_USUARIO_LOGADO, usuarioAutenticado);
+		if (request.getSession(false) == null) {
 			requestDispatcher = request.getRequestDispatcher("/home.do");
 			requestDispatcher.forward(request, response);
-		} catch (NegocioException e) {
-			requestDispatcher = request.getRequestDispatcher("/error.html");
-			requestDispatcher.forward(request, response);
+		} else {
+			String login = request.getParameter(FORM_LOGIN);
+			String senha = request.getParameter(FORM_SENHA);
+			Usuario usuario = new UsuarioImpl();
+			usuario.setLogin(login);
+			usuario.setSenha(senha);
+			try {
+				Usuario usuarioAutenticado = controladorUsuario.autenticarUsuario(usuario);
+				HttpSession session = request.getSession();
+				session.setAttribute(ATRIBUTO_USUARIO_LOGADO, usuarioAutenticado);
+				requestDispatcher = request.getRequestDispatcher("/home.do");
+				requestDispatcher.forward(request, response);
+			} catch (NegocioException e) {
+				requestDispatcher = request.getRequestDispatcher("/error.html");
+				requestDispatcher.forward(request, response);
+			}
 		}
+
 	}
 }

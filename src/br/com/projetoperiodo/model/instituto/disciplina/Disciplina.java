@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import br.com.projetoperiodo.model.instituto.aluno.Aluno;
+import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.curso.Curso;
 @Entity
 @Table(name = "DISCIPLINA")
@@ -26,11 +26,11 @@ public class Disciplina {
 	private int id;
 	@Column(name = "DISCIPLINA_DS")
 	private String descricao;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="DISCIPLINA_ALUNO",
 	           joinColumns = @JoinColumn( name = "DISCIPLINA_ID"),
 	           inverseJoinColumns = @JoinColumn(name = "ALUNO_ID"))
-	private Collection<Aluno> pagantes;
+	private Collection<AlunoImpl> pagantes;
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn( name = "CURSO_ID", referencedColumnName = "CURSO_ID") 
 	private Curso curso;
@@ -43,11 +43,11 @@ public class Disciplina {
 
 		this.descricao = descricao;
 	}
-	public Collection<Aluno> getPagantes() {
+	public Collection<AlunoImpl> getPagantes() {
 
 		return pagantes;
 	}
-	public void setPagantes(Collection<Aluno> pagantes) {
+	public void setPagantes(Collection<AlunoImpl> pagantes) {
 
 		this.pagantes = pagantes;
 	}

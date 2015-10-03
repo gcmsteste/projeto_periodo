@@ -1,0 +1,40 @@
+package br.com.projetoperiodo.model.negocio.entidade.impl;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+
+import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
+
+@MappedSuperclass
+public abstract class EntidadeNegocioImpl implements EntidadeNegocio {
+	
+	@Column( name = "ULTIMA_ALTERACAO", nullable = false)
+	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
+	private Date ultimaAlteracao;
+	
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY)
+	private long chavePrimaria;
+
+	public Date getUltimaAlteracao() {
+		return ultimaAlteracao;
+	}
+
+	public void setUltimaAlteracao(Date ultimaAlteracao) {
+		this.ultimaAlteracao = ultimaAlteracao;
+	}
+
+	public long getChavePrimaria() {
+		return chavePrimaria;
+	}
+
+	public void setChavePrimaria(long chavePrimaria) {
+		this.chavePrimaria = chavePrimaria;
+	}
+}
