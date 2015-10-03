@@ -20,9 +20,9 @@ public class ServletControleAcesso extends HttpServlet
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		HttpSession session = request.getSession(false);
 		RequestDispatcher rd;
-		if ( session == null ) {
+		if ( request.getSession(Boolean.FALSE) == null ) {
+			
 			rd = request.getRequestDispatcher("/login.do");
 			rd.forward(request, response);
 		} else {

@@ -14,6 +14,7 @@ import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
 import br.com.projetoperiodo.model.usuario.impl.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Util;
+import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 
@@ -52,7 +53,8 @@ public class TesteUsuarioDao {
 		
 		Usuario usuarioPesquisado = dao.buscar(usuarioInserido.getChavePrimaria());
 		String senhaAntesAlteracao = usuarioPesquisado.getSenha();
-		usuarioPesquisado.setSenha(Util.criptografarSenha("admin321", Util.CONSTANTE_CRIPTOGRAFIA));
+		String novaSenha = "admin321";
+		usuarioPesquisado.setSenha(Util.criptografarSenha(novaSenha, novaSenha, Constantes.CONSTANTE_CRIPTOGRAFIA));
 		dao.atualizar(usuarioPesquisado);
 		String senhaPosAlteracao = dao.buscar(usuarioPesquisado.getChavePrimaria()).getSenha();
 		Assert.assertNotNull(senhaPosAlteracao);
@@ -69,8 +71,8 @@ public class TesteUsuarioDao {
 		usuario.setNome("admin");
 		usuario.setLogin("admin");
 		usuario.setEmail("admin@email.com");
-		usuario.setSenha(Util.criptografarSenha("admin123", 
-						Util.CONSTANTE_CRIPTOGRAFIA));
+		String senha = "admin321";
+		usuario.setSenha(Util.criptografarSenha(senha, senha, Constantes.CONSTANTE_CRIPTOGRAFIA));
 		usuario.setUltimaAlteracao(new Date());
 		usuario.setUltimoAcesso(new Date());
 		return usuario;

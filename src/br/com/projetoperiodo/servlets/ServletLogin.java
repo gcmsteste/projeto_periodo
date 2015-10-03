@@ -30,7 +30,7 @@ public class ServletLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		RequestDispatcher requestDispatcher;
-		if (request.getSession(false) == null) {
+		if ( !( request.getSession(false) == null ) ) {
 			requestDispatcher = request.getRequestDispatcher("/home.do");
 			requestDispatcher.forward(request, response);
 		} else {
@@ -46,7 +46,8 @@ public class ServletLogin extends HttpServlet {
 				requestDispatcher = request.getRequestDispatcher("/home.do");
 				requestDispatcher.forward(request, response);
 			} catch (NegocioException e) {
-				requestDispatcher = request.getRequestDispatcher("/error.html");
+				request.setAttribute(e.getMessage(), usuario.getLogin());
+				requestDispatcher = request.getRequestDispatcher("/login.jsp");
 				requestDispatcher.forward(request, response);
 			}
 		}

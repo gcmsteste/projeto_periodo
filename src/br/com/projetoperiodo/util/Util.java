@@ -5,17 +5,28 @@ import java.security.NoSuchAlgorithmException;
 
 public class Util {
 	
-	public final static String CONSTANTE_CRIPTOGRAFIA = "MD5";
 	
-	public static String criptografarSenha(String senha, String metodo) {
+	
+	public static String criptografarSenha(String senha, String chave, String hash) {
+		String senhaCriptografada = null;
 		try {
-			MessageDigest message = MessageDigest.getInstance(metodo);
-			message.update(senha.getBytes(), 0, senha.length());
-			return message.digest().toString();
-		} catch(NoSuchAlgorithmException e) {
-			new RuntimeException(e);
+			MessageDigest messageDigest = MessageDigest.getInstance(hash);
+			messageDigest.update(senha.getBytes());
+			senhaCriptografada = stringHexa(messageDigest.digest(chave.getBytes()));
+		} catch (NoSuchAlgorithmException e) {
+			
 		}
-		
-		return null;
+		return senhaCriptografada;
+	}
+	
+	private static String stringHexa(byte[] bytes) {
+
+		StringBuffer retorno = new StringBuffer();
+
+		for (int i = 0; i < bytes.length; i++) {
+			retorno.append(Integer.toHexString((((bytes[i] >> 4) & 0xf) << 4) | (bytes[i] & 0xf)));
+		}
+
+		return retorno.toString();
 	}
 }

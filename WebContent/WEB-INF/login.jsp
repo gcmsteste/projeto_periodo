@@ -1,19 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="ISO-8859-1" session="false"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link type="text/css" rel="stylesheet" href="/css/login.css" />
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/">
+	<form action="efetuarLogon.do" method="post">
+
 		<fieldset>
-			<label for="nome">Nome do usuario</label>
+			<label for="login">Nome do usuario</label>
 			<div>
-				<input type="text" name="nome" id="nome"
-					placeholder="Informe seu nome..." size="30" />
+				<c:choose>
+					<c:when test="${not empty requestScope.ERRO_ACESSO_NEGADO}">
+						<input type="text" name="login" id="login"
+							value="${requestScope.ERRO_ACESSO_NEGADO }"
+							placeholder="Informe seu nome..." size="30" />
+					</c:when>
+					<c:otherwise>
+						<input type="text" name="login" id="login"
+							placeholder="Informe seu nome..." size="30" />
+					</c:otherwise>
+				</c:choose>
 			</div>
 
 			<label for="senha">Senha</label>
@@ -22,7 +33,7 @@
 			</p>
 			<div>
 				<input type="password" id="senha" name="senha" size="30"
-					placeholde="Informe sua senha..." />
+					placeholder="Informe sua senha..." />
 			</div>
 		</fieldset>
 
@@ -31,5 +42,6 @@
 				logado</label> <input type="submit" name="login" id="login" value="Login" />
 		</fieldset>
 	</form>
+
 </body>
 </html>

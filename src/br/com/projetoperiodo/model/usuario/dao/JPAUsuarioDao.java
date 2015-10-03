@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import br.com.projetoperiodo.model.usuario.impl.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.persistencia.FabricaJPA;
-import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 public class JPAUsuarioDao implements UsuarioDao {
 
@@ -66,12 +66,14 @@ public class JPAUsuarioDao implements UsuarioDao {
 	
 
 	@Override
-	public Usuario buscar(String nome) {
+	public Usuario buscar(String login) {
 		EntityManager entityManager = FabricaJPA.getInstancia().getEntityManagerFactory()
 				.createEntityManager();
-		Usuario usuario = (Usuario) entityManager.
+		Query query = entityManager.
 				createQuery("select u from UsuarioImpl u "
-						  + "where u.login := login").getSingleResult();
+						  + "where u.login = :login");
+		query.setParameter("login", login);
+		Usuario usuario = (Usuario)query.getSingleResult();
 		entityManager.close();
 		return usuario;
 	}

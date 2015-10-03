@@ -13,6 +13,7 @@ import br.com.projetoperiodo.model.instituto.curso.Curso;
 import br.com.projetoperiodo.model.usuario.impl.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Util;
+import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.persistencia.FabricaJPA;
 
 public class TesteAlunoDao {
@@ -50,7 +51,8 @@ public class TesteAlunoDao {
 	
 		AlunoImpl alunoPesquisado = (AlunoImpl) dao.buscar(alunoInserido.getChavePrimaria());
 		String senhaAntiga = alunoPesquisado.getSenha();
-		alunoPesquisado.setSenha(Util.criptografarSenha("admin321", Util.CONSTANTE_CRIPTOGRAFIA));
+		String novaSenha = "admin321";
+		alunoPesquisado.setSenha(Util.criptografarSenha(novaSenha, novaSenha, Constantes.CONSTANTE_CRIPTOGRAFIA));
 		dao.atualizar(alunoPesquisado);
 		String senhaNova = ((AlunoImpl) dao.buscar(alunoPesquisado.getChavePrimaria())).getSenha();
 		Assert.assertNotNull(senhaNova);
@@ -71,7 +73,8 @@ public class TesteAlunoDao {
 		usuario.setNome("Douglas");
 		usuario.setLogin("Doug");
 		usuario.setEmail("Douglas@gmail.com");
-		usuario.setSenha(Util.criptografarSenha("admin123", Util.CONSTANTE_CRIPTOGRAFIA));
+		String novaSenha = "admin321";
+		usuario.setSenha(Util.criptografarSenha(novaSenha, novaSenha, Constantes.CONSTANTE_CRIPTOGRAFIA));
 		
 		return aluno;
 	}

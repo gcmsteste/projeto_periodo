@@ -1,6 +1,8 @@
 package br.com.projetoperiodo.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,15 +26,22 @@ public class ServletLogout extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher requestDispatcher;
+		if ( request.getSession(false) == null ) {
+			requestDispatcher = request.getRequestDispatcher("/html/not_logged.html");
+			requestDispatcher.forward(request, response);
+		} else {
+			request.getSession().invalidate();
+			requestDispatcher = request.getRequestDispatcher("/acesso.do");
+			requestDispatcher.forward(request, response);
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 

@@ -23,7 +23,7 @@ public class ControladorUsuarioImpl implements ControladorUsuario
 		String senha = usuario.getSenha();
 		Usuario usuarioAutenticado = dao.buscar(usuario.getLogin());
 		if (usuarioAutenticado != null) {
-			String senhaCriptografada = Util.criptografarSenha(senha, Util.CONSTANTE_CRIPTOGRAFIA);
+			String senhaCriptografada = Util.criptografarSenha(senha, senha, Constantes.CONSTANTE_CRIPTOGRAFIA);
 			if ( !usuarioAutenticado.getSenha().equals(senhaCriptografada)) {
 				throw new NegocioException(Constantes.ERRO_ACESSO_NEGADO);
 			}
