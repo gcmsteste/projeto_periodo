@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link type="text/css" rel="stylesheet" href="/css/login.css" />
+<link type="text/css" rel="stylesheet" href="css/login.css" />
 <title>Insert title here</title>
 </head>
 <body>

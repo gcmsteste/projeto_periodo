@@ -30,7 +30,7 @@
 		<servlet-name>ServletLogin</servlet-name>
 		<url-pattern>/efetuarLogon.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>ServletControleAcesso</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.ServletControleAcesso</servlet-class>
@@ -43,8 +43,21 @@
 		<servlet-name>ServletLogout</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.ServletLogout</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ServletSenhaLogin</servlet-name>
+		<servlet-class>br.com.projetoperiodo.servlets.ServletSenhaLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletSenhaLogin</servlet-name>
+		<url-pattern>/alterarSenha.do</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ServletLogout</servlet-name>
 		<url-pattern>/logout.do</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServletSenhaLogin</servlet-name>
+		<url-pattern>/ServletSenhaLogin</url-pattern>
+	</servlet-mapping>
+
 </web-app>

@@ -13,6 +13,7 @@ import br.com.projetoperiodo.model.usuario.dao.JPAUsuarioDao;
 import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
 import br.com.projetoperiodo.model.usuario.impl.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
+import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
@@ -67,7 +68,7 @@ public class TesteUsuarioDao {
 	}
 	
 	public Usuario montarObjetoUsuario() {
-		Usuario usuario = new UsuarioImpl();
+		Usuario usuario = Fachada.getInstance().criarUsuario();
 		usuario.setNome("admin");
 		usuario.setLogin("admin");
 		usuario.setEmail("admin@email.com");

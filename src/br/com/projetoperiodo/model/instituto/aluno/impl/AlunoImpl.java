@@ -30,7 +30,7 @@ public class AlunoImpl extends UsuarioImpl implements Aluno
 	@JoinColumn(name = "CURSO_ID", referencedColumnName = "CURSO_ID")
 	private Curso curso;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany()
 	@JoinTable(name="DISCIPLINA_ALUNO",
 	           joinColumns = @JoinColumn( name = "ALUNO_ID"),
 	           inverseJoinColumns = @JoinColumn(name = "DISCIPLINA_ID"))

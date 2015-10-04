@@ -14,6 +14,7 @@ import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
 import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImpl;
 import br.com.projetoperiodo.model.usuario.impl.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
+import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.exception.NegocioException;
 
 public class ServletLogin extends HttpServlet {
@@ -36,7 +37,7 @@ public class ServletLogin extends HttpServlet {
 		} else {
 			String login = request.getParameter(FORM_LOGIN);
 			String senha = request.getParameter(FORM_SENHA);
-			Usuario usuario = new UsuarioImpl();
+			Usuario usuario = Fachada.getInstance().criarUsuario();
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			try {

@@ -1,5 +1,5 @@
 INSERT INTO PROJETO_PERIODO.USUARIO (USUARIO_NOME, USUARIO_LOGIN, USUARIO_SENHA, USUARIO_EMAIL, ULTIMA_ALTERACAO)
-VALUES('admin', 'admin', 'f6fdffe48c908debf4c3bd36c32e72', 'admin@a.recife.ifpe.com.br', current_timestamp()  );
+VALUES('admin', 'admin', 'f6fdffe48c908debf4c3bd36c32e72', 'emgs@a.recife.ifpe.com.br', current_timestamp()  );
 
 INSERT INTO PROJETO_PERIODO.USUARIO (USUARIO_NOME, USUARIO_LOGIN, USUARIO_SENHA, USUARIO_EMAIL, ULTIMA_ALTERACAO)
 VALUES('Paulo', 'FUNCIONARIOLOGIN', 'cc7a84634199040d54376793842fe035', 'funcionario@recife.ifpe.com.br', current_timestamp()  );
