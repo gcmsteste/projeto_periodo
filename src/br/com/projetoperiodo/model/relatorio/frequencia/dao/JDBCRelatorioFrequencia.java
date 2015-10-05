@@ -11,14 +11,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
-import br.com.projetoperiodo.model.instituto.funcionario.Funcionario;
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
-import br.com.projetoperiodo.model.instituto.orientador.Orientador;
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
-import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 
 public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 
@@ -45,7 +40,6 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 			ptmt.setInt(3, relatorioFrequencia.getCargaHorariaMensal());
 			ptmt.setString(4, relatorioFrequencia.getEdital());
 			ptmt.setString(5, relatorioFrequencia.getOrientador().getSiape());
-			ptmt.setString(6, relatorioFrequencia.getFuncionario().getSiape());
 			ptmt.setDate(7, new java.sql.Date(relatorioFrequencia.getDataEntregaRelatorio().getTime()));
 			ptmt.setString(8, relatorioFrequencia.getMonitor().getMatricula());
 			ptmt.executeUpdate();
@@ -172,7 +166,6 @@ public class JDBCRelatorioFrequencia implements RelatorioFrequenciaDao {
 			stmt.setString(5, relatorioFrequencia.getMonitor().getMatricula());
 			stmt.setString(6, relatorioFrequencia.getEdital());
 			stmt.setString(7, relatorioFrequencia.getOrientador().getSiape());
-			stmt.setString(8, relatorioFrequencia.getFuncionario().getSiape());
 			stmt.setDate(9, new java.sql.Date(relatorioFrequencia.getDataEntregaRelatorio().getTime()));
 
 			stmt.execute();

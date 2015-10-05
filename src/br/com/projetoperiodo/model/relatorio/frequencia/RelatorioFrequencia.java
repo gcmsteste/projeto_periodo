@@ -17,7 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
-import br.com.projetoperiodo.model.instituto.funcionario.Funcionario;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.orientador.Orientador;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
@@ -45,9 +44,6 @@ public class RelatorioFrequencia {
 	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "ORIENTADOR_ID", referencedColumnName = "ORIENTADOR_ID")
 	private Orientador orientador;
-	@ManyToOne( fetch = FetchType.EAGER, optional = true)
-	@JoinColumn(name = "FUNCIONARIO_ID", referencedColumnName = "FUNCIONARIO_ID")
-	private Funcionario funcionario;
 	@OneToMany(mappedBy="relatorio",
 			   cascade = CascadeType.ALL,
 			   fetch = FetchType.EAGER)
@@ -114,14 +110,7 @@ public class RelatorioFrequencia {
 
 		this.dataEntregaRelatorio = dataEntregaRelatorio;
 	}
-	public Funcionario getFuncionario() {
-
-		return funcionario;
-	}
-	public void setFuncionario(Funcionario funcionario) {
-
-		this.funcionario = funcionario;
-	}
+	
 	public Semana getSemanas(int index) {
 
 		return semanas.get(index);
