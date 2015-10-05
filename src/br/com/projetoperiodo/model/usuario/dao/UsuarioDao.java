@@ -3,7 +3,7 @@ package br.com.projetoperiodo.model.usuario.dao;
 import java.util.HashMap;
 import java.util.List;
 
-import br.com.projetoperiodo.model.usuario.impl.Usuario;
+import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.util.exception.NegocioException;
 
 public interface UsuarioDao {

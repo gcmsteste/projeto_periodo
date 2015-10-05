@@ -10,7 +10,7 @@ import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
 import br.com.projetoperiodo.model.instituto.aluno.dao.JPAAlunoDao;
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.curso.Curso;
-import br.com.projetoperiodo.model.usuario.impl.Usuario;
+import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;

@@ -1,7 +1,7 @@
 
 package br.com.projetoperiodo.util;
 
-import br.com.projetoperiodo.model.usuario.impl.Usuario;
+import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 
 public class Fachada {

@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 import br.com.projetoperiodo.model.negocio.entidade.impl.EntidadeNegocioImpl;
+import br.com.projetoperiodo.model.usuario.Usuario;
 
 @Entity
 @Table(name = "USUARIO")

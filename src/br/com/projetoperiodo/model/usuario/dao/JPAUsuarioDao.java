@@ -13,7 +13,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
-import br.com.projetoperiodo.model.usuario.impl.Usuario;
+import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.exception.NegocioException;

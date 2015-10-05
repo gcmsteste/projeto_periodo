@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
 import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImpl;
-import br.com.projetoperiodo.model.usuario.impl.Usuario;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.exception.NegocioException;
 

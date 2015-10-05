@@ -1,4 +1,4 @@
-package br.com.projetoperiodo.model.usuario.impl;
+package br.com.projetoperiodo.model.usuario;
 
 import java.util.Date;
 

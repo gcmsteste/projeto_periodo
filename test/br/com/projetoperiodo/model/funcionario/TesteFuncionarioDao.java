@@ -9,7 +9,7 @@ import br.com.projetoperiodo.model.instituto.funcionario.Funcionario;
 import br.com.projetoperiodo.model.instituto.funcionario.FuncionarioDao;
 import br.com.projetoperiodo.model.instituto.funcionario.HibernateFuncionarioDao;
 import br.com.projetoperiodo.model.instituto.funcionario.JPAFuncionarioDao;
-import br.com.projetoperiodo.model.usuario.impl.Usuario;
+import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 
 public class TesteFuncionarioDao {

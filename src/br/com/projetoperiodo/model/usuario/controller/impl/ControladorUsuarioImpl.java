@@ -4,10 +4,10 @@ package br.com.projetoperiodo.model.usuario.controller.impl;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
 import br.com.projetoperiodo.model.usuario.dao.JPAUsuarioDao;
 import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
-import br.com.projetoperiodo.model.usuario.impl.Usuario;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
@@ -56,7 +56,7 @@ public class ControladorUsuarioImpl implements ControladorUsuario {
 
 		ControladorUsuario controlador = new ControladorUsuarioImpl();
 		Usuario usuario = Fachada.getInstance().criarUsuario();
-		usuario.setEmail("emgs@a.recife.ifpe.edu.br");
+		usuario.setEmail("lrmo@a.recife.ifpe.edu.br");
 		controlador.alterarSenhaUsuario(usuario);
 	}
 
