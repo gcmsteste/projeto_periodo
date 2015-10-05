@@ -37,4 +37,5 @@ public abstract class EntidadeNegocioImpl implements EntidadeNegocio {
 	public void setChavePrimaria(long chavePrimaria) {
 		this.chavePrimaria = chavePrimaria;
 	}
+	
 }

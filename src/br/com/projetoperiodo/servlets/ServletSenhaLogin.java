@@ -11,6 +11,7 @@ import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
 import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImpl;
 import br.com.projetoperiodo.model.usuario.impl.Usuario;
 import br.com.projetoperiodo.util.Fachada;
+import br.com.projetoperiodo.util.exception.NegocioException;
 
 /**
  * Servlet implementation class ServletSenhaLogin
@@ -35,7 +36,12 @@ public class ServletSenhaLogin extends HttpServlet {
 		String email = request.getParameter(FORM_EMAIL);
 		Usuario usuario = Fachada.getInstance().criarUsuario();
 		ControladorUsuario controlador = new ControladorUsuarioImpl();
-		controlador.alterarSenhaUsuario(usuario);
+		try {
+			controlador.alterarSenhaUsuario(usuario);
+		} catch (NegocioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.getRequestDispatcher("/login.do").forward(request, response);
 		
 	}

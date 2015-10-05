@@ -13,4 +13,6 @@ public class Constantes {
 	public static final String CONSTANTE_SENHA_EMAIL_SISTEMA = "sistemamonitoria@@";
 	
 	public static final String ERRO_ENVIO_EMAIL = "ERRO_ENVIO_EMAIL";
+	
+	public static final String ENTIDADE_NAO_ENCONTRADA = "ENTIDADE_NAO_ENCONTRADA";
 }

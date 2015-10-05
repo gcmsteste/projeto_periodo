@@ -13,4 +13,8 @@ public interface EntidadeNegocio
 	public long getChavePrimaria();
 	
 	public void setChavePrimaria(long chavePrimaria);
+	
+	boolean isSenhaExpirada();
+	
+	void setSenhaExpirada(boolean senhaExpirada);
 }

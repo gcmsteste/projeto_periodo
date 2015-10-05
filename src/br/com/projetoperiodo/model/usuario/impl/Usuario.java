@@ -7,8 +7,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public interface Usuario {
+public interface Usuario  
+{
 
+	final static String ATRIBUTO_USUARIO_LOGIN = "login";
+	
+	final static String ATRIBUTO_USUARIO_SENHA = "senha";
+	
+	final static String ATRIBUTO_USUARIO_EMAIL = "email";
+	
+	
 	String getLogin();
 
 	String getSenha();
@@ -36,5 +44,9 @@ public interface Usuario {
 	void setUltimaAlteracao(Date ultimaAlteracao);
 
 	void setChavePrimaria(long chavePrimaria);
+	
+	boolean isSenhaExpirada();
+	
+	void setSenhaExpirada(boolean senhaExpirada);
 
 }
