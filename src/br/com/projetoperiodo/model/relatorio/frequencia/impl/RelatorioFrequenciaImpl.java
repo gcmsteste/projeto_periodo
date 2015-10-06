@@ -19,9 +19,11 @@ import javax.persistence.Temporal;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
 import br.com.projetoperiodo.model.instituto.professor.Professor;
+import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
 import br.com.projetoperiodo.model.negocio.entidade.impl.EntidadeNegocioImpl;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
+import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 @Entity
 @Table(name = "RELATORIO_FREQUENCIA")
 @AttributeOverrides({ @AttributeOverride(name = "chavePrimaria", column = @Column(name = "RELATORIO_ID") )}) 
@@ -35,18 +37,18 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	private int cargaHorariaMensal;
 	@Column( name = "RELATORIO_EDITAL", nullable = false)
 	private String edital;
-	@ManyToOne( fetch = FetchType.LAZY, optional = true)
+	@ManyToOne( fetch = FetchType.LAZY, optional = true, targetEntity= MonitorImpl.class)
 	@JoinColumn( name = "MONITOR_ID", referencedColumnName = "MONITOR_ID")
 	private Monitor monitor;
 	@Column( name = "DATA_ENTREGA", nullable = false)
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dataEntregaRelatorio;
-	@ManyToOne(fetch = FetchType.EAGER, optional = true)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity= ProfessorImpl.class)
 	@JoinColumn(name = "PROFESSOR_ID", referencedColumnName = "PROFESSOR_ID")
 	private Professor professor;
 	@OneToMany(mappedBy="relatorio",
 			   cascade = CascadeType.ALL,
-			   fetch = FetchType.EAGER)
+			   fetch = FetchType.EAGER, targetEntity= SemanaImpl.class)
 	private List<Semana> semanas;
 	
 	public RelatorioFrequenciaImpl() {

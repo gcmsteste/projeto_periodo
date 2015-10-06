@@ -15,7 +15,7 @@ public interface Professor {
 
 	Disciplina getDisciplina(int index);
 
-	void setDisciplina(DisciplinaImpl disciplina);
+	void setDisciplina(Disciplina disciplina);
 
 	long getChavePrimaria();
 

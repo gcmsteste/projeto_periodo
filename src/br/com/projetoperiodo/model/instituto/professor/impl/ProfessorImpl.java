@@ -30,10 +30,8 @@ public class ProfessorImpl extends UsuarioImpl implements Professor {
 	private String nome;
 	@Column(name = "PROFESSOR_SIAPE", nullable = false)
 	private String siape;
-	@OneToMany(mappedBy="professor",
-					   cascade = CascadeType.ALL,
-					   fetch = FetchType.EAGER)
-	private List<DisciplinaImpl> disciplinas;
+	@OneToMany(mappedBy="professor", fetch = FetchType.LAZY, targetEntity=DisciplinaImpl.class)
+	private List<Disciplina> disciplinas;
 
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.professor.Professor#getNome()
@@ -83,7 +81,7 @@ public class ProfessorImpl extends UsuarioImpl implements Professor {
 	 * @see br.com.projetoperiodo.model.instituto.professor.Professor#setDisciplina(br.com.projetoperiodo.model.instituto.disciplina.Disciplina)
 	 */
 	@Override
-	public void setDisciplina(DisciplinaImpl disciplina) {
+	public void setDisciplina(Disciplina disciplina) {
 		disciplinas.add(disciplina);
 	}
 

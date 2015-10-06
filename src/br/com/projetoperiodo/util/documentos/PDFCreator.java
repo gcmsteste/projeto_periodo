@@ -145,7 +145,7 @@ public class PDFCreator {
 		PdfStamper stamper = null;
 		try {
 			stamper = new PdfStamper(reader, new FileOutputStream(DEST));
-			PdfContentByte canvas = stamper.getOverContent(1);
+			/*PdfContentByte canvas = stamper.getOverContent(1);
 			preencherNomeMonitor(relatorio.getMonitor().getNome(), canvas);
 			preencherNomeDisciplina(relatorio.getMonitor().
 					getDisciplina().getDescricao(), canvas);
@@ -153,7 +153,7 @@ public class PDFCreator {
 			preencherMatricula(relatorio.getMonitor().getMatricula(), canvas);
 			preencherNomeCurso(relatorio.getMonitor().getCurso().getDescricao(), canvas);
 			//preencherCampoMes(Integer.toString(relatorio.getMes()), canvas);
-			preencherAtividades(relatorio.getSemanas(0).getAtividades(), canvas);
+			preencherAtividades(relatorio.getSemanas(0).getAtividades(), canvas);*/
 		} catch (DocumentException | IOException e) {
 			throw new RuntimeException(e);
 		} finally {

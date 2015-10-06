@@ -7,9 +7,6 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -18,6 +15,7 @@ import javax.persistence.Temporal;
 import br.com.projetoperiodo.model.negocio.entidade.impl.EntidadeNegocioImpl;
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
+import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 
 @Entity
 @Table(name = "ATIVIDADE")
@@ -32,7 +30,7 @@ public class AtividadeImpl extends EntidadeNegocioImpl implements Atividade
 	@Column( name = "ATIVIDADE_DATA", nullable = false)
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date data;
-	@ManyToOne(fetch = FetchType.EAGER, optional = true)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity= SemanaImpl.class)
 	@JoinColumn( name = "SEMANA_ID", referencedColumnName = "SEMANA_ID" )
 	private Semana semana;
 	

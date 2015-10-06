@@ -22,7 +22,7 @@ public class JPAMonitorDao implements MonitorDao{
 	}
 
 	@Override
-	public void atualizar(MonitorImpl monitor) {
+	public void atualizar(Monitor monitor) {
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
@@ -32,7 +32,7 @@ public class JPAMonitorDao implements MonitorDao{
 	}
 
 	@Override
-	public void remover(MonitorImpl monitor) {
+	public void remover(Monitor monitor) {
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
@@ -44,9 +44,9 @@ public class JPAMonitorDao implements MonitorDao{
 	}
 
 	@Override
-	public List<MonitorImpl> listar() {
+	public List<Monitor> listar() {
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
-		List<MonitorImpl> monitores = entityManager.createQuery("from Monitor").getResultList();
+		List<Monitor> monitores = entityManager.createQuery("from Monitor").getResultList();
 		entityManager.close();
 			
 		return monitores;

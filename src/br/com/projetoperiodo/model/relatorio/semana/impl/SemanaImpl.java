@@ -11,9 +11,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -23,6 +20,7 @@ import br.com.projetoperiodo.model.negocio.entidade.impl.EntidadeNegocioImpl;
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
+import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 @Entity
 @Table(name = "SEMANA")
@@ -35,15 +33,15 @@ public class SemanaImpl extends EntidadeNegocioImpl implements Semana
 	@Column( name = "SEMANA_OBS")
 	private String observacoes;
 	@OneToMany(mappedBy="semana",
-			   cascade = CascadeType.ALL,
-			   fetch = FetchType.EAGER)
-	private List<AtividadeImpl> atividades;
-	@ManyToOne( fetch = FetchType.LAZY, optional = true)
+			   cascade = CascadeType.ALL,	
+			   fetch = FetchType.EAGER, targetEntity = AtividadeImpl.class)
+	private List<Atividade> atividades;
+	@ManyToOne( fetch = FetchType.LAZY, optional = true, targetEntity = RelatorioFrequenciaImpl.class)
 	@JoinColumn( name = "RELATORIO_ID", referencedColumnName = "RELATORIO_ID")
 	private RelatorioFrequencia relatorio;
 	
 	public SemanaImpl() {
-		atividades = new ArrayList<AtividadeImpl>();
+		atividades = new ArrayList<Atividade>();
 	}
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.relatorio.semana.impl.Semana#getDescricao()
@@ -81,13 +79,7 @@ public class SemanaImpl extends EntidadeNegocioImpl implements Semana
 		return atividades.get(index);
 	}
 	
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.semana.impl.Semana#getAtividades()
-	 */
-	public Collection<AtividadeImpl> getAtividades() {
-		return atividades;
-	}
-
+	
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.relatorio.semana.impl.Semana#setAtividades(br.com.projetoperiodo.model.relatorio.atividade.Atividade)
 	 */

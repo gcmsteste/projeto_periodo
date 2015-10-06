@@ -5,8 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import br.com.projetoperiodo.model.instituto.orientador.Orientador;
 import br.com.projetoperiodo.model.instituto.professor.Professor;
+import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 public class JPAProfessorDao implements ProfessorDao
@@ -58,7 +58,7 @@ public class JPAProfessorDao implements ProfessorDao
 	{
 		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();		
 
-		Professor professor = (Professor) entma.find(Orientador.class,primaryKey);
+		Professor professor = (Professor) entma.find(ProfessorImpl.class,primaryKey);
 		entma.close();
 		return professor;
 	}

@@ -1,26 +1,25 @@
 
 package br.com.projetoperiodo.model.instituto.curso;
 
-import java.util.Collection;
 import java.util.Date;
 
-import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
-import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
+import br.com.projetoperiodo.model.instituto.aluno.Aluno;
+import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Grau;
 
 public interface Curso {
 
-	Collection<DisciplinaImpl> getDisciplinas();
+	Disciplina getDisciplinas(int index);
 
-	void setDisciplinas(Collection<DisciplinaImpl> disciplinas);
+	void setDisciplinas(Disciplina disciplina);
 
 	String getDescricao();
 
 	void setDescricao(String descricao);
 
-	Collection<AlunoImpl> getAlunos();
+	Aluno getAlunos(int index);
 
-	void setAlunos(Collection<AlunoImpl> alunos);
+	void setAlunos(Aluno aluno);
 
 	Grau getModalidade();
 

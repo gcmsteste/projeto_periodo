@@ -9,11 +9,11 @@ public interface MonitorDao {
 
 public void salvar(Monitor monitor);
 	
-	public void atualizar(MonitorImpl monitor);
+	public void atualizar(Monitor monitor);
 	
-	public void remover(MonitorImpl monitor);
+	public void remover(Monitor monitor);
 	
-	public List<MonitorImpl> listar(); 
+	public List<Monitor> listar(); 
 
 	public Monitor buscar(int primaryK);
 	

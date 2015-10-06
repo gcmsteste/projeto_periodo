@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.curso.Curso;
+import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
@@ -30,7 +31,7 @@ public class AlunoImpl extends UsuarioImpl implements Aluno
 {
 	@Column( name = "ALUNO_MATRICULA", nullable = false)
 	private String matricula;
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@ManyToOne(fetch = FetchType.LAZY, optional = true, targetEntity= CursoImpl.class)
 	@JoinColumn(name = "CURSO_ID", referencedColumnName = "CURSO_ID")
 	private Curso curso;
 	

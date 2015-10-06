@@ -1,8 +1,8 @@
 
 package br.com.projetoperiodo.model.instituto.disciplina.impl;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -15,10 +15,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.curso.Curso;
+import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.professor.Professor;
+import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
 import br.com.projetoperiodo.model.negocio.entidade.impl.EntidadeNegocioImpl;
 
 @Entity
@@ -29,15 +32,15 @@ public class DisciplinaImpl extends EntidadeNegocioImpl implements Disciplina {
 	@Column(name = "DISCIPLINA_DS")
 	private String descricao;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, targetEntity=AlunoImpl.class)
 	@JoinTable(name = "DISCIPLINA_ALUNO", joinColumns = @JoinColumn(name = "DISCIPLINA_ID") , inverseJoinColumns = @JoinColumn(name = "ALUNO_ID") )
-	private Collection<AlunoImpl> pagantes;
+	private List<Aluno> pagantes;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity=CursoImpl.class)
 	@JoinColumn(name = "CURSO_ID", referencedColumnName = "CURSO_ID")
 	private Curso curso;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity=ProfessorImpl.class)
 	@JoinColumn(name = "PROFESSOR_ID", referencedColumnName = "PROFESSOR_ID")
 	private Professor professor;
 
@@ -63,18 +66,18 @@ public class DisciplinaImpl extends EntidadeNegocioImpl implements Disciplina {
 	 * (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.disciplina.impl.Disciplina#getPagantes()
 	 */
-	public Collection<AlunoImpl> getPagantes() {
+	public Aluno getPagantes(int index) {
 
-		return pagantes;
+		return pagantes.get(index);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.disciplina.impl.Disciplina#setPagantes(java.util.Collection)
 	 */
-	public void setPagantes(Collection<AlunoImpl> pagantes) {
+	public void setPagantes(Aluno aluno) {
 
-		this.pagantes = pagantes;
+		this.pagantes.add(aluno);
 	}
 
 	/*

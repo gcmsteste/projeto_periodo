@@ -1,7 +1,6 @@
 
 package br.com.projetoperiodo.model.instituto.monitor.impl;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +20,7 @@ import javax.persistence.Table;
 
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
+import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
@@ -36,11 +36,11 @@ public class MonitorImpl extends AlunoImpl implements Monitor {
 	@Column(columnDefinition = "ENUM('BOLSISTA', 'VOLUNTARIO')")
 	private Modalidade modalidade;
 
-	@ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false, targetEntity=DisciplinaImpl.class)
 	@JoinColumn(name = "DISCIPLINA_ID", referencedColumnName = "DISCIPLINA_ID")
 	private Disciplina disciplina;
 
-	@OneToMany(mappedBy = "monitor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "monitor", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity=RelatorioFrequenciaImpl.class)
 	private List<RelatorioFrequencia> relatoriosMensais;
 
 	/* (non-Javadoc)

@@ -20,8 +20,6 @@ public interface Semana {
 
 	Atividade getAtividades(int index);
 
-	Collection<AtividadeImpl> getAtividades();
-
 	void setAtividades(AtividadeImpl atividade);
 
 	RelatorioFrequencia getRelatorio();

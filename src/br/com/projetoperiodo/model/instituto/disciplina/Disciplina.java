@@ -4,6 +4,7 @@ package br.com.projetoperiodo.model.instituto.disciplina;
 import java.util.Collection;
 import java.util.Date;
 
+import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.curso.Curso;
 import br.com.projetoperiodo.model.instituto.professor.Professor;
@@ -14,9 +15,9 @@ public interface Disciplina {
 
 	void setDescricao(String descricao);
 
-	Collection<AlunoImpl> getPagantes();
+	Aluno getPagantes(int index);
 
-	void setPagantes(Collection<AlunoImpl> pagantes);
+	void setPagantes(Aluno aluno);
 
 	Curso getCurso();
 
