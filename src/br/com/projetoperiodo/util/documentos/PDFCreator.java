@@ -17,12 +17,17 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 
 import br.com.projetoperiodo.model.instituto.curso.Curso;
+import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
-import br.com.projetoperiodo.model.instituto.orientador.Orientador;
+import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
+import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
+import br.com.projetoperiodo.model.instituto.professor.Professor;
+import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
+import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
-import br.com.projetoperiodo.model.relatorio.semana.Semana;
+import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
+import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 
 public class PDFCreator {
 
@@ -122,7 +127,7 @@ public class PDFCreator {
 		ColumnText.showTextAligned(canvas, Element.ALIGN_RIGHT, phrase, NOME_CURSO_X, NOME_CURSO_Y, 0);
 	}
 
-	private void preencherAtividades( Collection<Atividade> atividades, PdfContentByte canvas) {
+	private void preencherAtividades( Collection<AtividadeImpl> atividades, PdfContentByte canvas) {
 		FontSelector seletor = new FontSelector();
 		Font font = FontFactory.getFont(FontFactory.HELVETICA, 11);
 		seletor.addFont(font);
@@ -162,11 +167,11 @@ public class PDFCreator {
 	
 	
 	public static void main(String[] args)  {
-		RelatorioFrequencia relatorio = new RelatorioFrequencia();
+		RelatorioFrequencia relatorio = new RelatorioFrequenciaImpl();
 		for ( int i = 0; i < 5; i++ ) {
-			Semana semana = new Semana();
+			SemanaImpl semana = new SemanaImpl();
 			for ( int j = 0; j < 5; j++ ) {
-				Atividade atividade = new Atividade();
+				AtividadeImpl atividade = new AtividadeImpl();
 				atividade.setHorarioEntrada("14:00");
 				atividade.setHorarioSaida("18:00");
 				atividade.setData( new Date());
@@ -175,18 +180,18 @@ public class PDFCreator {
 			relatorio.setSemanas(semana);
 		}
 		
-		Monitor monitor = new Monitor();
-		Disciplina disciplina = new Disciplina();
-		Orientador orientador = new Orientador();
-		Curso curso = new Curso();
+		MonitorImpl monitor = new MonitorImpl();
+		Disciplina disciplina = new DisciplinaImpl();
+		Professor professor = new ProfessorImpl();
+		Curso curso = new CursoImpl();
 		curso.setDescricao("Análise de Sistemas");
-		orientador.setNome("Marcos Costa");
+		professor.setNome("Marcos Costa");
 		disciplina.setDescricao("Introdução à Programação");
 		monitor.setNome("Edmilson Santana");
 		monitor.setDisciplina(disciplina);
 		monitor.setMatricula("20141Y6-RC0323");
 		monitor.setCurso(curso);
-		relatorio.setOrientador(orientador);
+		relatorio.setProfessor(professor);
 		relatorio.setMonitor(monitor);
 		relatorio.setMes(9);
 		relatorio.setAno(2015);

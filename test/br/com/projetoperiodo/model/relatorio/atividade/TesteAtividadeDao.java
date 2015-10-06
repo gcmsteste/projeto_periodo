@@ -10,6 +10,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.com.projetoperiodo.model.relatorio.atividade.dao.AtividadeDao;
+import br.com.projetoperiodo.model.relatorio.atividade.dao.JPAAtividadeDao;
+import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
 import br.com.projetoperiodo.util.persistencia.FabricaJPA;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
@@ -39,7 +42,7 @@ public class TesteAtividadeDao {
 	
 	@Test
 	public void testeRemoverAtividade() {
-		Atividade atividade = montarObjetoAtividade();
+		AtividadeImpl atividade = montarObjetoAtividade();
 		dao.salvar(atividade);
 		
 		int qtdInicio = dao.listar().size();
@@ -53,7 +56,7 @@ public class TesteAtividadeDao {
 		Atividade atividadeInserida = montarObjetoAtividade();
 		dao.salvar(atividadeInserida);
 		
-		Atividade atividadePesquisada = dao.
+		AtividadeImpl atividadePesquisada = dao.
 						buscar(atividadeInserida.getId());
 		Assert.assertNotNull(atividadePesquisada);
 		String horarioAntesAlteracao = atividadePesquisada.
@@ -68,8 +71,8 @@ public class TesteAtividadeDao {
 		
 	}
 	
-	public Atividade montarObjetoAtividade() {
-		Atividade atividade = new Atividade();
+	public AtividadeImpl montarObjetoAtividade() {
+		AtividadeImpl atividade = new AtividadeImpl();
 		atividade.setData( new Date() );
 		atividade.setHorarioEntrada("14:00");
 		atividade.setHorarioSaida("18:00");

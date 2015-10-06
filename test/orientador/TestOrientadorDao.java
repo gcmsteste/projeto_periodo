@@ -7,9 +7,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.projetoperiodo.model.instituto.orientador.Orientador;
-import br.com.projetoperiodo.model.instituto.orientador.OrientadorDao;
+import br.com.projetoperiodo.model.instituto.professor.dao.JPAProfessorDao;
+import br.com.projetoperiodo.model.instituto.professor.dao.ProfessorDao;
 import br.com.projetoperiodo.model.instituto.orientador.HibernateOrientadorDao;
-import br.com.projetoperiodo.model.instituto.orientador.JPAOrientadorDao;
 import br.com.projetoperiodo.util.persistencia.HibernateUtil;
 
 public class TestOrientadorDao {

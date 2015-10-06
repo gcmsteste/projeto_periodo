@@ -1,7 +1,9 @@
 
-package br.com.projetoperiodo.model.relatorio.semana;
+package br.com.projetoperiodo.model.relatorio.semana.dao;
 
 import java.util.List;
+
+import br.com.projetoperiodo.model.relatorio.semana.Semana;
 
 public interface SemanaDao {
 
@@ -12,6 +14,6 @@ public interface SemanaDao {
 	public void alterar(Semana semana);
 
 	public List<Semana> listar();
-	
+
 	public Semana buscar(int primaryKey);
 }

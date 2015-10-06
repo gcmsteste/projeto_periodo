@@ -10,6 +10,7 @@ import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
 import br.com.projetoperiodo.model.instituto.aluno.dao.JPAAlunoDao;
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.curso.Curso;
+import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Util;
@@ -66,7 +67,7 @@ public class TesteAlunoDao {
 
 	public AlunoImpl montarObjetoAluno() {
 		AlunoImpl aluno = new AlunoImpl();
-		Curso curso = (Curso) FabricaJPA.getInstancia().buscar(Curso.class);
+		Curso curso = (Curso) FabricaJPA.getInstancia().buscar(CursoImpl.class);
 		aluno.setCurso(curso);
 		Usuario usuario = (Usuario) aluno;
 		aluno.setMatricula("20141Y6-RC0323");

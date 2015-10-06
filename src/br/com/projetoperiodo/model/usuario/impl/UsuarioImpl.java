@@ -21,7 +21,7 @@ import br.com.projetoperiodo.model.usuario.Usuario;
 @Entity
 @Table(name = "USUARIO")
 @Inheritance(strategy = InheritanceType.JOINED)
-@AttributeOverrides({@AttributeOverride(name = "chavePrimaria", column = @Column(name = "USUARIO_ID") ),})
+@AttributeOverrides({@AttributeOverride(name = "chavePrimaria", column = @Column(name = "USUARIO_ID") )})
 public class UsuarioImpl extends EntidadeNegocioImpl implements Usuario {
 
 	@Column(name = "USUARIO_NOME", nullable = false)

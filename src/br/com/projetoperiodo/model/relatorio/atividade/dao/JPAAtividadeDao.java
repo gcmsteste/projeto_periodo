@@ -1,10 +1,12 @@
-package br.com.projetoperiodo.model.relatorio.atividade;
+package br.com.projetoperiodo.model.relatorio.atividade.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
+import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
 import br.com.projetoperiodo.util.persistencia.FabricaJPA;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
@@ -67,7 +69,7 @@ public class JPAAtividadeDao implements AtividadeDao
 
 		EntityManager entityManager = FabricaJPA.getInstancia().
 				getEntityManagerFactory().createEntityManager();
-		Atividade atividade = entityManager.find(Atividade.class, primaryKey);
+		AtividadeImpl atividade = entityManager.find(AtividadeImpl.class, primaryKey);
 		entityManager.close();
 		return atividade;
 	}

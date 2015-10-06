@@ -2,8 +2,8 @@ package br.com.projetoperiodo.model.disciplina;
 
 import org.junit.*;
 
-import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
-import br.com.projetoperiodo.model.instituto.disciplina.JPADisciplinaDao;
+import br.com.projetoperiodo.model.instituto.disciplina.dao.JPADisciplinaDao;
+import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 public class TesteDisciplinaDao {
@@ -25,7 +25,7 @@ public class TesteDisciplinaDao {
 
 	@Test
 	public void TesteRemoverDisciplina(){
-		Disciplina disciplina = new Disciplina();
+		DisciplinaImpl disciplina = new DisciplinaImpl();
 		dao.salvar(disciplina);
 		int quantidadeInicio = dao.listar().size();
 		dao.remover(disciplina);

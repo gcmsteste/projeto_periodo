@@ -1,77 +1,68 @@
-package br.com.projetoperiodo.model.instituto.orientador;
+package br.com.projetoperiodo.model.instituto.professor.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import br.com.projetoperiodo.model.instituto.orientador.Orientador;
+import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
-public class JPAOrientadorDao implements OrientadorDao
+public class JPAProfessorDao implements ProfessorDao
 {
 	
-	public void salvar(Orientador orientador)
+	public void salvar(Professor professor)
 	{
 		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();
 		EntityTransaction transaction = entma.getTransaction();
 		transaction.begin();
-		entma.merge(orientador);
+		entma.merge(professor);
 		transaction.commit();
 		entma.close();	
 	}
 
-	public void atualizar(Orientador orientador)
+	public void atualizar(Professor professor)
 	{
 		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();		
 
 		EntityTransaction transaction = entma.getTransaction();	
 		transaction.begin();
-		entma.merge(orientador);
+		entma.merge(professor);
 		transaction.commit();
 		entma.close();
 	}	
 
-	public void remover(Orientador orientador)
+	public void remover(Professor professor)
 	{
 		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();
 		EntityTransaction transaction = entma.getTransaction();
 		transaction.begin();
-		entma.merge(orientador);
-		entma.remove(orientador);
+		entma.merge(professor);
+		entma.remove(professor);
 		transaction.commit();
 		entma.close();
 	}
 
-	public List<Orientador> listar()
+	public List<Professor> listar()
 	{
 		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();
 		@SuppressWarnings("unchecked")
-		List<Orientador> orientador = entma.createQuery("from Orientador").getResultList();
+		List<Professor> professor = entma.createQuery("from ProfessorImpl").getResultList();
 		entma.close();
-		return orientador;
+		return professor;
 		
 	}
 
-	public Orientador buscar(int primaryKey)
+	public Professor buscar(int primaryKey)
 	{
 		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();		
 
-		Orientador orientador = (Orientador) entma.find(Orientador.class,primaryKey);
+		Professor professor = (Professor) entma.find(Orientador.class,primaryKey);
 		entma.close();
-		return orientador;
+		return professor;
 	}
 
-	@Override
-	public List<Orientador> getList(String condicao) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Orientador salvar(Long chavePrimaria, String condicao)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

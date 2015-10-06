@@ -12,10 +12,12 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
+import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.JPARelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaDao;
+import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
+import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 import br.com.projetoperiodo.util.persistencia.FabricaJPA;
 
 public class TesteRelatorioFrequenciaDao {
@@ -47,7 +49,7 @@ public class TesteRelatorioFrequenciaDao {
 
 	@Test
 	public void testeRemoverRelatorioFrequencia() {
-		RelatorioFrequencia relatorio = montarObjetoRelatorioFrequencia();
+		RelatorioFrequenciaImpl relatorio = montarObjetoRelatorioFrequencia();
 		relatorioDao.salvar(relatorio);
 		
 		int qtdInicio = relatorioDao.listar().size();
@@ -61,7 +63,7 @@ public class TesteRelatorioFrequenciaDao {
 		RelatorioFrequencia relatorio = montarObjetoRelatorioFrequencia();
 		relatorioDao.salvar(relatorio);
 		
-		RelatorioFrequencia relatorioPesquisado = relatorioDao.
+		RelatorioFrequenciaImpl relatorioPesquisado = relatorioDao.
 						buscar(relatorio.getId());
 		assertNotNull(relatorioPesquisado);
 		int cargaHorariaAntesAlteracao = relatorioPesquisado.getCargaHorariaMensal();
@@ -75,9 +77,9 @@ public class TesteRelatorioFrequenciaDao {
 		
 	}
 	
-	public RelatorioFrequencia montarObjetoRelatorioFrequencia() {
+	public RelatorioFrequenciaImpl montarObjetoRelatorioFrequencia() {
 
-		RelatorioFrequencia relatorioFrequencia = new RelatorioFrequencia();
+		RelatorioFrequenciaImpl relatorioFrequencia = new RelatorioFrequenciaImpl();
 		relatorioFrequencia.setAno(2015);
 		relatorioFrequencia.setMes(8);
 		relatorioFrequencia.setCargaHorariaMensal(80);
@@ -91,9 +93,9 @@ public class TesteRelatorioFrequenciaDao {
 		return relatorioFrequencia;
 	}
 
-	public Semana montarObjetoSemana(RelatorioFrequencia relatorio) {
+	public SemanaImpl montarObjetoSemana(RelatorioFrequencia relatorio) {
 
-		Semana semana = new Semana();
+		SemanaImpl semana = new SemanaImpl();
 		semana.setDescricao("Fazendo levantamento bibliográfico");
 		semana.setObservacoes("Atividade realizada fora da instituição");
 		semana.setRelatorio(relatorio);
@@ -105,9 +107,9 @@ public class TesteRelatorioFrequenciaDao {
 		return semana;
 	}
 
-	public Atividade montarObjetoAtividade(Semana semana) {
+	public AtividadeImpl montarObjetoAtividade(Semana semana) {
 
-		Atividade atividade = new Atividade();
+		AtividadeImpl atividade = new AtividadeImpl();
 		atividade.setData(new Date());
 		atividade.setHorarioEntrada("14:00");
 		atividade.setHorarioSaida("18:00");

@@ -1,10 +1,12 @@
-package br.com.projetoperiodo.model.instituto.curso;
+package br.com.projetoperiodo.model.instituto.curso.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import br.com.projetoperiodo.model.instituto.curso.Curso;
+import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
 public class JPACursoDao implements CursoDao
@@ -46,7 +48,7 @@ public class JPACursoDao implements CursoDao
 	{
 		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();
 		@SuppressWarnings("unchecked")
-		List<Curso> curso = entma.createQuery("from Curso").getResultList();
+		List<Curso> curso = entma.createQuery("from CursoImpl").getResultList();
 		entma.close();
 		return curso;
 		
@@ -56,28 +58,14 @@ public class JPACursoDao implements CursoDao
 	{
 		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();		
 
-		Curso curso = (Curso) entma.find(Curso.class,primaryKey);
+		Curso curso = (Curso) entma.find(CursoImpl.class,primaryKey);
 		entma.close();
 		return curso;
 	}
 
-	@Override
-	public List<Curso> listar(String condicao) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
-	@Override
-	public void inserir(Curso curso) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Curso salvar(String descricao, String condicao) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 
 }

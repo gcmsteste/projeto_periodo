@@ -6,10 +6,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.com.projetoperiodo.model.instituto.curso.Curso;
-import br.com.projetoperiodo.model.instituto.curso.CursoDao;
 import br.com.projetoperiodo.model.instituto.curso.HibernateCursoDao;
-import br.com.projetoperiodo.model.instituto.curso.JPACursoDao;
+import br.com.projetoperiodo.model.instituto.curso.dao.CursoDao;
+import br.com.projetoperiodo.model.instituto.curso.dao.JPACursoDao;
+import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.util.persistencia.HibernateUtil;
 
 public class TestCursoDao {

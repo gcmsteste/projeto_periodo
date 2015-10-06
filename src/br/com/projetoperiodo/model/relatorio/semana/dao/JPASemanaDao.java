@@ -1,10 +1,12 @@
-package br.com.projetoperiodo.model.relatorio.semana;
+package br.com.projetoperiodo.model.relatorio.semana.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import br.com.projetoperiodo.model.relatorio.semana.Semana;
+import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 import br.com.projetoperiodo.util.persistencia.FabricaJPA;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
@@ -31,7 +33,7 @@ public class JPASemanaDao implements SemanaDao
 				getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
-		semana  = (Semana)entityManager.merge(semana);
+		semana  = (SemanaImpl)entityManager.merge(semana);
 		entityManager.remove(semana);
 		entityTransaction.commit();
 		entityManager.close();
@@ -69,7 +71,7 @@ public class JPASemanaDao implements SemanaDao
 
 		EntityManager entityManager = FabricaJPA.getInstancia().
 				getEntityManagerFactory().createEntityManager();
-		Semana semana = entityManager.find(Semana.class, primaryKey);
+		SemanaImpl semana = entityManager.find(SemanaImpl.class, primaryKey);
 		entityManager.close();
 		return semana;
 	}

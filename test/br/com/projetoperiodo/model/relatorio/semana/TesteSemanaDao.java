@@ -8,7 +8,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
+import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
+import br.com.projetoperiodo.model.relatorio.semana.dao.JPASemanaDao;
+import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
+import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 import br.com.projetoperiodo.util.persistencia.FabricaJPA;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
@@ -34,7 +37,7 @@ public class TesteSemanaDao {
 	
 	@Test
 	public void testeRemoverSemana() {
-		Semana semana = montarObjetoSemana();
+		SemanaImpl semana = montarObjetoSemana();
 		dao.salvar(semana);
 		
 		int qtdInicio = dao.listar().size();
@@ -62,7 +65,7 @@ public class TesteSemanaDao {
 		Semana semana = montarObjetoSemana();
 		dao.salvar(semana);
 		
-		Semana semanaPesquisada = dao.buscar(semana.getId());
+		SemanaImpl semanaPesquisada = dao.buscar(semana.getId());
 		assertNotNull(semanaPesquisada);
 		String descricaoAltesAlteracao = semanaPesquisada.getDescricao();
 		assertNotNull(descricaoAltesAlteracao);
@@ -76,8 +79,8 @@ public class TesteSemanaDao {
 		assertNotEquals(descricaoAltesAlteracao, descricaoPosAlteracao);
 	}
 	
-	private Semana montarObjetoSemana() {
-		Semana semana = new Semana();
+	private SemanaImpl montarObjetoSemana() {
+		SemanaImpl semana = new SemanaImpl();
 		semana.setDescricao("Levantamento bibliográfico");
 		semana.setAtividades(montarObjetoAtividade(semana));
 		semana.setAtividades(montarObjetoAtividade(semana));
@@ -87,8 +90,8 @@ public class TesteSemanaDao {
 		return semana;
 	}
 	
-	private Atividade montarObjetoAtividade(Semana semana) {
-		Atividade atividade = new Atividade();
+	private AtividadeImpl montarObjetoAtividade(Semana semana) {
+		AtividadeImpl atividade = new AtividadeImpl();
 		atividade.setHorarioEntrada("09:00");
 		atividade.setHorarioSaida("12:00");
 		atividade.setData(new Date());

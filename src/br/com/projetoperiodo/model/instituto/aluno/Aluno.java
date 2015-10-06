@@ -2,6 +2,7 @@ package br.com.projetoperiodo.model.instituto.aluno;
 
 import br.com.projetoperiodo.model.instituto.curso.Curso;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
+import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 
 public interface Aluno {
 
@@ -15,6 +16,6 @@ public interface Aluno {
 
 	Disciplina getDisciplinas(int index);
 
-	void setDisciplinas(Disciplina disciplina);
+	void setDisciplinas(DisciplinaImpl disciplina);
 
 }

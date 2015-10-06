@@ -1,6 +1,7 @@
 package br.com.projetoperiodo.model.instituto.professor;
 
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
+import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 
 public interface Professor {
 
@@ -14,7 +15,7 @@ public interface Professor {
 
 	Disciplina getDisciplina(int index);
 
-	void setDisciplina(Disciplina disciplina);
+	void setDisciplina(DisciplinaImpl disciplina);
 
 	long getChavePrimaria();
 

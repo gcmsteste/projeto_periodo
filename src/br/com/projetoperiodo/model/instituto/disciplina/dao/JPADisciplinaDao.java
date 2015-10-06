@@ -1,65 +1,67 @@
-package br.com.projetoperiodo.model.instituto.monitor;
+package br.com.projetoperiodo.model.instituto.disciplina.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
+import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
+import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 import br.com.projetoperiodo.util.persistencia.JPAUtil;
 
-public class JPAMonitorDao implements MonitorDao{
+public class JPADisciplinaDao implements DisciplinaDao{
 
 	@Override
-	public void salvar(Monitor monitor) {
+	public void salvar(Disciplina disciplina) {
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
-		entityManager.persist(monitor);
+		entityManager.persist(disciplina);
 		entityTransaction.commit();
 		entityManager.close();
 	}
 
 	@Override
-	public void atualizar(Monitor monitor) {
+	public void atualizar(DisciplinaImpl disciplina) {
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
-		entityManager.merge(monitor);
+		entityManager.merge(disciplina);
 		entityTransaction.commit();
 		entityManager.close();
 	}
 
 	@Override
-	public void remover(Monitor monitor) {
+	public void remover(DisciplinaImpl disciplina) {
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
-		Monitor monitorAtualizado = (Monitor)entityManager.merge(monitor);
-		entityManager.remove(monitorAtualizado);
+		Disciplina disciplinaAtualizada = (Disciplina)entityManager.merge(disciplina);
+		entityManager.remove(disciplinaAtualizada);
+		entityTransaction.commit();
+		entityManager.close();
+	}
+
+	@Override
+	public List<DisciplinaImpl> listar() {
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		List<DisciplinaImpl> disciplinas = entityManager.createQuery("from Disciplina").getResultList();
+		entityManager.close();
+		
+		return disciplinas;
+	}
+
+	@Override
+	public Disciplina buscar(int primaryK) {
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		Disciplina disciplina = entityManager.find(DisciplinaImpl.class, primaryK);
 		entityTransaction.commit();
 		entityManager.close();
 		
-	}
-
-	@Override
-	public List<Monitor> listar() {
-		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
-		List<Monitor> monitores = entityManager.createQuery("from Monitor").getResultList();
-		entityManager.close();
-			
-		return monitores;
-	}
-
-	@Override
-	public Monitor buscar(int primaryK) {
-		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-		entityTransaction.begin();
-		Monitor monitor = entityManager.find(Monitor.class, primaryK);
-		entityTransaction.commit();
-		entityManager.close();
-		
-		return monitor;
+		return disciplina;
 	}
 
 }

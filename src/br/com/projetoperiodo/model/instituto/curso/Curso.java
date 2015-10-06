@@ -1,82 +1,37 @@
+
 package br.com.projetoperiodo.model.instituto.curso;
 
 import java.util.Collection;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import java.util.Date;
 
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
-import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
+import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Grau;
-@Entity
-@Table( name = "CURSO")
-public class Curso {
-	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	@Column(name = "CURSO_ID")
-	private int id;
-	@Column(name = "CURSO_DS")
-	private String descricao;
-	@Enumerated(EnumType.STRING)
-	@Column(columnDefinition = "ENUM('TECNICO', 'SUPERIOR')")
-	private Grau grau;
-	@OneToMany(mappedBy = "curso", 
-					   cascade = CascadeType.ALL,
-					   fetch = FetchType.EAGER)
-	private Collection<Disciplina> disciplinas;
-	@OneToMany(mappedBy = "curso", 
-			   cascade = CascadeType.ALL,
-			   fetch = FetchType.EAGER)
-	private Collection<AlunoImpl> alunos;
-	
-	public Collection<Disciplina> getDisciplinas() {
 
-		return disciplinas;
-	}
-	public void setDisciplinas(Collection<Disciplina> disciplinas) {
+public interface Curso {
 
-		this.disciplinas = disciplinas;
-	}
-	public String getDescricao() {
+	Collection<DisciplinaImpl> getDisciplinas();
 
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
+	void setDisciplinas(Collection<DisciplinaImpl> disciplinas);
 
-		this.descricao = descricao;
-	}
-	public Collection<AlunoImpl> getAlunos() {
+	String getDescricao();
 
-		return alunos;
-	}
-	public void setAlunos(Collection<AlunoImpl> alunos) {
+	void setDescricao(String descricao);
 
-		this.alunos = alunos;
-	}
-	public Grau getModalidade() {
+	Collection<AlunoImpl> getAlunos();
 
-		return grau;
-	}
-	public void setModalidade(Grau modalidade) {
+	void setAlunos(Collection<AlunoImpl> alunos);
 
-		this.grau = modalidade;
-	}
-	public int getId() {
+	Grau getModalidade();
 
-		return id;
-	}
-	public void setId(int id) {
+	void setModalidade(Grau modalidade);
 
-		this.id = id;
-	}
-	
+	long getChavePrimaria();
+
+	void setChavePrimaria(long chavePrimaria);
+
+	Date getUltimaAlteracao();
+
+	void setUltimaAlteracao(Date ultimaAlteracao);
+
 }
