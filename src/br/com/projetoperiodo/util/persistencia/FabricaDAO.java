@@ -4,6 +4,7 @@ import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
 import br.com.projetoperiodo.model.instituto.curso.dao.CursoDao;
 import br.com.projetoperiodo.model.instituto.disciplina.dao.DisciplinaDao;
 import br.com.projetoperiodo.model.instituto.monitor.dao.MonitorDao;
+import br.com.projetoperiodo.model.instituto.professor.dao.ProfessorDao;
 import br.com.projetoperiodo.model.relatorio.atividade.dao.AtividadeDao;
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
@@ -27,6 +28,6 @@ public abstract class FabricaDAO {
 	
 	public abstract CursoDao criarCursoDAO();
 	
-	
+	public abstract ProfessorDao criarProfessorDao();
 	
 }

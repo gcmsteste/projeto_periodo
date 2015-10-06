@@ -10,8 +10,7 @@ public class JPAUtil {
 			factory = Persistence.
 							createEntityManagerFactory("mysqllocal");
 		} catch( Throwable e) {
-			e.printStackTrace();
-		
+			throw new RuntimeException(e);
 		}
 		
 	}
