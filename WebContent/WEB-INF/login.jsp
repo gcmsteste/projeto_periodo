@@ -5,8 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link type="text/css" rel="stylesheet" href="css/login.css" />
-<!-- <script src="js/jquery-1.9.0.js"></script> -->
+
+<link href="jquery-ui.css" rel="stylesheet">
+<script src="external/jquery/jquery.js"></script>
+<script src="jquery-ui.js"></script>
+
 <script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
 <title>Insert title here</title>
 </head>

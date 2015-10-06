@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+<link href="css/jquery-ui.css" rel="stylesheet">
+<link href="css/jquery-ui.min.css" rel="stylesheet">
+<link href="css/jquery-ui.theme.css" rel="stylesheet">
+<link href="css/jquery-ui.theme.min.css" rel="stylesheet">
+<link href="css/jquery-ui.structure.css" rel="stylesheet">
+<link href="css/jquery-ui.structure.min.css" rel="stylesheet">
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.js"></script>
+
+<title>Sistema de Monitoria</title>
+<script>
+	$(function() {
+		$("input[type=submit], a, button").button().click(function(event) {
+			event.preventDefault();
+		});
+		$(function() {
+			$("#accordion").accordion();
+		});
+	});
+</script>
+
+</head>
+<body>
+	<header>
+		<img src="css/images/principal.jpg" />
+	</header>
+	<form action="efetuarLogon.do" method="post">
+		<fieldset>
+			<label for="login">Nome do usuario</label>
+			<div>
+				<input type="text" name="login" id="login"
+					placeholder="Informe seu nome..." size="30" />
+			</div>
+
+			<label for="senha">Senha</label>
+			<p>
+				<a>Esqueceu sua senha ?</a>
+			</p>
+			<div>
+				<input type="password" id="senha" name="senha" size="30"
+					placeholder="Informe sua senha..." />
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<input type="checkbox" name="opcao" id="opcao" /> <label for="opcao">Mantenha-me
+				logado</label> <input type="submit" name="login" id="login" value="Login" />
+		</fieldset>
+	</form>
+	<div id="accordion">
+		<h3>Cadastro</h3>
+		<div></div>
+		<h3>Cadastro</h3>
+		<div></div>
+	</div>
+</body>
+</html>

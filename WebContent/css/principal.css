@@ -1,0 +1,43 @@
+@CHARSET "ISO-8859-1";
+
+header {
+	width: 50%;
+	height: 50%;
+	background-color: #f0f0f0;
+	border: 1px solid #000;
+}
+li {
+	float: left;
+	position: absolute;
+	background-color: #72b42d;
+	
+}
+
+figure img {
+	width: 600px;
+	
+}
+img {
+	width: 500px;
+}
+
+article {
+	border: 1px solid #ff0080;
+	width: 90em;
+	height: 50em;
+}
+
+#page {
+	border: 1px solid #00ff00;
+	width: 100em;
+	height: 50em;
+}
+
+
+
+
+
+
+
+
+
