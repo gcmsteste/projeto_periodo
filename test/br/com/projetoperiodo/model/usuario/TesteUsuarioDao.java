@@ -71,7 +71,7 @@ public class TesteUsuarioDao {
 		usuario.setNome("admin");
 		usuario.setLogin("admin");
 		usuario.setEmail("admin@email.com");
-		String senha = "admin321";
+		String senha = "admin";
 		usuario.setSenha(Util.criptografarSenha(senha, senha, Constantes.CONSTANTE_CRIPTOGRAFIA));
 		usuario.setUltimaAlteracao(new Date());
 		usuario.setUltimoAcesso(new Date());

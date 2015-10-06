@@ -63,7 +63,8 @@ public class JPAUsuarioDao implements UsuarioDao {
 		EntityManager entityManager = FabricaJPA.getInstancia().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
-		List<Usuario> usuarios = entityManager.createQuery("from UsuarioImpl").getResultList();
+		List<Usuario> usuarios = entityManager.createQuery
+						("from UsuarioImpl u where TYPE(u) = UsuarioImpl").getResultList();
 		entityManager.close();
 		return usuarios;
 	}
