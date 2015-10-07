@@ -1,14 +1,13 @@
 
 package br.com.projetoperiodo.model.instituto.curso;
 
-import java.util.Date;
-
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
+import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Grau;
 
-public interface Curso {
-
+public interface Curso extends EntidadeNegocio
+{
 	Disciplina getDisciplinas(int index);
 
 	void setDisciplinas(Disciplina disciplina);
@@ -24,13 +23,5 @@ public interface Curso {
 	Grau getModalidade();
 
 	void setModalidade(Grau modalidade);
-
-	long getChavePrimaria();
-
-	void setChavePrimaria(long chavePrimaria);
-
-	Date getUltimaAlteracao();
-
-	void setUltimaAlteracao(Date ultimaAlteracao);
 
 }

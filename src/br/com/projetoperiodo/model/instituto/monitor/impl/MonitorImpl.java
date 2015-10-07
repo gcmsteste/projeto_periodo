@@ -101,41 +101,6 @@ public class MonitorImpl extends AlunoImpl implements Monitor {
 	 * @see br.com.projetoperiodo.model.instituto.monitor.impl.Monitor#getUltimaAlteracao()
 	 */
 
-	@Override
-	public Date getUltimaAlteracao() {
-
-		return super.getUltimaAlteracao();
-	}
-
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.monitor.impl.Monitor#setUltimaAlteracao(java.util.Date)
-	 */
-	
-	@Override
-	public void setUltimaAlteracao(Date ultimaAlteracao) {
-
-		super.setUltimaAlteracao(ultimaAlteracao);
-	}
-	
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.monitor.impl.Monitor#getChavePrimaria()
-	 */
-
-	@Override
-	public long getChavePrimaria() {
-	
-		return super.getChavePrimaria();
-	}
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.monitor.impl.Monitor#setChavePrimaria(long)
-	 */
-
-	@Override
-	public void setChavePrimaria(long chavePrimaria) {
-	
-		super.setChavePrimaria(chavePrimaria);
-	}
-
 	
 
 	

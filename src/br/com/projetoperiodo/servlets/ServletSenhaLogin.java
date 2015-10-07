@@ -34,7 +34,7 @@ public class ServletSenhaLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter(FORM_EMAIL);
-		Usuario usuario = Fachada.getInstance().criarUsuario();
+		Usuario usuario = (Usuario) Fachada.getInstance().getControladorUsuario().criarEntidadeNegocio();
 		ControladorUsuario controlador = new ControladorUsuarioImpl();
 		try {
 			controlador.alterarSenhaUsuario(usuario);

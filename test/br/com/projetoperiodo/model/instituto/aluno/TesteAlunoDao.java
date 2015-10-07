@@ -1,31 +1,23 @@
-package br.com.projetoperiodo.model.aluno;
+package br.com.projetoperiodo.model.instituto.aluno;
+
+import java.util.Calendar;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
-import br.com.projetoperiodo.model.instituto.aluno.dao.JPAAlunoDao;
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
-import br.com.projetoperiodo.model.instituto.curso.Curso;
-import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.model.usuario.Usuario;
-import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
-import br.com.projetoperiodo.util.persistencia.FabricaJPA;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
 public class TesteAlunoDao {
 
-	private static AlunoDao dao;
-
-	@BeforeClass
-	public static void setUp() {
-		dao = new JPAAlunoDao();
-
-	}
+	private static AlunoDao dao = CreatorFabrica.
+					createFactory(CreatorFabrica.FABRICA_JPA).criarAlunoDAO();
 
 	@Test
 	public void testeInserirAluno() {
@@ -47,10 +39,10 @@ public class TesteAlunoDao {
 
 	@Test
 	public void testeAtualizarAluno() {
-		AlunoImpl alunoInserido = montarObjetoAluno();
+		Aluno alunoInserido = montarObjetoAluno();
 		dao.salvar(alunoInserido);
 	
-		AlunoImpl alunoPesquisado = (AlunoImpl) dao.buscar(alunoInserido.getChavePrimaria());
+		Aluno alunoPesquisado = (Aluno) dao.buscar(alunoInserido.getChavePrimaria());
 		String senhaAntiga = alunoPesquisado.getSenha();
 		String novaSenha = "admin321";
 		alunoPesquisado.setSenha(Util.criptografarSenha(novaSenha, novaSenha, Constantes.CONSTANTE_CRIPTOGRAFIA));
@@ -62,13 +54,11 @@ public class TesteAlunoDao {
 
 	@AfterClass
 	public static void tearDown() {
-		FabricaJPA.getInstancia().closeEntityManagerFactory();
+		JPAUtil.destroyInstance();
 	}
 
-	public AlunoImpl montarObjetoAluno() {
-		AlunoImpl aluno = new AlunoImpl();
-		Curso curso = (Curso) FabricaJPA.getInstancia().buscar(CursoImpl.class);
-		aluno.setCurso(curso);
+	public Aluno montarObjetoAluno() {
+		Aluno aluno = new AlunoImpl();
 		Usuario usuario = (Usuario) aluno;
 		aluno.setMatricula("20141Y6-RC0323");
 		usuario.setNome("Douglas");
@@ -76,7 +66,7 @@ public class TesteAlunoDao {
 		usuario.setEmail("Douglas@gmail.com");
 		String novaSenha = "admin321";
 		usuario.setSenha(Util.criptografarSenha(novaSenha, novaSenha, Constantes.CONSTANTE_CRIPTOGRAFIA));
-		
+		usuario.setUltimaAlteracao( Calendar.getInstance().getTime() );
 		return aluno;
 	}
 

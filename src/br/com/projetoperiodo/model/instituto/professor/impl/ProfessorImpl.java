@@ -26,30 +26,10 @@ import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 @AttributeOverrides({ @AttributeOverride(name = "chavePrimaria", column = @Column(name = "PROFESSOR_ID") )}) 
 public class ProfessorImpl extends UsuarioImpl implements Professor {
 
-	@Column(name = "PROFESSOR_NOME", nullable = false)
-	private String nome;
 	@Column(name = "PROFESSOR_SIAPE", nullable = false)
 	private String siape;
 	@OneToMany(mappedBy="professor", fetch = FetchType.LAZY, targetEntity=DisciplinaImpl.class)
 	private List<Disciplina> disciplinas;
-
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.professor.Professor#getNome()
-	 */
-	@Override
-	public String getNome() {
-
-		return nome;
-	}
-
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.professor.Professor#setNome(java.lang.String)
-	 */
-	@Override
-	public void setNome(String nome) {
-
-		this.nome = nome;
-	}
 
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.professor.Professor#getSiape()
@@ -85,24 +65,6 @@ public class ProfessorImpl extends UsuarioImpl implements Professor {
 		disciplinas.add(disciplina);
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.professor.Professor#getChavePrimaria()
-	 */
-
-	@Override
-	public long getChavePrimaria() {
-		
-		return super.getChavePrimaria();
-	}
-
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.professor.Professor#setChavePrimaria(long)
-	 */
 	
-	@Override
-	public void setChavePrimaria(long chavePrimaria) {
-		
-		super.setChavePrimaria(chavePrimaria);
-	}
 
 }

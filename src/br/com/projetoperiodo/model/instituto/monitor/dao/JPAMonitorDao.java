@@ -7,13 +7,13 @@ import javax.persistence.EntityTransaction;
 
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
-import br.com.projetoperiodo.util.persistencia.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
 public class JPAMonitorDao implements MonitorDao{
 
 	@Override
 	public void salvar(Monitor monitor) {
-		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.persist(monitor);
@@ -23,7 +23,7 @@ public class JPAMonitorDao implements MonitorDao{
 
 	@Override
 	public void atualizar(Monitor monitor) {
-		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.merge(monitor);
@@ -33,7 +33,7 @@ public class JPAMonitorDao implements MonitorDao{
 
 	@Override
 	public void remover(Monitor monitor) {
-		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		Monitor monitorAtualizado = (Monitor)entityManager.merge(monitor);
@@ -45,7 +45,7 @@ public class JPAMonitorDao implements MonitorDao{
 
 	@Override
 	public List<Monitor> listar() {
-		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		List<Monitor> monitores = entityManager.createQuery("from Monitor").getResultList();
 		entityManager.close();
 			
@@ -54,7 +54,7 @@ public class JPAMonitorDao implements MonitorDao{
 
 	@Override
 	public Monitor buscar(int primaryK) {
-		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		Monitor monitor = entityManager.find(MonitorImpl.class, primaryK);

@@ -6,9 +6,11 @@ import java.util.Date;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
 import br.com.projetoperiodo.model.instituto.professor.Professor;
+import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 
-public interface RelatorioFrequencia {
+public interface RelatorioFrequencia extends EntidadeNegocio
+{
 
 	int getMes();
 
@@ -45,13 +47,5 @@ public interface RelatorioFrequencia {
 	void setProfessor(Professor professor);
 	
 	Professor getProfessor();
-
-	long getChavePrimaria();
-
-	void setChavePrimaria(long chavePrimaria);
-
-	Date getUltimaAlteracao();
-
-	void setUltimaAlteracao(Date ultimaAlteracao);
 
 }

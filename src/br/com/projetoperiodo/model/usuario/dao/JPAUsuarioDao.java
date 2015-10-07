@@ -17,14 +17,15 @@ import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.exception.NegocioException;
-import br.com.projetoperiodo.util.persistencia.FabricaJPA;
+import br.com.projetoperiodo.util.persistencia.jpa.FabricaJPA;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
 public class JPAUsuarioDao implements UsuarioDao {
 
 	@Override
 	public void salvar(Usuario usuario) {
 
-		EntityManager entityManager = FabricaJPA.getInstancia().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.persist(usuario);
@@ -36,7 +37,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 	@Override
 	public void atualizar(Usuario usuario) {
 
-		EntityManager entityManager = FabricaJPA.getInstancia().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.merge(usuario);
@@ -47,7 +48,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 	@Override
 	public void remover(Usuario usuario) {
 
-		EntityManager entityManager = FabricaJPA.getInstancia().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		Object object = entityManager.merge(usuario);
@@ -60,7 +61,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 	@Override
 	public List<Usuario> listar() {
 
-		EntityManager entityManager = FabricaJPA.getInstancia().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		List<Usuario> usuarios = entityManager.createQuery
@@ -72,7 +73,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 	@Override
 	public Usuario buscar(String login) {
 
-		EntityManager entityManager = FabricaJPA.getInstancia().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		Query query = entityManager.createQuery("select u from UsuarioImpl u " + "where u.login = :login");
 		query.setParameter("login", login);
 		Usuario usuario = (Usuario) query.getSingleResult();
@@ -83,7 +84,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 	@Override
 	public Usuario buscar(long l) {
 
-		EntityManager entityManager = FabricaJPA.getInstancia().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager = JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		Usuario usuario = (Usuario) entityManager.find(UsuarioImpl.class, l);
 		entityManager.close();
 		return usuario;
@@ -91,8 +92,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 
 	@Override
 	public Usuario buscar(HashMap<String, Object> filter) throws NegocioException {
-		EntityManager entityManager = FabricaJPA.getInstancia().getEntityManagerFactory()
-				.createEntityManager();
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery  criteria = builder.createQuery(UsuarioImpl.class);
 		Root root = criteria.from(UsuarioImpl.class);

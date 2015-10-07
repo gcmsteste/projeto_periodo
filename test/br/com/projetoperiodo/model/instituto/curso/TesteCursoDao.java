@@ -1,18 +1,6 @@
-package curso;
+package br.com.projetoperiodo.model.instituto.curso;
 
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import br.com.projetoperiodo.model.instituto.curso.HibernateCursoDao;
-import br.com.projetoperiodo.model.instituto.curso.dao.CursoDao;
-import br.com.projetoperiodo.model.instituto.curso.dao.JPACursoDao;
-import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
-import br.com.projetoperiodo.util.persistencia.HibernateUtil;
-
-public class TestCursoDao {
+public class TesteCursoDao {
 	/*
 	 * private CursoDao cursoDao;
 	 * 

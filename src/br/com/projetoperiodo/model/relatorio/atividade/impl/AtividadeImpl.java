@@ -96,42 +96,5 @@ public class AtividadeImpl extends EntidadeNegocioImpl implements Atividade
 		this.semana = semana;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.atividade.impl.Atividade#getChavePrimaria()
-	 */
-	@Override
-	public long getChavePrimaria() {
-	
-		// TODO Auto-generated method stub
-		return super.getChavePrimaria();
-	}
 
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.atividade.impl.Atividade#setChavePrimaria(long)
-	 */
-	@Override
-	public void setChavePrimaria(long chavePrimaria) {
-	
-		// TODO Auto-generated method stub
-		super.setChavePrimaria(chavePrimaria);
-	}
-	
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.atividade.impl.Atividade#getUltimaAlteracao()
-	 */
-	@Override
-	public Date getUltimaAlteracao() {
-	
-		// TODO Auto-generated method stub
-		return super.getUltimaAlteracao();
-	}
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.atividade.impl.Atividade#setUltimaAlteracao(java.util.Date)
-	 */
-	@Override
-	public void setUltimaAlteracao(Date ultimaAlteracao) {
-	
-		// TODO Auto-generated method stub
-		super.setUltimaAlteracao(ultimaAlteracao);
-	}
 }

@@ -1,7 +1,6 @@
 
 package br.com.projetoperiodo.model.instituto.curso.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
@@ -113,45 +112,6 @@ public class CursoImpl extends EntidadeNegocioImpl implements Curso {
 		this.grau = modalidade;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.curso.impl.Curso#getChavePrimaria()
-	 */
-	@Override
-	public long getChavePrimaria() {
-
-		return super.getChavePrimaria();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.curso.impl.Curso#setChavePrimaria(long)
-	 */
-	@Override
-	public void setChavePrimaria(long chavePrimaria) {
-
-		super.setChavePrimaria(chavePrimaria);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.curso.impl.Curso#getUltimaAlteracao()
-	 */
-	@Override
-	public Date getUltimaAlteracao() {
-
-		return super.getUltimaAlteracao();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.curso.impl.Curso#setUltimaAlteracao(java.util.Date)
-	 */
-	@Override
-	public void setUltimaAlteracao(Date ultimaAlteracao) {
-
-		super.setUltimaAlteracao(ultimaAlteracao);
-	}
 
 
 }

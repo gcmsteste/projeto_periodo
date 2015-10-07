@@ -83,7 +83,7 @@ public class SemanaImpl extends EntidadeNegocioImpl implements Semana
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.relatorio.semana.impl.Semana#setAtividades(br.com.projetoperiodo.model.relatorio.atividade.Atividade)
 	 */
-	public void setAtividades(AtividadeImpl atividade) {
+	public void setAtividades(Atividade atividade) {
 
 		this.atividades.add(atividade);
 	}
@@ -104,43 +104,4 @@ public class SemanaImpl extends EntidadeNegocioImpl implements Semana
 		this.relatorio = relatorio;
 	}
 	
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.semana.impl.Semana#getChavePrimaria()
-	 */
-	@Override
-	public long getChavePrimaria() {
-	
-		// TODO Auto-generated method stub
-		return super.getChavePrimaria();
-	}
-	
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.semana.impl.Semana#setChavePrimaria(long)
-	 */
-	@Override
-	public void setChavePrimaria(long chavePrimaria) {
-	
-		// TODO Auto-generated method stub
-		super.setChavePrimaria(chavePrimaria);
-	}
-	
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.semana.impl.Semana#getUltimaAlteracao()
-	 */
-	@Override
-	public Date getUltimaAlteracao() {
-	
-		// TODO Auto-generated method stub
-		return super.getUltimaAlteracao();
-	}
-	
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.semana.impl.Semana#setUltimaAlteracao(java.util.Date)
-	 */
-	@Override
-	public void setUltimaAlteracao(Date ultimaAlteracao) {
-	
-		// TODO Auto-generated method stub
-		super.setUltimaAlteracao(ultimaAlteracao);
-	}
 }

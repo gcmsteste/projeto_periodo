@@ -1,11 +1,13 @@
 package br.com.projetoperiodo.model.usuario.controller;
 
+import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocio;
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.util.exception.NegocioException;
 
-public interface ControladorUsuario {
+public interface ControladorUsuario extends ControladorNegocio
+{
 	
-	static final String EMAIL_NAO_CADASTRADO = "EMAIL_NAO_CADASTRADO";
+	final String EMAIL_NAO_CADASTRADO = "EMAIL_NAO_CADASTRADO";
 	
 	Usuario autenticarUsuario(Usuario usuario) throws NegocioException; 
 	

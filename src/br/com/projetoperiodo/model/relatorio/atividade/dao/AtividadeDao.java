@@ -15,5 +15,5 @@ public interface AtividadeDao {
 
 	public List<Atividade> listar();
 
-	public Atividade buscar(int primaryKey);
+	public Atividade buscar(long primaryKey);
 }

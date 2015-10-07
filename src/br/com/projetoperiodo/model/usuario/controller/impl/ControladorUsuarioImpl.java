@@ -4,21 +4,27 @@ package br.com.projetoperiodo.model.usuario.controller.impl;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
+import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
-import br.com.projetoperiodo.model.usuario.dao.JPAUsuarioDao;
 import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
+import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.exception.NegocioException;
 
-public class ControladorUsuarioImpl implements ControladorUsuario {
+public class ControladorUsuarioImpl extends ControladorNegocioImpl implements ControladorUsuario {
 
+	private final String EMAIL_ASSUNTO = "Senha Sistema de Monitoria TADS";
+	
+	private final String EMAIL_MENSAGEM_CONTEUDO = "Sua senha é: ";
+	
 	private UsuarioDao dao;
-
+	
 	public ControladorUsuarioImpl() {
-		dao = new JPAUsuarioDao();
+		dao = fabrica.criarUsuarioDAO();
 	}
 
 	@Override
@@ -42,23 +48,9 @@ public class ControladorUsuarioImpl implements ControladorUsuario {
 	@Override
 	public void envioEmailSenha(Usuario usuario) throws NegocioException {
 
-		StringBuilder builder = new StringBuilder();
-		builder.append("Login: \n");
-		builder.append(usuario.getLogin());
-		builder.append("\nSenha: \n");
-		builder.append(usuario.getSenha());
-		String conteudo = builder.toString();
-		String assunto = "Sistema de Monitoria - Nova senha";
-		Util.enviarEmail(usuario.getEmail(), assunto, conteudo);
+		Util.enviarEmail(usuario.getEmail(), EMAIL_ASSUNTO, EMAIL_MENSAGEM_CONTEUDO);
 	}
 
-	public static void main(String[] args) throws NegocioException {
-
-		ControladorUsuario controlador = new ControladorUsuarioImpl();
-		Usuario usuario = Fachada.getInstance().criarUsuario();
-		usuario.setEmail("lrmo@a.recife.ifpe.edu.br");
-		controlador.alterarSenhaUsuario(usuario);
-	}
 
 	@Override
 	public void alterarSenhaUsuario(Usuario usuario) throws NegocioException {
@@ -88,6 +80,12 @@ public class ControladorUsuarioImpl implements ControladorUsuario {
 
 		}
 		return Boolean.TRUE;
+	}
+
+	@Override
+	public EntidadeNegocio criarEntidadeNegocio() {
+
+		return new UsuarioImpl();
 	}
 
 }

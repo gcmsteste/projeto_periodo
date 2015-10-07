@@ -1,13 +1,10 @@
+
 package br.com.projetoperiodo.model.instituto.professor;
 
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
-import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
+import br.com.projetoperiodo.model.usuario.Usuario;
 
-public interface Professor {
-
-	String getNome();
-
-	void setNome(String nome);
+public interface Professor extends Usuario {
 
 	String getSiape();
 
@@ -16,9 +13,5 @@ public interface Professor {
 	Disciplina getDisciplina(int index);
 
 	void setDisciplina(Disciplina disciplina);
-
-	long getChavePrimaria();
-
-	void setChavePrimaria(long chavePrimaria);
 
 }

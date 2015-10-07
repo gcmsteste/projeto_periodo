@@ -1,8 +1,8 @@
 
 package br.com.projetoperiodo.util;
 
-import br.com.projetoperiodo.model.usuario.Usuario;
-import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
+import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
+import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImpl;
 
 public class Fachada {
 
@@ -16,8 +16,8 @@ public class Fachada {
 		return fachada;
 	}
 
-	public Usuario criarUsuario() {
-		return new UsuarioImpl();
+	public ControladorUsuario getControladorUsuario() {
+		return new ControladorUsuarioImpl();
 	}
 	
 

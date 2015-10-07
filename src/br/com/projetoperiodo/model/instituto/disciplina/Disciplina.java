@@ -1,15 +1,12 @@
 
 package br.com.projetoperiodo.model.instituto.disciplina;
 
-import java.util.Collection;
-import java.util.Date;
-
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
-import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.curso.Curso;
 import br.com.projetoperiodo.model.instituto.professor.Professor;
+import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 
-public interface Disciplina {
+public interface Disciplina extends EntidadeNegocio {
 
 	String getDescricao();
 
@@ -23,16 +20,8 @@ public interface Disciplina {
 
 	void setCurso(Curso curso);
 
-	long getChavePrimaria();
-
-	void setChavePrimaria(long chavePrimaria);
-
-	void setUltimaAlteracao(Date ultimaAlteracao);
-
-	Date getUltimaAlteracao();
-	
 	Professor getProfessor();
-	
+
 	void setProfessor(Professor professor);
 
 }

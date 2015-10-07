@@ -6,36 +6,34 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.JPARelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
-import br.com.projetoperiodo.util.persistencia.FabricaJPA;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
+import br.com.projetoperiodo.util.persistencia.jpa.FabricaJPA;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
 public class TesteRelatorioFrequenciaDao {
 
-	private static RelatorioFrequenciaDao relatorioDao;
-
-	@BeforeClass
-	public static void setUp() {
-
-		relatorioDao = new JPARelatorioFrequenciaDao();
-	}
-
+	private static RelatorioFrequenciaDao relatorioDao = CreatorFabrica.
+					createFactory(CreatorFabrica.FABRICA_JPA).criarRelatorioFrequenciaDAO();
 
 
 	@AfterClass
-	public static void tearDown() throws SQLException {
+	public static void tearDown()  {
 
-		FabricaJPA.getInstancia().closeEntityManagerFactory();
+		JPAUtil.getInstance().destroyInstance();
 	}
 	
 	@Test
@@ -49,7 +47,7 @@ public class TesteRelatorioFrequenciaDao {
 
 	@Test
 	public void testeRemoverRelatorioFrequencia() {
-		RelatorioFrequenciaImpl relatorio = montarObjetoRelatorioFrequencia();
+		RelatorioFrequencia relatorio = montarObjetoRelatorioFrequencia();
 		relatorioDao.salvar(relatorio);
 		
 		int qtdInicio = relatorioDao.listar().size();
@@ -63,23 +61,23 @@ public class TesteRelatorioFrequenciaDao {
 		RelatorioFrequencia relatorio = montarObjetoRelatorioFrequencia();
 		relatorioDao.salvar(relatorio);
 		
-		RelatorioFrequenciaImpl relatorioPesquisado = relatorioDao.
-						buscar(relatorio.getId());
+		RelatorioFrequencia relatorioPesquisado = relatorioDao.
+						buscar(relatorio.getChavePrimaria());
 		assertNotNull(relatorioPesquisado);
 		int cargaHorariaAntesAlteracao = relatorioPesquisado.getCargaHorariaMensal();
 		relatorioPesquisado.setCargaHorariaMensal(120);
 		
 		relatorioDao.atualizar(relatorioPesquisado);
-		int cargaHorariaAposAlteracao = relatorioDao.buscar(relatorioPesquisado.getId()).
+		int cargaHorariaAposAlteracao = relatorioDao.buscar(relatorioPesquisado.getChavePrimaria()).
 						getCargaHorariaMensal();
 		assertFalse(cargaHorariaAntesAlteracao == cargaHorariaAposAlteracao);
 		
 		
 	}
 	
-	public RelatorioFrequenciaImpl montarObjetoRelatorioFrequencia() {
+	public RelatorioFrequencia montarObjetoRelatorioFrequencia() {
 
-		RelatorioFrequenciaImpl relatorioFrequencia = new RelatorioFrequenciaImpl();
+		RelatorioFrequencia relatorioFrequencia = new RelatorioFrequenciaImpl();
 		relatorioFrequencia.setAno(2015);
 		relatorioFrequencia.setMes(8);
 		relatorioFrequencia.setCargaHorariaMensal(80);
@@ -90,12 +88,13 @@ public class TesteRelatorioFrequenciaDao {
 		relatorioFrequencia.setSemanas(montarObjetoSemana(relatorioFrequencia));
 		relatorioFrequencia.setSemanas(montarObjetoSemana(relatorioFrequencia));
 		relatorioFrequencia.setSemanas(montarObjetoSemana(relatorioFrequencia));
+		relatorioFrequencia.setUltimaAlteracao( Calendar.getInstance().getTime() );
 		return relatorioFrequencia;
 	}
 
-	public SemanaImpl montarObjetoSemana(RelatorioFrequencia relatorio) {
+	public Semana montarObjetoSemana(RelatorioFrequencia relatorio) {
 
-		SemanaImpl semana = new SemanaImpl();
+		Semana semana = new SemanaImpl();
 		semana.setDescricao("Fazendo levantamento bibliográfico");
 		semana.setObservacoes("Atividade realizada fora da instituição");
 		semana.setRelatorio(relatorio);
@@ -104,16 +103,18 @@ public class TesteRelatorioFrequenciaDao {
 		semana.setAtividades(montarObjetoAtividade(semana));
 		semana.setAtividades(montarObjetoAtividade(semana));
 		semana.setAtividades(montarObjetoAtividade(semana));
+		semana.setUltimaAlteracao(Calendar.getInstance().getTime());
 		return semana;
 	}
 
-	public AtividadeImpl montarObjetoAtividade(Semana semana) {
+	public Atividade montarObjetoAtividade(Semana semana) {
 
-		AtividadeImpl atividade = new AtividadeImpl();
+		Atividade atividade = new AtividadeImpl();
 		atividade.setData(new Date());
 		atividade.setHorarioEntrada("14:00");
 		atividade.setHorarioSaida("18:00");
 		atividade.setSemana(semana);
+		atividade.setUltimaAlteracao(Calendar.getInstance().getTime());
 		return atividade;
 	}
 

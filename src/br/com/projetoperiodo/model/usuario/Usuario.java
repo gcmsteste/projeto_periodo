@@ -1,3 +1,4 @@
+
 package br.com.projetoperiodo.model.usuario;
 
 import java.util.Date;
@@ -7,16 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public interface Usuario  
-{
+import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
+
+public interface Usuario extends EntidadeNegocio {
 
 	final static String ATRIBUTO_USUARIO_LOGIN = "login";
-	
+
 	final static String ATRIBUTO_USUARIO_SENHA = "senha";
-	
+
 	final static String ATRIBUTO_USUARIO_EMAIL = "email";
-	
-	
+
 	String getLogin();
 
 	String getSenha();
@@ -33,20 +34,12 @@ public interface Usuario
 
 	String getNome();
 
-	long getChavePrimaria();
-
 	Date getUltimoAcesso();
 
 	void setUltimoAcesso(Date ultimoAcesso);
 
-	Date getUltimaAlteracao();
-
-	void setUltimaAlteracao(Date ultimaAlteracao);
-
-	void setChavePrimaria(long chavePrimaria);
-	
 	boolean isSenhaExpirada();
-	
+
 	void setSenhaExpirada(boolean senhaExpirada);
 
 }

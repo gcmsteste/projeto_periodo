@@ -4,6 +4,7 @@ package br.com.projetoperiodo.servlets;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,19 +26,20 @@ public class ServletLogin extends HttpServlet {
 
 	public static final String ATRIBUTO_USUARIO_LOGADO = "usuarioLogado";
 
-	public static ControladorUsuario controladorUsuario = new ControladorUsuarioImpl();
-
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		RequestDispatcher requestDispatcher;
+		ControladorUsuario controladorUsuario = Fachada.getInstance().getControladorUsuario();
+		
 		if ( !( request.getSession(false) == null ) ) {
 			requestDispatcher = request.getRequestDispatcher("/home.do");
 			requestDispatcher.forward(request, response);
 		} else {
 			String login = request.getParameter(FORM_LOGIN);
 			String senha = request.getParameter(FORM_SENHA);
-			Usuario usuario = Fachada.getInstance().criarUsuario();
+			Usuario usuario = (Usuario) controladorUsuario.criarEntidadeNegocio();
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			try {

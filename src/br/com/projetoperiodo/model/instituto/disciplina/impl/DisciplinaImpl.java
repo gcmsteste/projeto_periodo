@@ -32,15 +32,15 @@ public class DisciplinaImpl extends EntidadeNegocioImpl implements Disciplina {
 	@Column(name = "DISCIPLINA_DS")
 	private String descricao;
 
-	@ManyToMany(fetch = FetchType.LAZY, targetEntity=AlunoImpl.class)
+	@ManyToMany(fetch = FetchType.LAZY, targetEntity = AlunoImpl.class)
 	@JoinTable(name = "DISCIPLINA_ALUNO", joinColumns = @JoinColumn(name = "DISCIPLINA_ID") , inverseJoinColumns = @JoinColumn(name = "ALUNO_ID") )
 	private List<Aluno> pagantes;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity=CursoImpl.class)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = CursoImpl.class)
 	@JoinColumn(name = "CURSO_ID", referencedColumnName = "CURSO_ID")
 	private Curso curso;
 
-	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity=ProfessorImpl.class)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity = ProfessorImpl.class)
 	@JoinColumn(name = "PROFESSOR_ID", referencedColumnName = "PROFESSOR_ID")
 	private Professor professor;
 
@@ -96,46 +96,6 @@ public class DisciplinaImpl extends EntidadeNegocioImpl implements Disciplina {
 	public void setCurso(Curso curso) {
 
 		this.curso = curso;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.disciplina.impl.Disciplina#getChavePrimaria()
-	 */
-	@Override
-	public long getChavePrimaria() {
-
-		return super.getChavePrimaria();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.disciplina.impl.Disciplina#setChavePrimaria(long)
-	 */
-	@Override
-	public void setChavePrimaria(long chavePrimaria) {
-
-		super.setChavePrimaria(chavePrimaria);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.disciplina.impl.Disciplina#setUltimaAlteracao(java.util.Date)
-	 */
-	@Override
-	public void setUltimaAlteracao(Date ultimaAlteracao) {
-
-		super.setUltimaAlteracao(ultimaAlteracao);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.disciplina.impl.Disciplina#getUltimaAlteracao()
-	 */
-	@Override
-	public Date getUltimaAlteracao() {
-
-		return super.getUltimaAlteracao();
 	}
 
 	@Override

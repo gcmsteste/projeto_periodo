@@ -2,26 +2,28 @@ package br.com.projetoperiodo.model.usuario;
 
 import java.util.Date;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
 import br.com.projetoperiodo.model.usuario.dao.JPAUsuarioDao;
 import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
-import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
-import br.com.projetoperiodo.util.persistencia.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
 
 public class TesteUsuarioDao {
 
 	
-	private static UsuarioDao dao;
+	private static UsuarioDao dao = CreatorFabrica.
+					createFactory(CreatorFabrica.FABRICA_JPA).criarUsuarioDAO();
+	private ControladorUsuario controlador = Fachada.getInstance().getControladorUsuario();
+	
 	@BeforeClass
 	public static void setUp() {
 		dao = new JPAUsuarioDao();
@@ -63,11 +65,11 @@ public class TesteUsuarioDao {
 	
 	@AfterClass
 	public static void tearDown() {
-		JPAUtil.closeEntityManagerFactory();
+		JPAUtil.getInstance().destroyInstance();
 	}
 	
 	public Usuario montarObjetoUsuario() {
-		Usuario usuario = Fachada.getInstance().criarUsuario();
+		Usuario usuario = (Usuario) controlador.criarEntidadeNegocio();
 		usuario.setNome("admin");
 		usuario.setLogin("admin");
 		usuario.setEmail("admin@email.com");

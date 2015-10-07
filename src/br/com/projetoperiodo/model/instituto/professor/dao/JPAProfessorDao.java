@@ -7,14 +7,14 @@ import javax.persistence.EntityTransaction;
 
 import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
-import br.com.projetoperiodo.util.persistencia.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
 public class JPAProfessorDao implements ProfessorDao
 {
 	
 	public void salvar(Professor professor)
 	{
-		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();
+		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction transaction = entma.getTransaction();
 		transaction.begin();
 		entma.merge(professor);
@@ -24,7 +24,7 @@ public class JPAProfessorDao implements ProfessorDao
 
 	public void atualizar(Professor professor)
 	{
-		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();		
+		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();		
 
 		EntityTransaction transaction = entma.getTransaction();	
 		transaction.begin();
@@ -35,7 +35,7 @@ public class JPAProfessorDao implements ProfessorDao
 
 	public void remover(Professor professor)
 	{
-		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();
+		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction transaction = entma.getTransaction();
 		transaction.begin();
 		entma.merge(professor);
@@ -46,7 +46,7 @@ public class JPAProfessorDao implements ProfessorDao
 
 	public List<Professor> listar()
 	{
-		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();
+		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		@SuppressWarnings("unchecked")
 		List<Professor> professor = entma.createQuery("from ProfessorImpl").getResultList();
 		entma.close();
@@ -56,7 +56,7 @@ public class JPAProfessorDao implements ProfessorDao
 
 	public Professor buscar(int primaryKey)
 	{
-		EntityManager entma = JPAUtil.getEntityManagerFactory().createEntityManager();		
+		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();	
 
 		Professor professor = (Professor) entma.find(ProfessorImpl.class,primaryKey);
 		entma.close();

@@ -15,5 +15,5 @@ public interface SemanaDao {
 
 	public List<Semana> listar();
 
-	public Semana buscar(int primaryKey);
+	public Semana buscar(long primaryKey);
 }

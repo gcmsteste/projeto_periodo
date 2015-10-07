@@ -123,16 +123,7 @@ public class UsuarioImpl extends EntidadeNegocioImpl implements Usuario {
 		return nome;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.usuario.impl.Usuario#getChavePrimaria()
-	 */
-
-	public long getChavePrimaria() {
-
-		// TODO Auto-generated method stub
-		return super.getChavePrimaria();
-	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -154,40 +145,7 @@ public class UsuarioImpl extends EntidadeNegocioImpl implements Usuario {
 		this.ultimoAcesso = ultimoAcesso;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.usuario.impl.Usuario#getUltimaAlteracao()
-	 */
-
-	@Override
-	public Date getUltimaAlteracao() {
-
-		// TODO Auto-generated method stub
-		return super.getUltimaAlteracao();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.usuario.impl.Usuario#setUltimaAlteracao(java.util.Date)
-	 */
-
-	@Override
-	public void setUltimaAlteracao(Date ultimaAlteracao) {
-
-		// TODO Auto-generated method stub
-		super.setUltimaAlteracao(ultimaAlteracao);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.usuario.impl.Usuario#setChavePrimaria(long)
-	 */
-
-	@Override
-	public void setChavePrimaria(long chavePrimaria) {
-
-		super.setChavePrimaria(chavePrimaria);
-	}
+	
 
 	public boolean isSenhaExpirada() {
 

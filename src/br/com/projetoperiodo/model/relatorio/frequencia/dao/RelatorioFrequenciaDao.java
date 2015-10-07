@@ -10,5 +10,5 @@ public interface RelatorioFrequenciaDao {
 	public void atualizar(RelatorioFrequencia relatorio);
 	public void remover(RelatorioFrequencia relatorio);
 	public List<RelatorioFrequencia> listar();
-	public RelatorioFrequencia buscar(int primaryKey);
+	public RelatorioFrequencia buscar(long primaryKey);
 }

@@ -1,34 +1,26 @@
 package br.com.projetoperiodo.model.relatorio.atividade;
 
-import static org.junit.Assert.*;
-
+import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.projetoperiodo.model.relatorio.atividade.dao.AtividadeDao;
-import br.com.projetoperiodo.model.relatorio.atividade.dao.JPAAtividadeDao;
 import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
-import br.com.projetoperiodo.util.persistencia.FabricaJPA;
-import br.com.projetoperiodo.util.persistencia.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
 
 public class TesteAtividadeDao {
 
-	private static AtividadeDao dao;
-	
-	@BeforeClass
-	public static void setUp() {
-		dao = new JPAAtividadeDao();
-	}
+	private static AtividadeDao dao = CreatorFabrica.
+					createFactory(CreatorFabrica.FABRICA_JPA).criarAtividadeDAO();
 	
 	@AfterClass
 	public static void close() {
-		FabricaJPA.getInstancia().closeEntityManagerFactory();
+		JPAUtil.getInstance().destroyInstance();
 	}
 	
 	@Test
@@ -42,7 +34,7 @@ public class TesteAtividadeDao {
 	
 	@Test
 	public void testeRemoverAtividade() {
-		AtividadeImpl atividade = montarObjetoAtividade();
+		Atividade atividade = montarObjetoAtividade();
 		dao.salvar(atividade);
 		
 		int qtdInicio = dao.listar().size();
@@ -56,8 +48,8 @@ public class TesteAtividadeDao {
 		Atividade atividadeInserida = montarObjetoAtividade();
 		dao.salvar(atividadeInserida);
 		
-		AtividadeImpl atividadePesquisada = dao.
-						buscar(atividadeInserida.getId());
+		Atividade atividadePesquisada = dao.
+						buscar(atividadeInserida.getChavePrimaria());
 		Assert.assertNotNull(atividadePesquisada);
 		String horarioAntesAlteracao = atividadePesquisada.
 						getHorarioEntrada();
@@ -65,17 +57,18 @@ public class TesteAtividadeDao {
 		dao.alterar(atividadePesquisada);
 		
 		String horarioPosAlteracao = dao.buscar
-						(atividadePesquisada.getId()).getHorarioEntrada();
+						(atividadePesquisada.getChavePrimaria()).getHorarioEntrada();
 		Assert.assertNotNull(horarioPosAlteracao);
 		Assert.assertNotEquals(horarioAntesAlteracao, horarioPosAlteracao );
 		
 	}
 	
-	public AtividadeImpl montarObjetoAtividade() {
-		AtividadeImpl atividade = new AtividadeImpl();
+	public Atividade montarObjetoAtividade() {
+		Atividade atividade = new AtividadeImpl();
 		atividade.setData( new Date() );
 		atividade.setHorarioEntrada("14:00");
 		atividade.setHorarioSaida("18:00");
+		atividade.setUltimaAlteracao( Calendar.getInstance().getTime() );
 		return atividade;
 	}
 	

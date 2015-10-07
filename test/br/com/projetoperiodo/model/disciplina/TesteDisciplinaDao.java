@@ -4,7 +4,7 @@ import org.junit.*;
 
 import br.com.projetoperiodo.model.instituto.disciplina.dao.JPADisciplinaDao;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
-import br.com.projetoperiodo.util.persistencia.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
 public class TesteDisciplinaDao {
 
@@ -40,7 +40,7 @@ public class TesteDisciplinaDao {
 
 	@AfterClass
 	public static void tearDown(){
-		JPAUtil.closeEntityManagerFactory();
+		JPAUtil.destroyInstance();
 	}
 
 	/*public Disciplina montarObjetoDisciplina(){

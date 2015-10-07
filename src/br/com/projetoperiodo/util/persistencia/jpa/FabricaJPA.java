@@ -1,4 +1,4 @@
-package br.com.projetoperiodo.util.persistencia;
+package br.com.projetoperiodo.util.persistencia.jpa;
 
 import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
 import br.com.projetoperiodo.model.instituto.aluno.dao.JPAAlunoDao;
@@ -18,6 +18,7 @@ import br.com.projetoperiodo.model.relatorio.semana.dao.JPASemanaDao;
 import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
 import br.com.projetoperiodo.model.usuario.dao.JPAUsuarioDao;
 import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
+import br.com.projetoperiodo.util.persistencia.dao.FabricaDAO;
 
 public class FabricaJPA extends FabricaDAO
 {

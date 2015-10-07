@@ -1,32 +1,33 @@
 package br.com.projetoperiodo.model.relatorio.semana;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
-import br.com.projetoperiodo.model.relatorio.semana.dao.JPASemanaDao;
 import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
 import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
-import br.com.projetoperiodo.util.persistencia.FabricaJPA;
-import br.com.projetoperiodo.util.persistencia.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
 
 public class TesteSemanaDao {
-	private static SemanaDao dao;
+
+	private static SemanaDao dao = CreatorFabrica.
+					createFactory(CreatorFabrica.FABRICA_JPA).criarSemanaDAO();
 	
-	@BeforeClass
-	public static void setUp() {
-		dao = new JPASemanaDao();
-	}
 	@AfterClass
 	public static void close() {
-		FabricaJPA.getInstancia().closeEntityManagerFactory();
+		JPAUtil.getInstance().destroyInstance();
 	}
+	
 	@Test
 	public void testeInserirSemana() {
 		int qtdInicio = dao.listar().size();
@@ -37,7 +38,7 @@ public class TesteSemanaDao {
 	
 	@Test
 	public void testeRemoverSemana() {
-		SemanaImpl semana = montarObjetoSemana();
+		Semana semana = montarObjetoSemana();
 		dao.salvar(semana);
 		
 		int qtdInicio = dao.listar().size();
@@ -50,7 +51,7 @@ public class TesteSemanaDao {
 	public void testeBuscarSemana() {
 		Semana semana = montarObjetoSemana();
 		dao.salvar(semana);
-		Semana semanaPesquisada = dao.buscar(semana.getId());
+		Semana semanaPesquisada = dao.buscar(semana.getChavePrimaria());
 		assertNotNull(semanaPesquisada);
 		semana.getAtividades(0);
 		semanaPesquisada.getAtividades(0).getSemana();
@@ -65,7 +66,7 @@ public class TesteSemanaDao {
 		Semana semana = montarObjetoSemana();
 		dao.salvar(semana);
 		
-		SemanaImpl semanaPesquisada = dao.buscar(semana.getId());
+		Semana semanaPesquisada = dao.buscar(semana.getChavePrimaria());
 		assertNotNull(semanaPesquisada);
 		String descricaoAltesAlteracao = semanaPesquisada.getDescricao();
 		assertNotNull(descricaoAltesAlteracao);
@@ -73,7 +74,7 @@ public class TesteSemanaDao {
 		
 		dao.alterar(semanaPesquisada);
 		
-		String descricaoPosAlteracao = dao.buscar(semanaPesquisada.getId()).
+		String descricaoPosAlteracao = dao.buscar(semanaPesquisada.getChavePrimaria()).
 						getDescricao();
 		
 		assertNotEquals(descricaoAltesAlteracao, descricaoPosAlteracao);
@@ -87,15 +88,17 @@ public class TesteSemanaDao {
 		semana.setAtividades(montarObjetoAtividade(semana));
 		semana.setAtividades(montarObjetoAtividade(semana));
 		semana.setAtividades(montarObjetoAtividade(semana));
+		semana.setUltimaAlteracao( Calendar.getInstance().getTime() );
 		return semana;
 	}
 	
-	private AtividadeImpl montarObjetoAtividade(Semana semana) {
-		AtividadeImpl atividade = new AtividadeImpl();
+	private Atividade montarObjetoAtividade(Semana semana) {
+		Atividade atividade = new AtividadeImpl();
 		atividade.setHorarioEntrada("09:00");
 		atividade.setHorarioSaida("12:00");
 		atividade.setData(new Date());
 		atividade.setSemana(semana);
+		atividade.setUltimaAlteracao( Calendar.getInstance().getTime() );
 		return atividade;
 	}
 

@@ -3,9 +3,11 @@ package br.com.projetoperiodo.model.relatorio.atividade;
 
 import java.util.Date;
 
+import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 
-public interface Atividade {
+public interface Atividade extends EntidadeNegocio
+{
 
 	Date getData();
 
@@ -23,12 +25,6 @@ public interface Atividade {
 
 	void setSemana(Semana semana);
 
-	long getChavePrimaria();
 
-	void setChavePrimaria(long chavePrimaria);
-
-	Date getUltimaAlteracao();
-
-	void setUltimaAlteracao(Date ultimaAlteracao);
 
 }
