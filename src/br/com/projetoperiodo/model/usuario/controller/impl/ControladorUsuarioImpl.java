@@ -88,4 +88,9 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 		return new UsuarioImpl();
 	}
 
+	@Override
+	public void cadastrarUsuario(Usuario usuario) {
+		
+	}
+
 }

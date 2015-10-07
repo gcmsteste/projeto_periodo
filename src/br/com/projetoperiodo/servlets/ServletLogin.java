@@ -28,7 +28,7 @@ public class ServletLogin extends HttpServlet {
 
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected synchronized void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		RequestDispatcher requestDispatcher;
 		ControladorUsuario controladorUsuario = Fachada.getInstance().getControladorUsuario();
