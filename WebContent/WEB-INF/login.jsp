@@ -7,6 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link href="jquery-ui.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
 <script src="external/jquery/jquery.js"></script>
 <script src="jquery-ui.js"></script>
 
@@ -14,6 +15,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<table id="menu">
+			<tr>
+                            <td>Login</td>
+                            <td><a href="login.do" id="linkc">Entrar</a></td>
+                            <td>Cadastro
+                            <td><a id="linka">Professor</a></td>
+                            <td><a id="linkb">Aluno</a></td>
+                        </tr>	
+        </table>
+        
 	<form action="efetuarLogon.do" method="post">
 
 		<fieldset>

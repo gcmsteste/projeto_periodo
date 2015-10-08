@@ -1,0 +1,37 @@
+@CHARSET "ISO-8859-1";
+
+table
+{
+	width:100px;
+	height:30px;
+	border:3px dashed blue;
+	background-color:deepskyblue;
+        font-family:serif;
+        font-size:x-large;
+        color:white;
+        border-radius: 10px 10px 10px 10px;
+        
+}
+
+td
+{
+    padding: 10px 10px 10px 10px;
+}
+
+#linka:link, #linkb:link, #linkc:link       
+{
+    color: white;
+}
+
+#linka:hover, #linkb:hover, #linkc:hover
+{
+    color: deeppink;
+}
+
+body
+{
+    
+background-image: linear-gradient(to right bottom, #FA0567 26%, #03E6FF 100%);
+background-repeat: repeat-x;
+background-attachment: fixed;
+}

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"pageEncoding="ISO-8859-1"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +10,7 @@
 <link href="css/jquery-ui.structure.css" rel="stylesheet">
 <link href="css/jquery-ui.structure.min.css" rel="stylesheet">
 <link href="css/principal.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script>
@@ -18,25 +18,21 @@
 		$("#menu").menu();
 	});
 </script>
-<title>Sistema de Monitoria</title>
+<title>Sistema de Monitoria - Página Principal</title>
 </head>
 <body>
 	<div id="page">
-		<article> <header id="cabecalho"> <img
-			src="css/images/tads.png" /> <nav>
-		<ul id="menu">
-			<li>Login
-				<ul>
-					<li><a href="login.do">Entrar</a></li>
-				</ul>
-			</li>
-			<li>Cadastro
-				<ul>
-					<li><a>Professor</a></li>
-					<li><a>Aluno</a></li>
-				</ul>
-			</li>
-		</ul>
+		<article> <header id="cabecalho"> <img src="css/images/tads.png" /> 
+		<nav>
+		<table id="menu">
+			<tr>
+                            <td>Login</td>
+                            <td><a href="login.do" id="linkc">Entrar</a></td>
+                            <td>Cadastro
+                            <td><a href="" id="linka">Professor</a></td>
+                            <td><a href="" id="linkb">Aluno</a></td>
+                        </tr>	
+        </table>
 		</nav> </header> </article>
 	</div>
 </body>

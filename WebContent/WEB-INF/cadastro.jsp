@@ -5,9 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
+<title>Sistema Monitoria - Cadastro</title>
 </head>
 <body>
+	<table id="menu">
+			<tr>
+                            <td>Login</td>
+                            <td><a href="login.do" id="linkc">Entrar</a></td>
+                            <td>Cadastro
+                            <td><a href="" id="linka">Professor</a></td>
+                            <td><a href="" id="linkb">Aluno</a></td>
+                        </tr>	
+        </table>
+        
 	<form action="" method="post">
 		<fieldset>
 			<label id="nome">Nome</label>
