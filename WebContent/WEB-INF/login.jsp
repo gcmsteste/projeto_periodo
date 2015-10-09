@@ -8,6 +8,8 @@
 
 <link href="jquery-ui.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="rodape.css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="form.css" media="screen"/>
 <script src="external/jquery/jquery.js"></script>
 <script src="jquery-ui.js"></script>
 
@@ -24,12 +26,12 @@
                             <td><a id="linkb">Aluno</a></td>
                         </tr>	
         </table>
-        
-	<form action="efetuarLogon.do" method="post">
+    <form action="efetuarLogon.do" method="post">
 
-		<fieldset>
-			<label for="login">Nome do usuario</label>
-			<div>
+		<fieldset id="fieldset1">
+                    <div id="login">
+			<label for="login">Nome do usuário</label>
+			
 				<c:choose>
 					<c:when test="${not empty requestScope.ERRO_ACESSO_NEGADO}">
 						<input type="text" name="login" id="login"
@@ -43,21 +45,34 @@
 				</c:choose>
 			</div>
 
-			<label for="senha">Senha</label>
-			<p>
-				<a>Esqueceu sua senha ?</a>
-			</p>
 			<div>
-				<input type="password" id="senha" name="senha" size="30"
-					placeholder="Informe sua senha..." />
+                              <label for="senha">Senha</label>
+                              <input type="password" id="senha" name="senha" size="30" placeholder="Informe sua senha..." />
 			</div>
+                    
+			<p>
+                            <a href="" id="linksenha">Esqueceu sua senha ?</a>
+			</p>
+			
+                        
+                        <fieldset id="fieldset2">
+                            
+                            <input type="checkbox" name="opcao" id="opcao" /> 
+                                <label for="opcao">Mantenha-me logado</label> 
+                                <input type="submit" name="login" id="login" value="Login" />
+                                
+                        </fieldset>
+                        
 		</fieldset>
-
-		<fieldset>
-			<input type="checkbox" name="opcao" id="opcao" /> <label for="opcao">Mantenha-me
-				logado</label> <input type="submit" name="login" id="login" value="Login" />
-		</fieldset>
+            
 	</form>
+         
+         <table id="rodape">
+             <tr>
+                <td> <img src="logo-tads2.png" /> </td>
+                <td> <img src="ifpe.jpg" id="ifpe"/> </td>
+            </tr>
+         </table>
 
 </body>
 </html>
