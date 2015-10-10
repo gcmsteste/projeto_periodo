@@ -1,0 +1,25 @@
+@CHARSET "ISO-8859-1";
+
+#panel, #flip, #panel1, #flip1
+{
+    width: 300px;
+    padding: 5px;
+    margin-left: 530px;
+    text-align: center;
+    font-family:serif;
+    color: white;
+    font-size: 20px;
+    background-color: deepskyblue;
+    border: dashed 2px blue;
+}
+	
+#panel, #panel1
+{
+    text-align: left;
+}
+
+#flip
+{
+    margin-top: 50px;
+    
+}

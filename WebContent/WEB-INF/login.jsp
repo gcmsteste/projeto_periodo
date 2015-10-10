@@ -6,17 +6,17 @@
 
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link href="jquery-ui.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
-<link rel="stylesheet" type="text/css" href="rodape.css" media="screen"/>
-<link rel="stylesheet" type="text/css" href="form.css" media="screen"/>
-<script src="external/jquery/jquery.js"></script>
-<script src="jquery-ui.js"></script>
-<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
-
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<link href="jquery-ui.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="rodape.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="form.css" media="screen"/>
+	<script src="external/jquery/jquery.js"></script>
+	<script src="jquery-ui.js"></script>
+	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+	
+	<title>Insert title here</title>
 
 </head>
 
