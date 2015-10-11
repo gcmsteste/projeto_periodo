@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="rodape.css" media="screen"/>
-        <link rel="stylesheet" type="text/css" href="form_supervisor_cadastro_aluno.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="form_supervisor_cadastro_professor.css" media="screen"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         
         <script> //eventos de formulário
@@ -110,9 +111,10 @@
             });
             
         </script>
-    
-<title>Sistemas Monitora - Supervisor - cadastro aluno</title>
+        
+<title>Sistema Monitoria - Supervisor - cadastro professor</title>
 </head>
+
     <body>
 
         <table id="menu">
@@ -129,8 +131,8 @@
                         
         </table>
         
-        <p id="titulo_form">Cadastrar aluno monitor </p>
-        
+        <p id="titulo_form">Cadastrar professor orientador </p>
+         
 	<form action="" method="post">
 		
 		<fieldset>
@@ -151,8 +153,8 @@
                     
              <p>
                         
-             	<label id="matricula">Matrícula</label>
-				<input type="text" name="matricula" id="matricula1" required="required" placeholder="Informe sua matrícula..." />
+             	<label id="siape">Siape</label>
+				<input type="text" name="siape" id="siape1" required="required" placeholder="Informe sua matrícula..." />
                         
 		    </p>
                     
@@ -162,13 +164,6 @@
 				<input type="text" name="curso" id="curso1" required="required" placeholder="Informe seu curso..." />
                         
 		    </p>	
-                    
-            <p>
-                        
-            	<label id="orientador">Nome Orientador</label>
-				<input type="text" id="orientador1" name="orientador" required="required" placeholder="Informe a sua senha..." />
-                    
-            </p>
                         
             <p>
                         
