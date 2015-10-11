@@ -7,6 +7,8 @@
 <head>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link rel="stylesheet" type="text/css" href="menu_professor.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="rodape.css" media="screen"/>
 	<link rel="stylesheet" type="text/css" href="listas_professor.css" media="screen"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script> //evento lista página carregada
@@ -193,14 +195,13 @@
     <body>
          <link rel="/monitoria.ico" href=""/>
         <table id="menu">
-        
-			<tr>
 			
-            	<td><a href="" id="linke">Login</a></td>
-                <td><a href="login.do" id="linkc">Entrar</a></td>
-               	<td><a href="" id="linkd">Cadastro</a></td>
-                <td><a href="professor.jps" id="linka">Professor</a></td>
-                <td><a href="" id="linkb">Aluno</a></td>
+            <tr>
+                
+                <td><a href="login.do" id="linkc">Professor</a></td>
+                <td><a href="" id="linkd">Cadastrar aluno</a></td>
+                <td><a href="professor.jps" id="linka">Alunos</a></td>
+                <td><a href="" id="linkb">Relatórios</a></td>
                         
             </tr>
                         
