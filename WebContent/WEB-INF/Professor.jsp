@@ -61,19 +61,40 @@
             
 	</script>
 	
+	<script>
+            
+            $(document).ready(function()
+            {
+                
+                $("#aluno1").hide();
+               
+                $(document).ready(function()
+                {
+                    $("#link_aluno1").click(function()
+                    {
+                        
+                        $("#aluno1").toggle();
+                        
+                    });
+                });
+                
+            });
+            
+        </script>
+	
 	<title>Sistema Monitoria - Professor</title>
 
 </head>
 
 <body>
 	
-	<div id="flip">Alunos monitores</div>
+	<div id="flip"><a href="#menu" id="link1">Alunos monitores</a></div>
 	
 	<div id="panel">
 		
 		<ol>
 		
-			<li>Laura Regina</li>
+			<li> <a href="#aluno1" id="link_aluno1">Laura Regina</a> </li>
 			<li>Edmilson Santana</li>
 			<li>Douglas Albuquerque</li>
 		
@@ -81,19 +102,59 @@
 		
 	</div>
 	
-	<div id="flip">Situação dos alunos monitores</div>
+         <div id="flip1"><a href="#menu" id="link2">Situação dos alunos monitores</a></div>
 	
-	<div id="panel">
+	<div id="panel1">
 		
 		<ol>
 		
-			<li>Laura Regina - pendente</li>
+            <li>Laura Regina - pendente</li>
 			<li>Edmilson Santana - ok</li>
 			<li>Douglas Albuquerque - ok</li>
 		
 		</ol>
 		
 	</div>
+         
+         <table id="aluno1">
+             
+             <tr>
+                 
+                 <td>Nome:Laura Regina</td>
+                 
+             </tr>
+             
+             <tr>
+                 
+                 <td>Matrícula:20141Y6-RC0471</td>
+                 
+             </tr>
+             
+             <tr>
+                 
+                 <td>Curso:Anáilise de Sistemas</td>
+                 
+            </tr>
+            
+            <tr>
+                
+                 <td>Disciplina:Arquitetura de Computadores</td>
+                 
+            </tr>
+                 
+            
+         </table>
+         
+         <table id="rodape">
+             
+             <tr>
+                 
+                <td> <img src="logo-tads2.png" alt="logo do tads"/> </td>
+                <td> <img src="ifpe.jpg" id="ifpe" alt="logo do ifpe"/> </td>
+                
+            </tr>
+            
+         </table>
 
 </body>
 
