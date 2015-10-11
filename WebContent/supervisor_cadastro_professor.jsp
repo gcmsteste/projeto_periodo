@@ -124,8 +124,8 @@
                 <td><a href="login.do" id="linkc">Supervisor</a></td>
                 <td><a href="" id="linkd">Cadastrar aluno</a></td>
                 <td><a href="" id="linke">Cadastrar professor</a></td>
-                <td><a href="professor.jps" id="linka">Alunos</a></td>
-                <td><a href="professor.jps" id="linkf">Professores</a></td>
+                <td><a href="" id="linka">Alunos</a></td>
+                <td><a href="" id="linkf">Professores</a></td>
                 <td><a href="" id="linkb">Relatórios</a></td>
                         
             </tr>

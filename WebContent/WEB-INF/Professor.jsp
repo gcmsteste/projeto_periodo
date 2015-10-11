@@ -200,7 +200,7 @@
                 
                 <td><a href="login.do" id="linkc">Professor</a></td>
                 <td><a href="" id="linkd">Cadastrar aluno</a></td>
-                <td><a href="professor.jps" id="linka">Alunos</a></td>
+                <td><a href="" id="linka">Alunos</a></td>
                 <td><a href="" id="linkb">Relatórios</a></td>
                         
             </tr>
