@@ -9,18 +9,18 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link rel="stylesheet" type="text/css" href="listas_professor.css" media="screen"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script> 
+	<script> //evento lista página carregada
             
              $("a").ready(function()
              {
                 
-                    $("#panel").hide();
+                $("#panel").hide();
                     
              });
             
         </script>
         
-        <script> 
+        <script> //evento lista carregada
             
              $("a").ready(function()
              {
@@ -31,7 +31,7 @@
             
         </script>
         
-        <script> 
+        <script> //evento lista elemento da lista clicado
             
             $(document).ready(function()
             {
@@ -46,7 +46,7 @@
             
 	</script>
         
-        <script> 
+        <script>  //evento lista elemento da lista clicado
             
             $(document).ready(function()
             {
@@ -60,43 +60,159 @@
             });
             
 	</script>
-	
-	<script>
+        
+        <script> //evento lista, mostrar dados do primeiro aluno
             
             $(document).ready(function()
             {
                 
                 $("#aluno1").hide();
-               
-                $(document).ready(function()
+                $("#link_aluno1").click(function()
                 {
-                    $("#link_aluno1").click(function()
+                        
+                    $("#aluno1").toggle();
+                        
+                });
+                    
+             });
+                      
+        </script>
+        
+        <script> //evento lista, mostrar dados do segundo aluno
+            
+            $(document).ready(function()
+            {
+                $("#aluno2").hide();
+                $("#link_aluno2").click(function()
                     {
                         
-                        $("#aluno1").toggle();
+                        $("#aluno2").toggle();
                         
                     });
-                });
-                
+                    
+            });
+        </script>
+        
+        <script> //evento lista, mostrar dados do terceiro aluno
+            
+            $(document).ready(function()
+            {
+                $("#aluno3").hide();
+                $("#link_aluno3").click(function()
+                    {
+                        
+                        $("#aluno3").toggle();
+                        
+                    });
+            });
+        </script>
+        
+        <script> //evento links
+        
+            $(document).ready(function()
+            {
+                $("[href]").css("color","white");
+                    $("#linka").mouseover(function() 
+                    {
+                        
+                        $("#linka").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#linkb").mouseover(function() 
+                    {
+                        
+                        $("#linkb").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#linkc").mouseover(function() 
+                    {
+                        
+                        $("#linkc").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#linkd").mouseover(function() 
+                    {
+                        
+                        $("#linkd").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#linke").mouseover(function() 
+                    {
+                        
+                        $("#linke").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#link1").mouseover(function() 
+                    {
+                        
+                        $("#link1").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#link2").mouseover(function() 
+                    {
+                        
+                        $("#link2").css("color","deeppink");
+                        
+                    });
+                    
+                    $("li").first().mouseover(function() 
+                    {
+                        
+                        $("#link_aluno1").css("color","deeppink");
+                        
+                    });
+                    
+                    $("[href]").mouseout(function()
+                    {
+                        
+                        $("[href]").css("color","white");
+                                
+                    });
+                    
+                     $("li").mouseout(function()
+                    {
+                        
+                        $("li").css("color","white");
+                                
+                    });
             });
             
         </script>
+        
 	
 	<title>Sistema Monitoria - Professor</title>
-
-</head>
-
-<body>
-	
-	<div id="flip"><a href="#menu" id="link1">Alunos monitores</a></div>
+        
+    </head>
+    
+    <body>
+         <link rel="/monitoria.ico" href=""/>
+        <table id="menu">
+			<tr>
+                            <td><a href="" id="linke">Login</a></td>
+                            <td><a href="login.do" id="linkc">Entrar</a></td>
+                            <td><a href="" id="linkd">Cadastro</a></td>
+                            <td><a href="professor.jps" id="linka">Professor</a></td>
+                            <td><a href="" id="linkb">Aluno</a></td>
+                        </tr>
+                        
+        </table>
+         
+             
+         <div id="flip"><a href="#menu" id="link1">Alunos monitores</a></div>
 	
 	<div id="panel">
 		
 		<ol>
 		
 			<li> <a href="#aluno1" id="link_aluno1">Laura Regina</a> </li>
-			<li>Edmilson Santana</li>
-			<li>Douglas Albuquerque</li>
+                        <li><a href="#aluno2" id="link_aluno2">Edmilson Santana</a></li>
+                        <li><a href="#aluno3" id="link_aluno3">Douglas Albuquerque</a></li>
 		
 		</ol>
 		
@@ -108,7 +224,7 @@
 		
 		<ol>
 		
-            <li>Laura Regina - pendente</li>
+                    <li>Laura Regina - pendente</li>
 			<li>Edmilson Santana - ok</li>
 			<li>Douglas Albuquerque - ok</li>
 		
@@ -144,6 +260,64 @@
                  
             
          </table>
+        
+         <table id="aluno2">
+             
+             <tr>
+                 
+                 <td>Nome:Edmilson Santana</td>
+                 
+             </tr>
+             
+             <tr>
+                 
+                 <td>Matrícula:20141Y6-RC0915</td>
+                 
+             </tr>
+             
+             <tr>
+                 
+                 <td>Curso:Anáilise de Sistemas</td>
+                 
+            </tr>
+            
+            <tr>
+                
+                 <td>Disciplina:Introdução a Programação</td>
+                 
+            </tr>
+                 
+            
+         </table>
+         
+         <table id="aluno3">
+             
+             <tr>
+                 
+                 <td>Nome:Douglas Albuquerque</td>
+                 
+             </tr>
+             
+             <tr>
+                 
+                 <td>Matrícula:20141Y6-RC1018</td>
+                 
+             </tr>
+             
+             <tr>
+                 
+                 <td>Curso:Anáilise de Sistemas</td>
+                 
+            </tr>
+            
+            <tr>
+                
+                 <td>Disciplina:Linguagemd e Programação Orientada a Objetos</td>
+                 
+            </tr>
+                 
+            
+         </table>
          
          <table id="rodape">
              
@@ -155,7 +329,8 @@
             </tr>
             
          </table>
-
-</body>
-
+        
+    </body>
+    
 </html>
+ml>
