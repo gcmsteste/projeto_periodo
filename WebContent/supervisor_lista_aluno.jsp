@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-        <link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="menu_supervisor.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="rodape.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="supervisor_lista_aluno.css" media="screen"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -191,15 +191,19 @@
     
 
 <body>
-         <link rel="/monitoria.ico" href=""/>
+        <link rel="/monitoria.ico" href=""/>
         <table id="menu">
-			<tr>
-                            <td><a href="" id="linke">Login</a></td>
-                            <td><a href="login.do" id="linkc">Entrar</a></td>
-                            <td><a href="" id="linkd">Cadastro</a></td>
-                            <td><a href="professor.jps" id="linka">Professor</a></td>
-                            <td><a href="" id="linkb">Aluno</a></td>
-                        </tr>
+			
+            <tr>
+                
+                <td><a href="login.do" id="linkc">Supervisor</a></td>
+                <td><a href="" id="linkd">Cadastrar aluno</a></td>
+                <td><a href="" id="linke">Cadastrar professor</a></td>
+                <td><a href="professor.jps" id="linka">Alunos</a></td>
+                <td><a href="professor.jps" id="linkf">Professores</a></td>
+                <td><a href="" id="linkb">Relatórios</a></td>
+                        
+            </tr>
                         
         </table>
          
