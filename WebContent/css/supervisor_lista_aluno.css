@@ -1,0 +1,55 @@
+@CHARSET "ISO-8859-1";
+
+#panel, #flip
+{
+    width: 300px;
+    padding: 5px;
+    margin-left: 530px;
+    text-align: center;
+    font-family:serif;
+    color: white;
+    font-size: 20px;
+    background-color: deepskyblue;
+    border: dashed 2px blue; 
+}
+
+#flip
+{
+    margin-top: 50px;
+    border-radius: 10px 10px 0px 0px;
+    
+}
+
+#panel
+{
+    border-radius: 0px 0px 10px 10px;
+}
+
+div
+{
+    color: white;
+}
+
+#flip:link, #link_aluno1:link
+{
+    color: white;
+}
+a:hover
+{
+    color: deeppink;
+}
+
+#aluno1, #aluno2, #aluno3
+{
+    width:450px;
+    height: 400px;
+    margin-top: 100px;
+    margin-left: 470px;
+       
+}
+
+#aluno1 tr td
+{
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
