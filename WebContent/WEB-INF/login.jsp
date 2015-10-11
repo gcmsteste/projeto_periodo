@@ -16,6 +16,84 @@
 	<script src="jquery-ui.js"></script>
 	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
 	
+	<script> //evento links
+        
+            $(document).ready(function()
+            {
+                $("[href]").css("color","white");
+                    $("#linka").mouseover(function() 
+                    {
+                        
+                        $("#linka").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#linkb").mouseover(function() 
+                    {
+                        
+                        $("#linkb").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#linkc").mouseover(function() 
+                    {
+                        
+                        $("#linkc").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#linkd").mouseover(function() 
+                    {
+                        
+                        $("#linkd").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#linke").mouseover(function() 
+                    {
+                        
+                        $("#linke").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#link1").mouseover(function() 
+                    {
+                        
+                        $("#link1").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#link2").mouseover(function() 
+                    {
+                        
+                        $("#link2").css("color","deeppink");
+                        
+                    });
+                    
+                    $("li").first().mouseover(function() 
+                    {
+                        
+                        $("#link_aluno1").css("color","deeppink");
+                        
+                    });
+                    
+                    $("[href]").mouseout(function()
+                    {
+                        
+                        $("[href]").css("color","white");
+                                
+                    });
+                    
+                     $("li").mouseout(function()
+                    {
+                        
+                        $("li").css("color","white");
+                                
+                    });
+            });
+            
+        </script>
+        
 	<title>Insert title here</title>
 
 </head>
@@ -23,18 +101,18 @@
 <body>
 	
 	<table id="menu">
-		
-		<tr>
-		
-        	<td>Login</td>
-            <td><a href="login.do" id="linkc">Entrar</a></td>
-            <td>Cadastro
-           	<td><a id="linka">Professor</a></td>
-            <td><a id="linkb">Aluno</a></td>
         
-        </tr>
-        	
-    </table>
+			<tr>
+			
+            	<td><a href="" id="linke">Login</a></td>
+                <td><a href="login.do" id="linkc">Entrar</a></td>
+               	<td><a href="" id="linkd">Cadastro</a></td>
+                <td><a href="professor.jps" id="linka">Professor</a></td>
+                <td><a href="" id="linkb">Aluno</a></td>
+                        
+            </tr>
+                        
+        </table>
     
     <form action="efetuarLogon.do" method="post">
 		

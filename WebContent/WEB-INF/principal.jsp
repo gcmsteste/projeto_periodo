@@ -18,11 +18,83 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
 	
-	<script>
-		$(function() {
-			$("#menu").menu();
-		});
-	</script>
+	<script> //evento links
+        
+            $(document).ready(function()
+            {
+                $("[href]").css("color","white");
+                    $("#linka").mouseover(function() 
+                    {
+                        
+                        $("#linka").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#linkb").mouseover(function() 
+                    {
+                        
+                        $("#linkb").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#linkc").mouseover(function() 
+                    {
+                        
+                        $("#linkc").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#linkd").mouseover(function() 
+                    {
+                        
+                        $("#linkd").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#linke").mouseover(function() 
+                    {
+                        
+                        $("#linke").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#link1").mouseover(function() 
+                    {
+                        
+                        $("#link1").css("color","deeppink");
+                        
+                    });
+                    
+                    $("#link2").mouseover(function() 
+                    {
+                        
+                        $("#link2").css("color","deeppink");
+                        
+                    });
+                    
+                    $("li").first().mouseover(function() 
+                    {
+                        
+                        $("#link_aluno1").css("color","deeppink");
+                        
+                    });
+                    
+                    $("[href]").mouseout(function()
+                    {
+                        
+                        $("[href]").css("color","white");
+                                
+                    });
+                    
+                     $("li").mouseout(function()
+                    {
+                        
+                        $("li").css("color","white");
+                                
+                    });
+            });
+            
+        </script>
 	
 	<title>Sistema de Monitoria - Página Principal</title>
 
@@ -30,33 +102,19 @@
 
 <body>
 
-	<div id="page">
-	
-		<article> 
-		
-			<header id="cabecalho"> <img src="css/images/tads.png" alt="imagem tads"/>  </header>
+	<table id="menu">
+        
+			<tr>
 			
-			<nav>
-			
-				<table id="menu">
-					
-					<tr>
-		            	
-		            	<td>Login</td>
-		                <td><a href="login.do" id="linkc">Entrar</a></td>
-		                <td>Cadastro
-		                <td><a href="" id="linka">Professor</a></td>
-		                <td><a href="" id="linkb">Aluno</a></td>
-		                        
-		            </tr>
-		            	
-		        </table>
-		        
-			</nav>  
-			
-			</article>
-			
-	</div>
+            	<td><a href="" id="linke">Login</a></td>
+                <td><a href="login.do" id="linkc">Entrar</a></td>
+               	<td><a href="" id="linkd">Cadastro</a></td>
+                <td><a href="professor.jps" id="linka">Professor</a></td>
+                <td><a href="" id="linkb">Aluno</a></td>
+                        
+            </tr>
+                        
+        </table>
 	
 	<table id="rodape">
              

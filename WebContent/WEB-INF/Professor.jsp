@@ -193,13 +193,16 @@
     <body>
          <link rel="/monitoria.ico" href=""/>
         <table id="menu">
+        
 			<tr>
-                            <td><a href="" id="linke">Login</a></td>
-                            <td><a href="login.do" id="linkc">Entrar</a></td>
-                            <td><a href="" id="linkd">Cadastro</a></td>
-                            <td><a href="professor.jps" id="linka">Professor</a></td>
-                            <td><a href="" id="linkb">Aluno</a></td>
-                        </tr>
+			
+            	<td><a href="" id="linke">Login</a></td>
+                <td><a href="login.do" id="linkc">Entrar</a></td>
+               	<td><a href="" id="linkd">Cadastro</a></td>
+                <td><a href="professor.jps" id="linka">Professor</a></td>
+                <td><a href="" id="linkb">Aluno</a></td>
+                        
+            </tr>
                         
         </table>
          
@@ -211,8 +214,8 @@
 		<ol>
 		
 			<li> <a href="#aluno1" id="link_aluno1">Laura Regina</a> </li>
-                        <li><a href="#aluno2" id="link_aluno2">Edmilson Santana</a></li>
-                        <li><a href="#aluno3" id="link_aluno3">Douglas Albuquerque</a></li>
+            <li><a href="#aluno2" id="link_aluno2">Edmilson Santana</a></li>
+            <li><a href="#aluno3" id="link_aluno3">Douglas Albuquerque</a></li>
 		
 		</ol>
 		
@@ -224,7 +227,7 @@
 		
 		<ol>
 		
-                    <li>Laura Regina - pendente</li>
+            <li>Laura Regina - pendente</li>
 			<li>Edmilson Santana - ok</li>
 			<li>Douglas Albuquerque - ok</li>
 		
@@ -312,7 +315,7 @@
             
             <tr>
                 
-                 <td>Disciplina:Linguagemd e Programação Orientada a Objetos</td>
+                 <td>Disciplina:Linguagem de Programação Orientada a Objetos</td>
                  
             </tr>
                  
