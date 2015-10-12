@@ -1,5 +1,5 @@
 
-package br.com.projetoperiodo.servlets;
+package br.com.projetoperiodo.servlets.login;
 
 import java.io.IOException;
 

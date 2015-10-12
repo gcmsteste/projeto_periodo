@@ -89,8 +89,12 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 	}
 
 	@Override
-	public void cadastrarUsuario(Usuario usuario) {
-		
+	public Usuario cadastrarUsuario(Usuario usuario) {
+		String senhaCriptografada = Util.criptografarSenha(
+						usuario.getSenha(), usuario.getSenha(), Constantes.CONSTANTE_CRIPTOGRAFIA);
+		usuario.setSenha(senhaCriptografada);
+		dao.salvar(usuario);
+		return usuario;
 	}
 
 }

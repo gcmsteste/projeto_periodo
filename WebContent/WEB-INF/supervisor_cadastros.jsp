@@ -3,9 +3,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <link rel="stylesheet" type="text/css" href="menu_supervisor.css" media="screen"/>
-        <link rel="stylesheet" type="text/css" href="rodape.css" media="screen"/>
-        <link rel="stylesheet" type="text/css" href="form_supervisor_cadastro_aluno.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="css/menu_supervisor.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="css/rodape.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="css/form_supervisor_cadastro_aluno.css" media="screen"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         
         <script> //eventos de formulário

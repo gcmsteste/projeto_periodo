@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
@@ -23,7 +22,7 @@ public class JPADisciplinaDao implements DisciplinaDao{
 	}
 
 	@Override
-	public void atualizar(DisciplinaImpl disciplina) {
+	public void atualizar(Disciplina disciplina) {
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
@@ -33,7 +32,7 @@ public class JPADisciplinaDao implements DisciplinaDao{
 	}
 
 	@Override
-	public void remover(DisciplinaImpl disciplina) {
+	public void remover(Disciplina disciplina) {
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
@@ -44,9 +43,9 @@ public class JPADisciplinaDao implements DisciplinaDao{
 	}
 
 	@Override
-	public List<DisciplinaImpl> listar() {
+	public List<Disciplina> listar() {
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
-		List<DisciplinaImpl> disciplinas = entityManager.createQuery("from Disciplina").getResultList();
+		List<Disciplina> disciplinas = entityManager.createQuery("from Disciplina").getResultList();
 		entityManager.close();
 		
 		return disciplinas;

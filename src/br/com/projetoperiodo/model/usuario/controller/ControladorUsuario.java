@@ -17,5 +17,5 @@ public interface ControladorUsuario extends ControladorNegocio
 	
 	boolean validarLogon(Usuario usuario);
 	
-	void cadastrarUsuario(Usuario usuario);
+	Usuario cadastrarUsuario(Usuario usuario);
 }

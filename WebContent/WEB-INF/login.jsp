@@ -9,12 +9,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<link href="jquery-ui.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
-	<link rel="stylesheet" type="text/css" href="rodape.css" media="screen"/>
-	<link rel="stylesheet" type="text/css" href="form.css" media="screen"/>
-	<script src="external/jquery/jquery.js"></script>
-	<script src="jquery-ui.js"></script>
-	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/menu.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="css/rodape.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="css/form.css" media="screen"/>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<!--  <script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script> -->
 	
 	<script> //evento links
         
@@ -81,7 +81,7 @@
             	<td><a href="" id="linke">Login</a></td>
                 <td><a href="login.do" id="linkc">Entrar</a></td>
                	<td><a href="" id="linkd">Cadastro</a></td>
-                <td><a href="professor.jps" id="linka">Professor</a></td>
+                <td><a href="Professor.jsp" id="linka">Professor</a></td>
                 <td><a href="" id="linkb">Aluno</a></td>
                         
             </tr>
