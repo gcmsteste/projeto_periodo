@@ -210,17 +210,17 @@
              
          <div id="flip"><a href="#menu" id="link1">Alunos monitores</a></div>
 	
-	<div id="panel">
+		<div id="panel">
 		
-		<ol>
+			<ol>
+			
+				<li> <a href="#aluno1" id="link_aluno1">Laura Regina</a> </li>
+	            <li><a href="#aluno2" id="link_aluno2">Edmilson Santana</a></li>
+	            <li><a href="#aluno3" id="link_aluno3">Douglas Albuquerque</a></li>
+			
+			</ol>
 		
-			<li> <a href="#aluno1" id="link_aluno1">Laura Regina</a> </li>
-            <li><a href="#aluno2" id="link_aluno2">Edmilson Santana</a></li>
-            <li><a href="#aluno3" id="link_aluno3">Douglas Albuquerque</a></li>
-		
-		</ol>
-		
-	</div>
+		</div>
 	
          <div id="flip1"><a href="#menu" id="link2">Situação dos alunos monitores</a></div>
 	

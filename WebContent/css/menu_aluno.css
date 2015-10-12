@@ -15,6 +15,22 @@ table
         
 }
 
+#relatorio
+{
+    width:600px;
+    height:80px;
+    border:3px dashed blue;
+    background-color:deepskyblue;
+    font-family:serif;
+    font-size:15pt;
+    color:white;
+    border-radius: 10px 10px 10px 10px;
+    margin-left: 372px;
+    margin-top: 100px;
+    position:relative;
+    padding-left: 13px;
+}
+
 td
 {
     padding: 15px 15px 15px 15px;

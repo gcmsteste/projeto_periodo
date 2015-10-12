@@ -59,27 +59,7 @@
                         $("#linke").css("color","deeppink");
                         
                     });
-                    
-                    $("#link1").mouseover(function() 
-                    {
-                        
-                        $("#link1").css("color","deeppink");
-                        
-                    });
-                    
-                    $("#link2").mouseover(function() 
-                    {
-                        
-                        $("#link2").css("color","deeppink");
-                        
-                    });
-                    
-                    $("li").first().mouseover(function() 
-                    {
-                        
-                        $("#link_aluno1").css("color","deeppink");
-                        
-                    });
+                   
                     
                     $("#button1").last().mouseover(function() 
                     {
@@ -95,12 +75,7 @@
                                 
                     });
                     
-                     $("li").mouseout(function()
-                    {
-                        
-                        $("li").css("color","white");
-                                
-                    });
+                   
                     
                     $("#button1").mouseout(function() 
                     {

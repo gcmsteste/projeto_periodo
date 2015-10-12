@@ -7,7 +7,19 @@
         <link rel="stylesheet" type="text/css" href="rodape_aluno.css" media="screen"/>
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         
-         <script> //evento links
+        <script> //evento tabela relatório
+            
+            $(document).ready(function()
+            {
+                $("#relatorio").hide();
+                $("#linkd").click(function()
+                    {
+                        $("#relatorio").toggle();
+                    });
+            });
+        </script>
+        
+        <script> //evento links
         
             $(document).ready(function()
             {
@@ -63,7 +75,17 @@
                         
         </table>
         
+        <table id="relatorio">
         
+            <tr>
+
+                <td> <a href="" id="cadastro_relatorio">Cadastrar Relatório</a>  </td>
+                <td><a href="">Editar Relatório</a>  </td>
+                <td><a href="">Digitalizar assinatura</a></td>
+
+            </tr>
+
+        </table>
         
         <table id="rodape">
              

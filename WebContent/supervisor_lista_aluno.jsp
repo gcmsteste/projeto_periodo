@@ -146,6 +146,13 @@
                         
                     });
                     
+                    $("#linkf").mouseover(function() 
+                    {
+                                
+                    	$("#linkf").css("color","deeppink");
+                                
+                     });
+                    
                     $("#link1").mouseover(function() 
                     {
                         
