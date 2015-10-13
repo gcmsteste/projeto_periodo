@@ -7,6 +7,7 @@ import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
+import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
 
@@ -31,6 +32,10 @@ public class ControladorAlunoImpl extends ControladorNegocioImpl implements Cont
 		aluno.setSenha(senhaCriptografada);
 		dao.salvar(aluno);
 		return aluno;
+	}
+	@Override
+	public Aluno buscarUsuarioAluno(Usuario usuario) {
+		return dao.buscar(usuario.getChavePrimaria());
 	}
 
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.ControladorAluno;
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
@@ -43,9 +44,10 @@ public class ServletLogin extends HttpServlet {
 			usuario.setSenha(senha);
 			try {
 				Usuario usuarioAutenticado = controladorUsuario.autenticarUsuario(usuario);
+				Aluno aluno = controladorAluno.buscarUsuarioAluno(usuarioAutenticado);
 				HttpSession session = request.getSession();
-				session.setAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO, usuarioAutenticado);
-				requestDispatcher = request.getRequestDispatcher("/home.do");
+				session.setAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO, aluno);
+				requestDispatcher = request.getRequestDispatcher("/aluno.do");
 				requestDispatcher.forward(request, response);
 			} catch (NegocioException e) {
 				request.setAttribute(e.getMessage(), usuario.getLogin());

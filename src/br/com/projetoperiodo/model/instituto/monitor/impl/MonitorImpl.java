@@ -40,7 +40,7 @@ public class MonitorImpl extends AlunoImpl implements Monitor {
 	@JoinColumn(name = "DISCIPLINA_ID", referencedColumnName = "DISCIPLINA_ID")
 	private Disciplina disciplina;
 
-	@OneToMany(mappedBy = "monitor", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity=RelatorioFrequenciaImpl.class)
+	@OneToMany(mappedBy = "monitor", fetch = FetchType.LAZY, targetEntity=RelatorioFrequenciaImpl.class)
 	private List<RelatorioFrequencia> relatoriosMensais;
 
 	/* (non-Javadoc)

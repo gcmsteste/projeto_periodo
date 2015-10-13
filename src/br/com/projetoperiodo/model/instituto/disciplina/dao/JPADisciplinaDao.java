@@ -12,9 +12,6 @@ import javax.persistence.criteria.Root;
 
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
-import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
-import br.com.projetoperiodo.model.usuario.Usuario;
-import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.exception.NegocioException;
 import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
@@ -74,7 +71,7 @@ public class JPADisciplinaDao implements DisciplinaDao{
 	}
 
 	@Override
-	public EntidadeNegocio buscar(HashMap<String, Object> filter) throws NegocioException {
+	public Disciplina buscar(HashMap<String, Object> filter) throws NegocioException {
 
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();

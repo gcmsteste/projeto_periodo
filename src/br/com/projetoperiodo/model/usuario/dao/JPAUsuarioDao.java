@@ -91,7 +91,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 	}
 
 	@Override
-	public EntidadeNegocio buscar(HashMap<String, Object> filter) throws NegocioException {
+	public Usuario buscar(HashMap<String, Object> filter) throws NegocioException {
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery  criteria = builder.createQuery(UsuarioImpl.class);
@@ -103,7 +103,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 		}
 		Usuario usuario;
 		try {
-			usuario =  (Usuario) entityManager.createQuery(criteria).getSingleResult();
+			usuario =   (Usuario) entityManager.createQuery(criteria).getSingleResult();
 		} catch( NoResultException e ) {
 			throw new NegocioException(Constantes.ENTIDADE_NAO_ENCONTRADA);
 		}

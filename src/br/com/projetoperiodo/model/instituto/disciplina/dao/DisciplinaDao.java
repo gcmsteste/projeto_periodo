@@ -3,7 +3,6 @@ package br.com.projetoperiodo.model.instituto.disciplina.dao;
 import java.util.List;
 
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
-import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.negocio.entidade.dao.EntidadeNegocioDao;
 
 public interface DisciplinaDao extends EntidadeNegocioDao

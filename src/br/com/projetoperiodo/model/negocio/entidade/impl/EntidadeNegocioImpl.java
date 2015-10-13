@@ -20,7 +20,7 @@ public abstract class EntidadeNegocioImpl implements EntidadeNegocio {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private long chavePrimaria;
+	protected long chavePrimaria;
 
 	public Date getUltimaAlteracao() {
 		return ultimaAlteracao;

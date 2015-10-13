@@ -6,6 +6,18 @@
 	<welcome-file-list>
 		<welcome-file>acesso.do</welcome-file>
 	</welcome-file-list>
+	<filter>
+		<description>
+		</description>
+		<display-name>ControleAcesso</display-name>
+		<filter-name>ControleAcesso</filter-name>
+		<filter-class>br.com.projetoperiodo.filter.ControleAcesso</filter-class>
+		<init-param>
+			<param-name>loginActionURI</param-name>
+			<param-value>/efetuarLogon.do</param-value>
+		</init-param>
+	</filter>
+	
 	<servlet>
 		<servlet-name>LoginForm</servlet-name>
 		<jsp-file>/login.jsp</jsp-file>
@@ -40,11 +52,19 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>ServletLogin</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.ServletLogin</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.login.ServletLogin</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ServletLogin</servlet-name>
 		<url-pattern>/efetuarLogon.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>PaginaPrincipalMonitor</servlet-name>
+		<jsp-file>/PaginaPrincipalMonitor.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PaginaPrincipalMonitor</servlet-name>
+		<url-pattern>/principalMonitor.do</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -57,7 +77,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>ServletLogout</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.ServletLogout</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.login.ServletLogout</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>ServletSenhaLogin</servlet-name>
@@ -91,6 +111,20 @@
 		<servlet-name>ServletCadastroRelatorio</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletCadastroRelatorio</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ServletAluno</display-name>
+		<servlet-name>ServletAluno</servlet-name>
+		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletAluno</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ServletProfessor</display-name>
+		<servlet-name>ServletProfessor</servlet-name>
+		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletProfessor</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>ServletSenhaLogin</servlet-name>
 		<url-pattern>/alterarSenha.do</url-pattern>
@@ -118,6 +152,14 @@
 	<servlet-mapping>
 		<servlet-name>ServletCadastroRelatorio</servlet-name>
 		<url-pattern>/ServletCadastroRelatorio</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServletAluno</servlet-name>
+		<url-pattern>/aluno.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServletProfessor</servlet-name>
+		<url-pattern>/ServletProfessor</url-pattern>
 	</servlet-mapping>
 
 </web-app>
