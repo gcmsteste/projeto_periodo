@@ -15,4 +15,6 @@ public class Constantes {
 	public static final String ERRO_ENVIO_EMAIL = "ERRO_ENVIO_EMAIL";
 	
 	public static final String ENTIDADE_NAO_ENCONTRADA = "ENTIDADE_NAO_ENCONTRADA";
+	
+	public static final String ATRIBUTO_USUARIO_LOGADO = "usuarioLogado";
 }

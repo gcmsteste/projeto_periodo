@@ -82,7 +82,7 @@
                 <td><a href="login.do" id="linkc">Entrar</a></td>
                	<td><a href="" id="linkd">Cadastro</a></td>
                 <td><a href="Professor.jsp" id="linka">Professor</a></td>
-                <td><a href="" id="linkb">Aluno</a></td>
+                <td><a href="cadastroAluno.do" id="linkb">Aluno</a></td>
                         
             </tr>
                         

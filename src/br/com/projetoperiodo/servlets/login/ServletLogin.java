@@ -4,27 +4,25 @@ package br.com.projetoperiodo.servlets.login;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.projetoperiodo.model.instituto.aluno.controller.ControladorAluno;
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
-import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImpl;
-import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Fachada;
+import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.exception.NegocioException;
 
 public class ServletLogin extends HttpServlet {
 
-	public static final String FORM_LOGIN = "login";
+	private static final String FORM_LOGIN = "login";
 
-	public static final String FORM_SENHA = "senha";
+	private static final String FORM_SENHA = "senha";
 
-	public static final String ATRIBUTO_USUARIO_LOGADO = "usuarioLogado";
 
 	
 	@Override
@@ -32,6 +30,7 @@ public class ServletLogin extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher requestDispatcher;
 		ControladorUsuario controladorUsuario = Fachada.getInstance().getControladorUsuario();
+		ControladorAluno controladorAluno = Fachada.getInstance().getControladorAluno();
 		
 		if ( !( request.getSession(false) == null ) ) {
 			requestDispatcher = request.getRequestDispatcher("/home.do");
@@ -45,7 +44,7 @@ public class ServletLogin extends HttpServlet {
 			try {
 				Usuario usuarioAutenticado = controladorUsuario.autenticarUsuario(usuario);
 				HttpSession session = request.getSession();
-				session.setAttribute(ATRIBUTO_USUARIO_LOGADO, usuarioAutenticado);
+				session.setAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO, usuarioAutenticado);
 				requestDispatcher = request.getRequestDispatcher("/home.do");
 				requestDispatcher.forward(request, response);
 			} catch (NegocioException e) {

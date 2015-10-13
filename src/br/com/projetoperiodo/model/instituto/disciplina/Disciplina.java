@@ -8,6 +8,8 @@ import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 
 public interface Disciplina extends EntidadeNegocio {
 
+	final String ATRIBUTO_DESCRICAO = "descricao";
+	
 	String getDescricao();
 
 	void setDescricao(String descricao);

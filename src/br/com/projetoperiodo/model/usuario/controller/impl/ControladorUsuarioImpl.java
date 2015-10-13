@@ -58,7 +58,7 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 		HashMap<String, Object> filter = new HashMap<>();
 		filter.put(Usuario.ATRIBUTO_USUARIO_EMAIL, usuario.getEmail());
 		try {
-			usuario = dao.buscar(filter);
+			usuario = (Usuario) dao.buscar(filter);
 			String novaSenha = Util.gerarSenhaAleatoria();
 			String senhaCriptografada = Util.criptografarSenha(novaSenha, 
 							novaSenha, Constantes.CONSTANTE_CRIPTOGRAFIA);

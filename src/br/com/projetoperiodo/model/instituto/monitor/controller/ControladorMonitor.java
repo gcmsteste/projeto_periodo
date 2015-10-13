@@ -1,13 +1,15 @@
 
 package br.com.projetoperiodo.model.instituto.monitor.controller;
 
+import br.com.projetoperiodo.model.instituto.aluno.Aluno;
+import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocio;
-import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 
 public interface ControladorMonitor extends ControladorNegocio
 {
 
-	void cadastrarMonitor(Monitor monitor);
+	Monitor cadastrarMonitoria(Aluno aluno, Disciplina disciplina, Modalidade modalidade);
 
 }

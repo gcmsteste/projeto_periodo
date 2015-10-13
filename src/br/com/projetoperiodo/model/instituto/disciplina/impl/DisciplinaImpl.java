@@ -40,7 +40,7 @@ public class DisciplinaImpl extends EntidadeNegocioImpl implements Disciplina {
 	@JoinColumn(name = "CURSO_ID", referencedColumnName = "CURSO_ID")
 	private Curso curso;
 
-	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity = ProfessorImpl.class)
+	@ManyToOne(fetch = FetchType.LAZY, optional = true, targetEntity = ProfessorImpl.class)
 	@JoinColumn(name = "PROFESSOR_ID", referencedColumnName = "PROFESSOR_ID")
 	private Professor professor;
 

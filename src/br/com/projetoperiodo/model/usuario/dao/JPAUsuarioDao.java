@@ -10,17 +10,17 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
+import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.exception.NegocioException;
-import br.com.projetoperiodo.util.persistencia.jpa.FabricaJPA;
 import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
 public class JPAUsuarioDao implements UsuarioDao {
+
 
 	@Override
 	public void salvar(Usuario usuario) {
@@ -91,7 +91,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 	}
 
 	@Override
-	public Usuario buscar(HashMap<String, Object> filter) throws NegocioException {
+	public EntidadeNegocio buscar(HashMap<String, Object> filter) throws NegocioException {
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery  criteria = builder.createQuery(UsuarioImpl.class);
