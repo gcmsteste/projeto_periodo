@@ -34,14 +34,8 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	@Column(name = "RELATORIO_MES", nullable = false)
 	private int mes;
 
-	@Column(name = "RELATORIO_ANO", nullable = false)
-	private int ano;
-
 	@Column(name = "RELATORIO_CARGA_HORARIA", nullable = false)
 	private int cargaHorariaMensal;
-
-	@Column(name = "RELATORIO_EDITAL", nullable = false)
-	private String edital;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true, targetEntity = MonitorImpl.class)
 	@JoinColumn(name = "MONITOR_ID", referencedColumnName = "MONITOR_ID")
@@ -80,23 +74,8 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 		this.mes = mes;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#getAno()
-	 */
-	public int getAno() {
 
-		return ano;
-	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#setAno(int)
-	 */
-	public void setAno(int ano) {
-
-		this.ano = ano;
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -116,42 +95,8 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 		this.cargaHorariaMensal = cargaHorariaMensal;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#getEdital()
-	 */
-	public String getEdital() {
 
-		return edital;
-	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#setEdital(java.lang.String)
-	 */
-	public void setEdital(String edital) {
-
-		this.edital = edital;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#getOrientador()
-	 */
-	public Professor getOrientador() {
-
-		return professor;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#setOrientador(br.com.projetoperiodo.model.instituto.orientador.
-	 * Orientador)
-	 */
-	public void setOrientador(Professor professor) {
-
-		this.professor = professor;
-	}
 
 	/*
 	 * (non-Javadoc)

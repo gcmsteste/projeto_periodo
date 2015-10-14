@@ -78,10 +78,8 @@ public class TesteRelatorioFrequenciaDao {
 	public RelatorioFrequencia montarObjetoRelatorioFrequencia() {
 
 		RelatorioFrequencia relatorioFrequencia = new RelatorioFrequenciaImpl();
-		relatorioFrequencia.setAno(2015);
 		relatorioFrequencia.setMes(8);
 		relatorioFrequencia.setCargaHorariaMensal(80);
-		relatorioFrequencia.setEdital("2015.1");
 		relatorioFrequencia.setDataEntregaRelatorio(new Date());
 		relatorioFrequencia.setSemanas(montarObjetoSemana(relatorioFrequencia));
 		relatorioFrequencia.setSemanas(montarObjetoSemana(relatorioFrequencia));

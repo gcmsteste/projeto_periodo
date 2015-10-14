@@ -1,13 +1,10 @@
 
 package br.com.projetoperiodo.model.instituto.monitor;
 
-import java.util.Collection;
-import java.util.Date;
-
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
+import br.com.projetoperiodo.model.instituto.periodo.Periodo;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
-import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 
 public interface Monitor extends Aluno
@@ -24,5 +21,9 @@ public interface Monitor extends Aluno
 	RelatorioFrequencia getRelatoriosMensais(int index);
 
 	void setRelatoriosMensais(RelatorioFrequencia relatorio);
+
+	Periodo getPeriodo();
+	
+	void setPeriodo(Periodo periodo);
 
 }

@@ -1,12 +1,10 @@
 
 package br.com.projetoperiodo.model.instituto.monitor.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -22,6 +20,8 @@ import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
+import br.com.projetoperiodo.model.instituto.periodo.Periodo;
+import br.com.projetoperiodo.model.instituto.periodo.impl.PeriodoImpl;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
@@ -36,6 +36,10 @@ public class MonitorImpl extends AlunoImpl implements Monitor {
 	@Column(columnDefinition = "ENUM('BOLSISTA', 'VOLUNTARIO')")
 	private Modalidade modalidade;
 
+	@ManyToOne(fetch = FetchType.EAGER, optional = false, targetEntity=PeriodoImpl.class)
+	@JoinColumn(name = "PERIODO_ID", referencedColumnName = "PERIODO_ID")
+	private Periodo periodo;
+	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false, targetEntity=DisciplinaImpl.class)
 	@JoinColumn(name = "DISCIPLINA_ID", referencedColumnName = "DISCIPLINA_ID")
 	private Disciplina disciplina;
@@ -96,11 +100,18 @@ public class MonitorImpl extends AlunoImpl implements Monitor {
 
 		this.relatoriosMensais.add(relatorio);
 	}
+	@Override
+	public Periodo getPeriodo() {
 
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.monitor.impl.Monitor#getUltimaAlteracao()
-	 */
+		return periodo;
+	}
+	@Override
+	public void setPeriodo(Periodo periodo) {
 
+		this.periodo = periodo;
+	}
+
+	
 	
 
 	

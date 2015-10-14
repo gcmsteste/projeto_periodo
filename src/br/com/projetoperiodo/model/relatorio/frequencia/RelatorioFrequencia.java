@@ -16,21 +16,9 @@ public interface RelatorioFrequencia extends EntidadeNegocio
 
 	void setMes(int mes);
 
-	int getAno();
-
-	void setAno(int ano);
-
 	int getCargaHorariaMensal();
 
 	void setCargaHorariaMensal(int cargaHorariaMensal);
-
-	String getEdital();
-
-	void setEdital(String edital);
-
-	Professor getOrientador();
-
-	void setOrientador(Professor professor);
 
 	Monitor getMonitor();
 

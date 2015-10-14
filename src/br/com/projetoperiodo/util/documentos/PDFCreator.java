@@ -194,7 +194,6 @@ public class PDFCreator {
 		relatorio.setProfessor(professor);
 		relatorio.setMonitor(monitor);
 		relatorio.setMes(9);
-		relatorio.setAno(2015);
 		PDFCreator.getInstancia().gerarRelatorio(relatorio);
 	}
 }
