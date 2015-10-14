@@ -55,12 +55,13 @@ public class ServletCadastroMonitoria extends HttpServlet {
 		Disciplina disciplina = null;
 		try {
 			disciplina = controladorDisciplina.buscarDisciplina(request.getParameter("descricao"));
+		    controladorMonitor.cadastrarMonitoria(
+							aluno, disciplina, Modalidade.valueOf(request.getParameter("modalidade")));
 		} catch (NegocioException e) {
 			// TODO Redirecionar para página de erro
 			request.getRequestDispatcher("").forward(request, response);
 		}
-	    controladorMonitor.cadastrarMonitoria(
-						aluno, disciplina, Modalidade.valueOf(request.getParameter("modalidade")));
+
 
 	}
 

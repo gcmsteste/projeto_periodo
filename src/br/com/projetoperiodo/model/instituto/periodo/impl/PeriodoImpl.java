@@ -60,4 +60,14 @@ public class PeriodoImpl extends EntidadeNegocioImpl implements Periodo
 
 		this.semestre = semestre;
 	}
+	
+	@Override
+	public String toString() {
+	
+		StringBuilder builder = new StringBuilder();
+		builder.append(getAno());
+		builder.append('.');
+		builder.append(getSemestre().semestre);
+		return builder.toString();
+	}
 }

@@ -11,7 +11,10 @@
 	<button>Cadastrar Monitoria</button>
 	<ul>
 		<c:forEach var="monitor" items="${requestScope['listaMonitores']}">
-			<li><c:out value="${monitor.disciplina.descricao }" /></li>
+			<li>
+				<c:out value="${monitor.disciplina.descricao }" />
+				<c:out value=" ${monitor.periodo }" />
+			</li>
 		</c:forEach>
 	</ul>
 </body>

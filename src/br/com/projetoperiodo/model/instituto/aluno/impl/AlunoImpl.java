@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +14,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Polymorphism;
+import org.hibernate.annotations.PolymorphismType;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.curso.Curso;
@@ -26,6 +28,7 @@ import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 @Entity
 @Table(name = "ALUNO")
 @PrimaryKeyJoinColumn( name = "ALUNO_ID" )
+@Polymorphism(type=PolymorphismType.EXPLICIT)
 @AttributeOverrides({ @AttributeOverride(name = "chavePrimaria", column = @Column(name = "ALUNO_ID") )}) 
 public class AlunoImpl extends UsuarioImpl implements Aluno
 {

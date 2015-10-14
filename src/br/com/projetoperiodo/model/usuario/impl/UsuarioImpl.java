@@ -7,18 +7,19 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
+import org.hibernate.annotations.Polymorphism;
+import org.hibernate.annotations.PolymorphismType;
+
 import br.com.projetoperiodo.model.negocio.entidade.impl.EntidadeNegocioImpl;
 import br.com.projetoperiodo.model.usuario.Usuario;
 
 @Entity
+@Polymorphism(type= PolymorphismType.EXPLICIT)
 @Table(name = "USUARIO")
 @Inheritance(strategy = InheritanceType.JOINED)
 @AttributeOverrides({@AttributeOverride(name = "chavePrimaria", column = @Column(name = "USUARIO_ID") )})

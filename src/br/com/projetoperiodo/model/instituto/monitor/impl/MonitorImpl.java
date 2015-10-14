@@ -16,6 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Polymorphism;
+import org.hibernate.annotations.PolymorphismType;
+
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
@@ -29,6 +32,7 @@ import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 @Entity
 @Table(name = "MONITOR")
 @PrimaryKeyJoinColumn(name = "MONITOR_ID")
+@Polymorphism(type= PolymorphismType.EXPLICIT)
 @AttributeOverrides({@AttributeOverride(name = "chavePrimaria", column = @Column(name = "MONITOR_ID") )})
 public class MonitorImpl extends AlunoImpl implements Monitor {
 
