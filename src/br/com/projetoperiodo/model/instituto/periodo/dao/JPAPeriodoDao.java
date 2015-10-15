@@ -1,4 +1,4 @@
-package br.com.projetoperiodo.model.instituto.monitor.dao;
+package br.com.projetoperiodo.model.instituto.periodo.dao;
 
 import java.util.List;
 
@@ -6,67 +6,60 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
-import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
+import br.com.projetoperiodo.model.instituto.periodo.Periodo;
+import br.com.projetoperiodo.model.instituto.periodo.impl.PeriodoImpl;
 import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
-public class JPAMonitorDao implements MonitorDao{
+public class JPAPeriodoDao implements PeriodoDao
+{
 
 	@Override
-	public void salvar(Monitor monitor) {
+	public void salvar(Periodo periodo) {
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
-		entityManager.persist(monitor);
-		entityTransaction.commit();
-		entityManager.close();
-	}
-
-	@Override
-	public void atualizar(Monitor monitor) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-		entityTransaction.begin();
-		entityManager.merge(monitor);
-		entityTransaction.commit();
-		entityManager.close();
-	}
-
-	@Override
-	public void remover(Monitor monitor) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-		entityTransaction.begin();
-		Monitor monitorAtualizado = (Monitor)entityManager.merge(monitor);
-		entityManager.remove(monitorAtualizado);
+		entityManager.persist(periodo);
 		entityTransaction.commit();
 		entityManager.close();
 		
 	}
 
 	@Override
-	public List<Monitor> listar(String condicao) {
+	public void atualizar(Periodo periodo) {
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
-		List<Monitor> monitores = entityManager.createQuery(condicao).getResultList();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		entityManager.merge(periodo);
+		entityTransaction.commit();
+		entityManager.close();
+		
+	}
+
+	@Override
+	public void remover(Periodo periodo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Periodo buscar(long l) {
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		Periodo periodo = entityManager.find(PeriodoImpl.class, l);
+		entityTransaction.commit();
+		entityManager.close();
+		
+		return periodo;
+	}
+
+	@Override
+	public List<Periodo> listar(String condicao) {
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		List<Periodo> monitores = entityManager.createQuery(condicao).getResultList();
 		entityManager.close();
 			
 		return monitores;
 	}
-
-	@Override
-	public Monitor buscar(long primaryK) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-		entityTransaction.begin();
-		Monitor monitor = entityManager.find(MonitorImpl.class, primaryK);
-		entityTransaction.commit();
-		entityManager.close();
-		
-		return monitor;
-	}
-
-
-
-	
-	
 
 }

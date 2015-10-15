@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.controller.ControladorDisciplina;
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.monitor.controller.ControladorMonitor;
+import br.com.projetoperiodo.model.instituto.periodo.Periodo;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
@@ -53,12 +53,13 @@ public class ServletCadastroMonitoria extends HttpServlet {
 		ControladorDisciplina controladorDisciplina = Fachada.getInstance().getControladorDisciplina();
 		Aluno aluno = (Aluno) request.getSession().getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
 		Disciplina disciplina = null;
+		Periodo periodo = null;
 		try {
 			disciplina = controladorDisciplina.buscarDisciplina(request.getParameter("descricao"));
 		    controladorMonitor.cadastrarMonitoria(
 							aluno, disciplina, Modalidade.valueOf(request.getParameter("modalidade")));
 		} catch (NegocioException e) {
-			// TODO Redirecionar para página de erro
+			request.setAttribute(e.getMessage(), e);
 			request.getRequestDispatcher("").forward(request, response);
 		}
 

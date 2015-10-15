@@ -10,6 +10,9 @@ import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 public interface Monitor extends Aluno
 {
 
+	final String ATRIBUTO_PERIODO_MONITORIA = "periodo";
+	final String ATRIBUTO_DISCIPLINA_MONITORIA = "disciplina";
+	
 	Modalidade getModalidade();
 
 	void setModalidade(Modalidade modalidade);

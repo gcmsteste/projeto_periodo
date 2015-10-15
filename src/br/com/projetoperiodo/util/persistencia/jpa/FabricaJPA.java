@@ -8,6 +8,8 @@ import br.com.projetoperiodo.model.instituto.disciplina.dao.DisciplinaDao;
 import br.com.projetoperiodo.model.instituto.disciplina.dao.JPADisciplinaDao;
 import br.com.projetoperiodo.model.instituto.monitor.dao.JPAMonitorDao;
 import br.com.projetoperiodo.model.instituto.monitor.dao.MonitorDao;
+import br.com.projetoperiodo.model.instituto.periodo.dao.JPAPeriodoDao;
+import br.com.projetoperiodo.model.instituto.periodo.dao.PeriodoDao;
 import br.com.projetoperiodo.model.instituto.professor.dao.JPAProfessorDao;
 import br.com.projetoperiodo.model.instituto.professor.dao.ProfessorDao;
 import br.com.projetoperiodo.model.relatorio.atividade.dao.AtividadeDao;
@@ -20,8 +22,7 @@ import br.com.projetoperiodo.model.usuario.dao.JPAUsuarioDao;
 import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
 import br.com.projetoperiodo.util.persistencia.dao.FabricaDAO;
 
-public class FabricaJPA extends FabricaDAO
-{
+public class FabricaJPA extends FabricaDAO {
 
 	@Override
 	public UsuarioDao criarUsuarioDAO() {
@@ -62,7 +63,7 @@ public class FabricaJPA extends FabricaDAO
 	@Override
 	public DisciplinaDao criarDisciplinaDAO() {
 
-		return new  JPADisciplinaDao();
+		return new JPADisciplinaDao();
 	}
 
 	@Override
@@ -77,5 +78,10 @@ public class FabricaJPA extends FabricaDAO
 		return new JPAProfessorDao();
 	}
 
-	
+	@Override
+	public PeriodoDao criarPeriodoDao() {
+
+		return new JPAPeriodoDao();
+	}
+
 }

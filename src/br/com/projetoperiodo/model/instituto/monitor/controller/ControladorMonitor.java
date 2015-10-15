@@ -10,10 +10,11 @@ import br.com.projetoperiodo.util.exception.NegocioException;
 
 public interface ControladorMonitor extends ControladorNegocio
 {
-
-	Monitor cadastrarMonitoria(Aluno aluno, Disciplina disciplina, Modalidade modalidade);
+	final String MONITORIA_CADASTRADA = "MONITORIA_CADASTRADA";
+	
+	Monitor cadastrarMonitoria(Aluno aluno, Disciplina disciplina, Modalidade modalidade) throws NegocioException;
 	
 	Monitor buscarMonitoriasDeAluno(Aluno aluno) throws NegocioException;
 	
-	boolean validaCadastroMonitoria(Aluno aluno);
+	boolean verificaExistenciaCadastroMonitoria(Monitor monitor);
 }
