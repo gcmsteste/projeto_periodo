@@ -27,6 +27,14 @@
 		<url-pattern>/login.do</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>EsqueceuSenhaForm</servlet-name>
+		<jsp-file>/RequisitarSenha.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EsqueceuSenhaForm</servlet-name>
+		<url-pattern>/solicitaSenha.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>CadastroAlunoForm</servlet-name>
 		<jsp-file>/FormCadastroAluno.jsp</jsp-file>
 	</servlet>
