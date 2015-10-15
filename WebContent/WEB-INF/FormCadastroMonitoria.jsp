@@ -17,9 +17,9 @@
 				</c:forEach>
 			</select>
 			<label id="bolsista">Bolsista</label>
-			<input type="checkbox" name="modalidade" id="bolsista" />
+			<input type="radio" name="modalidade" id="bolsista" />
 			<label id="voluntario">Voluntário</label>
-			<input type="checkbox" name="modalidade" id="voluntario" />
+			<input type="radio" name="modalidade" id="voluntario" />
 			<input type="submit" value="Realizar cadastro" />
 		</fieldset>
 	</form>

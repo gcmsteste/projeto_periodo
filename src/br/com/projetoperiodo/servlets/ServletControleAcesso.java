@@ -27,7 +27,7 @@ public class ServletControleAcesso extends HttpServlet
 		RequestDispatcher rd;
 		if ( request.getSession(Boolean.FALSE) == null ) {
 			
-			rd = request.getRequestDispatcher("login.do");
+			rd = request.getRequestDispatcher("/login.do");
 			rd.forward(request, response);
 		} else {
 			rd = request.getRequestDispatcher("/aluno.do");
