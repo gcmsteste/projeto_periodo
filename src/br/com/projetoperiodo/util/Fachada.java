@@ -7,6 +7,8 @@ import br.com.projetoperiodo.model.instituto.disciplina.controller.ControladorDi
 import br.com.projetoperiodo.model.instituto.disciplina.controller.impl.ControladorDisciplinaImpl;
 import br.com.projetoperiodo.model.instituto.monitor.controller.ControladorMonitor;
 import br.com.projetoperiodo.model.instituto.monitor.controller.impl.ControladorMonitorImpl;
+import br.com.projetoperiodo.model.instituto.periodo.controller.ControladorPeriodo;
+import br.com.projetoperiodo.model.instituto.periodo.controller.impl.ControladorPeriodoImpl;
 import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
 import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImpl;
 
@@ -36,6 +38,10 @@ public class Fachada {
 	
 	public ControladorDisciplina getControladorDisciplina() {
 		return new ControladorDisciplinaImpl();
+	}
+	
+	public ControladorPeriodo getControladorPeriodo() {
+		return new ControladorPeriodoImpl();
 	}
 	
 

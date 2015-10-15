@@ -45,7 +45,7 @@ public class ServletEsqueceuSenha extends HttpServlet {
 				.getControladorUsuario();
 
 		if (!(request.getSession(false) == null)) {
-			requestDispatcher = request.getRequestDispatcher("/home.do");
+			requestDispatcher = request.getRequestDispatcher("/aluno.do");
 			requestDispatcher.forward(request, response);
 		} else {
 			String loginUsuario = request.getParameter(FORM_LOGIN);
@@ -58,23 +58,14 @@ public class ServletEsqueceuSenha extends HttpServlet {
 
 			try {
 				controladorUsuario.alterarSenhaUsuario(usuarioBuscado);
-				requestDispatcher = request.getRequestDispatcher("/principalMonitor.do");
+				requestDispatcher = request.getRequestDispatcher("/acesso.do");
 				requestDispatcher.forward(request, response);
 
 			} catch (NegocioException e) {
 				e.printStackTrace();
 			}
 
-			// esse usuário existe no banco, agora:
-			// - Pegarei o e-mail dele
-			// - Gerarei uma nova senha para este login
-			// - Substituirei a senha antiga pela nova senha gerada
-			// Em caso de sucesso da substituição, enviarei o e-mail com a
-			// nova senha.
-		}// else {
-			// redirecionar , ou exibir uma mesangem que avise que aquele
-			// usuário não consta no sistema.
-		// }
+		}
 	}
 
 }

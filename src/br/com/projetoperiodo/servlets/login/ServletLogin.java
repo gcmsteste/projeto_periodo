@@ -34,7 +34,7 @@ public class ServletLogin extends HttpServlet {
 		ControladorAluno controladorAluno = Fachada.getInstance().getControladorAluno();
 		
 		if ( !( request.getSession(false) == null ) ) {
-			requestDispatcher = request.getRequestDispatcher("/home.do");
+			requestDispatcher = request.getRequestDispatcher("/aluno.do");
 			requestDispatcher.forward(request, response);
 		} else {
 			String login = request.getParameter(FORM_LOGIN);
@@ -51,7 +51,7 @@ public class ServletLogin extends HttpServlet {
 				requestDispatcher.forward(request, response);
 			} catch (NegocioException e) {
 				request.setAttribute(e.getMessage(), usuario.getLogin());
-				requestDispatcher = request.getRequestDispatcher("/login.jsp");
+				requestDispatcher = request.getRequestDispatcher("/login.do");
 				requestDispatcher.forward(request, response);
 			}
 		}

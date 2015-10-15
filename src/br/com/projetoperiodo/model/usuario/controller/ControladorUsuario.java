@@ -9,6 +9,8 @@ public interface ControladorUsuario extends ControladorNegocio
 	
 	final String EMAIL_NAO_CADASTRADO = "EMAIL_NAO_CADASTRADO";
 	
+	final String USUARIO_NAO_CADASTRADO = "USUARIO_NAO_CADASTRADO";
+	
 	Usuario autenticarUsuario(Usuario usuario) throws NegocioException; 
 	
 	void envioEmailSenha(Usuario usuario) throws NegocioException;

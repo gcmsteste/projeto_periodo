@@ -47,7 +47,9 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 	@Override
 	public void envioEmailSenha(Usuario usuario) throws NegocioException {
 
-		Util.enviarEmail(usuario.getEmail(), EMAIL_ASSUNTO, EMAIL_MENSAGEM_CONTEUDO);
+		String novaSenha = usuario.getSenha();
+		novaSenha = EMAIL_MENSAGEM_CONTEUDO.concat(novaSenha);
+		Util.enviarEmail(usuario.getEmail(), EMAIL_ASSUNTO, novaSenha);
 	}
 
 

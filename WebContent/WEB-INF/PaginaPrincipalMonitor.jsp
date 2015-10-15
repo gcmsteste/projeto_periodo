@@ -8,7 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<button>Cadastrar Monitoria</button>
+	<form action="formCadastroMonitoria">
+		<input type="submit" value="Cadastrar Monitoria" />
+	</form>
 	<ul>
 		<c:forEach var="monitor" items="${requestScope['listaMonitores']}">
 			<li>

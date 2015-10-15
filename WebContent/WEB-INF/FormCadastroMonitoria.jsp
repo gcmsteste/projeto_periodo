@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/cadastroMonitoria.do" method="post">
+	<form action="cadastroMonitoria.do" method="post">
 		<fieldset>
 			<label id="disciplinas">Disciplinas</label>
 			<select id="disciplinas">
