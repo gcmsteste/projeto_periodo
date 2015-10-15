@@ -73,7 +73,7 @@
                     
 			<p>
             	
-            	<a href="" id="linksenha">Esqueceu sua senha ?</a>
+            	<a href="solicitaSenha.do" id="linksenha">Esqueceu sua senha ?</a>
             	
 			</p>    
             

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" session="false"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -68,7 +68,7 @@
 		</tr>
 
 	</table>
-	</br>
+	<br />
 	<form action="requisitarSenha.do" method="post">
 		<fieldset id="fieldset1">
 
@@ -93,9 +93,9 @@
 				</c:choose>
 
 			</div>
-			</br>
+			<br />
 			<fieldset id="fieldset2">
-				<input type="submit" name="login" id="login1" value="Login" />
+				<input type="submit" name="login" id="login1" value="Solicitar senha" />
 			</fieldset>
 
 		</fieldset>

@@ -88,8 +88,8 @@
 		<servlet-class>br.com.projetoperiodo.servlets.login.ServletLogout</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>ServletSenhaLogin</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.ServletSenhaLogin</servlet-class>
+		<servlet-name>ServletEsqueceuSenha</servlet-name>
+		<servlet-class>br.com.projetoperiodo.servlets.login.ServletEsqueceuSenha</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
@@ -134,16 +134,12 @@
 		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletProfessor</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>ServletSenhaLogin</servlet-name>
-		<url-pattern>/alterarSenha.do</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
 		<servlet-name>ServletLogout</servlet-name>
 		<url-pattern>/logout.do</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>ServletSenhaLogin</servlet-name>
-		<url-pattern>/ServletSenhaLogin</url-pattern>
+		<servlet-name>ServletEsqueceuSenha</servlet-name>
+		<url-pattern>/requisitarSenha.do</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ServletCadastroProfessor</servlet-name>

@@ -31,6 +31,15 @@ public class ServletEsqueceuSenha extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+
+	}
+
+	
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
 		RequestDispatcher requestDispatcher;
 		ControladorUsuario controladorUsuario = Fachada.getInstance()
 				.getControladorUsuario();
@@ -49,7 +58,7 @@ public class ServletEsqueceuSenha extends HttpServlet {
 
 			try {
 				controladorUsuario.alterarSenhaUsuario(usuarioBuscado);
-				requestDispatcher = request.getRequestDispatcher("/login.do");
+				requestDispatcher = request.getRequestDispatcher("/principalMonitor.do");
 				requestDispatcher.forward(request, response);
 
 			} catch (NegocioException e) {
@@ -66,15 +75,6 @@ public class ServletEsqueceuSenha extends HttpServlet {
 			// redirecionar , ou exibir uma mesangem que avise que aquele
 			// usuário não consta no sistema.
 		// }
-
-	}
-
-	// }
-
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		doGet(request, response);
 	}
 
 }
