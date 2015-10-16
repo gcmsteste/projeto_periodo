@@ -8,16 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="formCadastroMonitoria">
+	<form action="cadastroMonitoria.do">
 		<input type="submit" value="Cadastrar Monitoria" />
 	</form>
-	<ul>
-		<c:forEach var="monitor" items="${requestScope['listaMonitores']}">
-			<li>
-				<c:out value="${monitor.disciplina.descricao }" />
-				<c:out value=" ${monitor.periodo }" />
-			</li>
-		</c:forEach>
-	</ul>
+	<p>
+		<c:out value="${requestScope['monitoria'].disciplina.descricao }" />
+		<c:out value=" ${requestScope['monitoria'].periodo }" />
+	</p>
 </body>
 </html>
