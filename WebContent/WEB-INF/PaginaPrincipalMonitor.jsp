@@ -14,6 +14,7 @@
 	<p>
 		<c:out value="${requestScope['monitoria'].disciplina.descricao }" />
 		<c:out value=" ${requestScope['monitoria'].periodo }" />
+		<c:out value=" ${requestScope['monitoria'].modalidade }" />
 	</p>
 </body>
 </html>

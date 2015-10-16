@@ -60,20 +60,20 @@ public class ServletCadastroMonitoria extends HttpServlet {
 		boolean cadastroValido;
 
 		Disciplina disciplina = null;
+		Modalidade modalidade = Modalidade.valueOf(request.getParameter("modalidade"));
 		try {
-			disciplina = controladorDisciplina.buscarDisciplina(request.getParameter("descricao"));
+			disciplina = controladorDisciplina.buscarDisciplina(request.getParameter("disciplina"));
 		} catch (NegocioException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Monitor monitor = controladorMonitor.criarMonitoriaDeAluno(aluno, disciplina,
-				Modalidade.valueOf(request.getParameter("modalidade")));
+		Monitor monitor = controladorMonitor.criarMonitoriaDeAluno(aluno, disciplina, modalidade);
 		cadastroValido = controladorMonitor.validarCadastroMonitoria(monitor);
 
 		if (cadastroValido) {
 			controladorMonitor.cadastrarMonitoria(monitor);
 			request.getRequestDispatcher("/aluno.do").forward(request, response);
-			
+
 		} else {
 			request.getRequestDispatcher("");
 		}

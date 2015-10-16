@@ -40,8 +40,7 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 	}
 
 	@Override
-	public Monitor criarMonitoriaDeAluno(Aluno aluno, Disciplina disciplina, Modalidade modalidade)
-			 {
+	public Monitor criarMonitoriaDeAluno(Aluno aluno, Disciplina disciplina, Modalidade modalidade) {
 		ControladorPeriodo controladorPeriodo = Fachada.getInstance().getControladorPeriodo();
 		Monitor monitor = (Monitor) criarEntidadeNegocio();
 		monitor.setDisciplina(disciplina);
@@ -73,7 +72,7 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 
 	public boolean verificaExistenciaCadastroMonitoria(Monitor monitor) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(" select from MonitorImpl m");
+		builder.append(" select m from MonitorImpl m");
 		builder.append(" where m.periodo.chavePrimaria = ");
 		builder.append(monitor.getPeriodo().getChavePrimaria());
 		builder.append(" and  m.disciplina.chavePrimaria = ");
@@ -94,6 +93,11 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 		builder.append(Boolean.TRUE);
 		List<Monitor> lista = dao.listar(builder.toString());
 		return lista.size();
+	}
+	
+	public static void main(String[] args) {
+		ControladorMonitorImpl monitor = new ControladorMonitorImpl();
+		System.out.println(monitor.buscarQuantidadeMonitoriasEmProgresso());
 	}
 
 }

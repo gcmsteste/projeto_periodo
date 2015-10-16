@@ -10,16 +10,16 @@
 <body>
 	<form action="cadastroMonitoria.do" method="post">
 		<fieldset>
-			<label id="disciplinas">Disciplinas</label>
-			<select id="disciplinas">
+			<label>Disciplinas</label>
+			<select name="disciplina">
 				<c:forEach var="disciplina" items="${requestScope['listaDisciplinas']}">
 					<option><c:out value="${disciplina.descricao }" /></option>
 				</c:forEach>
 			</select>
-			<label id="bolsista">Bolsista</label>
-			<input type="radio" name="modalidade" id="bolsista" />
-			<label id="voluntario">Voluntário</label>
-			<input type="radio" name="modalidade" id="voluntario" />
+			<label>Bolsista</label>
+			<input type="radio" name="modalidade" id="bolsista" value="BOLSISTA" />
+			<label>Voluntário</label>
+			<input type="radio" name="modalidade" id="voluntario" value="VOLUNTARIO" />
 			<input type="submit" value="Realizar cadastro" />
 		</fieldset>
 	</form>
