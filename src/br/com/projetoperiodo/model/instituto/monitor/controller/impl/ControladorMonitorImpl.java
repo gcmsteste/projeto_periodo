@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
-import br.com.projetoperiodo.model.instituto.disciplina.controller.ControladorDisciplina;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.monitor.controller.ControladorMonitor;
 import br.com.projetoperiodo.model.instituto.monitor.dao.MonitorDao;
@@ -41,9 +40,9 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 	}
 
 	@Override
-	public Monitor cadastrarMonitoria(Aluno aluno, Disciplina disciplina, Modalidade modalidade) throws NegocioException {
+	public Monitor criarMonitoriaDeAluno(Aluno aluno, Disciplina disciplina, Modalidade modalidade)
+			 {
 		ControladorPeriodo controladorPeriodo = Fachada.getInstance().getControladorPeriodo();
-		boolean possuiCadastro = false;
 		Monitor monitor = (Monitor) criarEntidadeNegocio();
 		monitor.setDisciplina(disciplina);
 		monitor.setModalidade(modalidade);
@@ -51,28 +50,50 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 		Periodo periodoCorrente = controladorPeriodo.gerarNovoPeriodoCorrente();
 		monitor.setPeriodo(periodoCorrente);
 
-		possuiCadastro = verificaExistenciaCadastroMonitoria(monitor);
-		if (possuiCadastro) {
-			throw new NegocioException(ControladorMonitor.MONITORIA_CADASTRADA);
-		} 
-		dao.salvar(monitor);
 		return monitor;
 	}
 
-	@Override
+	public Monitor cadastrarMonitoria(Monitor monitor) {
+		return dao.salvar(monitor);
+	}
+
+	public boolean validarCadastroMonitoria(Monitor monitor) {
+		boolean cadastroValido = Boolean.TRUE;
+		boolean possuiCadastro;
+		int qtdMonitoriasEmProgresso;
+
+		possuiCadastro = verificaExistenciaCadastroMonitoria(monitor);
+		qtdMonitoriasEmProgresso = buscarQuantidadeMonitoriasEmProgresso();
+
+		if (possuiCadastro || qtdMonitoriasEmProgresso > 0) {
+			cadastroValido = Boolean.FALSE;
+		}
+		return cadastroValido;
+	}
+
 	public boolean verificaExistenciaCadastroMonitoria(Monitor monitor) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(" select from MonitorImpl m");
 		builder.append(" where m.periodo.chavePrimaria = ");
 		builder.append(monitor.getPeriodo().getChavePrimaria());
-		builder.append(" and ");
-		builder.append(" m.disciplina.chavePrimaria = ");
+		builder.append(" and  m.disciplina.chavePrimaria = ");
 		builder.append(monitor.getDisciplina().getChavePrimaria());
+		builder.append(" and  m.habilitado = ");
+		builder.append(Boolean.TRUE);
 		List<Monitor> lista = dao.listar(builder.toString());
 		if (lista.isEmpty()) {
 			return false;
 		}
 		return true;
+	}
+
+	public int buscarQuantidadeMonitoriasEmProgresso() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(" from MonitorImpl m");
+		builder.append(" where m.habilitado = ");
+		builder.append(Boolean.TRUE);
+		List<Monitor> lista = dao.listar(builder.toString());
+		return lista.size();
 	}
 
 }

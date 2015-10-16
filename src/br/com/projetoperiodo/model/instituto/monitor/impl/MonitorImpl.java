@@ -50,6 +50,9 @@ public class MonitorImpl extends AlunoImpl implements Monitor {
 
 	@OneToMany(mappedBy = "monitor", fetch = FetchType.LAZY, targetEntity=RelatorioFrequenciaImpl.class)
 	private List<RelatorioFrequencia> relatoriosMensais;
+	
+	@Column(name="HABILITADO")
+	private boolean habilitado;
 
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.monitor.impl.Monitor#getModalidade()
@@ -114,9 +117,14 @@ public class MonitorImpl extends AlunoImpl implements Monitor {
 
 		this.periodo = periodo;
 	}
-
-	
-	
+	@Override
+	public boolean isHabilitado() {
+		return habilitado;
+	}
+	@Override
+	public void setHabilitado(boolean habilitado) {
+		this.habilitado = habilitado;
+	}
 
 	
 }

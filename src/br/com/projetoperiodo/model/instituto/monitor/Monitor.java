@@ -28,5 +28,9 @@ public interface Monitor extends Aluno
 	Periodo getPeriodo();
 	
 	void setPeriodo(Periodo periodo);
+	
+	boolean isHabilitado();
+	
+	void setHabilitado(boolean habilitado);
 
 }

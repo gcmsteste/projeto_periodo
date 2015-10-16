@@ -12,13 +12,14 @@ import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 public class JPAMonitorDao implements MonitorDao{
 
 	@Override
-	public void salvar(Monitor monitor) {
+	public Monitor salvar(Monitor monitor) {
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.persist(monitor);
 		entityTransaction.commit();
 		entityManager.close();
+		return monitor;
 	}
 
 	@Override

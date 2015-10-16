@@ -6,7 +6,7 @@ import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 
 public interface MonitorDao{
 
-	void salvar(Monitor monitor);
+	Monitor salvar(Monitor monitor);
 
 	void atualizar(Monitor monitor);
 

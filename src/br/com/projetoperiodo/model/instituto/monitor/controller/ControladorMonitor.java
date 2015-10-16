@@ -12,9 +12,11 @@ public interface ControladorMonitor extends ControladorNegocio
 {
 	final String MONITORIA_CADASTRADA = "MONITORIA_CADASTRADA";
 	
-	Monitor cadastrarMonitoria(Aluno aluno, Disciplina disciplina, Modalidade modalidade) throws NegocioException;
+	Monitor criarMonitoriaDeAluno(Aluno aluno, Disciplina disciplina, Modalidade modalidade);
 	
 	Monitor buscarMonitoriasDeAluno(Aluno aluno) throws NegocioException;
 	
-	boolean verificaExistenciaCadastroMonitoria(Monitor monitor);
+	boolean validarCadastroMonitoria(Monitor monitor);
+	
+	Monitor cadastrarMonitoria(Monitor monitor);
 }
