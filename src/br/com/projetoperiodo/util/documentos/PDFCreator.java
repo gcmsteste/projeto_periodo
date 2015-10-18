@@ -5,13 +5,12 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.FontSelector;
 import com.itextpdf.text.pdf.PdfContentByte;
@@ -177,15 +176,26 @@ public class PDFCreator {
 	}
 	
 	private void preencherDescricaoSemana(Semana semana) {
-		Paragraph paragraph = new Paragraph();
-		Phrase phrase = seletorFonte.process("Primeira linha");
-		paragraph.add(phrase);
-		paragraph.add(Chunk.NEWLINE);
-		phrase = seletorFonte.process("Segunda linha");
-		paragraph.add(phrase);
-		ColumnText columnText;
-		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, paragraph, SEMANA_DESCRICAO_X,
-				SEMANA_DESCRICAO_Y, 0);
+		
+		FontSelector seletorFonte = new FontSelector();
+		Font font = FontFactory.getFont(FontFactory.HELVETICA, 10);
+		seletorFonte.addFont(font);
+		Phrase phrase = seletorFonte.process(semana.getDescricao());
+	
+		ColumnText columnText = new ColumnText(conteudoDocumento);
+		Rectangle rect = new Rectangle(200, 200);
+		
+		columnText.setSimpleColumn(phrase, 73, 605, 250, 260, 10, Element.ALIGN_JUSTIFIED);
+		
+		
+		//columnText.setSimpleColumn(phrase, llx, lly, urx, ury, leading, alignment);
+		
+		try {
+			columnText.go();
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	private void preencherAtividadeDocumento(Atividade atividade, int decrementoPosicaoRelativaY) {
@@ -232,7 +242,7 @@ public class PDFCreator {
 		RelatorioFrequencia relatorio = new RelatorioFrequenciaImpl();
 		for (int i = 0; i < 5; i++) {
 			SemanaImpl semana = new SemanaImpl();
-			semana.setDescricao("A minha primeira \r\n semana de monitoria");
+			semana.setDescricao("A minha primeira semanasssssssssssssssssssssssssssssssssssssssssssssssss sssssssssssssssssssssssssssde monitoria A minha primeira semanasssssssssssssssssssssssssssssssssssssssssssssssss sssssssssssssssssssssssssssde monitoria");
 			for (int j = 0; j < 5; j++) {
 				AtividadeImpl atividade = new AtividadeImpl();
 				atividade.setHorarioEntrada("14:00");
