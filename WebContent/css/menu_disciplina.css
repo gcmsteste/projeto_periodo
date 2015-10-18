@@ -1,0 +1,20 @@
+@CHARSET "ISO-8859-1";
+
+a {  
+   display: block;  
+   border: 1px solid #aaa;  
+   text-decoration: none;  
+   background-color: #fafafa;  
+   color: #123456;  
+   margin: 2px;  
+   clear:both;  
+  }  
+  div {  
+   float:left;  
+   text-align: center;  
+   margin: 10px;  
+  }  
+  select {  
+   width: 100px;  
+   height: 80px;  
+  }

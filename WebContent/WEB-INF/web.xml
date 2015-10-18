@@ -122,6 +122,20 @@
 		<servlet-name>ServletProfessor</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletProfessor</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Test_disciplina</display-name>
+		<servlet-name>Test_disciplina</servlet-name>
+		<servlet-class>test.Test_disciplina</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Test</display-name>
+		<servlet-name>Test</servlet-name>
+		<servlet-class>Test</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>ServletLogout</servlet-name>
 		<url-pattern>/logout.do</url-pattern>
@@ -153,6 +167,14 @@
 	<servlet-mapping>
 		<servlet-name>ServletProfessor</servlet-name>
 		<url-pattern>/ServletProfessor</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Test_disciplina</servlet-name>
+		<url-pattern>/Test_disciplina</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Test</servlet-name>
+		<url-pattern>/Test</url-pattern>
 	</servlet-mapping>
 
 </web-app>
