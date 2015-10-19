@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,9 @@ public class ServletCadastroAluno extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        String[] disciplinas_selecionadas = request.getParameterValues("select option");
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -32,14 +36,14 @@ public class ServletCadastroAluno extends HttpServlet {
             out.println("<head>");
             out.println("<title>Servlet Servlet3</title>");            
             out.println("</head>");
+            out.println("<body>");
             
-            String[] disciplinas_selecionadas = request.getParameterValues("select option");
             out.println("Selected Values...");    
             for(int i=0;i<disciplinas_selecionadas.length;i++)
            {
                out.println("<li>"+disciplinas_selecionadas[i]+"</li>");
            }
-            out.println("<h1>Servlet Servlet3 at " + request.getContextPath() + "</h1>");
+            
             
             out.println("</body>");
             out.println("</html>");
@@ -78,6 +82,8 @@ public class ServletCadastroAluno extends HttpServlet {
 		aluno.setLogin(request.getParameter("login"));
 		aluno.setEmail(request.getParameter("email"));
 		aluno.setSenha(request.getParameter("senha"));
+		 RequestDispatcher view = request.getRequestDispatcher("/aluno.do");  
+         view.forward(request, response);
 		
 		
 		

@@ -44,7 +44,7 @@
 
 </head>
 <body>
-	<form action ="ServletCadastroAluno.java" method="post">
+	<form action ="cadastroAluno.do" method="post">
 		<fieldset>
 			<label id="nome">Nome</label>
 			<input type="text" id="nome" name="nome" />
