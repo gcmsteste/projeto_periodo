@@ -7,7 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <link rel="stylesheet" href="aluno.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="css/menu_disciplina.css" type="text/css" media="screen">
  <script type="text/javascript">  
 
 	 $().ready(function() {  
@@ -27,13 +27,24 @@
 	   });  
 	  });  
   
+	 
+ </script>
+ 
+ <script>
+  
+  $('form').submit(function() {  
+		  $('#disciplinas_selecionadas option').each(function(i) {  
+		   $(this).attr("selected", "selected");  
+		  });  
+		 });
+
  </script> 
  
 <title>Insert title here</title>
 
 </head>
 <body>
-	<form>
+	<form action ="cadastroAluno.do" method="post">
 		<fieldset>
 			<label id="nome">Nome</label>
 			<input type="text" id="nome" name="nome" />
