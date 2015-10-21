@@ -14,6 +14,7 @@ import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.ControladorAluno;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.controller.ControladorDisciplina;
+import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 import br.com.projetoperiodo.util.Fachada;
 
 /**
@@ -22,15 +23,17 @@ import br.com.projetoperiodo.util.Fachada;
 public class ServletCadastroAluno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static final String LISTA_DISCIPLINAS = "listaDisciplinas";
-    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    private static final ControladorDisciplina controladorDisciplina = Fachada.getInstance().getControladorDisciplina();
+	List<Disciplina> listaDisciplinas = controladorDisciplina.listarDisciplinasCadastradas();
+	
+    /*protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
         String[] disciplinas_selecionadas = request.getParameterValues("select option");
         
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+           
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -50,7 +53,7 @@ public class ServletCadastroAluno extends HttpServlet {
         }
         
         
-    }
+    }*/
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -63,8 +66,8 @@ public class ServletCadastroAluno extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ControladorDisciplina controladorDisciplina = Fachada.getInstance().getControladorDisciplina();
-		List<Disciplina> listaDisciplinas = controladorDisciplina.listarDisciplinasCadastradas();
+		//ControladorDisciplina controladorDisciplina = Fachada.getInstance().getControladorDisciplina();
+		//List<Disciplina> listaDisciplinas = controladorDisciplina.listarDisciplinasCadastradas();
 		request.setAttribute(LISTA_DISCIPLINAS, listaDisciplinas);
 		request.getRequestDispatcher("/formCadastroAluno").forward(request, response);
 	}
@@ -82,16 +85,24 @@ public class ServletCadastroAluno extends HttpServlet {
 		aluno.setLogin(request.getParameter("login"));
 		aluno.setEmail(request.getParameter("email"));
 		aluno.setSenha(request.getParameter("senha"));
-		 RequestDispatcher view = request.getRequestDispatcher("/aluno.do");  
-         view.forward(request, response);
+		//aluno.setCurso(/*objeto curso*/); 
+		String[] materias = request.getParameterValues("disciplinas");
+			
+		for(int x = 0; x < materias.length; x++){
+			Disciplina disciplina = (Disciplina)controladorDisciplina.criarEntidadeNegocio();
+			Disciplina disciplinaRetornada = (Disciplina)controladorDisciplina.criarEntidadeNegocio();
+			disciplina.setDescricao(materias[x]);
+			
+			disciplinaRetornada = comparaDisciplinas(disciplina);
+			aluno.setDisciplinas((DisciplinaImpl)disciplinaRetornada);
+		}
 		
-		
-		
-
-        
-      
-       
 		controladorAluno.cadastrarAluno(aluno);
+		
+		RequestDispatcher view = request.getRequestDispatcher("/aluno.do");  
+        view.forward(request, response);
+		
+        controladorAluno.cadastrarAluno(aluno);
 		// controladorDisciplina -> busca a disciplina
 		// controladorCurso -> busca o curso
 		
@@ -99,4 +110,19 @@ public class ServletCadastroAluno extends HttpServlet {
 		
 	}
 
+	protected Disciplina comparaDisciplinas(Disciplina disc){
+		Disciplina objDisciplina = null;	
+		
+			for(int i=0; i < listaDisciplinas.size(); i++){
+				if(listaDisciplinas.get(i).getDescricao().equals(disc.getDescricao()))
+				{
+					objDisciplina = listaDisciplinas.get(i); 
+				}else{
+					objDisciplina = null;
+				}
+			}
+		
+		
+		return objDisciplina;
+	}
 }
