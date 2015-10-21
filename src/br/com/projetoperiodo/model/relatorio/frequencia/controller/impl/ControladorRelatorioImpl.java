@@ -5,10 +5,13 @@ import java.util.List;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
+import br.com.projetoperiodo.model.relatorio.atividade.controller.ControladorAtividade;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.frequencia.controller.ControladorRelatorio;
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
+import br.com.projetoperiodo.model.relatorio.semana.controller.ControladorSemana;
+import br.com.projetoperiodo.util.Fachada;
 
 public class ControladorRelatorioImpl extends ControladorNegocioImpl implements ControladorRelatorio
 {
@@ -33,15 +36,19 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 		return dao.listar(builder.toString());
 	}
 	@Override
-	public List<RelatorioFrequencia> prepararRelatoriosMonitor(Monitor monitor) {
+	public Monitor prepararRelatoriosDoMonitor(Monitor monitor) {
 
+		ControladorSemana controladorSemana = Fachada.getInstance().getControladorSemana();
 		RelatorioFrequencia relatorio;
 		for ( int mes = 1; mes <= 12; mes += 1) {
 			relatorio = (RelatorioFrequencia) this.criarEntidadeNegocio();
 			relatorio.setMes(mes);
-			monitor.setRelatoriosMensais(relatorio);
+			relatorio = controladorSemana.preCadastrarSemanaDeRelatorio(relatorio);
+			dao.salvar(relatorio);
+			monitor.setRelatoriosMensais(relatorio);	
 		}
-		return null;
+		return monitor;
 	}
+	
 	
 }

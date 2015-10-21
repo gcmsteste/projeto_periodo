@@ -10,5 +10,5 @@ public interface ControladorRelatorio extends ControladorNegocio{
 	
 	List<RelatorioFrequencia> buscarRelatoriosDeMonitor(Monitor monitor);
 	
-	List<RelatorioFrequencia> prepararRelatoriosMonitor(Monitor monitor);
+	Monitor prepararRelatoriosDoMonitor(Monitor monitor);
 }
