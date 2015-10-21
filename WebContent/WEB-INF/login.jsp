@@ -35,7 +35,7 @@
                 <td><a href="Professor.jsp" id="linka">Professor</a></td>
                 <td><a href="cadastroAluno.do" id="linkb">Aluno</a></td>
                         
-            </tr>
+            </tr>"WebContent/WEB-INF/login.jsp"
                         
         </table>
     

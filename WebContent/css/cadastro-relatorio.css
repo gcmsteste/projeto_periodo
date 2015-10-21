@@ -1,0 +1,14 @@
+textarea {
+	display: block;
+	float: left;
+	margin-right: 3px;
+}	
+
+input {
+	display: block;
+}
+
+input[type="time"] {
+	float: right;
+	
+}

@@ -52,11 +52,11 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	}
 
 	@Override
-	public List<RelatorioFrequencia> listar() {
+	public List<RelatorioFrequencia> listar(String condicao) {
 
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		List<RelatorioFrequencia> lista = entityManager.
-						createQuery("from RelatorioFrequenciaImpl").getResultList();
+						createQuery(condicao).getResultList();
 		entityManager.close();
 		return lista;
 	}
