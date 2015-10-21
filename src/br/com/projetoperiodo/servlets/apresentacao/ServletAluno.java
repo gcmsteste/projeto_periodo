@@ -21,7 +21,7 @@ import br.com.projetoperiodo.util.exception.NegocioException;
  */
 public class ServletAluno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static final String ATRIBUTO_MONITORIA = "monitoria";
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -38,7 +38,7 @@ public class ServletAluno extends HttpServlet {
 		Aluno alunoLogado = (Aluno)request.getSession().getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
 		try {
 			Monitor monitor = controladorMonitor.buscarMonitoriasDeAluno(alunoLogado);
-			request.setAttribute(ATRIBUTO_MONITORIA, monitor);
+			request.setAttribute(Constantes.ATRIBUTO_MONITORIA, monitor);
 			request.getRequestDispatcher("/principalMonitor.do").forward(request, response);
 		} catch (NegocioException e) {
 			// TODO Tratar erro

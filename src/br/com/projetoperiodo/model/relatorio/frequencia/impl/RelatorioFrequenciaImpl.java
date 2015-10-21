@@ -45,7 +45,7 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dataEntregaRelatorio;
 
-	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity = ProfessorImpl.class)
+	@ManyToOne(fetch = FetchType.LAZY, optional = true, targetEntity = ProfessorImpl.class)
 	@JoinColumn(name = "PROFESSOR_ID", referencedColumnName = "PROFESSOR_ID")
 	private Professor professor;
 

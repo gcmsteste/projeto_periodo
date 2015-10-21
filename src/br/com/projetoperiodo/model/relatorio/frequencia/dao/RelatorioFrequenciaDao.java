@@ -9,6 +9,6 @@ public interface RelatorioFrequenciaDao {
 	public void salvar(RelatorioFrequencia relatorio);
 	public void atualizar(RelatorioFrequencia relatorio);
 	public void remover(RelatorioFrequencia relatorio);
-	public List<RelatorioFrequencia> listar();
+	public List<RelatorioFrequencia> listar(String condicao);
 	public RelatorioFrequencia buscar(long primaryKey);
 }

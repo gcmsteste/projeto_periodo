@@ -17,4 +17,7 @@ public class Constantes {
 	public static final String ENTIDADE_NAO_ENCONTRADA = "ENTIDADE_NAO_ENCONTRADA";
 	
 	public static final String ATRIBUTO_USUARIO_LOGADO = "usuarioLogado";
+	 
+	public static final String ATRIBUTO_MONITORIA = "monitoria";
+	 
 }

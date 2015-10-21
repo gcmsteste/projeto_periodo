@@ -39,9 +39,9 @@ public class TesteRelatorioFrequenciaDao {
 	@Test
 	public void testeInserirRelatorioFrequencia() {
 
-		int qtdIncio = relatorioDao.listar().size();
+		int qtdIncio = relatorioDao.listar("from RelatorioFrequenciaImpl").size();
 		relatorioDao.salvar(montarObjetoRelatorioFrequencia());
-		int qtdFim = relatorioDao.listar().size();
+		int qtdFim = relatorioDao.listar("from RelatorioFrequenciaImpl").size();
 		assertEquals(qtdIncio + 1, qtdFim);
 	}
 
@@ -50,9 +50,9 @@ public class TesteRelatorioFrequenciaDao {
 		RelatorioFrequencia relatorio = montarObjetoRelatorioFrequencia();
 		relatorioDao.salvar(relatorio);
 		
-		int qtdInicio = relatorioDao.listar().size();
+		int qtdInicio = relatorioDao.listar("from RelatorioFrequenciaImpl").size();
 		relatorioDao.remover(relatorio);
-		int qtdFim = relatorioDao.listar().size();
+		int qtdFim = relatorioDao.listar("from RelatorioFrequenciaImpl").size();
 		assertEquals(qtdInicio - 1, qtdFim);
 	}
 	

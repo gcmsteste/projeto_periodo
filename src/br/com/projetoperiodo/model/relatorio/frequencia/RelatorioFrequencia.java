@@ -11,7 +11,8 @@ import br.com.projetoperiodo.model.relatorio.semana.Semana;
 
 public interface RelatorioFrequencia extends EntidadeNegocio
 {
-
+	final int QUANTIDADE_SEMANAS_POR_RELATORIO = 5;
+	
 	int getMes();
 
 	void setMes(int mes);

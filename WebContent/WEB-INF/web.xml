@@ -32,6 +32,22 @@
 		<url-pattern>/formCadastroAluno</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>CadastroRelatorio</servlet-name>
+		<jsp-file>/CadastroRelatorio.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CadastroRelatorio</servlet-name>
+		<url-pattern>/formCadastroRelatorio</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>PaginaPrincipalRelatorios</servlet-name>
+		<jsp-file>/PrincipalRelatorios.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PaginaPrincipalRelatorios</servlet-name>
+		<url-pattern>/paginaPrincipalRelatorios</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>CadastroMonitoriaForm</servlet-name>
 		<jsp-file>/FormCadastroMonitoria.jsp</jsp-file>
 	</servlet>
@@ -125,6 +141,12 @@
 	<servlet>
 		<description>
 		</description>
+		<display-name>ServletRelatorio</display-name>
+		<servlet-name>ServletRelatorio</servlet-name>
+		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletRelatorio</servlet-class>
+	</servlet>
+	<!-- -->
+    <servlet>
 		<display-name>Test_disciplina</display-name>
 		<servlet-name>Test_disciplina</servlet-name>
 		<servlet-class>test.Test_disciplina</servlet-class>
@@ -136,6 +158,7 @@
 		<servlet-name>Test</servlet-name>
 		<servlet-class>Test</servlet-class>
 	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>ServletLogout</servlet-name>
 		<url-pattern>/logout.do</url-pattern>
@@ -168,10 +191,17 @@
 		<servlet-name>ServletProfessor</servlet-name>
 		<url-pattern>/ServletProfessor</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ServletRelatorio</servlet-name>
+		<url-pattern>/relatorio.do</url-pattern>
+	</servlet-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>Test_disciplina</servlet-name>
 		<url-pattern>/Test_disciplina</url-pattern>
 	</servlet-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>Test</servlet-name>
 		<url-pattern>/Test</url-pattern>

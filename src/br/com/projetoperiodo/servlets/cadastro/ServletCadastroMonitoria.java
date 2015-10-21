@@ -56,7 +56,7 @@ public class ServletCadastroMonitoria extends HttpServlet {
 
 		ControladorMonitor controladorMonitor = Fachada.getInstance().getControladorMonitor();
 		ControladorDisciplina controladorDisciplina = Fachada.getInstance().getControladorDisciplina();
-		Aluno aluno = (Aluno) request.getSession().getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
+		Aluno aluno = (Aluno) request.getSession(false).getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
 		boolean cadastroValido;
 
 		Disciplina disciplina = null;
@@ -72,6 +72,8 @@ public class ServletCadastroMonitoria extends HttpServlet {
 
 		if (cadastroValido) {
 			controladorMonitor.cadastrarMonitoria(monitor);
+			monitor = Fachada.getInstance().preCadastroRelatoriosMonitor(monitor);
+			request.getSession(false).setAttribute(Constantes.ATRIBUTO_MONITORIA, monitor);
 			request.getRequestDispatcher("/aluno.do").forward(request, response);
 
 		} else {

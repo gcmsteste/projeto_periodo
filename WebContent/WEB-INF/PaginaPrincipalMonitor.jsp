@@ -11,10 +11,18 @@
 	<form action="cadastroMonitoria.do">
 		<input type="submit" value="Cadastrar Monitoria" />
 	</form>
-	<p>
-		<c:out value="${requestScope['monitoria'].disciplina.descricao }" />
-		<c:out value=" ${requestScope['monitoria'].periodo }" />
-		<c:out value=" ${requestScope['monitoria'].modalidade }" />
-	</p>
+	<table>
+		<tr>
+			<th>Descrição</th>
+			<th>Período</th>
+			<th>Modalidade</th>
+		</tr>
+		<tr>
+			<td><a href="relatorio.do?chaveMonitor=${requestScope['monitoria'].chavePrimaria}">
+			<c:out value="${requestScope['monitoria'].disciplina.descricao }" /></a></td>
+			<td><c:out value=" ${requestScope['monitoria'].periodo }" /></td>
+			<td><c:out value=" ${requestScope['monitoria'].modalidade }" /></td>
+		</tr>
+	</table>
 </body>
 </html>

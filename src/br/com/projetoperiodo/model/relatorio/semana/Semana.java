@@ -1,16 +1,15 @@
 
 package br.com.projetoperiodo.model.relatorio.semana;
 
-import java.util.Date;
-
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
-import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 
 public interface Semana extends EntidadeNegocio
 {
 
+	final int QUANTIDADE_ATIVIDADES_POR_SEMANA = 5;
+	
 	String getDescricao();
 
 	String getObservacoes();
