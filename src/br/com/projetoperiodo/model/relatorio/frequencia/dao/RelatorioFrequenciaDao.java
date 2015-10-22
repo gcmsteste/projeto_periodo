@@ -6,7 +6,7 @@ import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 
 public interface RelatorioFrequenciaDao {
-	public void salvar(RelatorioFrequencia relatorio);
+	public RelatorioFrequencia salvar(RelatorioFrequencia relatorio);
 	public void atualizar(RelatorioFrequencia relatorio);
 	public void remover(RelatorioFrequencia relatorio);
 	public List<RelatorioFrequencia> listar(String condicao);

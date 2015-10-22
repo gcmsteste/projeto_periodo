@@ -40,7 +40,9 @@ public class ServletAluno extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Aluno alunoLogado = (Aluno) request.getSession().getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
-
+		if( alunoLogado == null && request.getSession(false) != null ) {
+			request.getRequestDispatcher("/logout.do").forward(request, response);;
+		}
 		List<Monitor> monitores = Fachada.getInstance().buscarMonitorias(alunoLogado);
 		request.setAttribute(LISTA_MONITORIAS, monitores);
 		request.getRequestDispatcher("/principalMonitor.do").forward(request, response);

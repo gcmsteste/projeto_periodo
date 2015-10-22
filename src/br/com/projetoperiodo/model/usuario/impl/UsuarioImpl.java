@@ -19,7 +19,6 @@ import br.com.projetoperiodo.model.negocio.entidade.impl.EntidadeNegocioImpl;
 import br.com.projetoperiodo.model.usuario.Usuario;
 
 @Entity
-@Polymorphism(type= PolymorphismType.EXPLICIT)
 @Table(name = "USUARIO")
 @Inheritance(strategy = InheritanceType.JOINED)
 @AttributeOverrides({@AttributeOverride(name = "chavePrimaria", column = @Column(name = "USUARIO_ID") )})

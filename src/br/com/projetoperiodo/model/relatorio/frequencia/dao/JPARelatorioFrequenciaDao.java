@@ -15,7 +15,7 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 {
 	
 	@Override
-	public void salvar(RelatorioFrequencia relatorio) {
+	public RelatorioFrequencia salvar(RelatorioFrequencia relatorio) {
 
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
@@ -23,6 +23,7 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 		entityManager.persist(relatorio);
 		entityTransaction.commit();
 		entityManager.close();
+		return relatorio;
 		
 	}
 

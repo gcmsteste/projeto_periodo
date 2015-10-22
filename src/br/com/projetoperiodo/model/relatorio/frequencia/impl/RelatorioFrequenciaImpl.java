@@ -41,10 +41,6 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	@JoinColumn(name = "MONITOR_ID", referencedColumnName = "MONITOR_ID")
 	private Monitor monitor;
 
-	@Column(name = "DATA_ENTREGA", nullable = false)
-	@Temporal(javax.persistence.TemporalType.DATE)
-	private Date dataEntregaRelatorio;
-
 	@ManyToOne(fetch = FetchType.LAZY, optional = true, targetEntity = ProfessorImpl.class)
 	@JoinColumn(name = "PROFESSOR_ID", referencedColumnName = "PROFESSOR_ID")
 	private Professor professor;
@@ -117,23 +113,7 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 		this.monitor = monitor;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#getDataEntregaRelatorio()
-	 */
-	public Date getDataEntregaRelatorio() {
-
-		return dataEntregaRelatorio;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#setDataEntregaRelatorio(java.util.Date)
-	 */
-	public void setDataEntregaRelatorio(Date dataEntregaRelatorio) {
-
-		this.dataEntregaRelatorio = dataEntregaRelatorio;
-	}
+	
 
 	/*
 	 * (non-Javadoc)

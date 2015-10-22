@@ -1,6 +1,7 @@
 
 package br.com.projetoperiodo.model.instituto.monitor.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
@@ -33,7 +34,6 @@ import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 @Table(name = "MONITOR")
 @PrimaryKeyJoinColumn(name = "MONITOR_ID")
 @Polymorphism(type= PolymorphismType.EXPLICIT)
-@AttributeOverrides({@AttributeOverride(name = "chavePrimaria", column = @Column(name = "MONITOR_ID") )})
 public class MonitorImpl extends AlunoImpl implements Monitor {
 
 	@Enumerated(EnumType.STRING)
@@ -54,6 +54,10 @@ public class MonitorImpl extends AlunoImpl implements Monitor {
 	@Column(name="HABILITADO")
 	private boolean habilitado;
 
+	
+	public MonitorImpl() {
+		relatoriosMensais = new ArrayList<RelatorioFrequencia>();
+	}
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.monitor.impl.Monitor#getModalidade()
 	 */

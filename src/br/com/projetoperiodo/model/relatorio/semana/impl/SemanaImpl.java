@@ -28,9 +28,9 @@ import br.com.projetoperiodo.model.relatorio.semana.Semana;
 public class SemanaImpl extends EntidadeNegocioImpl implements Semana
 {
 	
-	@Column(name = "SEMANA_DESCRICAO")
+	@Column(name = "SEMANA_DESCRICAO", nullable=true)
 	private String descricao;
-	@Column( name = "SEMANA_OBS")
+	@Column( name = "SEMANA_OBS", nullable=true)
 	private String observacoes;
 	@OneToMany(mappedBy="semana",
 			   cascade = CascadeType.ALL,	

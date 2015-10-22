@@ -14,7 +14,7 @@ import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 @MappedSuperclass
 public abstract class EntidadeNegocioImpl implements EntidadeNegocio {
 	
-	@Column( name = "ULTIMA_ALTERACAO", nullable = false)
+	@Column( name = "ULTIMA_ALTERACAO", nullable = true)
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	private Date ultimaAlteracao;
 	

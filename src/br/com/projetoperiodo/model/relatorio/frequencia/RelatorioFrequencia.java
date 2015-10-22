@@ -25,10 +25,6 @@ public interface RelatorioFrequencia extends EntidadeNegocio
 
 	void setMonitor(MonitorImpl monitor);
 
-	Date getDataEntregaRelatorio();
-
-	void setDataEntregaRelatorio(Date dataEntregaRelatorio);
-
 	Semana getSemanas(int index);
 
 	void setSemanas(Semana semana);

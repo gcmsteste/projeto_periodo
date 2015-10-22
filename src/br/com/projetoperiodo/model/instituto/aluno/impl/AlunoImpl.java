@@ -29,7 +29,6 @@ import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 @Table(name = "ALUNO")
 @PrimaryKeyJoinColumn( name = "ALUNO_ID" )
 @Polymorphism(type=PolymorphismType.EXPLICIT)
-@AttributeOverrides({ @AttributeOverride(name = "chavePrimaria", column = @Column(name = "ALUNO_ID") )}) 
 public class AlunoImpl extends UsuarioImpl implements Aluno
 {
 	@Column( name = "ALUNO_MATRICULA", nullable = false)

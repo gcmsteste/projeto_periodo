@@ -23,11 +23,11 @@ import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 public class AtividadeImpl extends EntidadeNegocioImpl implements Atividade
 {
 	
-	@Column( name = "HORARIO_SAIDA", nullable = false)
+	@Column( name = "HORARIO_SAIDA", nullable = true)
 	private String horario_entrada;
-	@Column( name = "HORARIO_ENTRADA", nullable = false)
+	@Column( name = "HORARIO_ENTRADA", nullable = true)
 	private String horario_saida;
-	@Column( name = "ATIVIDADE_DATA", nullable = false)
+	@Column( name = "ATIVIDADE_DATA", nullable = true)
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date data;
 	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity= SemanaImpl.class)
