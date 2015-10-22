@@ -20,5 +20,7 @@ public abstract class ControladorNegocioImpl implements ControladorNegocio {
 	 */
 	@Override
 	public abstract EntidadeNegocio criarEntidadeNegocio();
+	
+	
 
 }

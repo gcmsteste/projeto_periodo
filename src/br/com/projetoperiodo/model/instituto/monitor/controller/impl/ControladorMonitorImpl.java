@@ -14,7 +14,6 @@ import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
-import br.com.projetoperiodo.util.exception.NegocioException;
 
 public class ControladorMonitorImpl extends ControladorNegocioImpl implements ControladorMonitor {
 	private MonitorDao dao;
@@ -33,16 +32,19 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 	public EntidadeNegocio criarEntidadeNegocio() {
 		return new MonitorImpl();
 	}
+	@Override
+	public List<Monitor> buscarMonitoriasDeAluno(Aluno aluno) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(" from ");
+		builder.append(" MonitorImpl ");
 
-	public Monitor buscarMonitoriasDeAluno(Aluno aluno) throws NegocioException {
-		Monitor monitor = dao.buscar(aluno.getChavePrimaria());
-		return monitor;
+		return dao.listar(builder.toString());
 	}
 
 	@Override
 	public Monitor criarMonitoriaDeAluno(Aluno aluno, Disciplina disciplina, Modalidade modalidade) {
 		ControladorPeriodo controladorPeriodo = Fachada.getInstance().getControladorPeriodo();
-		Monitor monitor = (Monitor) criarEntidadeNegocio();
+		Monitor monitor = (Monitor) this.criarEntidadeNegocio();
 		monitor.setDisciplina(disciplina);
 		monitor.setModalidade(modalidade);
 		monitor.setChavePrimaria(aluno.getChavePrimaria());
@@ -94,10 +96,6 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 		List<Monitor> lista = dao.listar(builder.toString());
 		return lista.size();
 	}
-	
-	public static void main(String[] args) {
-		ControladorMonitorImpl monitor = new ControladorMonitorImpl();
-		System.out.println(monitor.buscarQuantidadeMonitoriasEmProgresso());
-	}
+
 
 }

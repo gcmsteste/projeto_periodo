@@ -44,7 +44,6 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 			relatorio = (RelatorioFrequencia) this.criarEntidadeNegocio();
 			relatorio.setMes(mes);
 			relatorio = controladorSemana.preCadastrarSemanaDeRelatorio(relatorio);
-			dao.salvar(relatorio);
 			monitor.setRelatoriosMensais(relatorio);	
 		}
 		return monitor;

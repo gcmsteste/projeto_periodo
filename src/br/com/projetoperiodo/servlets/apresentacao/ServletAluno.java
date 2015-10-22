@@ -1,7 +1,6 @@
 package br.com.projetoperiodo.servlets.apresentacao;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,43 +13,43 @@ import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.monitor.controller.ControladorMonitor;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
-import br.com.projetoperiodo.util.exception.NegocioException;
 
 /**
  * Servlet implementation class ServletAluno
  */
 public class ServletAluno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletAluno() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	public static final String LISTA_MONITORIAS = "listaMonitorias";
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ControladorMonitor controladorMonitor = Fachada.getInstance().getControladorMonitor();
-		Aluno alunoLogado = (Aluno)request.getSession().getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
-		try {
-			Monitor monitor = controladorMonitor.buscarMonitoriasDeAluno(alunoLogado);
-			request.setAttribute(Constantes.ATRIBUTO_MONITORIA, monitor);
-			request.getRequestDispatcher("/principalMonitor.do").forward(request, response);
-		} catch (NegocioException e) {
-			// TODO Tratar erro
-			request.setAttribute("", e);
-		}
+	public ServletAluno() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ControladorMonitor controladorMonitor = Fachada.getInstance().getControladorMonitor();
+		Aluno alunoLogado = (Aluno) request.getSession().getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
+		List<Monitor> monitorias = controladorMonitor.buscarMonitoriasDeAluno(alunoLogado);
+		request.setAttribute(LISTA_MONITORIAS, monitorias);
+		request.getRequestDispatcher("/principalMonitor.do").forward(request, response);
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 
