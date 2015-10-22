@@ -3,6 +3,7 @@ package br.com.projetoperiodo.util;
 
 import java.util.List;
 
+import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.ControladorAluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.impl.ControladorAlunoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.controller.ControladorDisciplina;
@@ -26,8 +27,8 @@ import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImp
 public class Fachada {
 
 	private static Fachada fachada = null;
-	private Fachada() { }
-	public static synchronized Fachada getInstance() {
+	public Fachada() { }
+	public static Fachada getInstance() {
 
 		if (fachada == null) {
 			fachada = new Fachada();
@@ -81,6 +82,11 @@ public class Fachada {
 		Monitor monitor = (Monitor) entidadeNegocio;
 		ControladorRelatorio controladorRelatorio = this.getControladorRelatorio();
 		return controladorRelatorio.prepararRelatoriosDoMonitor(monitor);
+	}
+	
+	public  List<Monitor> buscarMonitorias(Aluno aluno) {
+		ControladorMonitor controladorMonitor = this.getControladorMonitor();
+		return controladorMonitor.listarMonitorias(aluno);
 	}
 	
 

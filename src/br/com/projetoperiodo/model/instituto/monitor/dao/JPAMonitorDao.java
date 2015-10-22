@@ -49,7 +49,6 @@ public class JPAMonitorDao implements MonitorDao{
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		List<Monitor> monitores = entityManager.createQuery(condicao).getResultList();
 		entityManager.close();
-			
 		return monitores;
 	}
 

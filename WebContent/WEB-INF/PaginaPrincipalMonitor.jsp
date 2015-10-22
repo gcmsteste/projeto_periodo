@@ -17,12 +17,17 @@
 			<th>Período</th>
 			<th>Modalidade</th>
 		</tr>
-		<tr>
-			<td><a href="relatorio.do?chaveMonitor=${requestScope['monitoria'].chavePrimaria}">
-			<c:out value="${requestScope['monitoria'].disciplina.descricao }" /></a></td>
-			<td><c:out value=" ${requestScope['monitoria'].periodo }" /></td>
-			<td><c:out value=" ${requestScope['monitoria'].modalidade }" /></td>
-		</tr>
+		<c:forEach var="monitoria" items="${requestScope['listaMonitorias']}">
+			<tr>
+				<td><a
+					href="relatorio.do?chaveMonitor=${monitoria.chavePrimaria}"> <c:out
+							value="${monitoria.disciplina.descricao }" />
+				</a></td>
+				<td><c:out value=" ${monitoria.periodo }" /></td>
+				<td><c:out value=" ${monitoria.modalidade }" /></td>
+			</tr>
+		</c:forEach>
+
 	</table>
 </body>
 </html>

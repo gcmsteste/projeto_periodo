@@ -3,6 +3,8 @@ package br.com.projetoperiodo.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
@@ -72,6 +74,4 @@ public class Util {
         }
         return senha.toString();
     }
-    
-
 }

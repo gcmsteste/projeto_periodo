@@ -1,6 +1,8 @@
 
 package br.com.projetoperiodo.model.instituto.monitor.controller;
 
+import java.util.List;
+
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
@@ -19,4 +21,9 @@ public interface ControladorMonitor extends ControladorNegocio
 	boolean validarCadastroMonitoria(Monitor monitor);
 	
 	Monitor cadastrarMonitoria(Monitor monitor);
+	
+	List<Monitor> listarMonitorias(Aluno aluno);
+
+	boolean verificaExistenciaCadastroMonitoria(Monitor monitor);
+
 }

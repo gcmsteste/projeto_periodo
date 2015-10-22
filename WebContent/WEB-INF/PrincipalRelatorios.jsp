@@ -8,18 +8,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="cadastroRelatorio.do">
-		<input type="submit" value="Cadastrar Relatorio" />
-	</form>
 	<table>
 		<tr>
-			<th>Mês</th>
+			<td><a href="cadastroRelatorio.do?relatorio=1">Janeiro</a></td>
+			<td>Fevereiro</td>
+			<td>Março</td>
+			<td>Abril</td>
+			<td>Maio</td>
+			<td>Junho</td>
+
 		</tr>
-		<c:forEach var="relatorio" items="${requestScope['listaRelatorios']}">
-			<tr>
-				<td><c:out value="${relatorio.mes }" /></td>
-			</tr>
-		</c:forEach>
+		<tr>
+			<td>Julho</td>
+			<td>Agosto</td>
+			<td>Setembro</td>
+			<td>Outubro</td>
+			<td>Novembro</td>
+			<td>Dezembro</td>
+		</tr>
 	</table>
 </body>
 </html>

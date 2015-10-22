@@ -3,6 +3,7 @@ package br.com.projetoperiodo.model.instituto.monitor.controller.impl;
 import java.util.List;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
+import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.monitor.controller.ControladorMonitor;
@@ -33,7 +34,7 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 	public EntidadeNegocio criarEntidadeNegocio() {
 		return new MonitorImpl();
 	}
-
+	@Override
 	public Monitor buscarMonitoriasDeAluno(Aluno aluno) throws NegocioException {
 		Monitor monitor = dao.buscar(aluno.getChavePrimaria());
 		return monitor;
@@ -51,11 +52,11 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 
 		return monitor;
 	}
-
+	@Override
 	public Monitor cadastrarMonitoria(Monitor monitor) {
 		return dao.salvar(monitor);
 	}
-
+	@Override
 	public boolean validarCadastroMonitoria(Monitor monitor) {
 		boolean cadastroValido = Boolean.TRUE;
 		boolean possuiCadastro;
@@ -69,7 +70,7 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 		}
 		return cadastroValido;
 	}
-
+	@Override
 	public boolean verificaExistenciaCadastroMonitoria(Monitor monitor) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(" select m from MonitorImpl m");
@@ -85,8 +86,8 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 		}
 		return true;
 	}
-
-	public int buscarQuantidadeMonitoriasEmProgresso() {
+	
+	private int buscarQuantidadeMonitoriasEmProgresso() {
 		StringBuilder builder = new StringBuilder();
 		builder.append(" from MonitorImpl m");
 		builder.append(" where m.habilitado = ");
@@ -95,9 +96,15 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 		return lista.size();
 	}
 	
-	public static void main(String[] args) {
-		ControladorMonitorImpl monitor = new ControladorMonitorImpl();
-		System.out.println(monitor.buscarQuantidadeMonitoriasEmProgresso());
+
+	@Override
+	public List<Monitor> listarMonitorias(Aluno aluno) {
+
+		StringBuilder builder = new StringBuilder();
+		builder.append(" from MonitorImpl m ");
+		builder.append( " where m.chavePrimaria = " );
+		builder.append(aluno.getChavePrimaria());
+		return dao.listar(builder.toString());
 	}
 
 }
