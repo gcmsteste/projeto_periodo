@@ -16,10 +16,13 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 
+import br.com.projetoperiodo.model.instituto.aluno.Aluno;
+import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.curso.Curso;
 import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
+import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
 import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
@@ -212,11 +215,11 @@ public class DescritorDocumento {
 
 	public void gerarRelatorio(RelatorioFrequencia relatorio) throws DocumentException, IOException {
 
-		preencherNomeMonitor(relatorio.getMonitor().getNome());
+		preencherNomeMonitor(relatorio.getMonitor().getAluno().getNome());
 		preencherNomeDisciplina(relatorio.getMonitor().getDisciplina().getDescricao());
 		preencherNomeOrientador(relatorio.getProfessor().getNome());
-		preencherMatricula(relatorio.getMonitor().getMatricula());
-		preencherNomeCurso(relatorio.getMonitor().getCurso().getDescricao());
+		preencherMatricula(relatorio.getMonitor().getAluno().getMatricula());
+		preencherNomeCurso(relatorio.getMonitor().getAluno().getCurso().getDescricao());
 		preencherCampoMes(Integer.toString(relatorio.getMes()));
 
 		int decrementoPosicaoRelativaY = 0;
@@ -258,17 +261,19 @@ public class DescritorDocumento {
 			relatorio.setSemanas(semana);
 		}
 
-		MonitorImpl monitor = new MonitorImpl();
+		Monitor monitor = new MonitorImpl();
 		Disciplina disciplina = new DisciplinaImpl();
 		Professor professor = new ProfessorImpl();
 		Curso curso = new CursoImpl();
+		Aluno aluno =  new AlunoImpl();
 		curso.setDescricao("Análise de Sistemas");
 		professor.setNome("Marcos Costa");
 		disciplina.setDescricao("Introdução à Programação");
-		monitor.setNome("Edmilson Santana");
+		aluno.setNome("Edmilson Santana");
 		monitor.setDisciplina(disciplina);
-		monitor.setMatricula("20141Y6-RC0323");
-		monitor.setCurso(curso);
+		aluno.setMatricula("20141Y6-RC0323");
+		aluno.setCurso(curso);
+		monitor.setAluno(aluno);
 		relatorio.setProfessor(professor);
 		relatorio.setMonitor(monitor);
 		relatorio.setMes(9);

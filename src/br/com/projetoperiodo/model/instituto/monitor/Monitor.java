@@ -4,10 +4,11 @@ package br.com.projetoperiodo.model.instituto.monitor;
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.periodo.Periodo;
+import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 
-public interface Monitor extends Aluno
+public interface Monitor extends EntidadeNegocio
 {
 
 	final String ATRIBUTO_PERIODO_MONITORIA = "periodo";
@@ -32,5 +33,9 @@ public interface Monitor extends Aluno
 	boolean isHabilitado();
 	
 	void setHabilitado(boolean habilitado);
+	
+	void setAluno(Aluno aluno);
+	
+	Aluno getAluno();
 
 }

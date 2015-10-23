@@ -108,7 +108,7 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#setMonitor(br.com.projetoperiodo.model.instituto.monitor.impl.
 	 * MonitorImpl)
 	 */
-	public void setMonitor(MonitorImpl monitor) {
+	public void setMonitor(Monitor monitor) {
 
 		this.monitor = monitor;
 	}

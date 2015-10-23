@@ -44,11 +44,26 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 			relatorio = (RelatorioFrequencia) this.criarEntidadeNegocio();
 			relatorio.setMes(mes);
 			relatorio = controladorSemana.preCadastrarSemanaDeRelatorio(relatorio);
-			relatorio = dao.salvar(relatorio);
-			monitor.setRelatoriosMensais(relatorio);	
+			relatorio.setMonitor(monitor);
+			dao.salvar(relatorio);
 		}
 		return monitor;
 	}
+	@Override
+	public RelatorioFrequencia buscarRelatoriosDeMonitorPorMes(Monitor monitor, int mes) {
+
+		StringBuilder builder = new StringBuilder();
+		builder.append(" select r from ");
+		builder.append(" RelatorioFrequenciaImpl r ");
+		builder.append(" where r.monitor.chavePrimaria =  ");
+		builder.append(monitor.getChavePrimaria());
+		builder.append(" and r.mes = ");
+		builder.append(mes);
+		RelatorioFrequencia relatorio = dao.listar(builder.toString()).get(0);
+		return relatorio;
+	}
+	
+	
 	
 	
 }

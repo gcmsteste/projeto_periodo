@@ -191,7 +191,7 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ServletCadastroRelatorio</servlet-name>
-		<url-pattern>/ServletCadastroRelatorio</url-pattern>
+		<url-pattern>/cadastroRelatorio.do</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ServletAluno</servlet-name>

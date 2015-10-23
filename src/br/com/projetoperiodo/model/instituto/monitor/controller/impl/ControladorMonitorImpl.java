@@ -46,7 +46,8 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 		Monitor monitor = (Monitor) criarEntidadeNegocio();
 		monitor.setDisciplina(disciplina);
 		monitor.setModalidade(modalidade);
-		monitor.setChavePrimaria(aluno.getChavePrimaria());
+		monitor.setAluno(aluno);
+		monitor.setHabilitado(Boolean.TRUE);
 		Periodo periodoCorrente = controladorPeriodo.gerarNovoPeriodoCorrente();
 		monitor.setPeriodo(periodoCorrente);
 
@@ -63,7 +64,7 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 		int qtdMonitoriasEmProgresso;
 
 		possuiCadastro = verificaExistenciaCadastroMonitoria(monitor);
-		qtdMonitoriasEmProgresso = buscarQuantidadeMonitoriasEmProgresso();
+		qtdMonitoriasEmProgresso = buscarQuantidadeMonitoriasEmProgressoDeAluno(monitor);
 
 		if (possuiCadastro || qtdMonitoriasEmProgresso > 0) {
 			cadastroValido = Boolean.FALSE;
@@ -78,6 +79,8 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 		builder.append(monitor.getPeriodo().getChavePrimaria());
 		builder.append(" and  m.disciplina.chavePrimaria = ");
 		builder.append(monitor.getDisciplina().getChavePrimaria());
+		builder.append( " and m.aluno.chavePrimaria = " );
+		builder.append( monitor.getAluno().getChavePrimaria());
 		builder.append(" and  m.habilitado = ");
 		builder.append(Boolean.TRUE);
 		List<Monitor> lista = dao.listar(builder.toString());
@@ -87,11 +90,13 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 		return true;
 	}
 	
-	private int buscarQuantidadeMonitoriasEmProgresso() {
+	private int buscarQuantidadeMonitoriasEmProgressoDeAluno(Monitor monitor) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(" from MonitorImpl m");
 		builder.append(" where m.habilitado = ");
 		builder.append(Boolean.TRUE);
+		builder.append( " and m.aluno.chavePrimaria = ");
+		builder.append( monitor.getAluno().getChavePrimaria());
 		List<Monitor> lista = dao.listar(builder.toString());
 		return lista.size();
 	}
@@ -102,9 +107,15 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(" from MonitorImpl m ");
-		builder.append( " where m.chavePrimaria = " );
+		builder.append( " where m.aluno.chavePrimaria = " );
 		builder.append(aluno.getChavePrimaria());
 		return dao.listar(builder.toString());
+	}
+	
+	@Override
+	public Monitor buscarMonitoria( long chavePrimaria ) {
+		StringBuilder builder = new StringBuilder();
+		return dao.buscar(chavePrimaria);
 	}
 
 }

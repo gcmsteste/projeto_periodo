@@ -23,7 +23,7 @@ public interface RelatorioFrequencia extends EntidadeNegocio
 
 	Monitor getMonitor();
 
-	void setMonitor(MonitorImpl monitor);
+	void setMonitor(Monitor monitor);
 
 	Semana getSemanas(int index);
 

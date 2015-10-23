@@ -18,6 +18,6 @@ public interface Aluno extends Usuario
 
 	Disciplina getDisciplinas(int index);
 
-	void setDisciplinas(DisciplinaImpl disciplina);
+	void setDisciplinas(Disciplina disciplina);
 
 }

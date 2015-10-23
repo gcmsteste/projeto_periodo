@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.util.Fachada;
+import br.com.projetoperiodo.util.constantes.Constantes;
 
 /**
  * Servlet implementation class ServletRelatorio
@@ -31,8 +33,8 @@ public class ServletRelatorio extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long chavePrimariaMonitor = Long.valueOf(request.getParameter("chaveMonitor"));
-		List<RelatorioFrequencia> listaRelatorios = Fachada.getInstance().buscarRelatorios(chavePrimariaMonitor);
-		request.setAttribute(RELATORIOS_MONITOR, listaRelatorios);
+		Monitor monitor = (Monitor) Fachada.getInstance().buscarMonitoria(chavePrimariaMonitor);
+		request.getSession(false).setAttribute(Constantes.ATRIBUTO_MONITORIA, monitor);
 		request.getRequestDispatcher("/paginaPrincipalRelatorios").forward(request, response);
 	}
 

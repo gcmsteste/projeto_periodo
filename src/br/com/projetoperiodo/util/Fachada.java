@@ -89,6 +89,16 @@ public class Fachada {
 		return controladorMonitor.listarMonitorias(aluno);
 	}
 	
+	public RelatorioFrequencia buscarRelatorioPorMes(EntidadeNegocio entidade, int mes) {
+		Monitor monitor = (Monitor)entidade;
+		ControladorRelatorio controladorFrequencia = this.getControladorRelatorio();
+		return controladorFrequencia.buscarRelatoriosDeMonitorPorMes(monitor, mes);
+	}
+	
+	public EntidadeNegocio buscarMonitoria(long chavePrimaria) {
+		ControladorMonitor controladorMonitor = this.getControladorMonitor();
+		return controladorMonitor.buscarMonitoria(chavePrimaria);
+	}
 
 	
 }

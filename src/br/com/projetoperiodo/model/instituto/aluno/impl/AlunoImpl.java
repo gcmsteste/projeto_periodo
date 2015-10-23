@@ -3,8 +3,6 @@ package br.com.projetoperiodo.model.instituto.aluno.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -23,6 +22,8 @@ import br.com.projetoperiodo.model.instituto.curso.Curso;
 import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
+import br.com.projetoperiodo.model.instituto.monitor.Monitor;
+import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 
 @Entity
@@ -37,12 +38,12 @@ public class AlunoImpl extends UsuarioImpl implements Aluno
 	@JoinColumn(name = "CURSO_ID", referencedColumnName = "CURSO_ID")
 	private Curso curso;
 	
-	@ManyToMany()
+	@ManyToMany(targetEntity=DisciplinaImpl.class)
 	@JoinTable(name="DISCIPLINA_ALUNO",
 	           joinColumns = @JoinColumn( name = "ALUNO_ID"),
 	           inverseJoinColumns = @JoinColumn(name = "DISCIPLINA_ID"))
-	private List<DisciplinaImpl> disciplinas = new ArrayList<DisciplinaImpl>();
-	
+	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.aluno.impl.Aluno#getMatricula()
 	 */
@@ -88,7 +89,7 @@ public class AlunoImpl extends UsuarioImpl implements Aluno
 	 * @see br.com.projetoperiodo.model.instituto.aluno.impl.Aluno#setDisciplinas(br.com.projetoperiodo.model.instituto.disciplina.Disciplina)
 	 */
 	
-	public void setDisciplinas(DisciplinaImpl disciplina) {
+	public void setDisciplinas(Disciplina disciplina) {
 
 		this.disciplinas.add(disciplina);
 	}

@@ -15,7 +15,7 @@
 	attributes.wmode = "transparent";
 	attributes.id = "slider";
 	swfobject.embedSWF("cu3er.swf", "cu3er-container", "960", "270", "9",
-			"expressInstall.swf", flashvars, attributes);
+			"js/expressInstall.swf", flashvars, attributes);
 </script>
 <title>Monitoria</title>
 </head>

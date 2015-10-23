@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/cadastro-relatorio.css">
 <script src="js/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
 <script src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script type="text/javascript">
 	$(function() {
 		$(".datepicker").datepicker();
@@ -24,7 +25,8 @@
 			<h3>Primeira semana</h3>
 			<div>
 
-				<textarea rows="13" cols="30" name="descricaosemana1"></textarea>
+				<textarea rows="13" cols="30" name="descricaosemana1">
+				<c:out value="requestScope['relatorio'].semanas['0'].descricao" /></textarea>
 				<label>Primeiro dia</label> <input type="text" class="datepicker"
 					name="semana1atividade1" /> <label>Segundo dia</label> <input
 					type="text" class="datepicker" name="semana1atividade2" /> <label>Terceiro
@@ -45,6 +47,60 @@
 				<label>Quarto dia</label> <input type="text" class="datepicker"
 					name="semana2atividade4" /> <label>Quinto dia</label> <input
 					type="text" class="datepicker" name="semana2atividade5" />
+
+			</div>
+
+			<h3>Terceira semana</h3>
+			<div>
+
+				<textarea rows="13" cols="30" name="descricaosemana3"></textarea>
+				<label>Primeiro dia</label> <input type="text" class="datepicker"
+					name="semana3atividade1" /> <label>Segundo dia</label> <input
+					type="text" class="datepicker" name="semana3atividade2" /> <label>Terceiro
+					dia</label> <input type="text" class="datepicker" name="semana3atividade3" />
+				<label>Quarto dia</label> <input type="text" class="datepicker"
+					name="semana3atividade4" /> <label>Quinto dia</label> <input
+					type="text" class="datepicker" name="semana3tividade5" />
+
+			</div>
+
+			<h3>Terceira semana</h3>
+			<div>
+
+				<textarea rows="13" cols="30" name="descricaosemana3"></textarea>
+				<label>Primeiro dia</label> <input type="text" class="datepicker"
+					name="semana3atividade1" /> <label>Segundo dia</label> <input
+					type="text" class="datepicker" name="semana3atividade2" /> <label>Terceiro
+					dia</label> <input type="text" class="datepicker" name="semana3atividade3" />
+				<label>Quarto dia</label> <input type="text" class="datepicker"
+					name="semana3atividade4" /> <label>Quinto dia</label> <input
+					type="text" class="datepicker" name="semana3atividade5" />
+
+			</div>
+			<h3>Quarta semana</h3>
+			<div>
+
+				<textarea rows="13" cols="30" name="descricaosemana4"></textarea>
+				<label>Primeiro dia</label> <input type="text" class="datepicker"
+					name="semana3atividade1" /> <label>Segundo dia</label> <input
+					type="text" class="datepicker" name="semana4atividade2" /> <label>Terceiro
+					dia</label> <input type="text" class="datepicker" name="semana4atividade3" />
+				<label>Quarto dia</label> <input type="text" class="datepicker"
+					name="semana4atividade4" /> <label>Quinto dia</label> <input
+					type="text" class="datepicker" name="semana4atividade5" />
+
+			</div>
+				<h3>Quinta semana</h3>
+			<div>
+
+				<textarea rows="13" cols="30" name="descricaosemana5"></textarea>
+				<label>Primeiro dia</label> <input type="text" class="datepicker"
+					name="semana5atividade1" /> <label>Segundo dia</label> <input
+					type="text" class="datepicker" name="semana5atividade2" /> <label>Terceiro
+					dia</label> <input type="text" class="datepicker" name="semana5atividade3" />
+				<label>Quarto dia</label> <input type="text" class="datepicker"
+					name="semana5atividade4" /> <label>Quinto dia</label> <input
+					type="text" class="datepicker" name="semana5atividade5" />
 
 			</div>
 		</div>

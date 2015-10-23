@@ -71,9 +71,8 @@ public class ServletCadastroMonitoria extends HttpServlet {
 		cadastroValido = controladorMonitor.validarCadastroMonitoria(monitor);
 
 		if (cadastroValido) {
-			monitor = Fachada.getInstance().preCadastroRelatoriosMonitor(monitor);
-			controladorMonitor.cadastrarMonitoria(monitor);
-			request.getSession(false).setAttribute(Constantes.ATRIBUTO_MONITORIA, monitor);
+			monitor = controladorMonitor.cadastrarMonitoria(monitor);
+			Fachada.getInstance().preCadastroRelatoriosMonitor(monitor);
 			request.getRequestDispatcher("/aluno.do").forward(request, response);
 
 		} else {

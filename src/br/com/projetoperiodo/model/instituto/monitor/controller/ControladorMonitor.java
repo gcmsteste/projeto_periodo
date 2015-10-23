@@ -26,4 +26,6 @@ public interface ControladorMonitor extends ControladorNegocio
 
 	boolean verificaExistenciaCadastroMonitoria(Monitor monitor);
 
+	Monitor buscarMonitoria(long chavePrimaria);
+
 }
