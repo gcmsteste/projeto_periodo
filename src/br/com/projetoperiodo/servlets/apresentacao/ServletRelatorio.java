@@ -1,7 +1,6 @@
 package br.com.projetoperiodo.servlets.apresentacao;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
-import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
 

@@ -5,7 +5,6 @@ import java.util.List;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
-import br.com.projetoperiodo.model.relatorio.atividade.controller.ControladorAtividade;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.frequencia.controller.ControladorRelatorio;
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaDao;
@@ -61,6 +60,10 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 		builder.append(mes);
 		RelatorioFrequencia relatorio = dao.listar(builder.toString()).get(0);
 		return relatorio;
+	}
+	@Override
+	public void atualizarRelatorio(RelatorioFrequencia relatorio) {
+		dao.atualizar(relatorio);
 	}
 	
 	

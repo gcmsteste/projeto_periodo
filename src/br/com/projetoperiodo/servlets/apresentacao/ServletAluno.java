@@ -11,11 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
-import br.com.projetoperiodo.model.instituto.monitor.controller.ControladorMonitor;
-import br.com.projetoperiodo.model.instituto.monitor.controller.impl.ControladorMonitorImpl;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
-import br.com.projetoperiodo.util.exception.NegocioException;
 
 /**
  * Servlet implementation class ServletAluno

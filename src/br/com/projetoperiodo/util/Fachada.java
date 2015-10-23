@@ -28,7 +28,7 @@ public class Fachada {
 
 	private static Fachada fachada = null;
 	public Fachada() { }
-	public static Fachada getInstance() {
+	public synchronized static Fachada getInstance() {
 
 		if (fachada == null) {
 			fachada = new Fachada();
@@ -89,7 +89,7 @@ public class Fachada {
 		return controladorMonitor.listarMonitorias(aluno);
 	}
 	
-	public RelatorioFrequencia buscarRelatorioPorMes(EntidadeNegocio entidade, int mes) {
+	public RelatorioFrequencia buscarRelatorioMensal(EntidadeNegocio entidade, int mes) {
 		Monitor monitor = (Monitor)entidade;
 		ControladorRelatorio controladorFrequencia = this.getControladorRelatorio();
 		return controladorFrequencia.buscarRelatoriosDeMonitorPorMes(monitor, mes);
@@ -100,5 +100,9 @@ public class Fachada {
 		return controladorMonitor.buscarMonitoria(chavePrimaria);
 	}
 
+	public void atualizarRelatorio(EntidadeNegocio entidade) {
+		RelatorioFrequencia relatorio = (RelatorioFrequencia)entidade;
+		this.getControladorRelatorio().atualizarRelatorio(relatorio);
+	}
 	
 }

@@ -1,10 +1,7 @@
 
 package br.com.projetoperiodo.model.relatorio.frequencia;
 
-import java.util.Date;
-
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
-import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
 import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;

@@ -10,21 +10,21 @@
 <body>
 	<table>
 		<tr>
-			<td><a href="cadastroRelatorio.do?relatorio=1">Janeiro</a></td>
-			<td>Fevereiro</td>
-			<td>Março</td>
-			<td>Abril</td>
-			<td>Maio</td>
-			<td>Junho</td>
+			<td><a href="cadastroRelatorio.do?mes=1">Janeiro</a></td>
+			<td><a href="cadastroRelatorio.do?mes=2">Fevereiro</a></td>
+			<td><a href="cadastroRelatorio.do?mes=3">Março</a></td>
+			<td><a href="cadastroRelatorio.do?mes=4">Abril</a></td>
+			<td><a href="cadastroRelatorio.do?mes=5">Maio</a></td>
+			<td><a href="cadastroRelatorio.do?mes=6">Junho</a></td>
 
 		</tr>
 		<tr>
-			<td>Julho</td>
-			<td>Agosto</td>
-			<td>Setembro</td>
-			<td>Outubro</td>
-			<td>Novembro</td>
-			<td>Dezembro</td>
+			<td><a href="cadastroRelatorio.do?mes=7">Julho</a></td>
+			<td><a href="cadastroRelatorio.do?mes=8">Agosto</a></td>
+			<td><a href="cadastroRelatorio.do?mes=9">Setembro</a></td>
+			<td><a href="cadastroRelatorio.do?mes=10">Outubro</a></td>
+			<td><a href="cadastroRelatorio.do?mes=11">Novembro</a></td>
+			<td><a href="cadastroRelatorio.do?mes=12">Dezembro</a></td>
 		</tr>
 	</table>
 </body>

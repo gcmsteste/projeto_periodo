@@ -2,7 +2,6 @@
 package br.com.projetoperiodo.model.relatorio.frequencia.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
@@ -15,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
@@ -122,6 +120,10 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	public Semana getSemanas(int index) {
 
 		return semanas.get(index);
+	}
+	
+	public List<Semana> getSemanas() {
+		return semanas;
 	}
 
 	/*
