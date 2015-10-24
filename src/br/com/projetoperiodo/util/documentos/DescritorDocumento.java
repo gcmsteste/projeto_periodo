@@ -1,5 +1,6 @@
 package br.com.projetoperiodo.util.documentos;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -36,8 +37,8 @@ import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 public class DescritorDocumento {
 
 	private PdfReader reader;
-	private static final String SOURCE = "selection.pdf";
-	private static final String DEST = "relatorio.pdf";
+	private static final String SOURCE = "C:\\Users\\EdmilsonS\\Projetos Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\selection.pdf";
+	private static final String DEST = "C:\\Users\\EdmilsonS\\Projetos Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\relatorio.pdf";
 	private PdfContentByte conteudoDocumento;
 	private PdfStamper copia;
 	private FontSelector seletorFonte;
@@ -77,7 +78,8 @@ public class DescritorDocumento {
 
 	private DescritorDocumento() {
 		try {
-			reader = new PdfReader(SOURCE);
+			System.getProperty("user.dir");
+			reader = new PdfReader(SOURCE);		
 			copia = new PdfStamper(reader, new FileOutputStream(DEST));
 			conteudoDocumento = copia.getOverContent(1);
 			configurarFonteDocumento();
@@ -158,7 +160,7 @@ public class DescritorDocumento {
 				ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
 	}
 
-	public void preencherHorarioEntradaRelatorio(int posicao, Atividade atividade) {
+	private void preencherHorarioEntradaRelatorio(int posicao, Atividade atividade) {
 
 		Phrase phrase = seletorFonte.process(atividade.getHorarioEntrada());
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, HORARIO_ENTRADA_X, ATIVIDADE_Y, 0);
@@ -213,11 +215,11 @@ public class DescritorDocumento {
 		preencherHorarioSaidaAtividade(atividade, decrementoPosicaoRelativaY);
 	}
 
-	public void gerarRelatorio(RelatorioFrequencia relatorio) throws DocumentException, IOException {
+	public void gerarRelatorio(RelatorioFrequencia relatorio) {
 
 		preencherNomeMonitor(relatorio.getMonitor().getAluno().getNome());
 		preencherNomeDisciplina(relatorio.getMonitor().getDisciplina().getDescricao());
-		preencherNomeOrientador(relatorio.getProfessor().getNome());
+		preencherNomeOrientador(relatorio.getMonitor().getDisciplina().getProfessor().getNome());
 		preencherMatricula(relatorio.getMonitor().getAluno().getMatricula());
 		preencherNomeCurso(relatorio.getMonitor().getAluno().getCurso().getDescricao());
 		preencherCampoMes(Integer.toString(relatorio.getMes()));
@@ -233,15 +235,25 @@ public class DescritorDocumento {
 			}
 
 		}
-		preencherDescricaoPrimeiraSemana(relatorio.getSemana(0));
-		preencherDescricaoSegundaSemana(relatorio.getSemana(1));
-		preencherDescricaoTerceiraSemana(relatorio.getSemana(2));
-		preencherDescricaoQuartaSemana(relatorio.getSemana(3));
-		preencherDescricaoQuintaSemana(relatorio.getSemana(4));
-		copia.close();
+		
+		try {
+			preencherDescricaoPrimeiraSemana(relatorio.getSemana(0));
+			preencherDescricaoSegundaSemana(relatorio.getSemana(1));
+			preencherDescricaoTerceiraSemana(relatorio.getSemana(2));
+			preencherDescricaoQuartaSemana(relatorio.getSemana(3));
+			preencherDescricaoQuintaSemana(relatorio.getSemana(4));
+			copia.close();
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
-	public void preencherDescricaoSemana(Semana semana) {
+	private void preencherDescricaoSemana(Semana semana) {
 
 	}
 
@@ -269,12 +281,12 @@ public class DescritorDocumento {
 		curso.setDescricao("Análise de Sistemas");
 		professor.setNome("Marcos Costa");
 		disciplina.setDescricao("Introdução à Programação");
+		disciplina.setProfessor(professor);
 		aluno.setNome("Edmilson Santana");
 		monitor.setDisciplina(disciplina);
 		aluno.setMatricula("20141Y6-RC0323");
 		aluno.setCurso(curso);
 		monitor.setAluno(aluno);
-		relatorio.setProfessor(professor);
 		relatorio.setMonitor(monitor);
 		relatorio.setMes(9);
 		DescritorDocumento.getInstancia().gerarRelatorio(relatorio);

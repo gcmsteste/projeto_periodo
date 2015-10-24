@@ -35,13 +35,9 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	@Column(name = "RELATORIO_CARGA_HORARIA", nullable = false)
 	private int cargaHorariaMensal;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = true, targetEntity = MonitorImpl.class)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity = MonitorImpl.class)
 	@JoinColumn(name = "MONITOR_ID", referencedColumnName = "MONITOR_ID")
 	private Monitor monitor;
-
-	@ManyToOne(fetch = FetchType.LAZY, optional = true, targetEntity = ProfessorImpl.class)
-	@JoinColumn(name = "PROFESSOR_ID", referencedColumnName = "PROFESSOR_ID")
-	private Professor professor;
 
 	@OneToMany(mappedBy = "relatorio", cascade = CascadeType.MERGE, fetch = FetchType.EAGER, targetEntity = SemanaImpl.class)
 	private List<Semana> semanas;
@@ -135,17 +131,6 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 		this.semanas.add(semana);
 	}
 
-	@Override
-	public void setProfessor(Professor professor) {
-
-		this.professor = professor;
-
-	}
-
-	@Override
-	public Professor getProfessor() {
-
-		return this.professor;
-	}
+	
 
 }

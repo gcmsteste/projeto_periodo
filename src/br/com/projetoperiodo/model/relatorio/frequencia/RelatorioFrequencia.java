@@ -26,8 +26,6 @@ public interface RelatorioFrequencia extends EntidadeNegocio
 	
 	void setSemanas(Semana semana);
 	
-	void setProfessor(Professor professor);
 	
-	Professor getProfessor();
 
 }

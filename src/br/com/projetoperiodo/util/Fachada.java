@@ -105,4 +105,9 @@ public class Fachada {
 		this.getControladorRelatorio().atualizarRelatorio(relatorio);
 	}
 	
+	public void gerarDocumentoDeRelatorio(EntidadeNegocio entidade) {
+		RelatorioFrequencia relatorio = (RelatorioFrequencia)entidade;
+		this.getControladorRelatorio().gerarDocumentoDeRelatorio(relatorio);
+	}
+	
 }

@@ -15,4 +15,6 @@ public interface ControladorRelatorio extends ControladorNegocio{
 	RelatorioFrequencia buscarRelatoriosDeMonitorPorMes(Monitor monitor, int mes);
 
 	void atualizarRelatorio(RelatorioFrequencia relatorio);
+	
+	void gerarDocumentoDeRelatorio(RelatorioFrequencia relatorio); 
 }
