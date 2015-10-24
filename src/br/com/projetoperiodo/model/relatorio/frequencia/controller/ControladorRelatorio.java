@@ -10,7 +10,7 @@ public interface ControladorRelatorio extends ControladorNegocio{
 	
 	List<RelatorioFrequencia> buscarRelatoriosDeMonitor(Monitor monitor);
 	
-	Monitor prepararRelatoriosDoMonitor(Monitor monitor);
+	void prepararRelatoriosDoMonitor(Monitor monitor);
 	
 	RelatorioFrequencia buscarRelatoriosDeMonitorPorMes(Monitor monitor, int mes);
 

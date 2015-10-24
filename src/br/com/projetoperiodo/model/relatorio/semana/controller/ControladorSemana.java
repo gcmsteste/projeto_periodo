@@ -9,6 +9,6 @@ public interface ControladorSemana extends ControladorNegocio {
 
 	EntidadeNegocio criarEntidadeNegocio();
 	
-	RelatorioFrequencia preCadastrarSemanaDeRelatorio(RelatorioFrequencia relatorio);
+	void cadastrarSemanasComRelatorio(RelatorioFrequencia relatorio);
 
 }

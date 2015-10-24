@@ -78,10 +78,10 @@ public class Fachada {
 		return null;
 	}
 	
-	public Monitor preCadastroRelatoriosMonitor(EntidadeNegocio entidadeNegocio) {
+	public void preCadastroRelatoriosMonitor(EntidadeNegocio entidadeNegocio) {
 		Monitor monitor = (Monitor) entidadeNegocio;
 		ControladorRelatorio controladorRelatorio = this.getControladorRelatorio();
-		return controladorRelatorio.prepararRelatoriosDoMonitor(monitor);
+		controladorRelatorio.prepararRelatoriosDoMonitor(monitor);
 	}
 	
 	public  List<Monitor> buscarMonitorias(Aluno aluno) {

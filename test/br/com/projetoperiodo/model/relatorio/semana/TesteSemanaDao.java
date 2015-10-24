@@ -53,9 +53,9 @@ public class TesteSemanaDao {
 		dao.salvar(semana);
 		Semana semanaPesquisada = dao.buscar(semana.getChavePrimaria());
 		assertNotNull(semanaPesquisada);
-		semana.getAtividades(0);
-		semanaPesquisada.getAtividades(0).getSemana();
-		assertNotNull(semanaPesquisada.getAtividades(0));
+		semana.getAtividade(0);
+		semanaPesquisada.getAtividade(0).getSemana();
+		assertNotNull(semanaPesquisada.getAtividade(0));
 		
 		
 		

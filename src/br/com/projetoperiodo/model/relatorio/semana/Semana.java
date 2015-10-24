@@ -18,7 +18,7 @@ public interface Semana extends EntidadeNegocio
 
 	void setObservacoes(String observacoes);
 
-	Atividade getAtividades(int index);
+	Atividade getAtividade(int index);
 
 	void setAtividades(Atividade atividade);
 

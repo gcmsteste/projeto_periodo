@@ -224,20 +224,20 @@ public class DescritorDocumento {
 
 		int decrementoPosicaoRelativaY = 0;
 		for (int posicaoSemana = 0; posicaoSemana < QUANTIDADE_SEMANAS; posicaoSemana++) {
-			Semana semana = relatorio.getSemanas(posicaoSemana);
+			Semana semana = relatorio.getSemana(posicaoSemana);
 
 			for (int i = 0; i < QUANTIDADE_ATIVIDADES; i++) {
-				Atividade atividade = semana.getAtividades(i);
+				Atividade atividade = semana.getAtividade(i);
 				preencherAtividadesSemanais(atividade, decrementoPosicaoRelativaY);
 				decrementoPosicaoRelativaY += 14;
 			}
 
 		}
-		preencherDescricaoPrimeiraSemana(relatorio.getSemanas(0));
-		preencherDescricaoSegundaSemana(relatorio.getSemanas(1));
-		preencherDescricaoTerceiraSemana(relatorio.getSemanas(2));
-		preencherDescricaoQuartaSemana(relatorio.getSemanas(3));
-		preencherDescricaoQuintaSemana(relatorio.getSemanas(4));
+		preencherDescricaoPrimeiraSemana(relatorio.getSemana(0));
+		preencherDescricaoSegundaSemana(relatorio.getSemana(1));
+		preencherDescricaoTerceiraSemana(relatorio.getSemana(2));
+		preencherDescricaoQuartaSemana(relatorio.getSemana(3));
+		preencherDescricaoQuintaSemana(relatorio.getSemana(4));
 		copia.close();
 	}
 

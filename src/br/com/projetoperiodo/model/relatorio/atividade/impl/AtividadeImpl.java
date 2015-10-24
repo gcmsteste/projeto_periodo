@@ -30,7 +30,7 @@ public class AtividadeImpl extends EntidadeNegocioImpl implements Atividade
 	@Column( name = "ATIVIDADE_DATA", nullable = true)
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date data;
-	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity= SemanaImpl.class)
+	@ManyToOne(fetch = FetchType.LAZY, optional = true, targetEntity= SemanaImpl.class)
 	@JoinColumn( name = "SEMANA_ID", referencedColumnName = "SEMANA_ID" )
 	private Semana semana;
 	

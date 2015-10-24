@@ -1,8 +1,6 @@
 package br.com.projetoperiodo.model.relatorio.semana.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
@@ -33,7 +31,7 @@ public class SemanaImpl extends EntidadeNegocioImpl implements Semana
 	@Column( name = "SEMANA_OBS", nullable=true)
 	private String observacoes;
 	@OneToMany(mappedBy="semana",
-			   cascade = CascadeType.ALL,	
+			   cascade = CascadeType.MERGE,	
 			   fetch = FetchType.EAGER, targetEntity = AtividadeImpl.class)
 	private List<Atividade> atividades;
 	@ManyToOne( fetch = FetchType.LAZY, optional = true, targetEntity = RelatorioFrequenciaImpl.class)
@@ -74,9 +72,14 @@ public class SemanaImpl extends EntidadeNegocioImpl implements Semana
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.relatorio.semana.impl.Semana#getAtividades(int)
 	 */
-	public Atividade getAtividades(int index) {
+	@Override
+	public Atividade getAtividade(int index) {
 
 		return atividades.get(index);
+	}
+	
+	public List<Atividade> getAtividades() {
+		return this.atividades;
 	}
 	
 	

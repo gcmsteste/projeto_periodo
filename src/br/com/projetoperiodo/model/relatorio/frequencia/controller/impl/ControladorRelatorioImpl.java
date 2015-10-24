@@ -35,18 +35,18 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 		return dao.listar(builder.toString());
 	}
 	@Override
-	public Monitor prepararRelatoriosDoMonitor(Monitor monitor) {
+	public void prepararRelatoriosDoMonitor(Monitor monitor) {
 
 		ControladorSemana controladorSemana = Fachada.getInstance().getControladorSemana();
 		RelatorioFrequencia relatorio;
 		for ( int mes = 1; mes <= 12; mes += 1) {
 			relatorio = (RelatorioFrequencia) this.criarEntidadeNegocio();
 			relatorio.setMes(mes);
-			relatorio = controladorSemana.preCadastrarSemanaDeRelatorio(relatorio);
 			relatorio.setMonitor(monitor);
 			dao.salvar(relatorio);
+			controladorSemana.cadastrarSemanasComRelatorio(relatorio);	
 		}
-		return monitor;
+		
 	}
 	@Override
 	public RelatorioFrequencia buscarRelatoriosDeMonitorPorMes(Monitor monitor, int mes) {

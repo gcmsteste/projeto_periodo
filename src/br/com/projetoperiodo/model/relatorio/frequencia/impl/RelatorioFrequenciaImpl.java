@@ -43,7 +43,7 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	@JoinColumn(name = "PROFESSOR_ID", referencedColumnName = "PROFESSOR_ID")
 	private Professor professor;
 
-	@OneToMany(mappedBy = "relatorio", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = SemanaImpl.class)
+	@OneToMany(mappedBy = "relatorio", cascade = CascadeType.MERGE, fetch = FetchType.EAGER, targetEntity = SemanaImpl.class)
 	private List<Semana> semanas;
 
 	public RelatorioFrequenciaImpl() {
@@ -117,7 +117,7 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	 * (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#getSemanas(int)
 	 */
-	public Semana getSemanas(int index) {
+	public Semana getSemana(int index) {
 
 		return semanas.get(index);
 	}

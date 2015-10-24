@@ -3,8 +3,11 @@ package br.com.projetoperiodo.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
@@ -74,4 +77,18 @@ public class Util {
         }
         return senha.toString();
     }
+    
+    public static String formatarData(Date data) {
+    	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt","br"));  
+    	return formatter.format(data);
+    }
+    
+    public static Date parseTextoData(String texto) throws ParseException {
+    	SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt","br"));
+		return fmt.parse(texto);
+			
+	
+    }
+    
+    
 }

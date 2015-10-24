@@ -1,6 +1,11 @@
+
 package br.com.projetoperiodo.servlets.cadastro;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
+import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.util.Fachada;
@@ -17,22 +23,26 @@ import br.com.projetoperiodo.util.constantes.Constantes;
  * Servlet implementation class ServletCadastroRelatorio
  */
 public class ServletCadastroRelatorio extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-    private static final String MES_RELATORIO = "mes";
-    private static final String RELATORIO_MENSAL = "relatorio";
-    
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletCadastroRelatorio() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	private static final String MES_RELATORIO = "mes";
+
+	private static final String RELATORIO_MENSAL = "relatorio";
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ServletCadastroRelatorio() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected synchronized void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		int mesRelatorio = Integer.valueOf(request.getParameter(MES_RELATORIO));
 		Monitor monitor = (Monitor) request.getSession(false).getAttribute(Constantes.ATRIBUTO_MONITORIA);
 		RelatorioFrequencia relatorio = Fachada.getInstance().buscarRelatorioMensal(monitor, mesRelatorio);
@@ -44,9 +54,28 @@ public class ServletCadastroRelatorio extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		RelatorioFrequencia relatorio = (RelatorioFrequencia) request.getSession(false).getAttribute(RELATORIO_MENSAL);
-		Semana primeiraSemana = relatorio.getSemanas(0);
-		primeiraSemana.setDescricao(request.getParameter("semanadescricao1"));
+		Semana semana;
+		Atividade atividade;
+		for (int posicaoSemana = 1; posicaoSemana <= RelatorioFrequencia.QUANTIDADE_SEMANAS_POR_RELATORIO; posicaoSemana++) {
+			semana = relatorio.getSemana(posicaoSemana - 1);
+			semana.setDescricao(request.getParameter("descricaosemana".concat(String.valueOf(posicaoSemana))));
+			for ( int posicaoAtividade = 1; posicaoAtividade <= Semana.QUANTIDADE_ATIVIDADES_POR_SEMANA; posicaoAtividade++) {
+				String dataStr = request.getParameter("semana" + posicaoSemana + "atividade" + posicaoAtividade);
+				atividade = semana.getAtividade(posicaoAtividade - 1);
+			
+				SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt","br"));
+				  try {
+					Date data = formater.parse(dataStr);
+					atividade.setData(data);
+				} catch (ParseException e) {
+					// TODO Tratar erro de data invalida
+					e.printStackTrace();
+				}
+			
+			}
+		}
 		Fachada.getInstance().atualizarRelatorio(relatorio);
 		request.getRequestDispatcher("/relatorio.do").forward(request, response);
 	}

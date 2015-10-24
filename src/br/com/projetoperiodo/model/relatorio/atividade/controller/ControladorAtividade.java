@@ -10,6 +10,6 @@ public interface ControladorAtividade extends ControladorNegocio
 
 	EntidadeNegocio criarEntidadeNegocio();
 	
-	Semana preCadastrarSemanaAtividade(Semana semana);
+	void cadastrarAtividadesComSemanaDeRelatorio(Semana semana);
 
 }

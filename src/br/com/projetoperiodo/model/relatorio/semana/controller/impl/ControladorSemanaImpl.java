@@ -26,15 +26,16 @@ public class ControladorSemanaImpl extends ControladorNegocioImpl implements Con
 	}
 	
 	@Override
-	public RelatorioFrequencia preCadastrarSemanaDeRelatorio(RelatorioFrequencia relatorio) {
+	public void cadastrarSemanasComRelatorio(RelatorioFrequencia relatorio) {
 
 		ControladorAtividade controladorAtividade = Fachada.getInstance().getControladorAtividade();
 		for ( int i = 0; i < RelatorioFrequencia.QUANTIDADE_SEMANAS_POR_RELATORIO; i++) {
 			Semana semana = (Semana)this.criarEntidadeNegocio();
-			semana = controladorAtividade.preCadastrarSemanaAtividade(semana);
-			relatorio.setSemanas(semana);
+			semana.setRelatorio(relatorio);
+			dao.salvar(semana);
+			controladorAtividade.cadastrarAtividadesComSemanaDeRelatorio(semana);
+			
 		}
-		return relatorio;
 	}
 
 }
