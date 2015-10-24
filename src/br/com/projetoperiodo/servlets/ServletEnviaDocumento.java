@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ServletEnviaDocumento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static final String PATH_RELATORIO = "\\pdf\\selection.pdf";
-    private static final String FILE_NAME = "selection.pdf";
+    private static final String PATH_RELATORIO = "\\pdf\\relatorio.pdf";
+    private static final String FILE_NAME = "relatorio.pdf";
     /**
      * @see HttpServlet#HttpServlet()
      */

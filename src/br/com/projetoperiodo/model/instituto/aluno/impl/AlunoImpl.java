@@ -34,7 +34,7 @@ public class AlunoImpl extends UsuarioImpl implements Aluno
 {
 	@Column( name = "ALUNO_MATRICULA", nullable = false)
 	private String matricula;
-	@ManyToOne(fetch = FetchType.LAZY, optional = true, targetEntity= CursoImpl.class)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity= CursoImpl.class)
 	@JoinColumn(name = "CURSO_ID", referencedColumnName = "CURSO_ID")
 	private Curso curso;
 	

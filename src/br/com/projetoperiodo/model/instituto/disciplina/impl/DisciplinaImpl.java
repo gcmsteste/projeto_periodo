@@ -36,11 +36,11 @@ public class DisciplinaImpl extends EntidadeNegocioImpl implements Disciplina {
 	@JoinTable(name = "DISCIPLINA_ALUNO", joinColumns = @JoinColumn(name = "DISCIPLINA_ID") , inverseJoinColumns = @JoinColumn(name = "ALUNO_ID") )
 	private List<Aluno> pagantes;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = CursoImpl.class)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false, targetEntity = CursoImpl.class)
 	@JoinColumn(name = "CURSO_ID", referencedColumnName = "CURSO_ID")
 	private Curso curso;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = true, targetEntity = ProfessorImpl.class)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity = ProfessorImpl.class)
 	@JoinColumn(name = "PROFESSOR_ID", referencedColumnName = "PROFESSOR_ID")
 	private Professor professor;
 

@@ -33,7 +33,7 @@ public class ServletGerarDocumento extends HttpServlet {
 		Monitor monitor = (Monitor) request.getSession(false).getAttribute(Constantes.ATRIBUTO_MONITORIA);
 		RelatorioFrequencia relatorio = Fachada.getInstance().buscarRelatorioMensal(monitor, mesRelatorio);
 		Fachada.getInstance().gerarDocumentoDeRelatorio(relatorio);
-		request.getRequestDispatcher("enviarDocumento.do").forward(request, response);;
+		request.getRequestDispatcher("/enviarDocumento.do").forward(request, response);
 	}
 
 	/**

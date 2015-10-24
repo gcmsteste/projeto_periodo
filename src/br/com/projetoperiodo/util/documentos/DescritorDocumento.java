@@ -1,3 +1,4 @@
+
 package br.com.projetoperiodo.util.documentos;
 
 import java.io.File;
@@ -37,36 +38,51 @@ import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 public class DescritorDocumento {
 
 	private PdfReader reader;
+
 	private static final String SOURCE = "C:\\Users\\EdmilsonS\\Projetos Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\selection.pdf";
+
 	private static final String DEST = "C:\\Users\\EdmilsonS\\Projetos Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\relatorio.pdf";
+
 	private PdfContentByte conteudoDocumento;
+
 	private PdfStamper copia;
+
 	private FontSelector seletorFonte;
+
 	public static final int NOME_MONITOR_X = 124;
+
 	public static final int NOME_MONITOR_Y = 675;
 
 	public static final int QUANTIDADE_ATIVIDADES = 5;
+
 	public static final int QUANTIDADE_SEMANAS = 5;
 
 	public static final int NOME_DISCIPLINA_X = 132;
+
 	public static final int NOME_DISCIPLINA_Y = 658;
 
 	public static final int NOME_ORIENTADOR_X = 142;
+
 	public static final int NOME_ORIENTADOR_Y = 641;
 
 	public static final int MATRICULA_X = 546;
+
 	public static final int MATRICULA_Y = 675;
 
 	public static final int NOME_CURSO_X = 534;
+
 	public static final int NOME_CURSO_Y = 658;
 
 	public static final int MES_X = 534;
+
 	public static final int MES_Y = 730;
 
 	public static final int ANO_X = 534;
+
 	public static final int ANO_Y = 658;
 
 	public static final int ATIVIDADE_Y = 588;
+
 	public static final int HORARIO_ENTRADA_X = 340;
 
 	public static final int HORARIO_SAIDA_X = 390;
@@ -74,12 +90,13 @@ public class DescritorDocumento {
 	public static final int DATA_ATIVIDADE_X = 307;
 
 	public static final int SEMANA_DESCRICAO_X = 250;
+
 	public static final int SEMANA_DESCRICAO_Y = 588;
 
 	private DescritorDocumento() {
 		try {
 			System.getProperty("user.dir");
-			reader = new PdfReader(SOURCE);		
+			reader = new PdfReader(SOURCE);
 			copia = new PdfStamper(reader, new FileOutputStream(DEST));
 			conteudoDocumento = copia.getOverContent(1);
 			configurarFonteDocumento();
@@ -92,20 +109,24 @@ public class DescritorDocumento {
 	}
 
 	private void configurarFonteDocumento() {
+
 		this.seletorFonte = new FontSelector();
 		Font font = FontFactory.getFont(FontFactory.HELVETICA, 11);
 		this.seletorFonte.addFont(font);
 	}
 
 	public void closeReader() {
+
 		reader.close();
 	}
 
 	public static DescritorDocumento getInstancia() {
+
 		return new DescritorDocumento();
 	}
 
 	private void preencherNomeMonitor(String nome) {
+
 		Phrase phrase = seletorFonte.process(nome);
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_MONITOR_X, NOME_MONITOR_Y, 0);
 	}
@@ -113,8 +134,7 @@ public class DescritorDocumento {
 	private void preencherNomeDisciplina(String nome) {
 
 		Phrase phrase = seletorFonte.process(nome);
-		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_DISCIPLINA_X, NOME_DISCIPLINA_Y,
-				0);
+		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_DISCIPLINA_X, NOME_DISCIPLINA_Y, 0);
 	}
 
 	private void preencherCampoMes(String nome) {
@@ -126,11 +146,11 @@ public class DescritorDocumento {
 	private void preencherNomeOrientador(String nome) {
 
 		Phrase phrase = seletorFonte.process(nome);
-		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_ORIENTADOR_X, NOME_ORIENTADOR_Y,
-				0);
+		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_ORIENTADOR_X, NOME_ORIENTADOR_Y, 0);
 	}
 
 	private void preencherMatricula(String nome) {
+
 		Phrase phrase = seletorFonte.process(nome);
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, MATRICULA_X, MATRICULA_Y, 0);
 	}
@@ -142,22 +162,34 @@ public class DescritorDocumento {
 	}
 
 	private void preencherHorarioEntradaAtividade(Atividade atividade, int decrementoPosicaoRelativaY) {
-		Phrase phrase = seletorFonte.process(atividade.getHorarioEntrada());
-		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, HORARIO_ENTRADA_X,
-				ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
+
+		if (atividade.getHorarioEntrada() != null) {
+			Phrase phrase = seletorFonte.process(atividade.getHorarioEntrada());
+			ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, HORARIO_ENTRADA_X,
+							ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
+		}
+
 	}
 
 	private void preencherHorarioSaidaAtividade(Atividade atividade, int decrementoPosicaoRelativaY) {
-		Phrase phrase = seletorFonte.process(atividade.getHorarioSaida());
-		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, HORARIO_SAIDA_X,
-				ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
+
+		if (atividade.getHorarioSaida() != null) {
+			Phrase phrase = seletorFonte.process(atividade.getHorarioSaida());
+			ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, HORARIO_SAIDA_X,
+							ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
+		}
+
 	}
 
 	private void preencherDataAtividade(Atividade atividade, int decrementoPosicaoRelativaY) {
-		DateFormat formataData = DateFormat.getDateInstance();
-		Phrase phrase = seletorFonte.process(formataData.format(atividade.getData()));
-		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, DATA_ATIVIDADE_X,
-				ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
+
+		if (atividade.getData() != null) {
+			DateFormat formataData = DateFormat.getDateInstance();
+			Phrase phrase = seletorFonte.process(formataData.format(atividade.getData()));
+			ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, DATA_ATIVIDADE_X,
+							ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
+		}
+
 	}
 
 	private void preencherHorarioEntradaRelatorio(int posicao, Atividade atividade) {
@@ -176,6 +208,7 @@ public class DescritorDocumento {
 	}
 
 	private void preencherDescricaoQuartaSemana(Semana semana) throws DocumentException {
+
 		Phrase phrase = seletorFonte.process(semana.getDescricao());
 		ColumnText columnText = new ColumnText(conteudoDocumento);
 		columnText.setSimpleColumn(phrase, 73, 389, 250, 100, 10, Element.ALIGN_JUSTIFIED);
@@ -193,6 +226,7 @@ public class DescritorDocumento {
 	}
 
 	private void preencherDescricaoTerceiraSemana(Semana semana) throws DocumentException {
+
 		Phrase phrase = seletorFonte.process(semana.getDescricao());
 		ColumnText columnText = new ColumnText(conteudoDocumento);
 		columnText.setSimpleColumn(phrase, 73, 459, 250, 100, 10, Element.ALIGN_JUSTIFIED);
@@ -210,6 +244,7 @@ public class DescritorDocumento {
 	}
 
 	private void preencherAtividadesSemanais(Atividade atividade, int decrementoPosicaoRelativaY) {
+
 		preencherDataAtividade(atividade, decrementoPosicaoRelativaY);
 		preencherHorarioEntradaAtividade(atividade, decrementoPosicaoRelativaY);
 		preencherHorarioSaidaAtividade(atividade, decrementoPosicaoRelativaY);
@@ -235,7 +270,7 @@ public class DescritorDocumento {
 			}
 
 		}
-		
+
 		try {
 			preencherDescricaoPrimeiraSemana(relatorio.getSemana(0));
 			preencherDescricaoSegundaSemana(relatorio.getSemana(1));
@@ -250,7 +285,7 @@ public class DescritorDocumento {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	private void preencherDescricaoSemana(Semana semana) {
@@ -258,11 +293,11 @@ public class DescritorDocumento {
 	}
 
 	public static void main(String[] args) throws DocumentException, IOException {
+
 		RelatorioFrequencia relatorio = new RelatorioFrequenciaImpl();
 		for (int i = 0; i < 5; i++) {
 			SemanaImpl semana = new SemanaImpl();
-			semana.setDescricao(
-					"Esta é uma descrição semanal");
+			semana.setDescricao("Esta é uma descrição semanal");
 			for (int j = 0; j < 5; j++) {
 				AtividadeImpl atividade = new AtividadeImpl();
 				atividade.setHorarioEntrada("14:00");
@@ -277,7 +312,7 @@ public class DescritorDocumento {
 		Disciplina disciplina = new DisciplinaImpl();
 		Professor professor = new ProfessorImpl();
 		Curso curso = new CursoImpl();
-		Aluno aluno =  new AlunoImpl();
+		Aluno aluno = new AlunoImpl();
 		curso.setDescricao("Análise de Sistemas");
 		professor.setNome("Marcos Costa");
 		disciplina.setDescricao("Introdução à Programação");
