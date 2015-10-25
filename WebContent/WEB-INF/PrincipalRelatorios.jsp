@@ -8,79 +8,92 @@
 <script src="js/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
 <script src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<style>
+ul {
+	width: 330px;
+}
+</style>
 <script>
 	$(function() {
+		$(".rerun").button().click(function() {
 
-		$("#select").button({
-
+		}).next().button({
 			text : false,
-
-		})
-
-		.click(function() {
-
+			icons : {
+				primary : "ui-icon-triangle-1-s"
+			}
+		}).click(function() {
 			var menu = $(this).parent().next().show().position({
-
 				my : "left top",
-
 				at : "left bottom",
-
-				of : this
-
-			}).click(function() {
-				
+				of : this,
+				collision: "fit"
 			});
 			$(document).one("click", function() {
-
 				menu.hide();
-
 			});
-
 			return false;
-
-		})
-
-		.parent()
-
-		.buttonset()
-
-		.next()
-
-		.hide()
-
-		.menu();
-
+		}).parent().buttonset().next().hide().menu();
 	});
 </script>
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<button id="select">Janeiro</button>
-	</div>
-	<ul>
-		<li><a href="gerarDocumento.do?mes=1">Gerar documento</a></li>
-	</ul>
 
-
+	<jsp:include page="cabecalhoUsuarioLogado.jsp" />
 	<table>
-		<tr>
-			<td><button>Janeiro</button></td>
-			<td><a href="cadastroRelatorio.do?mes=2">Fevereiro</a></td>
-			<td><a href="cadastroRelatorio.do?mes=3">Março</a></td>
-			<td><a href="cadastroRelatorio.do?mes=4">Abril</a></td>
-			<td><a href="cadastroRelatorio.do?mes=5">Maio</a></td>
-			<td><a href="cadastroRelatorio.do?mes=6">Junho</a></td>
 
+		<tr>
+			<td><a class="rerun" href="cadastroRelatorio.do?mes=1">Janeiro</a>
+				<a class="select">Select an action</a></td>
+			<td><a href="gerarDocumento.do?mes=1">Gerar Documento</a></td>
+		
+			<td><a class="rerun" href="cadastroRelatorio.do?mes=2">Fevereiro</a>
+				<a class="select">Select an action</a></td>
+			<td><a href="gerarDocumento.do?mes=2">Gerar Documento</a></td>
+
+			<td><a class="rerun" href="cadastroRelatorio.do?mes=3">Março</a>
+				<a class="select">Select an action</a></td>
+			<td><a href="gerarDocumento.do?mes=3">Gerar Documento</a></td>
+			
+			<td><a class="rerun" href="cadastroRelatorio.do?mes=4">Abril</a>
+				<a class="select">Select an action</a></td>
+			<td><a href="gerarDocumento.do?mes=4">Gerar Documento</a></td>
+			
+			<td><a class="rerun" href="cadastroRelatorio.do?mes=5">Maio</a>
+				<a class="select">Select an action</a></td>
+			<td><a href="gerarDocumento.do?mes=5">Gerar Documento</a></td>
+			
+			<td><a class="rerun" href="cadastroRelatorio.do?mes=6">Junho</a>
+				<a class="select">Select an action</a></td>
+			<td><a href="gerarDocumento.do?mes=6">Gerar Documento</a></td>
 		</tr>
 		<tr>
-			<td><a href="cadastroRelatorio.do?mes=7">Julho</a></td>
-			<td><a href="cadastroRelatorio.do?mes=8">Agosto</a></td>
-			<td><a href="cadastroRelatorio.do?mes=9">Setembro</a></td>
-			<td><a href="cadastroRelatorio.do?mes=10">Outubro</a></td>
-			<td><a href="cadastroRelatorio.do?mes=11">Novembro</a></td>
-			<td><a href="cadastroRelatorio.do?mes=12">Dezembro</a></td>
+			<td><a class="rerun" href="cadastroRelatorio.do?mes=7">julho</a>
+				<a class="select">Select an action</a></td>
+			<td><a href="gerarDocumento.do?mes=7">Gerar Documento</a></td>
+		
+			<td><a class="rerun" href="cadastroRelatorio.do?mes=8">Agosto</a>
+				<a class="select">Select an action</a></td>
+			<td><a href="gerarDocumento.do?mes=8">Gerar Documento</a></td>
+
+			<td><a class="rerun" href="cadastroRelatorio.do?mes=9">Setembro</a>
+				<a class="select">Select an action</a></td>
+			<td><a href="gerarDocumento.do?mes=9">Gerar Documento</a></td>
+			
+			<td><a class="rerun" href="cadastroRelatorio.do?mes=10">Outubro</a>
+				<a class="select">Select an action</a></td>
+			<td><a href="gerarDocumento.do?mes=10">Gerar Documento</a></td>
+			
+			<td><a class="rerun" href="cadastroRelatorio.do?mes=11">Novembro</a>
+				<a class="select">Select an action</a></td>
+			<td><a href="gerarDocumento.do?mes=11">Gerar Documento</a></td>
+			
+			<td><a class="rerun" href="cadastroRelatorio.do?mes=12">Dezembro</a>
+				<a class="select">Select an action</a></td>
+			<td><a href="gerarDocumento.do?mes=12">Gerar Documento</a></td>
 		</tr>
 	</table>
+	<jsp:include page="rodape.jsp" />
 </body>
 </html>

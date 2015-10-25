@@ -9,78 +9,60 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<link rel="stylesheet" type="text/css" href="css/login.css" />
 
 
 <title>Insert title here</title>
+<script type="application/x-javascript">
+	
+	
+	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 
+
+</script>
 </head>
 
 <body>
+	<jsp:include page="cabecalho.jsp" />
+	<div class="container">
 
-	<table id="menu">
-		<tr>
-			<td><a href="" id="linke">Login</a></td>
-			<td><a href="login.do" id="linkc">Entrar</a></td>
-			<td><a href="" id="linkd">Cadastro</a></td>
-			<td><a href="Professor.jsp" id="linka">Professor</a></td>
-			<td><a href="cadastroAluno.do" id="linkb">Aluno</a></td>
-		</tr>
+		<div id="login-form">
 
-	</table>
+			<h3>Login</h3>
 
-	<form action="efetuarLogon.do" method="post">
+			<fieldset>
 
-		<fieldset id="fieldset1">
+				<form action="efetuarLogon.do" method="post">
 
-			<div id="login">
+					<input type="text" required value="Email"
+						onBlur="if(this.value=='')this.value='Email'"
+						onFocus="if(this.value=='Email')this.value='' " name="login">
+					<!-- JS because of IE support; better: placeholder="Email" -->
 
-				<label for="login">Nome do usuário</label>
+					<input type="password" required value="Password"
+						onBlur="if(this.value=='')this.value='Password'"
+						onFocus="if(this.value=='Password')this.value='' " name="senha">
+					<!-- JS because of IE support; better: placeholder="Password" -->
 
-				<c:choose>
+					<input type="submit" value="Login">
 
-					<c:when test="${not empty requestScope.ERRO_ACESSO_NEGADO}">
-						<input type="text" name="login" id="login"
-							value="${requestScope.ERRO_ACESSO_NEGADO }"
-							placeholder="Informe seu nome..." size="30" />
+					<footer class="clearfix">
 
-					</c:when>
+						<p>
+							<span class="info">?</span><a href="#">Forgot Password</a>
+						</p>
 
-					<c:otherwise>
+					</footer>
 
-						<input type="text" name="login" id="login"
-							placeholder="Informe seu nome..." size="30" />
-
-					</c:otherwise>
-
-				</c:choose>
-
-			</div>
-
-			<div>
-
-				<label for="senha">Senha</label> <input type="password" id="senha"
-					name="senha" size="30" placeholder="Informe sua senha..." />
-
-			</div>
-
-			<p>
-
-				<a href="solicitaSenha.do" id="linksenha">Esqueceu sua senha ?</a>
-
-			</p>
-
-			<fieldset id="fieldset2">
-
-				<input type="checkbox" name="opcao" id="opcao" /> <label
-					for="opcao">Mantenha-me logado</label> <input type="submit"
-					name="login" id="login" value="Login" />
+				</form>
 
 			</fieldset>
 
-		</fieldset>
+		</div>
+		<!-- end login-form -->
 
-	</form>
-
+	</div>
+	<jsp:include page="rodape.jsp" />
 </body>
 
 </html>

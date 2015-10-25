@@ -20,6 +20,8 @@
 			<div id="menu">
 				<ul>
 					<li><a class="active" href="acesso.do"><span>Home</span></a></li>
+					<li><a class="active" href="logout.do"><span>Sair</span></a></li>
+					<li><a class="active" href="cadastroMonitoria.do"><span>Cadastrar monitoria</span></a></li>
 				</ul>
 			</div>
 			<!--Menu END-->

@@ -9,8 +9,13 @@
 <script src="js/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
 <script src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script type="text/javascript">
+	$(function() {
+		$("input[type=submit]").button().click(function(event) {
+			
+		});
+	});
 	$(function() {
 		$(".datepicker").datepicker(
 				{
@@ -29,13 +34,78 @@
 					prevText : 'Anterior'
 				});
 	});
+
 	$(function() {
-		$("#accordion").accordion();
+		$("#accordion").accordion({
+			event : "click hoverintent"
+		});
 	});
+
+	/*
+	 * hoverIntent | Copyright 2011 Brian Cherne
+	 * http://cherne.net/brian/resources/jquery.hoverIntent.html
+	 * modified by the jQuery UI team
+	 */
+	$.event.special.hoverintent = {
+		setup : function() {
+			$(this).bind("mouseover", jQuery.event.special.hoverintent.handler);
+		},
+		teardown : function() {
+			$(this).unbind("mouseover",
+					jQuery.event.special.hoverintent.handler);
+		},
+		handler : function(event) {
+			var currentX, currentY, timeout, args = arguments, target = $(event.target), previousX = event.pageX, previousY = event.pageY;
+
+			function track(event) {
+				currentX = event.pageX;
+				currentY = event.pageY;
+			}
+			;
+
+			function clear() {
+				target.unbind("mousemove", track).unbind("mouseout", clear);
+				clearTimeout(timeout);
+			}
+
+			function handler() {
+				var prop, orig = event;
+
+				if ((Math.abs(previousX - currentX) + Math.abs(previousY
+						- currentY)) < 7) {
+					clear();
+
+					event = $.Event("hoverintent");
+					for (prop in orig) {
+						if (!(prop in event)) {
+							event[prop] = orig[prop];
+						}
+					}
+					// Prevent accessing the original event since the new event
+					// is fired asynchronously and the old event is no longer
+					// usable (#6028)
+					delete event.originalEvent;
+
+					target.trigger(event);
+				} else {
+					previousX = currentX;
+					previousY = currentY;
+					timeout = setTimeout(handler, 100);
+				}
+			}
+
+			timeout = setTimeout(handler, 100);
+			target.bind({
+				mousemove : track,
+				mouseout : clear
+			});
+		}
+	};
 </script>
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="cabecalhoUsuarioLogado.jsp" />
 	<form action="cadastroRelatorio.do" method="post">
 		<div id="accordion">
 			<h3>Primeira semana</h3>
@@ -51,18 +121,18 @@
 
 				<label>Segundo dia</label> <input type="text" class="datepicker"
 					name="semana1atividade2"
-					value="${ sessionScope['relatorio'].semanas[0].atividades[1].data }" />
+						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[0].atividades[1].data}" />" />
 
 				<label>Terceiro dia</label> <input type="text" class="datepicker"
 					name="semana1atividade3"
-					value="${ sessionScope['relatorio'].semanas[0].atividades[2].data }" />
+						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[0].atividades[2].data}" />" />
 
 				<label>Quarto dia</label> <input type="text" class="datepicker"
 					name="semana1atividade4"
-					value="${ sessionScope['relatorio'].semanas[0].atividades[3].data }" />
+						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[0].atividades[3].data}" />" />
 				<label>Quinto dia</label> <input type="text" class="datepicker"
 					name="semana1atividade5"
-					value="${ sessionScope['relatorio'].semanas[0].atividades[4].data }" />
+						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[0].atividades[4].data}" />" />
 
 			</div>
 			<h3>Segunda semana</h3>
@@ -74,50 +144,50 @@
 
 				<label>Primeiro dia</label> <input type="text" class="datepicker"
 					name="semana2atividade1"
-					value="${ sessionScope['relatorio'].semanas[1].atividades[0].data }" />
+						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[0].data}" />" />
 
 				<label>Segundo dia</label> <input type="text" class="datepicker"
 					name="semana2atividade2"
-					value="${ sessionScope['relatorio'].semanas[1].atividades[1].data }" />
+						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[1].data}" />" />
 
 				<label>Terceiro dia</label> <input type="text" class="datepicker"
 					name="semana2atividade3"
-					value="${ sessionScope['relatorio'].semanas[1].atividades[2].data }" />
+						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[2].data}" />" />
 
 				<label>Quarto dia</label> <input type="text" class="datepicker"
 					name="semana2atividade4"
-					value="${ sessionScope['relatorio'].semanas[1].atividades[3].data }" />
+						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[3].data}" />" />
 				<label>Quinto dia</label> <input type="text" class="datepicker"
 					name="semana2atividade5"
-					value="${ sessionScope['relatorio'].semanas[1].atividades[4].data }" />
+						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[4].data}" />" />
 
 			</div>
 
 			<h3>Terceira semana</h3>
 			<div>
-
+			
 				<textarea rows="13" cols="30" name="descricaosemana3">
 					<c:out value="${ sessionScope['relatorio'].semanas[2].descricao}" />
 				</textarea>
 
 				<label>Primeiro dia</label> <input type="text" class="datepicker"
 					name="semana3atividade1"
-					value="${ sessionScope['relatorio'].semanas[2].atividades[0].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[2].atividades[0].data}" />" />
 
 				<label>Segundo dia</label> <input type="text" class="datepicker"
 					name="semana3atividade2"
-					value="${ sessionScope['relatorio'].semanas[2].atividades[1].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[2].atividades[1].data}" />" />
 
 				<label>Terceiro dia</label> <input type="text" class="datepicker"
 					name="semana3atividade3"
-					value="${ sessionScope['relatorio'].semanas[2].atividades[2].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[2].atividades[2].data}" />" />
 
 				<label>Quarto dia</label> <input type="text" class="datepicker"
 					name="semana3atividade4"
-					value="${ sessionScope['relatorio'].semanas[2].atividades[3].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[2].atividades[3].data}" />" />
 				<label>Quinto dia</label> <input type="text" class="datepicker"
 					name="semana3atividade5"
-					value="${ sessionScope['relatorio'].semanas[2].atividades[4].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[2].atividades[4].data}" />" />
 
 			</div>
 
@@ -131,22 +201,22 @@
 
 				<label>Primeiro dia</label> <input type="text" class="datepicker"
 					name="semana4atividade1"
-					value="${ sessionScope['relatorio'].semanas[3].atividades[0].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[3].atividades[0].data}" />" />
 
 				<label>Segundo dia</label> <input type="text" class="datepicker"
 					name="semana4atividade2"
-					value="${ sessionScope['relatorio'].semanas[3].atividades[1].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[3].atividades[1].data}" />" />
 
 				<label>Terceiro dia</label> <input type="text" class="datepicker"
 					name="semana4atividade3"
-					value="${ sessionScope['relatorio'].semanas[3].atividades[2].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[3].atividades[2].data}" />" />
 
 				<label>Quarto dia</label> <input type="text" class="datepicker"
 					name="semana4atividade4"
-					value="${ sessionScope['relatorio'].semanas[3].atividades[3].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[3].atividades[3].data}" />" />
 				<label>Quinto dia</label> <input type="text" class="datepicker"
 					name="semana4atividade5"
-					value="${ sessionScope['relatorio'].semanas[3].atividades[4].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[3].atividades[4].data}" />" />
 
 			</div>
 			<h3>Quinta semana</h3>
@@ -158,22 +228,22 @@
 
 				<label>Primeiro dia</label> <input type="text" class="datepicker"
 					name="semana5atividade1"
-					value="${ sessionScope['relatorio'].semanas[4].atividades[0].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[4].atividades[0].data}" />" />
 
 				<label>Segundo dia</label> <input type="text" class="datepicker"
 					name="semana5atividade2"
-					value="${ sessionScope['relatorio'].semanas[4].atividades[1].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[4].atividades[1].data}" />" />
 
 				<label>Terceiro dia</label> <input type="text" class="datepicker"
 					name="semana5atividade3"
-					value="${ sessionScope['relatorio'].semanas[4].atividades[2].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[4].atividades[2].data}" />" />
 
 				<label>Quarto dia</label> <input type="text" class="datepicker"
 					name="semana5atividade4"
-					value="${ sessionScope['relatorio'].semanas[4].atividades[3].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[4].atividades[3].data}" />" />
 				<label>Quinto dia</label> <input type="text" class="datepicker"
 					name="semana5atividade5"
-					value="${ sessionScope['relatorio'].semanas[4].atividades[4].data }" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[4].atividades[4].data}" />" />
 
 			</div>
 		</div>

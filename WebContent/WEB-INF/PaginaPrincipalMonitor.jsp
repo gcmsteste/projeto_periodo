@@ -5,15 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/monitorias.css" />
+<title>Monitoria IFPE-TADS</title>
 <script>
-
+	
 </script>
 </head>
 <body>
-	<form action="cadastroMonitoria.do">
-		<input type="submit" value="Cadastrar Monitoria" />
-	</form>
+	<jsp:include page="cabecalhoUsuarioLogado.jsp" />
+	
 	<table>
 		<tr>
 			<th>Descrição</th>
@@ -30,7 +30,7 @@
 				<td><c:out value=" ${monitoria.modalidade }" /></td>
 			</tr>
 		</c:forEach>
-
 	</table>
+	<jsp:include page="rodape.jsp" />
 </body>
 </html>
