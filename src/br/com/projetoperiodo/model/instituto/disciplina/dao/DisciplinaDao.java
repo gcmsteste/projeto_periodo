@@ -14,7 +14,7 @@ public interface DisciplinaDao extends EntidadeNegocioDao
 	
 	public void remover(Disciplina disciplina);
 	
-	public List<Disciplina> listar(); 
+	public List<Disciplina> listar(String condicao); 
 
 	public Disciplina buscar(int primaryK);
 	

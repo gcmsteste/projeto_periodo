@@ -13,12 +13,14 @@
 </head>
 <body>
 	<jsp:include page="cabecalhoUsuarioLogado.jsp" />
-	
+
 	<table>
+		
 		<tr>
 			<th>Descrição</th>
 			<th>Período</th>
 			<th>Modalidade</th>
+			<th><a href="cadastroMonitoria.do">&nbsp;</a></th>
 		</tr>
 		<c:forEach var="monitoria" items="${requestScope['listaMonitorias']}">
 			<tr>
@@ -28,6 +30,7 @@
 				</a></td>
 				<td><c:out value=" ${monitoria.periodo }" /></td>
 				<td><c:out value=" ${monitoria.modalidade }" /></td>
+				<td><a href="removeMonitoria.do?chaveMonitor=${monitoria.chavePrimaria}">&nbsp;</a></td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -50,9 +50,9 @@ public class JPADisciplinaDao implements DisciplinaDao{
 	}
 
 	@Override
-	public List<Disciplina> listar() {
+	public List<Disciplina> listar(String condicao) {
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
-		List<Disciplina> disciplinas = entityManager.createQuery("from DisciplinaImpl").getResultList();
+		List<Disciplina> disciplinas = entityManager.createQuery(condicao).getResultList();
 		entityManager.close();
 		
 		return disciplinas;

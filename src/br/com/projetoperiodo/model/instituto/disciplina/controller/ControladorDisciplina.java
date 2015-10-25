@@ -12,4 +12,5 @@ public interface ControladorDisciplina extends ControladorNegocio
 	List<Disciplina> listarDisciplinasCadastradas();
 	
 	Disciplina buscarDisciplina(String descricao) throws NegocioException;
+	
 }

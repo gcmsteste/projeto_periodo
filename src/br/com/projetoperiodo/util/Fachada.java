@@ -6,6 +6,9 @@ import java.util.List;
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.ControladorAluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.impl.ControladorAlunoImpl;
+import br.com.projetoperiodo.model.instituto.curso.Curso;
+import br.com.projetoperiodo.model.instituto.curso.controller.ControladorCurso;
+import br.com.projetoperiodo.model.instituto.curso.controller.ControladorCursoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.controller.ControladorDisciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.controller.impl.ControladorDisciplinaImpl;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
@@ -27,7 +30,10 @@ import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImp
 public class Fachada {
 
 	private static Fachada fachada = null;
-	public Fachada() { }
+
+	public Fachada() {
+	}
+
 	public synchronized static Fachada getInstance() {
 
 		if (fachada == null) {
@@ -37,77 +43,104 @@ public class Fachada {
 	}
 
 	public ControladorUsuario getControladorUsuario() {
+
 		return new ControladorUsuarioImpl();
 	}
-	
+
 	public ControladorAtividade getControladorAtividade() {
+
 		return new ControladorAtividadeImpl();
 	}
-	
+
 	public ControladorSemana getControladorSemana() {
+
 		return new ControladorSemanaImpl();
 	}
-	
+
 	public ControladorMonitor getControladorMonitor() {
+
 		return new ControladorMonitorImpl();
 	}
-	
+
 	public ControladorAluno getControladorAluno() {
+
 		return new ControladorAlunoImpl();
 	}
-	
+
 	public ControladorDisciplina getControladorDisciplina() {
+
 		return new ControladorDisciplinaImpl();
 	}
-	
+
+	public ControladorCurso getControladorCurso() {
+
+		return new ControladorCursoImpl();
+	}
+
 	public ControladorPeriodo getControladorPeriodo() {
+
 		return new ControladorPeriodoImpl();
 	}
-	
+
 	public ControladorRelatorio getControladorRelatorio() {
+
 		return new ControladorRelatorioImpl();
 	}
-	public List<RelatorioFrequencia> buscarRelatorios(long chavePrimaria){
+
+	public List<RelatorioFrequencia> buscarRelatorios(long chavePrimaria) {
+
 		Monitor monitor = (Monitor) this.getControladorMonitor().criarEntidadeNegocio();
 		monitor.setChavePrimaria(chavePrimaria);
 		ControladorRelatorio controladorRelatorio = this.getControladorRelatorio();
 		return controladorRelatorio.buscarRelatoriosDeMonitor(monitor);
 	}
-	
+
 	public RelatorioFrequencia buscarDetalhamentoRelatorio(long chavePrimaria) {
+
 		return null;
 	}
-	
+
 	public void preCadastroRelatoriosMonitor(EntidadeNegocio entidadeNegocio) {
+
 		Monitor monitor = (Monitor) entidadeNegocio;
 		ControladorRelatorio controladorRelatorio = this.getControladorRelatorio();
 		controladorRelatorio.prepararRelatoriosDoMonitor(monitor);
 	}
-	
-	public  List<Monitor> buscarMonitorias(Aluno aluno) {
+
+	public List<Monitor> buscarMonitorias(Aluno aluno) {
+
 		ControladorMonitor controladorMonitor = this.getControladorMonitor();
 		return controladorMonitor.listarMonitorias(aluno);
 	}
-	
+
 	public RelatorioFrequencia buscarRelatorioMensal(EntidadeNegocio entidade, int mes) {
-		Monitor monitor = (Monitor)entidade;
+
+		Monitor monitor = (Monitor) entidade;
 		ControladorRelatorio controladorFrequencia = this.getControladorRelatorio();
 		return controladorFrequencia.buscarRelatoriosDeMonitorPorMes(monitor, mes);
 	}
-	
+
 	public EntidadeNegocio buscarMonitoria(long chavePrimaria) {
+
 		ControladorMonitor controladorMonitor = this.getControladorMonitor();
 		return controladorMonitor.buscarMonitoria(chavePrimaria);
 	}
 
 	public void atualizarRelatorio(EntidadeNegocio entidade) {
-		RelatorioFrequencia relatorio = (RelatorioFrequencia)entidade;
+
+		RelatorioFrequencia relatorio = (RelatorioFrequencia) entidade;
 		this.getControladorRelatorio().atualizarRelatorio(relatorio);
 	}
-	
+
 	public void gerarDocumentoDeRelatorio(EntidadeNegocio entidade) {
-		RelatorioFrequencia relatorio = (RelatorioFrequencia)entidade;
+
+		RelatorioFrequencia relatorio = (RelatorioFrequencia) entidade;
 		this.getControladorRelatorio().gerarDocumentoDeRelatorio(relatorio);
 	}
-	
+
+	public EntidadeNegocio buscarCursoPadraoDeAluno() {
+
+		return this.getControladorCurso().buscarCursoPadrao();
+	}
+
 }

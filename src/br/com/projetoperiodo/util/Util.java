@@ -86,8 +86,12 @@ public class Util {
     public static Date parseTextoData(String texto) throws ParseException {
     	SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt","br"));
 		return fmt.parse(texto);
-			
-	
+    }
+    
+    public static String obterNomeMes(int mes) {
+    	String[] meses = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+    	                  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
+    	return meses[mes - 1];
     }
     
     

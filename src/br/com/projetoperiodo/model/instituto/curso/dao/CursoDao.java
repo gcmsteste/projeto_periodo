@@ -7,12 +7,14 @@ import br.com.projetoperiodo.model.instituto.curso.Curso;
 
 public interface CursoDao {
 
-	public List<Curso> listar();
-
 	public void salvar(Curso curso);
 
 	public void remover(Curso curso);
 
 	public void atualizar(Curso curso);
+
+	Curso buscar(long primaryKey);
+
+	List<Curso> listar(String condicao);
 
 }

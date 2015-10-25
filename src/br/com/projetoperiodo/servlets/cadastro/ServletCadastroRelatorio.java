@@ -17,6 +17,7 @@ import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.util.Fachada;
+import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
 
 /**
@@ -61,19 +62,19 @@ public class ServletCadastroRelatorio extends HttpServlet {
 		for (int posicaoSemana = 1; posicaoSemana <= RelatorioFrequencia.QUANTIDADE_SEMANAS_POR_RELATORIO; posicaoSemana++) {
 			semana = relatorio.getSemana(posicaoSemana - 1);
 			semana.setDescricao(request.getParameter("descricaosemana".concat(String.valueOf(posicaoSemana))));
-			for ( int posicaoAtividade = 1; posicaoAtividade <= Semana.QUANTIDADE_ATIVIDADES_POR_SEMANA; posicaoAtividade++) {
+			for (int posicaoAtividade = 1; posicaoAtividade <= Semana.QUANTIDADE_ATIVIDADES_POR_SEMANA; posicaoAtividade++) {
 				String dataStr = request.getParameter("semana" + posicaoSemana + "atividade" + posicaoAtividade);
 				atividade = semana.getAtividade(posicaoAtividade - 1);
-			
-				SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt","br"));
-				  try {
-					Date data = formater.parse(dataStr);
-					atividade.setData(data);
+
+				Date data = null;
+				try {
+					data = Util.parseTextoData(dataStr);
 				} catch (ParseException e) {
-					// TODO Tratar erro de data invalida
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			
+				atividade.setData(data);
+
 			}
 		}
 		Fachada.getInstance().atualizarRelatorio(relatorio);

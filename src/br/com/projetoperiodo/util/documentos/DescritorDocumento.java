@@ -1,7 +1,6 @@
 
 package br.com.projetoperiodo.util.documentos;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -26,6 +25,8 @@ import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
+import br.com.projetoperiodo.model.instituto.periodo.Periodo;
+import br.com.projetoperiodo.model.instituto.periodo.impl.PeriodoImpl;
 import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
@@ -34,14 +35,16 @@ import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
+import br.com.projetoperiodo.util.Util;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
 
 public class DescritorDocumento {
 
 	private PdfReader reader;
 
-	private static final String SOURCE = "C:\\Users\\EdmilsonS\\Projetos Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\selection.pdf";
+	private static final String SOURCE = "selection.pdf";
 
-	private static final String DEST = "C:\\Users\\EdmilsonS\\Projetos Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\relatorio.pdf";
+	private static final String DEST = "relatorio.pdf";
 
 	private PdfContentByte conteudoDocumento;
 
@@ -73,14 +76,18 @@ public class DescritorDocumento {
 
 	public static final int NOME_CURSO_Y = 658;
 
-	public static final int MES_X = 534;
+	public static final int MES_X = 487;
 
-	public static final int MES_Y = 730;
+	public static final int MES_Y = 718;
 
-	public static final int ANO_X = 534;
+	public static final int ANO_X = 521;
 
-	public static final int ANO_Y = 658;
+	public static final int ANO_Y = 718;
+	
+	public static final int EDITAL_X = 509;
 
+	public static final int EDITAL_Y = 696;
+	
 	public static final int ATIVIDADE_Y = 588;
 
 	public static final int HORARIO_ENTRADA_X = 340;
@@ -148,7 +155,15 @@ public class DescritorDocumento {
 		Phrase phrase = seletorFonte.process(nome);
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_ORIENTADOR_X, NOME_ORIENTADOR_Y, 0);
 	}
-
+	private void preencherCampoEdital(String nome) {
+		Phrase phrase = seletorFonte.process(nome);
+		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, EDITAL_X, EDITAL_Y, 0);
+	}
+	
+	private void preencherCampoAno(String nome) {
+		Phrase phrase = seletorFonte.process(nome);
+		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, ANO_X, ANO_Y, 0);
+	}
 	private void preencherMatricula(String nome) {
 
 		Phrase phrase = seletorFonte.process(nome);
@@ -257,7 +272,9 @@ public class DescritorDocumento {
 		preencherNomeOrientador(relatorio.getMonitor().getDisciplina().getProfessor().getNome());
 		preencherMatricula(relatorio.getMonitor().getAluno().getMatricula());
 		preencherNomeCurso(relatorio.getMonitor().getAluno().getCurso().getDescricao());
-		preencherCampoMes(Integer.toString(relatorio.getMes()));
+		preencherCampoMes(Util.obterNomeMes(relatorio.getMes()));
+		preencherCampoAno(String.valueOf(relatorio.getMonitor().getPeriodo().getAno()));
+		preencherCampoEdital(relatorio.getMonitor().getPeriodo().toString());
 
 		int decrementoPosicaoRelativaY = 0;
 		for (int posicaoSemana = 0; posicaoSemana < QUANTIDADE_SEMANAS; posicaoSemana++) {
@@ -288,10 +305,6 @@ public class DescritorDocumento {
 
 	}
 
-	private void preencherDescricaoSemana(Semana semana) {
-
-	}
-
 	public static void main(String[] args) throws DocumentException, IOException {
 
 		RelatorioFrequencia relatorio = new RelatorioFrequenciaImpl();
@@ -309,6 +322,9 @@ public class DescritorDocumento {
 		}
 
 		Monitor monitor = new MonitorImpl();
+		Periodo periodo = new PeriodoImpl();
+		periodo.setAno(2015);
+		periodo.setSemestre(Semestre.SEGUNDO);
 		Disciplina disciplina = new DisciplinaImpl();
 		Professor professor = new ProfessorImpl();
 		Curso curso = new CursoImpl();
@@ -322,6 +338,7 @@ public class DescritorDocumento {
 		aluno.setMatricula("20141Y6-RC0323");
 		aluno.setCurso(curso);
 		monitor.setAluno(aluno);
+		monitor.setPeriodo(periodo);
 		relatorio.setMonitor(monitor);
 		relatorio.setMes(9);
 		DescritorDocumento.getInstancia().gerarRelatorio(relatorio);

@@ -43,18 +43,18 @@ public class JPACursoDao implements CursoDao
 		transaction.commit();
 		entma.close();
 	}
-
-	public List<Curso> listar()
+	@Override
+	public List<Curso> listar(String condicao)
 	{
 		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		@SuppressWarnings("unchecked")
-		List<Curso> curso = entma.createQuery("from CursoImpl").getResultList();
+		List<Curso> curso = entma.createQuery(condicao).getResultList();
 		entma.close();
 		return curso;
 		
 	}
-
-	public Curso buscar(int primaryKey)
+	@Override
+	public Curso buscar(long primaryKey)
 	{
 		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();	
 

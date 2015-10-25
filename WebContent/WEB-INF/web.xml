@@ -35,7 +35,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>CadastroAlunoForm</servlet-name>
-		<jsp-file>/FormCadastroAluno.jsp</jsp-file>
+		<jsp-file>/CadastroAluno.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CadastroAlunoForm</servlet-name>

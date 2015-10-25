@@ -61,6 +61,8 @@ public class ServletCadastroMonitoria extends HttpServlet {
 
 		Disciplina disciplina = null;
 		Modalidade modalidade = Modalidade.valueOf(request.getParameter("modalidade"));
+		String horarioEntrada = request.getParameter("entrada");
+		String horarioSaida = request.getParameter("saida");
 		try {
 			disciplina = controladorDisciplina.buscarDisciplina(request.getParameter("disciplina"));
 		} catch (NegocioException e) {

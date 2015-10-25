@@ -9,59 +9,58 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<link rel="stylesheet" type="text/css" href="css/formulario.css" />
 <link rel="stylesheet" type="text/css" href="css/login.css" />
+<title>Monitoria IFPE-TADS</title>
 
-
-<title>Insert title here</title>
-<script type="application/x-javascript">
-	
-	
-	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-
-
-</script>
 </head>
 
 <body>
 	<jsp:include page="cabecalho.jsp" />
-	<div class="container">
+	 <form action="efetuarLogon.do" method="post">
+		
+		<fieldset id="fieldset1">
+        	
+        	<div id="login">
+        	
+				<label for="login">Login</label>
+					
+					<c:choose>
+					
+						<c:when test="${not empty requestScope.ERRO_ACESSO_NEGADO}">
+						<input type="text" name="login" id="login" value="${requestScope.ERRO_ACESSO_NEGADO }" placeholder="Informe seu nome..." size="30" />
+						
+					</c:when>
+					
+						<c:otherwise>
+							
+							<input type="text" name="login" id="login" placeholder="Informe seu login..." size="30" />
+							
+						</c:otherwise>
+						
+					</c:choose>
+				
+			 </div>
 
-		<div id="login-form">
-
-			<h3>Login</h3>
-
-			<fieldset>
-
-				<form action="efetuarLogon.do" method="post">
-
-					<input type="text" required value="Email"
-						onBlur="if(this.value=='')this.value='Email'"
-						onFocus="if(this.value=='Email')this.value='' " name="login">
-					<!-- JS because of IE support; better: placeholder="Email" -->
-
-					<input type="password" required value="Password"
-						onBlur="if(this.value=='')this.value='Password'"
-						onFocus="if(this.value=='Password')this.value='' " name="senha">
-					<!-- JS because of IE support; better: placeholder="Password" -->
-
-					<input type="submit" value="Login">
-
-					<footer class="clearfix">
-
-						<p>
-							<span class="info">?</span><a href="#">Forgot Password</a>
-						</p>
-
-					</footer>
-
-				</form>
-
-			</fieldset>
-
-		</div>
-		<!-- end login-form -->
-
-	</div>
+			<div>
+				
+				<label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" size="30" placeholder="Informe sua senha..." />
+                
+			</div>
+                    
+			<h1>          	
+            	<a href="">Esqueceu sua senha ?</a>       	
+			</h1>    
+            
+            <fieldset id="fieldset2">
+                <button type="submit">Login</button>  
+                <a id="botao-cadastro" href="cadastroAluno.do">Cadastro</a>                            
+             </fieldset>
+                        
+		</fieldset>
+            
+	</form>
 	<jsp:include page="rodape.jsp" />
 </body>
 

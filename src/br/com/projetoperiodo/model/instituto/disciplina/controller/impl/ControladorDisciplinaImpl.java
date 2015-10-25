@@ -27,8 +27,10 @@ public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements
 
 	@Override
 	public List<Disciplina> listarDisciplinasCadastradas() {
-
-		return dao.listar();
+		StringBuilder builder = new StringBuilder();
+		builder.append(" from ");
+		builder.append(" DisciplinaImpl ");
+		return dao.listar(builder.toString());
 	}
 	
 	@Override
@@ -39,5 +41,6 @@ public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements
 		
 		return (Disciplina) dao.buscar(filter);
 	}
+	
 
 }
