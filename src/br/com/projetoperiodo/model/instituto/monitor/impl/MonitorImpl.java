@@ -53,7 +53,12 @@ public class MonitorImpl extends EntidadeNegocioImpl implements Monitor {
 	@ManyToOne(fetch = FetchType.EAGER, optional = false, targetEntity = PeriodoImpl.class)
 	@JoinColumn(name = "PERIODO_ID", referencedColumnName = "PERIODO_ID")
 	private Periodo periodo;
-
+	
+	@Column( name = "HORARIO_SAIDA", nullable = true)
+	private String horario_entrada;
+	@Column( name = "HORARIO_ENTRADA", nullable = true)
+	private String horario_saida;
+	
 	@OneToMany(mappedBy = "monitor", fetch = FetchType.LAZY, cascade=CascadeType.REMOVE, targetEntity = RelatorioFrequenciaImpl.class)
 	private List<RelatorioFrequencia> relatoriosMensais;
 
@@ -158,6 +163,30 @@ public class MonitorImpl extends EntidadeNegocioImpl implements Monitor {
 	public Aluno getAluno() {
 
 		return aluno;
+	}
+
+	@Override
+	public String getHorarioEntrada() {
+
+		return this.horario_entrada;
+	}
+
+	@Override
+	public String getHorarioSaida() {
+	
+		return this.horario_saida;
+	}
+
+	@Override
+	public void setHorarioEntrada(String horario) {
+		this.horario_entrada = horario;
+		
+	}
+
+	@Override
+	public void setHorarioSaida(String horario) {
+		this.horario_saida = horario;
+		
 	}
 
 }

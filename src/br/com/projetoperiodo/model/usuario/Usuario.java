@@ -3,11 +3,6 @@ package br.com.projetoperiodo.model.usuario;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 
 public interface Usuario extends EntidadeNegocio {
@@ -41,5 +36,9 @@ public interface Usuario extends EntidadeNegocio {
 	boolean isSenhaExpirada();
 
 	void setSenhaExpirada(boolean senhaExpirada);
+
+	String getSobrenome();
+
+	void setSobrenome(String sobrenome);
 
 }

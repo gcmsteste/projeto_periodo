@@ -42,13 +42,9 @@ public class DescritorDocumento {
 
 	private PdfReader reader;
 
-	private static final String SOURCE = "C:\\Users\\EdmilsonS\\Projetos Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\selection.pdf";
+	private static final String SOURCE = "selection.pdf";
 
-	private static final String DEST = "C:\\Users\\EdmilsonS\\Projetos Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\relatorio.pdf";
-
-	private PdfContentByte conteudoDocumento;
-
-	private PdfStamper copia;
+	private static final String DEST = "relatorio.pdf";
 
 	private FontSelector seletorFonte;
 
@@ -104,14 +100,9 @@ public class DescritorDocumento {
 		try {
 			System.getProperty("user.dir");
 			reader = new PdfReader(SOURCE);
-			copia = new PdfStamper(reader, new FileOutputStream(DEST));
-			conteudoDocumento = copia.getOverContent(1);
 			configurarFonteDocumento();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
-		} catch (DocumentException e) {
-
-			e.printStackTrace();
 		}
 	}
 
@@ -132,92 +123,94 @@ public class DescritorDocumento {
 		return new DescritorDocumento();
 	}
 
-	private void preencherNomeMonitor(String nome) {
+	private void preencherNomeMonitor(String nome, PdfContentByte conteudoDocumento) {
 
 		Phrase phrase = seletorFonte.process(nome);
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_MONITOR_X, NOME_MONITOR_Y, 0);
 	}
 
-	private void preencherNomeDisciplina(String nome) {
+	private void preencherNomeDisciplina(String nome, PdfContentByte conteudoDocumento) {
 
 		Phrase phrase = seletorFonte.process(nome);
-		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_DISCIPLINA_X, NOME_DISCIPLINA_Y, 0);
+		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_DISCIPLINA_X, NOME_DISCIPLINA_Y,
+				0);
 	}
 
-	private void preencherCampoMes(String nome) {
+	private void preencherCampoMes(String nome, PdfContentByte conteudoDocumento) {
 
 		Phrase phrase = seletorFonte.process(nome);
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, MES_X, MES_Y, 0);
 	}
 
-	private void preencherNomeOrientador(String nome) {
+	private void preencherNomeOrientador(String nome, PdfContentByte conteudoDocumento) {
 
 		Phrase phrase = seletorFonte.process(nome);
-		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_ORIENTADOR_X, NOME_ORIENTADOR_Y, 0);
+		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_ORIENTADOR_X, NOME_ORIENTADOR_Y,
+				0);
 	}
 
-	private void preencherCampoEdital(String nome) {
+	private void preencherCampoEdital(String nome, PdfContentByte conteudoDocumento) {
 
 		Phrase phrase = seletorFonte.process(nome);
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, EDITAL_X, EDITAL_Y, 0);
 	}
 
-	private void preencherCampoAno(String nome) {
+	private void preencherCampoAno(String nome, PdfContentByte conteudoDocumento) {
 
 		Phrase phrase = seletorFonte.process(nome);
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, ANO_X, ANO_Y, 0);
 	}
 
-	private void preencherMatricula(String nome) {
+	private void preencherMatricula(String nome, PdfContentByte conteudoDocumento) {
 
 		Phrase phrase = seletorFonte.process(nome);
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, MATRICULA_X, MATRICULA_Y, 0);
 	}
 
-	private void preencherNomeCurso(String nome) {
+	private void preencherNomeCurso(String nome, PdfContentByte conteudoDocumento) {
 
 		Phrase phrase = seletorFonte.process(nome);
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, NOME_CURSO_X, NOME_CURSO_Y, 0);
 	}
 
-	private void preencherHorarioEntradaAtividade(Atividade atividade, int decrementoPosicaoRelativaY) {
+	private void preencherHorarioEntradaAtividade(Monitor monitor, int decrementoPosicaoRelativaY, PdfContentByte conteudoDocumento) {
 
-		if (atividade.getHorarioEntrada() != null) {
-			Phrase phrase = seletorFonte.process(atividade.getHorarioEntrada());
+		if (monitor.getHorarioEntrada() != null) {
+			Phrase phrase = seletorFonte.process(monitor.getHorarioEntrada());
 			ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, HORARIO_ENTRADA_X,
-							ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
+					ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
 		}
 
 	}
 
-	private void preencherHorarioSaidaAtividade(Atividade atividade, int decrementoPosicaoRelativaY) {
+	private void preencherHorarioSaidaAtividade(Monitor monitor, int decrementoPosicaoRelativaY, PdfContentByte conteudoDocumento) {
 
-		if (atividade.getHorarioSaida() != null) {
-			Phrase phrase = seletorFonte.process(atividade.getHorarioSaida());
+		if (monitor.getHorarioSaida() != null) {
+			Phrase phrase = seletorFonte.process(monitor.getHorarioSaida());
 			ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, HORARIO_SAIDA_X,
-							ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
+					ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
 		}
 
 	}
 
-	private void preencherDataAtividade(Atividade atividade, int decrementoPosicaoRelativaY) {
+	private void preencherDataAtividade(Atividade atividade, int decrementoPosicaoRelativaY, PdfContentByte conteudoDocumento) {
 
 		if (atividade.getData() != null) {
 			DateFormat formataData = DateFormat.getDateInstance();
 			Phrase phrase = seletorFonte.process(formataData.format(atividade.getData()));
 			ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, DATA_ATIVIDADE_X,
-							ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
+					ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
 		}
 
 	}
 
-	private void preencherHorarioEntradaRelatorio(int posicao, Atividade atividade) {
+	private void preencherHorarioEntradaRelatorio(int posicao, Atividade atividade, PdfContentByte conteudoDocumento) {
 
 		Phrase phrase = seletorFonte.process(atividade.getHorarioEntrada());
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, HORARIO_ENTRADA_X, ATIVIDADE_Y, 0);
 	}
 
-	private void preencherDescricaoSegundaSemana(Semana semana) throws DocumentException {
+	private void preencherDescricaoSegundaSemana(Semana semana, PdfContentByte conteudoDocumento) throws DocumentException {
 
 		if (semana.getDescricao() != null) {
 			Phrase phrase = seletorFonte.process(semana.getDescricao());
@@ -228,7 +221,7 @@ public class DescritorDocumento {
 
 	}
 
-	private void preencherDescricaoQuartaSemana(Semana semana) throws DocumentException {
+	private void preencherDescricaoQuartaSemana(Semana semana, PdfContentByte conteudoDocumento) throws DocumentException {
 
 		if (semana.getDescricao() != null) {
 			Phrase phrase = seletorFonte.process(semana.getDescricao());
@@ -239,7 +232,7 @@ public class DescritorDocumento {
 
 	}
 
-	private void preencherDescricaoQuintaSemana(Semana semana) throws DocumentException {
+	private void preencherDescricaoQuintaSemana(Semana semana, PdfContentByte conteudoDocumento) throws DocumentException {
 
 		if (semana.getDescricao() != null) {
 			Phrase phrase = seletorFonte.process(semana.getDescricao());
@@ -250,7 +243,7 @@ public class DescritorDocumento {
 
 	}
 
-	private void preencherDescricaoTerceiraSemana(Semana semana) throws DocumentException {
+	private void preencherDescricaoTerceiraSemana(Semana semana, PdfContentByte conteudoDocumento) throws DocumentException {
 
 		if (semana.getDescricao() != null) {
 			Phrase phrase = seletorFonte.process(semana.getDescricao());
@@ -261,7 +254,7 @@ public class DescritorDocumento {
 
 	}
 
-	private void preencherDescricaoPrimeiraSemana(Semana semana) throws DocumentException {
+	private void preencherDescricaoPrimeiraSemana(Semana semana, PdfContentByte conteudoDocumento) throws DocumentException {
 
 		if (semana.getDescricao() != null) {
 			Phrase phrase = seletorFonte.process(semana.getDescricao());
@@ -272,23 +265,34 @@ public class DescritorDocumento {
 
 	}
 
-	private void preencherAtividadesSemanais(Atividade atividade, int decrementoPosicaoRelativaY) {
+	private void preencherAtividadesSemanais(Atividade atividade, Monitor monitor, int decrementoPosicaoRelativaY, PdfContentByte conteudoDocumento) {
 
-		preencherDataAtividade(atividade, decrementoPosicaoRelativaY);
-		preencherHorarioEntradaAtividade(atividade, decrementoPosicaoRelativaY);
-		preencherHorarioSaidaAtividade(atividade, decrementoPosicaoRelativaY);
+		preencherDataAtividade(atividade, decrementoPosicaoRelativaY, conteudoDocumento);
+		preencherHorarioEntradaAtividade(monitor, decrementoPosicaoRelativaY, conteudoDocumento);
+		preencherHorarioSaidaAtividade(monitor, decrementoPosicaoRelativaY, conteudoDocumento);
 	}
 
 	public void gerarRelatorio(RelatorioFrequencia relatorio) {
 
-		preencherNomeMonitor(relatorio.getMonitor().getAluno().getNome());
-		preencherNomeDisciplina(relatorio.getMonitor().getDisciplina().getDescricao());
-		preencherNomeOrientador(relatorio.getMonitor().getDisciplina().getProfessor().getNome());
-		preencherMatricula(relatorio.getMonitor().getAluno().getMatricula());
-		preencherNomeCurso(relatorio.getMonitor().getAluno().getCurso().getDescricao());
-		preencherCampoMes(Util.obterNomeMes(relatorio.getMes()));
-		preencherCampoAno(String.valueOf(relatorio.getMonitor().getPeriodo().getAno()));
-		preencherCampoEdital(relatorio.getMonitor().getPeriodo().toString());
+		PdfStamper copia = null;
+		try {
+			copia = new PdfStamper(reader, new FileOutputStream(DEST));
+			
+		} catch (DocumentException | IOException e1) {
+
+			e1.printStackTrace();
+		}
+		
+		PdfContentByte conteudoDocumento = copia.getOverContent(1);
+		preencherNomeMonitor(relatorio.getMonitor().getAluno().getNome().concat(" ")
+				.concat(relatorio.getMonitor().getAluno().getSobrenome()), conteudoDocumento);
+		preencherNomeDisciplina(relatorio.getMonitor().getDisciplina().getDescricao(), conteudoDocumento);
+		preencherNomeOrientador(relatorio.getMonitor().getDisciplina().getProfessor().getNome(), conteudoDocumento);
+		preencherMatricula(relatorio.getMonitor().getAluno().getMatricula(), conteudoDocumento);
+		preencherNomeCurso(relatorio.getMonitor().getAluno().getCurso().getDescricao(), conteudoDocumento);
+		preencherCampoMes(Util.obterNomeMes(relatorio.getMes()), conteudoDocumento);
+		preencherCampoAno(String.valueOf(relatorio.getMonitor().getPeriodo().getAno()), conteudoDocumento);
+		preencherCampoEdital(relatorio.getMonitor().getPeriodo().toString(), conteudoDocumento);
 
 		int decrementoPosicaoRelativaY = 0;
 		for (int posicaoSemana = 0; posicaoSemana < QUANTIDADE_SEMANAS; posicaoSemana++) {
@@ -296,18 +300,18 @@ public class DescritorDocumento {
 
 			for (int i = 0; i < QUANTIDADE_ATIVIDADES; i++) {
 				Atividade atividade = semana.getAtividade(i);
-				preencherAtividadesSemanais(atividade, decrementoPosicaoRelativaY);
+				preencherAtividadesSemanais(atividade, relatorio.getMonitor(), decrementoPosicaoRelativaY, conteudoDocumento);
 				decrementoPosicaoRelativaY += 14;
 			}
 
 		}
 
 		try {
-			preencherDescricaoPrimeiraSemana(relatorio.getSemana(0));
-			preencherDescricaoSegundaSemana(relatorio.getSemana(1));
-			preencherDescricaoTerceiraSemana(relatorio.getSemana(2));
-			preencherDescricaoQuartaSemana(relatorio.getSemana(3));
-			preencherDescricaoQuintaSemana(relatorio.getSemana(4));
+			preencherDescricaoPrimeiraSemana(relatorio.getSemana(0), conteudoDocumento);
+			preencherDescricaoSegundaSemana(relatorio.getSemana(1), conteudoDocumento);
+			preencherDescricaoTerceiraSemana(relatorio.getSemana(2), conteudoDocumento);
+			preencherDescricaoQuartaSemana(relatorio.getSemana(3), conteudoDocumento);
+			preencherDescricaoQuintaSemana(relatorio.getSemana(4), conteudoDocumento);
 			copia.close();
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block

@@ -17,7 +17,7 @@
 	<table>
 
 		<tr>
-			<th>Descrição</th>
+			<th>Disciplina</th>
 			<th>Período</th>
 			<th>Modalidade</th>
 			<th><a href="cadastroMonitoria.do">&nbsp;</a></th>

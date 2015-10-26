@@ -26,7 +26,10 @@ public class UsuarioImpl extends EntidadeNegocioImpl implements Usuario {
 
 	@Column(name = "USUARIO_NOME", nullable = false)
 	private String nome;
-
+	
+	@Column(name = "USUARIO_SOBRENOME", nullable = false)
+	private String sobrenome;
+	
 	@Column(name = "USUARIO_LOGIN", nullable = false)
 	private String login;
 
@@ -144,8 +147,14 @@ public class UsuarioImpl extends EntidadeNegocioImpl implements Usuario {
 
 		this.ultimoAcesso = ultimoAcesso;
 	}
-
-	
+	@Override
+	public String getSobrenome() {
+		return this.sobrenome;
+	}
+	@Override
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
 
 	public boolean isSenhaExpirada() {
 

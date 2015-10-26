@@ -37,5 +37,13 @@ public interface Monitor extends EntidadeNegocio
 	void setAluno(Aluno aluno);
 	
 	Aluno getAluno();
+	
+	String getHorarioEntrada();
+	
+	String getHorarioSaida();
+	
+	void setHorarioEntrada(String horario);
+	
+	void setHorarioSaida(String horario);
 
 }

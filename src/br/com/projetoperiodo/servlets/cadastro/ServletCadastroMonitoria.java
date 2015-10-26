@@ -70,12 +70,14 @@ public class ServletCadastroMonitoria extends HttpServlet {
 			e.printStackTrace();
 		}
 		Monitor monitor = controladorMonitor.criarMonitoriaDeAluno(aluno, disciplina, modalidade);
+		monitor.setHorarioEntrada(horarioEntrada);
+		monitor.setHorarioSaida(horarioSaida);
 		cadastroValido = controladorMonitor.validarCadastroMonitoria(monitor);
 
 		if (cadastroValido) {
 			monitor = controladorMonitor.cadastrarMonitoria(monitor);
 			Fachada.getInstance().preCadastroRelatoriosMonitor(monitor);
-			request.getRequestDispatcher("/aluno.do").forward(request, response);
+			request.getRequestDispatcher("/acesso.do").forward(request, response);
 
 		} else {
 			request.getRequestDispatcher("/acesso.do").forward(request, response);;

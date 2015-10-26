@@ -51,6 +51,7 @@ public class ServletCadastroAluno extends HttpServlet {
 		Aluno aluno = (Aluno)controladorAluno.criarEntidadeNegocio();
 		aluno.setMatricula(request.getParameter("matricula"));
 		aluno.setNome(request.getParameter("nome"));
+		aluno.setSobrenome(request.getParameter("sobrenome"));
 		aluno.setLogin(request.getParameter("login"));
 		aluno.setEmail(request.getParameter("email"));
 		aluno.setSenha(request.getParameter("senha"));
@@ -69,8 +70,7 @@ public class ServletCadastroAluno extends HttpServlet {
 		aluno.setCurso(curso);
 		controladorAluno.cadastrarAluno(aluno);
 		
-		RequestDispatcher view = request.getRequestDispatcher("/acesso.do");  
-        view.forward(request, response);
+		request.getRequestDispatcher("/acesso.do").forward(request, response);
 	
 		
 		
