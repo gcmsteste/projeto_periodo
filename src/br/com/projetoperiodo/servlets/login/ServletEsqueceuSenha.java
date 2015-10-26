@@ -58,8 +58,7 @@ public class ServletEsqueceuSenha extends HttpServlet {
 
 			try {
 				controladorUsuario.alterarSenhaUsuario(usuarioBuscado);
-				requestDispatcher = request.getRequestDispatcher("/acesso.do");
-				requestDispatcher.forward(request, response);
+				request.getRequestDispatcher("/acesso.do").forward(request, response);
 
 			} catch (NegocioException e) {
 				e.printStackTrace();

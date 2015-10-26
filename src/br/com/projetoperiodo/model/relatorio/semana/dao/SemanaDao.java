@@ -13,7 +13,9 @@ public interface SemanaDao {
 
 	public void alterar(Semana semana);
 
-	public List<Semana> listar();
+	public List<Semana> listar(String condicao);
 
 	public Semana buscar(long primaryKey);
+
+
 }

@@ -1,5 +1,8 @@
 package br.com.projetoperiodo.model.relatorio.semana.controller.impl;
 
+import java.util.List;
+
+import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.atividade.controller.ControladorAtividade;
@@ -37,5 +40,19 @@ public class ControladorSemanaImpl extends ControladorNegocioImpl implements Con
 			
 		}
 	}
+	@Override
+	public List<Semana> buscarSemanasDeRelatorio(RelatorioFrequencia relatorio) {
+
+		StringBuilder builder = new StringBuilder();
+		builder.append(" from SemanaImpl s ");
+		builder.append(" where s.relatorio.chavePrimaria = ");
+		builder.append(relatorio.getChavePrimaria());
+		return dao.listar(builder.toString());
+	}
+	@Override
+	public void removerSemana(Semana semana) {
+		dao.remover(semana);
+	}
+	
 
 }

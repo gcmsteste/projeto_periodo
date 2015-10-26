@@ -31,7 +31,7 @@ public class SemanaImpl extends EntidadeNegocioImpl implements Semana
 	@Column( name = "SEMANA_OBS", nullable=true)
 	private String observacoes;
 	@OneToMany(mappedBy="semana",
-			   cascade = CascadeType.MERGE,	
+			   cascade = CascadeType.ALL,	
 			   fetch = FetchType.EAGER, targetEntity = AtividadeImpl.class)
 	private List<Atividade> atividades;
 	@ManyToOne( fetch = FetchType.LAZY, optional = true, targetEntity = RelatorioFrequenciaImpl.class)

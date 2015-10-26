@@ -28,4 +28,6 @@ public interface ControladorMonitor extends ControladorNegocio
 
 	Monitor buscarMonitoria(long chavePrimaria);
 
+	void removerMonitoria(long chavePrimaria);
+
 }

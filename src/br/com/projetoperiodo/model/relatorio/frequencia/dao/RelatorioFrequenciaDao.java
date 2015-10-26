@@ -10,4 +10,5 @@ public interface RelatorioFrequenciaDao {
 	public void remover(RelatorioFrequencia relatorio);
 	public List<RelatorioFrequencia> listar(String condicao);
 	public RelatorioFrequencia buscar(long primaryKey);
+	void remover(String condicao);
 }

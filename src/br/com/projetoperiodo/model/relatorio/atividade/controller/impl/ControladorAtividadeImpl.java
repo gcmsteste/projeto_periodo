@@ -1,11 +1,14 @@
 package br.com.projetoperiodo.model.relatorio.atividade.controller.impl;
 
+import java.util.List;
+
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.atividade.controller.ControladorAtividade;
 import br.com.projetoperiodo.model.relatorio.atividade.dao.AtividadeDao;
 import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
+import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 
 public class ControladorAtividadeImpl extends ControladorNegocioImpl implements ControladorAtividade
@@ -36,6 +39,20 @@ public class ControladorAtividadeImpl extends ControladorNegocioImpl implements 
 			dao.salvar(atividade);
 		
 		}
+	}
+	
+	@Override
+	public List<Atividade> buscarAtividadeDeSemana(Semana semana) {
+
+		StringBuilder builder = new StringBuilder();
+		builder.append(" from AtividadeImpl a ");
+		builder.append(" where a.semana.chavePrimaria = ");
+		builder.append(semana.getChavePrimaria());
+		return dao.listar(builder.toString());
+	}
+	@Override
+	public void removerAtividade(Atividade atividade) {
+		dao.remover(atividade);
 	}
 
 }

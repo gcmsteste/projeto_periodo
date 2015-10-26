@@ -30,7 +30,7 @@
 
 					<c:otherwise>
 						<input type="text" name="login" id="login1"
-							placeholder="Informe seu nome..." size="30" />
+							placeholder="Informe seu login..." size="30" />
 					</c:otherwise>
 
 				</c:choose>

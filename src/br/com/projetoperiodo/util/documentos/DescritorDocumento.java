@@ -42,9 +42,9 @@ public class DescritorDocumento {
 
 	private PdfReader reader;
 
-	private static final String SOURCE = "selection.pdf";
+	private static final String SOURCE = "C:\\Users\\EdmilsonS\\Projetos Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\selection.pdf";
 
-	private static final String DEST = "relatorio.pdf";
+	private static final String DEST = "C:\\Users\\EdmilsonS\\Projetos Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\relatorio.pdf";
 
 	private PdfContentByte conteudoDocumento;
 
@@ -83,11 +83,11 @@ public class DescritorDocumento {
 	public static final int ANO_X = 521;
 
 	public static final int ANO_Y = 718;
-	
+
 	public static final int EDITAL_X = 509;
 
 	public static final int EDITAL_Y = 696;
-	
+
 	public static final int ATIVIDADE_Y = 588;
 
 	public static final int HORARIO_ENTRADA_X = 340;
@@ -155,15 +155,19 @@ public class DescritorDocumento {
 		Phrase phrase = seletorFonte.process(nome);
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_ORIENTADOR_X, NOME_ORIENTADOR_Y, 0);
 	}
+
 	private void preencherCampoEdital(String nome) {
+
 		Phrase phrase = seletorFonte.process(nome);
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, EDITAL_X, EDITAL_Y, 0);
 	}
-	
+
 	private void preencherCampoAno(String nome) {
+
 		Phrase phrase = seletorFonte.process(nome);
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, ANO_X, ANO_Y, 0);
 	}
+
 	private void preencherMatricula(String nome) {
 
 		Phrase phrase = seletorFonte.process(nome);
@@ -215,46 +219,56 @@ public class DescritorDocumento {
 
 	private void preencherDescricaoSegundaSemana(Semana semana) throws DocumentException {
 
-		Phrase phrase = seletorFonte.process(semana.getDescricao());
-		ColumnText columnText = new ColumnText(conteudoDocumento);
-		columnText.setSimpleColumn(phrase, 73, 529, 250, 100, 10, Element.ALIGN_JUSTIFIED);
-		columnText.go();
+		if (semana.getDescricao() != null) {
+			Phrase phrase = seletorFonte.process(semana.getDescricao());
+			ColumnText columnText = new ColumnText(conteudoDocumento);
+			columnText.setSimpleColumn(phrase, 73, 529, 250, 100, 10, Element.ALIGN_JUSTIFIED);
+			columnText.go();
+		}
 
 	}
 
 	private void preencherDescricaoQuartaSemana(Semana semana) throws DocumentException {
 
-		Phrase phrase = seletorFonte.process(semana.getDescricao());
-		ColumnText columnText = new ColumnText(conteudoDocumento);
-		columnText.setSimpleColumn(phrase, 73, 389, 250, 100, 10, Element.ALIGN_JUSTIFIED);
-		columnText.go();
+		if (semana.getDescricao() != null) {
+			Phrase phrase = seletorFonte.process(semana.getDescricao());
+			ColumnText columnText = new ColumnText(conteudoDocumento);
+			columnText.setSimpleColumn(phrase, 73, 389, 250, 100, 10, Element.ALIGN_JUSTIFIED);
+			columnText.go();
+		}
 
 	}
 
 	private void preencherDescricaoQuintaSemana(Semana semana) throws DocumentException {
 
-		Phrase phrase = seletorFonte.process(semana.getDescricao());
-		ColumnText columnText = new ColumnText(conteudoDocumento);
-		columnText.setSimpleColumn(phrase, 73, 319, 250, 100, 10, Element.ALIGN_JUSTIFIED);
-		columnText.go();
+		if (semana.getDescricao() != null) {
+			Phrase phrase = seletorFonte.process(semana.getDescricao());
+			ColumnText columnText = new ColumnText(conteudoDocumento);
+			columnText.setSimpleColumn(phrase, 73, 319, 250, 100, 10, Element.ALIGN_JUSTIFIED);
+			columnText.go();
+		}
 
 	}
 
 	private void preencherDescricaoTerceiraSemana(Semana semana) throws DocumentException {
 
-		Phrase phrase = seletorFonte.process(semana.getDescricao());
-		ColumnText columnText = new ColumnText(conteudoDocumento);
-		columnText.setSimpleColumn(phrase, 73, 459, 250, 100, 10, Element.ALIGN_JUSTIFIED);
-		columnText.go();
+		if (semana.getDescricao() != null) {
+			Phrase phrase = seletorFonte.process(semana.getDescricao());
+			ColumnText columnText = new ColumnText(conteudoDocumento);
+			columnText.setSimpleColumn(phrase, 73, 459, 250, 100, 10, Element.ALIGN_JUSTIFIED);
+			columnText.go();
+		}
 
 	}
 
 	private void preencherDescricaoPrimeiraSemana(Semana semana) throws DocumentException {
 
-		Phrase phrase = seletorFonte.process(semana.getDescricao());
-		ColumnText columnText = new ColumnText(conteudoDocumento);
-		columnText.setSimpleColumn(phrase, 73, 605, 250, 260, 10, Element.ALIGN_JUSTIFIED);
-		columnText.go();
+		if (semana.getDescricao() != null) {
+			Phrase phrase = seletorFonte.process(semana.getDescricao());
+			ColumnText columnText = new ColumnText(conteudoDocumento);
+			columnText.setSimpleColumn(phrase, 73, 605, 250, 260, 10, Element.ALIGN_JUSTIFIED);
+			columnText.go();
+		}
 
 	}
 

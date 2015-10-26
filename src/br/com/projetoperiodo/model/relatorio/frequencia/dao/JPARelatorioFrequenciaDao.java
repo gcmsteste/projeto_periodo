@@ -68,5 +68,16 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		return entityManager.find(RelatorioFrequenciaImpl.class, primaryKey);
 	}
+	
+	@Override
+	public void remover(String condicao) {
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		entityManager.createQuery(condicao).executeUpdate();
+		entityTransaction.commit();
+		entityManager.close();
+		
+	}
 
 }

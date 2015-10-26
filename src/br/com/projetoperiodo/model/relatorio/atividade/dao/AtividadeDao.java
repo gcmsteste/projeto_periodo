@@ -13,7 +13,7 @@ public interface AtividadeDao {
 
 	public void alterar(Atividade atividade);
 
-	public List<Atividade> listar();
-
 	public Atividade buscar(long primaryKey);
+
+	List<Atividade> listar(String condicao);
 }

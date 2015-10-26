@@ -50,7 +50,7 @@
 			</div>
                     
 			<h1>          	
-            	<a href="">Esqueceu sua senha ?</a>       	
+            	<a href="solicitaSenha.do">Esqueceu sua senha ?</a>       	
 			</h1>    
             
             <fieldset id="fieldset2">

@@ -53,11 +53,11 @@ public class JPASemanaDao implements SemanaDao
 	}
 
 	@Override
-	public List<Semana> listar() {
+	public List<Semana> listar(String condicao) {
 
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		List<Semana> semanas = entityManager.
-						createQuery("from SemanaImpl").getResultList();
+						createQuery(condicao).getResultList();
 		entityManager.close();
 		return semanas;
 	}
@@ -71,4 +71,5 @@ public class JPASemanaDao implements SemanaDao
 		return semana;
 	}
 
+	
 }

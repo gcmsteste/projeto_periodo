@@ -114,8 +114,17 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 	
 	@Override
 	public Monitor buscarMonitoria( long chavePrimaria ) {
-		StringBuilder builder = new StringBuilder();
+
 		return dao.buscar(chavePrimaria);
+	}
+	
+	@Override
+	public void removerMonitoria(long chavePrimaria) {
+		
+		Monitor monitor = (Monitor) this.criarEntidadeNegocio();
+		monitor.setChavePrimaria(chavePrimaria);
+		Fachada.getInstance().getControladorRelatorio().removerRelatoriosDeMonitoria(monitor);
+		dao.remover(monitor);
 	}
 
 }

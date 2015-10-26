@@ -15,7 +15,7 @@
 	<jsp:include page="cabecalhoUsuarioLogado.jsp" />
 
 	<table>
-		
+
 		<tr>
 			<th>Descrição</th>
 			<th>Período</th>
@@ -28,9 +28,14 @@
 					href="relatorio.do?chaveMonitor=${monitoria.chavePrimaria}"> <c:out
 							value="${monitoria.disciplina.descricao }" />
 				</a></td>
-				<td><c:out value=" ${monitoria.periodo }" /></td>
-				<td><c:out value=" ${monitoria.modalidade }" /></td>
-				<td><a href="removeMonitoria.do?chaveMonitor=${monitoria.chavePrimaria}">&nbsp;</a></td>
+				<td><a
+					href="relatorio.do?chaveMonitor=${monitoria.chavePrimaria}"> <c:out
+							value=" ${monitoria.periodo }" /></a></td>
+				<td><a
+					href="relatorio.do?chaveMonitor=${monitoria.chavePrimaria}"> <c:out
+							value=" ${monitoria.modalidade }" /></a></td>
+				<td><a
+					href="removeMonitoria.do?chaveMonitor=${monitoria.chavePrimaria}">&nbsp;</a></td>
 			</tr>
 		</c:forEach>
 	</table>

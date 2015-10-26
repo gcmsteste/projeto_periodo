@@ -39,7 +39,7 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	@JoinColumn(name = "MONITOR_ID", referencedColumnName = "MONITOR_ID")
 	private Monitor monitor;
 
-	@OneToMany(mappedBy = "relatorio", cascade = CascadeType.MERGE, fetch = FetchType.EAGER, targetEntity = SemanaImpl.class)
+	@OneToMany(mappedBy = "relatorio", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = SemanaImpl.class)
 	private List<Semana> semanas;
 
 	public RelatorioFrequenciaImpl() {

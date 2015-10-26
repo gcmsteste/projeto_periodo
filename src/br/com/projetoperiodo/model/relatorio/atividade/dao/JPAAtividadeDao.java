@@ -50,12 +50,12 @@ public class JPAAtividadeDao implements AtividadeDao
 	}
 
 	@Override
-	public List<Atividade> listar() {
+	public List<Atividade> listar(String condicao) {
 
 
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		List<Atividade> atividades = entityManager.
-						createQuery("from AtividadeImpl").getResultList();
+						createQuery(condicao).getResultList();
 		entityManager.close();
 		return atividades;
 	}
@@ -68,5 +68,6 @@ public class JPAAtividadeDao implements AtividadeDao
 		entityManager.close();
 		return atividade;
 	}
+
 	
 }

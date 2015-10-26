@@ -10,10 +10,48 @@
 <script src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<style>
+a#botaoRelatorio {
+	display: block;
+	padding: 19px 39px 18px 39px;
+	color: #FFF;
+	background-color: #4bc970;
+	font-size: 18px;
+	text-align: center;
+	font-style: normal;
+	border-radius: 5px;
+	width: 91%;
+	border: 1px solid #3ac162;
+	border-width: 1px 1px 3px;
+	box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+	margin-bottom: 10px;
+	padding: 19px 39px 18px 39px;
+}
+fieldset {
+	margin-bottom: 30px;
+	border: none;
+}
+
+button {
+	padding: 19px 39px 18px 39px;
+	color: #FFF;
+	background-color: #4bc970;
+	font-size: 18px;
+	text-align: center;
+	font-style: normal;
+	border-radius: 5px;
+	width: 100%;
+	border: 1px solid #3ac162;
+	border-width: 1px 1px 3px;
+	box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+	margin-bottom: 10px;
+}
+
+</style>
 <script type="text/javascript">
 	$(function() {
 		$("input[type=submit]").button().click(function(event) {
-			
+
 		});
 	});
 	$(function() {
@@ -121,18 +159,18 @@
 
 				<label>Segundo dia</label> <input type="text" class="datepicker"
 					name="semana1atividade2"
-						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[0].atividades[1].data}" />" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[0].atividades[1].data}" />" />
 
 				<label>Terceiro dia</label> <input type="text" class="datepicker"
 					name="semana1atividade3"
-						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[0].atividades[2].data}" />" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[0].atividades[2].data}" />" />
 
 				<label>Quarto dia</label> <input type="text" class="datepicker"
 					name="semana1atividade4"
-						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[0].atividades[3].data}" />" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[0].atividades[3].data}" />" />
 				<label>Quinto dia</label> <input type="text" class="datepicker"
 					name="semana1atividade5"
-						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[0].atividades[4].data}" />" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[0].atividades[4].data}" />" />
 
 			</div>
 			<h3>Segunda semana</h3>
@@ -144,28 +182,28 @@
 
 				<label>Primeiro dia</label> <input type="text" class="datepicker"
 					name="semana2atividade1"
-						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[0].data}" />" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[0].data}" />" />
 
 				<label>Segundo dia</label> <input type="text" class="datepicker"
 					name="semana2atividade2"
-						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[1].data}" />" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[1].data}" />" />
 
 				<label>Terceiro dia</label> <input type="text" class="datepicker"
 					name="semana2atividade3"
-						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[2].data}" />" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[2].data}" />" />
 
 				<label>Quarto dia</label> <input type="text" class="datepicker"
 					name="semana2atividade4"
-						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[3].data}" />" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[3].data}" />" />
 				<label>Quinto dia</label> <input type="text" class="datepicker"
 					name="semana2atividade5"
-						value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[4].data}" />" />
+					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${sessionScope['relatorio'].semanas[1].atividades[4].data}" />" />
 
 			</div>
 
 			<h3>Terceira semana</h3>
 			<div>
-			
+
 				<textarea rows="13" cols="30" name="descricaosemana3">
 					<c:out value="${ sessionScope['relatorio'].semanas[2].descricao}" />
 				</textarea>
@@ -247,7 +285,12 @@
 
 			</div>
 		</div>
-		<input type="submit" value="Save" />
+		<fieldset id="fieldset2">
+			<button type="submit">Salvar</button>
+			<a href="gerarDocumento.do?mes=${sessionScope['relatorio'].mes }"
+				id="botaoRelatorio">Gerar relatorio</a>
+		</fieldset>
+
 	</form>
 
 

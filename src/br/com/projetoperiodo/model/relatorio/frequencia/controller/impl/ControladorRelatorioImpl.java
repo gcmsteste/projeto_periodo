@@ -82,5 +82,12 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 		DescritorDocumento.getInstancia().gerarRelatorio(relatorio);
 
 	}
+	@Override
+	public void removerRelatoriosDeMonitoria(Monitor monitor) {
+		List<RelatorioFrequencia> relatorios = this.buscarRelatoriosDeMonitor(monitor);
+		for ( RelatorioFrequencia relatorio: relatorios) {
+			dao.remover(relatorio);
+		}		
+	}
 
 }

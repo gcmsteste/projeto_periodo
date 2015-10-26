@@ -142,5 +142,10 @@ public class Fachada {
 
 		return this.getControladorCurso().buscarCursoPadrao();
 	}
+	
+	public void removerMonitoriaDeAluno(long chavePrimaria) {
+		this.getControladorMonitor().removerMonitoria(chavePrimaria);
+	}
+	
 
 }

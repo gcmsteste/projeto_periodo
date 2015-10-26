@@ -37,8 +37,8 @@ public class JPAMonitorDao implements MonitorDao{
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
-		Monitor monitorAtualizado = (Monitor)entityManager.merge(monitor);
-		entityManager.remove(monitorAtualizado);
+		monitor = entityManager.find(MonitorImpl.class, monitor.getChavePrimaria());
+		entityManager.remove(monitor);
 		entityTransaction.commit();
 		entityManager.close();
 		
@@ -56,9 +56,7 @@ public class JPAMonitorDao implements MonitorDao{
 	public Monitor buscar(long primaryK) {
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
-		entityTransaction.begin();
 		Monitor monitor = entityManager.find(MonitorImpl.class, primaryK);
-		entityTransaction.commit();
 		entityManager.close();
 		
 		return monitor;

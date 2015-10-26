@@ -78,7 +78,7 @@ public class ServletCadastroMonitoria extends HttpServlet {
 			request.getRequestDispatcher("/aluno.do").forward(request, response);
 
 		} else {
-			request.getRequestDispatcher("");
+			request.getRequestDispatcher("/acesso.do").forward(request, response);;
 		}
 
 	}

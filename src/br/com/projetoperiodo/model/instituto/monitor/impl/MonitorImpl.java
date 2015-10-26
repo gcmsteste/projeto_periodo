@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -53,7 +54,7 @@ public class MonitorImpl extends EntidadeNegocioImpl implements Monitor {
 	@JoinColumn(name = "PERIODO_ID", referencedColumnName = "PERIODO_ID")
 	private Periodo periodo;
 
-	@OneToMany(mappedBy = "monitor", fetch = FetchType.LAZY, targetEntity = RelatorioFrequenciaImpl.class)
+	@OneToMany(mappedBy = "monitor", fetch = FetchType.LAZY, cascade=CascadeType.REMOVE, targetEntity = RelatorioFrequenciaImpl.class)
 	private List<RelatorioFrequencia> relatoriosMensais;
 
 	@Column(name = "HABILITADO")
