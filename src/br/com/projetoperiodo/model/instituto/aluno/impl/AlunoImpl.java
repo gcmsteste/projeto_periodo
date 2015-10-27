@@ -10,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -22,8 +21,6 @@ import br.com.projetoperiodo.model.instituto.curso.Curso;
 import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
-import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 
 @Entity

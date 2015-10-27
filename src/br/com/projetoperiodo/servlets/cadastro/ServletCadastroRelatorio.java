@@ -78,7 +78,7 @@ public class ServletCadastroRelatorio extends HttpServlet {
 			}
 		}
 		Fachada.getInstance().atualizarRelatorio(relatorio);
-		request.getRequestDispatcher("/relatorio.do").forward(request, response);
+		request.getRequestDispatcher("/formCadastroRelatorio").forward(request, response);
 	}
 
 }

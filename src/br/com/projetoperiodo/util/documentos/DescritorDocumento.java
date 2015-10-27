@@ -42,9 +42,9 @@ public class DescritorDocumento {
 
 	private PdfReader reader;
 
-	private static final String SOURCE = "selection.pdf";
+	private static final String SOURCE = "C:\\Users\\Edmilson\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\selection.pdf";
 
-	private static final String DEST = "relatorio.pdf";
+	private static final String DEST = "C:\\Users\\Edmilson\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\relatorio.pdf";
 
 	private FontSelector seletorFonte;
 
@@ -300,7 +300,9 @@ public class DescritorDocumento {
 
 			for (int i = 0; i < QUANTIDADE_ATIVIDADES; i++) {
 				Atividade atividade = semana.getAtividade(i);
-				preencherAtividadesSemanais(atividade, relatorio.getMonitor(), decrementoPosicaoRelativaY, conteudoDocumento);
+				if ( atividade.getData() != null) {
+					preencherAtividadesSemanais(atividade, relatorio.getMonitor(), decrementoPosicaoRelativaY, conteudoDocumento);
+				}
 				decrementoPosicaoRelativaY += 14;
 			}
 

@@ -41,6 +41,10 @@ public class ServletCadastroMonitoria extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if (request.getSession(false) == null) {
+			request.getRequestDispatcher("/acesso.do").forward(request, response);
+
+		}
 		ControladorDisciplina controladorDisciplina = Fachada.getInstance().getControladorDisciplina();
 		List<Disciplina> listaDisciplinas = controladorDisciplina.listarDisciplinasCadastradas();
 		request.setAttribute(LISTA_DISCIPLINAS, listaDisciplinas);
@@ -80,7 +84,8 @@ public class ServletCadastroMonitoria extends HttpServlet {
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
 
 		} else {
-			request.getRequestDispatcher("/acesso.do").forward(request, response);;
+			request.getRequestDispatcher("/acesso.do").forward(request, response);
+			;
 		}
 
 	}

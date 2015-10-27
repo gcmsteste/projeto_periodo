@@ -17,6 +17,7 @@ import br.com.projetoperiodo.util.constantes.Constantes;
 public class ServletGerarDocumento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String MES_RELATORIO = "mes";
+
     /**
      * @see HttpServlet#HttpServlet()
      */
