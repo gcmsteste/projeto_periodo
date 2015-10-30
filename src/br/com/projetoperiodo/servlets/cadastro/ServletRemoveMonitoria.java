@@ -1,4 +1,4 @@
-package br.com.projetoperiodo.servlets;
+package br.com.projetoperiodo.servlets.cadastro;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,22 +6,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
-import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.util.Fachada;
-import br.com.projetoperiodo.util.constantes.Constantes;
 
 /**
- * Servlet implementation class ServletGerarDocumento
+ * Servlet implementation class ServletRemoveMonitoria
  */
-public class ServletGerarDocumento extends HttpServlet {
+public class ServletRemoveMonitoria extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String MES_RELATORIO = "mes";
-
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletGerarDocumento() {
+    public ServletRemoveMonitoria() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,17 +26,16 @@ public class ServletGerarDocumento extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int mesRelatorio = Integer.valueOf(request.getParameter(MES_RELATORIO));
-		Monitor monitor = (Monitor) request.getSession(false).getAttribute(Constantes.ATRIBUTO_MONITORIA);
-		RelatorioFrequencia relatorio = Fachada.getInstance().buscarRelatorioMensal(monitor, mesRelatorio);
-		Fachada.getInstance().gerarDocumentoDeRelatorio(relatorio);
-		request.getRequestDispatcher("/enviarDocumento.do").forward(request, response);
+		long chavePrimariaMonitor = Long.valueOf(request.getParameter("chaveMonitor"));
+		Fachada.getInstance().removerMonitoriaDeAluno(chavePrimariaMonitor);
+		request.getRequestDispatcher("/aluno.do").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -17,15 +17,6 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>Cabecalho</servlet-name>
-		<jsp-file>/jsp/cabecalho.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Cabecalho</servlet-name>
-		<url-pattern>/cabecalho</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
 		<servlet-name>EsqueceuSenhaForm</servlet-name>
 		<jsp-file>/RequisitarSenha.jsp</jsp-file>
 	</servlet>
@@ -65,14 +56,7 @@
 		<servlet-name>CadastroMonitoriaForm</servlet-name>
 		<url-pattern>/formCadastroMonitoria</url-pattern>
 	</servlet-mapping>
-	<servlet>
-		<servlet-name>Home</servlet-name>
-		<jsp-file>/home.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Home</servlet-name>
-		<url-pattern>/home.do</url-pattern>
-	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>ServletLogin</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.login.ServletLogin</servlet-class>
@@ -106,13 +90,7 @@
 		<servlet-name>ServletEsqueceuSenha</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.login.ServletEsqueceuSenha</servlet-class>
 	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>ServletCadastroProfessor</display-name>
-		<servlet-name>ServletCadastroProfessor</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletCadastroProfessor</servlet-class>
-	</servlet>
+
 	<servlet>
 		<description>
 		</description>
@@ -141,13 +119,7 @@
 		<servlet-name>ServletAluno</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletAluno</servlet-class>
 	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>ServletProfessor</display-name>
-		<servlet-name>ServletProfessor</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletProfessor</servlet-class>
-	</servlet>
+
 	<servlet>
 		<description>
 		</description>
@@ -155,39 +127,27 @@
 		<servlet-name>ServletRelatorio</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletRelatorio</servlet-class>
 	</servlet>
-	<!-- -->
-	<servlet>
-		<display-name>Test_disciplina</display-name>
-		<servlet-name>Test_disciplina</servlet-name>
-		<servlet-class>test.Test_disciplina</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>Test</display-name>
-		<servlet-name>Test</servlet-name>
-		<servlet-class>Test</servlet-class>
-	</servlet>
+
 	<servlet>
 		<description>
 		</description>
 		<display-name>ServletEnviaDocumento</display-name>
 		<servlet-name>ServletEnviaDocumento</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.ServletEnviaDocumento</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.documento.ServletEnviaDocumento</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
 		</description>
 		<display-name>ServletGerarDocumento</display-name>
 		<servlet-name>ServletGerarDocumento</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.ServletGerarDocumento</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.documento.ServletGerarDocumento</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
 		</description>
 		<display-name>ServletRemoveMonitoria</display-name>
 		<servlet-name>ServletRemoveMonitoria</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.ServletRemoveMonitoria</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletRemoveMonitoria</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -198,10 +158,7 @@
 		<servlet-name>ServletEsqueceuSenha</servlet-name>
 		<url-pattern>/requisitarSenha.do</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>ServletCadastroProfessor</servlet-name>
-		<url-pattern>/cadastroProfessor.do</url-pattern>
-	</servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>ServletCadastroAluno</servlet-name>
 		<url-pattern>/cadastroAluno.do</url-pattern>
@@ -218,25 +175,7 @@
 		<servlet-name>ServletAluno</servlet-name>
 		<url-pattern>/aluno.do</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>ServletProfessor</servlet-name>
-		<url-pattern>/ServletProfessor</url-pattern>
-	</servlet-mapping>
 
-	<servlet-mapping>
-		<servlet-name>ServletRelatorio</servlet-name>
-		<url-pattern>/relatorio.do</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>Test_disciplina</servlet-name>
-		<url-pattern>/Test_disciplina</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>Test</servlet-name>
-		<url-pattern>/Test</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ServletEnviaDocumento</servlet-name>
 		<url-pattern>/enviarDocumento.do</url-pattern>

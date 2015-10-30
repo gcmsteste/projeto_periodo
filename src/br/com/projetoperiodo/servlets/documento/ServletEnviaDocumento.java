@@ -1,4 +1,4 @@
-package br.com.projetoperiodo.servlets;
+package br.com.projetoperiodo.servlets.documento;
 
 import java.io.File;
 import java.io.FileInputStream;
