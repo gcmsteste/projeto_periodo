@@ -66,7 +66,7 @@
 
 </head>
 <body>
-	<jsp:include page="cabecalho.jsp" />
+	<jsp:include page="Cabecalho.jsp" />
 	<form action="cadastroAluno.do" method="post">
 		<fieldset>
 			<label>Login</label> <input type="text" name="login" /> <label

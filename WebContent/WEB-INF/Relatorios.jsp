@@ -167,7 +167,7 @@ td.text-right {
 </head>
 <body>
 
-	<jsp:include page="cabecalhoUsuarioLogado.jsp" />
+	<jsp:include page="CabecalhoUsuarioLogado.jsp" />
 
 
 	<table class="table-fill">
@@ -201,6 +201,6 @@ td.text-right {
 	</table>
 
 
-	<jsp:include page="rodape.jsp" />
+	<jsp:include page="Rodape.jsp" />
 </body>
 </html>

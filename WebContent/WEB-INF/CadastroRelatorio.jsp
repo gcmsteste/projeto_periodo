@@ -143,7 +143,7 @@ button {
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="cabecalhoUsuarioLogado.jsp" />
+	<jsp:include page="CabecalhoUsuarioLogado.jsp" />
 	<form action="cadastroRelatorio.do" method="post">
 		<div id="accordion">
 			<h3>Primeira semana</h3>

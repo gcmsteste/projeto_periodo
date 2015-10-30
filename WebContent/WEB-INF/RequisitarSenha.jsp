@@ -11,7 +11,7 @@
 <body>
 
 	
-	<jsp:include page="cabecalho.jsp" />
+	<jsp:include page="Cabecalho.jsp" />
 	<form action="requisitarSenha.do" method="post">
 		<fieldset id="fieldset1">
 

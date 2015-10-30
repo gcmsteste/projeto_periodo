@@ -9,7 +9,7 @@
 <title>Monitoria IFPE-TADS</title>
 </head>
 <body>
-	<jsp:include page="cabecalhoUsuarioLogado.jsp" />
+	<jsp:include page="CabecalhoUsuarioLogado.jsp" />
 	<form action="cadastroMonitoria.do" method="post">
 		<fieldset>
 			<label>Disciplinas</label> <select name="disciplina">
@@ -28,6 +28,6 @@
 	</form>
 
 
-	<jsp:include page="rodape.jsp" />
+	<jsp:include page="Rodape.jsp" />
 </body>
 </html>

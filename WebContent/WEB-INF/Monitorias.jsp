@@ -12,10 +12,9 @@
 </script>
 </head>
 <body>
-	<jsp:include page="cabecalhoUsuarioLogado.jsp" />
+	<jsp:include page="CabecalhoUsuarioLogado.jsp" />
 
 	<table>
-
 		<tr>
 			<th>Disciplina</th>
 			<th>Período</th>
@@ -39,6 +38,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<jsp:include page="rodape.jsp" />
+	<jsp:include page="Rodape.jsp" />
 </body>
 </html>
