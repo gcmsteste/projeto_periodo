@@ -45,8 +45,8 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 		ControladorSemana controladorSemana = Fachada.getInstance().getControladorSemana();
 		RelatorioFrequencia relatorio;
 		Periodo periodoMonitor = monitor.getPeriodo();
-		int mes = periodoMonitor.getSemestre().semestre == 2 ? 6 : 1;
-		for (int contador = 0; contador <= 6; mes++, contador++) {
+		int mes = periodoMonitor.getSemestre().semestre == 2 ? 7 : 1;
+		for (int contador = 0; contador < 6; mes++, contador++) {
 			relatorio = (RelatorioFrequencia) this.criarEntidadeNegocio();
 			relatorio.setMes(mes);
 			relatorio.setMonitor(monitor);

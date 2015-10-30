@@ -56,7 +56,7 @@ public class ServletCadastroMonitoria extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	
+
 		if (request.getSession(false) == null) {
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
 		}
@@ -80,14 +80,10 @@ public class ServletCadastroMonitoria extends HttpServlet {
 		if (cadastroValido) {
 			monitor = (Monitor) Fachada.getInstance().cadastrarMonitoria(monitor);
 			Fachada.getInstance().preCadastroRelatoriosMonitor(monitor);
-			request.getRequestDispatcher("/acesso.do").forward(request, response);
-
 		} else {
 			// TODO Tratar invalidade do cadastro
-			request.getRequestDispatcher("/acesso.do").forward(request, response);
-			
 		}
-
+		request.getRequestDispatcher("/acesso.do").forward(request, response);
 	}
 
 }

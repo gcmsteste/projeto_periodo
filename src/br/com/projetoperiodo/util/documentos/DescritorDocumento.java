@@ -42,9 +42,9 @@ public class DescritorDocumento {
 
 	private PdfReader reader;
 
-	private static final String SOURCE = "C:\\Users\\Edmilson\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\selection.pdf";
+	private static final String SOURCE = "C:\\Users\\Edmilson\\workspace2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\projeto_periodo\\pdf\\selection.pdf";
 
-	private static final String DEST = "C:\\Users\\Edmilson\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\projeto_periodo\\pdf\\relatorio.pdf";
+	private static final String DEST = "C:\\Users\\Edmilson\\workspace2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\projeto_periodo\\pdf\\relatorio.pdf";
 
 	private FontSelector seletorFonte;
 
