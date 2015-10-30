@@ -8,61 +8,10 @@
 
 <script src="js/jquery.js"></script>
 <link rel="stylesheet" href="css/cadastro-aluno.css" type="text/css" />
+<script type="text/javascript" src="js/cadastro-aluno.js"></script>
 
-<script type="text/javascript">
-	$()
-			.ready(
-					function() {
-						$('#add')
-								.click(
-										function() {
-											return !$(
-													'#disciplinas option:selected')
-													.remove()
-													.appendTo(
-															'#disciplinas_selecionadas');
-										});
-						$('#remove')
-								.click(
-										function() {
-											return !$(
-													'#disciplinas_selecionadas option:selected')
-													.remove().appendTo(
-															'#disciplinas');
-										});
-					});
-	$()
-			.ready(
-					function() {
-						$('#add')
-								.click(
-										function() {
-											return !$(
-													'#disciplinas option:selected')
-													.remove()
-													.appendTo(
-															'#disciplinas_selecionadas');
-										});
-						$('#remove')
-								.click(
-										function() {
-											return !$(
-													'#disciplinas_selecionadas option:selected')
-													.remove().appendTo(
-															'#disciplinas');
-										});
-					});
-</script>
 
-<script>
-	$('form').submit(function() {
-		$('#disciplinas_selecionadas option').each(function(i) {
-			$(this).attr("selected", "selected");
-		});
-	});
-</script>
-
-<title>Insert title here</title>
+<title>Monitoria IFPE-TADS</title>
 
 </head>
 <body>
@@ -89,10 +38,10 @@
 
 			</div>
 
-			<div class="selecaoDisciplina" >
+			<div class="selecaoDisciplina">
 
-				<select multiple id="disciplinas_selecionadas" name="disciplinas"></select> <a href="#"
-					id="remove"> remove</a>
+				<select multiple id="disciplinas_selecionadas" name="disciplinas"></select>
+				<a href="#" id="remove"> remove</a>
 
 			</div>
 
