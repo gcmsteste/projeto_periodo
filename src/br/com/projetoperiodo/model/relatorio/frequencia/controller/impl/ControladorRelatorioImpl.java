@@ -1,12 +1,10 @@
 
 package br.com.projetoperiodo.model.relatorio.frequencia.controller.impl;
 
-import java.io.IOException;
 import java.util.List;
 
-import com.itextpdf.text.DocumentException;
-
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
+import br.com.projetoperiodo.model.instituto.periodo.Periodo;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
@@ -46,7 +44,9 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 
 		ControladorSemana controladorSemana = Fachada.getInstance().getControladorSemana();
 		RelatorioFrequencia relatorio;
-		for (int mes = 1; mes <= 12; mes += 1) {
+		Periodo periodoMonitor = monitor.getPeriodo();
+		int mes = periodoMonitor.getSemestre().semestre == 2 ? 6 : 1;
+		for (int contador = 0; contador <= 6; mes++, contador++) {
 			relatorio = (RelatorioFrequencia) this.criarEntidadeNegocio();
 			relatorio.setMes(mes);
 			relatorio.setMonitor(monitor);

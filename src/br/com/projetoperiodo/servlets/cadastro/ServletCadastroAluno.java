@@ -21,72 +21,78 @@ import br.com.projetoperiodo.util.Fachada;
  */
 public class ServletCadastroAluno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static final String LISTA_DISCIPLINAS = "listaDisciplinas";
-    private static final ControladorDisciplina controladorDisciplina = Fachada.getInstance().getControladorDisciplina();
+	private static final String LISTA_DISCIPLINAS = "listaDisciplinas";
+	private static final ControladorDisciplina controladorDisciplina = Fachada.getInstance().getControladorDisciplina();
+	// TODO Modificar esta estrategia, pode implicar em problemas de
+	// concorrencia
 	private static final List<Disciplina> listaDisciplinas = controladorDisciplina.listarDisciplinasCadastradas();
-	
- 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletCadastroAluno() {
-        super();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ServletCadastroAluno() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		if (request.getSession(false) != null) {
+			request.getRequestDispatcher("/acesso.do").forward(request, response);
+		}
 		request.setAttribute(LISTA_DISCIPLINAS, listaDisciplinas);
 		request.getRequestDispatcher("/formCadastroAluno").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		ControladorAluno controladorAluno = Fachada.getInstance().getControladorAluno();
-		ControladorDisciplina controladorDisciplina = Fachada.getInstance().getControladorDisciplina();
-		Aluno aluno = (Aluno)controladorAluno.criarEntidadeNegocio();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		if (request.getSession(false) != null) {
+			request.getRequestDispatcher("/acesso.do").forward(request, response);
+		}
+		Aluno aluno = (Aluno) Fachada.getInstance().criarAluno();
 		aluno.setMatricula(request.getParameter("matricula"));
 		aluno.setNome(request.getParameter("nome"));
 		aluno.setSobrenome(request.getParameter("sobrenome"));
 		aluno.setLogin(request.getParameter("login"));
 		aluno.setEmail(request.getParameter("email"));
 		aluno.setSenha(request.getParameter("senha"));
-		
+
 		String[] materias = request.getParameterValues("disciplinas");
-			
-		for(int x = 0; x < materias.length; x++){
-			Disciplina disciplina = (Disciplina)controladorDisciplina.criarEntidadeNegocio();
-			Disciplina disciplinaRetornada = (Disciplina)controladorDisciplina.criarEntidadeNegocio();
+
+		for (int x = 0; x < materias.length; x++) {
+			Disciplina disciplina = (Disciplina) Fachada.getInstance().criarDisciplina();
+			Disciplina disciplinaRetornada = (Disciplina) Fachada.getInstance().criarDisciplina();
 			disciplina.setDescricao(materias[x]);
-			
+
 			disciplinaRetornada = comparaDisciplinas(disciplina);
 			aluno.setDisciplinas(disciplinaRetornada);
 		}
 		Curso curso = (Curso) Fachada.getInstance().buscarCursoPadraoDeAluno();
 		aluno.setCurso(curso);
-		controladorAluno.cadastrarAluno(aluno);
-		
+		Fachada.getInstance().cadastrarAluno(aluno);
+
 		request.getRequestDispatcher("/acesso.do").forward(request, response);
-	
-		
-		
+
 	}
 
-	protected Disciplina comparaDisciplinas(Disciplina disc){
-		Disciplina objDisciplina = null;	
-		
-			for(int i=0; i < listaDisciplinas.size(); i++){
-				if(listaDisciplinas.get(i).getDescricao().equals(disc.getDescricao()))
-				{
-					objDisciplina = listaDisciplinas.get(i); 
-				}
+	protected Disciplina comparaDisciplinas(Disciplina disc) {
+		Disciplina objDisciplina = null;
+
+		for (int i = 0; i < listaDisciplinas.size(); i++) {
+			if (listaDisciplinas.get(i).getDescricao().equals(disc.getDescricao())) {
+				objDisciplina = listaDisciplinas.get(i);
 			}
-		
-		
+		}
+
 		return objDisciplina;
 	}
 }

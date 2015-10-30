@@ -43,10 +43,9 @@ public class ServletCadastroMonitoria extends HttpServlet {
 			throws ServletException, IOException {
 		if (request.getSession(false) == null) {
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
-
 		}
-		ControladorDisciplina controladorDisciplina = Fachada.getInstance().getControladorDisciplina();
-		List<Disciplina> listaDisciplinas = controladorDisciplina.listarDisciplinasCadastradas();
+		Aluno aluno = (Aluno) request.getSession(false).getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
+		List<Disciplina> listaDisciplinas = Fachada.getInstance().listarDisciplinasDeAluno(aluno);
 		request.setAttribute(LISTA_DISCIPLINAS, listaDisciplinas);
 		request.getRequestDispatcher("/formCadastroMonitoria").forward(request, response);
 	}
@@ -57,35 +56,36 @@ public class ServletCadastroMonitoria extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		ControladorMonitor controladorMonitor = Fachada.getInstance().getControladorMonitor();
-		ControladorDisciplina controladorDisciplina = Fachada.getInstance().getControladorDisciplina();
+	
+		if (request.getSession(false) == null) {
+			request.getRequestDispatcher("/acesso.do").forward(request, response);
+		}
 		Aluno aluno = (Aluno) request.getSession(false).getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
 		boolean cadastroValido;
-
 		Disciplina disciplina = null;
 		Modalidade modalidade = Modalidade.valueOf(request.getParameter("modalidade"));
 		String horarioEntrada = request.getParameter("entrada");
 		String horarioSaida = request.getParameter("saida");
 		try {
-			disciplina = controladorDisciplina.buscarDisciplina(request.getParameter("disciplina"));
+			disciplina = (Disciplina) Fachada.getInstance().buscarDisciplina(request.getParameter("disciplina"));
 		} catch (NegocioException e) {
-			// TODO Auto-generated catch block
+			// TODO Tratar erro de inexistencia de disciplina
 			e.printStackTrace();
 		}
-		Monitor monitor = controladorMonitor.criarMonitoriaDeAluno(aluno, disciplina, modalidade);
+		Monitor monitor = (Monitor) Fachada.getInstance().criarMonitoria(aluno, disciplina, modalidade);
 		monitor.setHorarioEntrada(horarioEntrada);
 		monitor.setHorarioSaida(horarioSaida);
-		cadastroValido = controladorMonitor.validarCadastroMonitoria(monitor);
+		cadastroValido = Fachada.getInstance().validarCadastroMonitoria(monitor);
 
 		if (cadastroValido) {
-			monitor = controladorMonitor.cadastrarMonitoria(monitor);
+			monitor = (Monitor) Fachada.getInstance().cadastrarMonitoria(monitor);
 			Fachada.getInstance().preCadastroRelatoriosMonitor(monitor);
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
 
 		} else {
+			// TODO Tratar invalidade do cadastro
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
-			;
+			
 		}
 
 	}

@@ -44,6 +44,9 @@ public class ServletCadastroRelatorio extends HttpServlet {
 	 */
 	protected synchronized void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		if (request.getSession(false) == null) {
+			request.getRequestDispatcher("/acesso.do").forward(request, response);
+		}
 		int mesRelatorio = Integer.valueOf(request.getParameter(MES_RELATORIO));
 		Monitor monitor = (Monitor) request.getSession(false).getAttribute(Constantes.ATRIBUTO_MONITORIA);
 		RelatorioFrequencia relatorio = Fachada.getInstance().buscarRelatorioMensal(monitor, mesRelatorio);
@@ -56,6 +59,9 @@ public class ServletCadastroRelatorio extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		if (request.getSession(false) == null) {
+			request.getRequestDispatcher("/acesso.do").forward(request, response);
+		}
 		RelatorioFrequencia relatorio = (RelatorioFrequencia) request.getSession(false).getAttribute(RELATORIO_MENSAL);
 		Semana semana;
 		Atividade atividade;
@@ -69,11 +75,11 @@ public class ServletCadastroRelatorio extends HttpServlet {
 				Date data = null;
 				try {
 					data = Util.parseTextoData(dataStr);
+					atividade.setData(data);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
+					// TODO Tratar data invalida
 					e.printStackTrace();
 				}
-				atividade.setData(data);
 
 			}
 		}

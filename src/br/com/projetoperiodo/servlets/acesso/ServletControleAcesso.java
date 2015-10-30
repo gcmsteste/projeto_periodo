@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ServletControleAcesso extends HttpServlet
-{
+public class ServletControleAcesso extends HttpServlet {
 	/**
 	 * 
 	 */
@@ -20,13 +19,14 @@ public class ServletControleAcesso extends HttpServlet
 
 		doGet(req, resp);
 	}
-	
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		RequestDispatcher rd;
-		if ( request.getSession(Boolean.FALSE) == null ) {
-			
+		if (request.getSession(Boolean.FALSE) == null) {
+
 			rd = request.getRequestDispatcher("/login.do");
 			rd.forward(request, response);
 		} else {

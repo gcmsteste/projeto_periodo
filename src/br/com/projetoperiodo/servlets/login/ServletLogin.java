@@ -24,37 +24,28 @@ public class ServletLogin extends HttpServlet {
 
 	private static final String FORM_SENHA = "senha";
 
-
-	
 	@Override
 	protected synchronized void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		RequestDispatcher requestDispatcher;
-		ControladorUsuario controladorUsuario = Fachada.getInstance().getControladorUsuario();
-		ControladorAluno controladorAluno = Fachada.getInstance().getControladorAluno();
-		
-		if ( !( request.getSession(false) == null ) ) {
+
+		String login = request.getParameter(FORM_LOGIN);
+		String senha = request.getParameter(FORM_SENHA);
+		Usuario usuario = (Usuario) Fachada.getInstance().criarUsuario();
+		usuario.setLogin(login);
+		usuario.setSenha(senha);
+		try {
+			Usuario usuarioAutenticado = (Usuario) Fachada.getInstance().autenticarUsuario(usuario);
+			Aluno aluno = (Aluno) usuarioAutenticado;
+			HttpSession session = request.getSession();
+			session.setAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO, aluno);
 			requestDispatcher = request.getRequestDispatcher("/aluno.do");
 			requestDispatcher.forward(request, response);
-		} else {
-			String login = request.getParameter(FORM_LOGIN);
-			String senha = request.getParameter(FORM_SENHA);
-			Usuario usuario = (Usuario) controladorUsuario.criarEntidadeNegocio();
-			usuario.setLogin(login);
-			usuario.setSenha(senha);
-			try {
-				Usuario usuarioAutenticado = controladorUsuario.autenticarUsuario(usuario);
-				Aluno aluno = controladorAluno.buscarUsuarioAluno(usuarioAutenticado);
-				HttpSession session = request.getSession();
-				session.setAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO, aluno);
-				requestDispatcher = request.getRequestDispatcher("/aluno.do");
-				requestDispatcher.forward(request, response);
-			} catch (NegocioException e) {
-				request.setAttribute(e.getMessage(), usuario.getLogin());
-				requestDispatcher = request.getRequestDispatcher("/login.do");
-				requestDispatcher.forward(request, response);
-			}
+		} catch (NegocioException e) {
+			request.setAttribute(e.getMessage(), usuario.getLogin());
+			requestDispatcher = request.getRequestDispatcher("/login.do");
+			requestDispatcher.forward(request, response);
 		}
-
 	}
+
 }

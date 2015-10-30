@@ -17,7 +17,7 @@ import br.com.projetoperiodo.util.constantes.Constantes;
 public class ServletRelatorio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String RELATORIOS_MONITOR = "relatoriosMonitor";
-       
+    public static final String CHAVE_MONITOR = "chaveMonitor";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,7 +30,10 @@ public class ServletRelatorio extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		long chavePrimariaMonitor = Long.valueOf(request.getParameter("chaveMonitor"));
+		if (request.getSession(false) == null) {
+			request.getRequestDispatcher("/acesso.do").forward(request, response);
+		}
+		long chavePrimariaMonitor = Long.valueOf(request.getParameter(CHAVE_MONITOR));
 		Monitor monitor = (Monitor) Fachada.getInstance().buscarMonitoria(chavePrimariaMonitor);
 		request.getSession(false).setAttribute(Constantes.ATRIBUTO_MONITORIA, monitor);
 		request.getRequestDispatcher("/paginaPrincipalRelatorios").forward(request, response);

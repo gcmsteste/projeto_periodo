@@ -171,7 +171,6 @@ td.text-right {
 
 
 	<table class="table-fill">
-
 		<tbody class="table-hover">
 			<tr>
 				<td class="text-left"><a href="cadastroRelatorio.do?mes=1">Janeiro</a></td>

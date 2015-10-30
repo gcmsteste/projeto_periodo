@@ -3,6 +3,8 @@ package br.com.projetoperiodo.model.instituto.disciplina.controller.impl;
 import java.util.HashMap;
 import java.util.List;
 
+import br.com.projetoperiodo.model.instituto.aluno.Aluno;
+import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.controller.ControladorDisciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.dao.DisciplinaDao;
@@ -32,7 +34,16 @@ public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements
 		builder.append(" DisciplinaImpl ");
 		return dao.listar(builder.toString());
 	}
-	
+	@Override
+	public List<Disciplina> listarDisciplinasDeAluno(Aluno aluno) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(" select d from ");
+		builder.append(" DisciplinaImpl d ");
+		builder.append(" inner join d.pagantes p ");
+		builder.append(" where p.chavePrimaria = " );
+		builder.append(aluno.getChavePrimaria());
+		return dao.listar(builder.toString());
+	}
 	@Override
 	public Disciplina buscarDisciplina(String descricao) throws NegocioException {
 
@@ -41,6 +52,7 @@ public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements
 		
 		return (Disciplina) dao.buscar(filter);
 	}
+	
 	
 
 }

@@ -29,42 +29,32 @@ public class ServletEsqueceuSenha extends HttpServlet {
 
 	}
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	
+		ControladorUsuario controladorUsuario = Fachada.getInstance().getControladorUsuario();
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+		String loginUsuario = request.getParameter(FORM_LOGIN);
+		Usuario usuario = (Usuario) controladorUsuario.criarEntidadeNegocio();
+		usuario.setLogin(loginUsuario);
 
-		RequestDispatcher requestDispatcher;
-		ControladorUsuario controladorUsuario = Fachada.getInstance()
-				.getControladorUsuario();
+		Usuario usuarioBuscado = controladorUsuario.verificarExistenciaUsuario(usuario);
 
-		if (!(request.getSession(false) == null)) {
-			requestDispatcher = request.getRequestDispatcher("/aluno.do");
-			requestDispatcher.forward(request, response);
-		} else {
-			String loginUsuario = request.getParameter(FORM_LOGIN);
-			Usuario usuario = (Usuario) controladorUsuario
-					.criarEntidadeNegocio();
-			usuario.setLogin(loginUsuario);
+		try {
+			controladorUsuario.alterarSenhaUsuario(usuarioBuscado);
+			request.getRequestDispatcher("/acesso.do").forward(request, response);
 
-			Usuario usuarioBuscado = controladorUsuario
-					.verificarExistenciaUsuario(usuario);
-
-			try {
-				controladorUsuario.alterarSenhaUsuario(usuarioBuscado);
-				request.getRequestDispatcher("/acesso.do").forward(request, response);
-
-			} catch (NegocioException e) {
-				e.printStackTrace();
-			}
-
+		} catch (NegocioException e) {
+			//TODO tratar erro de usuario inexistente
+			e.printStackTrace();
 		}
+
 	}
 
 }

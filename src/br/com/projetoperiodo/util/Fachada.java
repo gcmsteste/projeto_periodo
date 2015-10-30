@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.ControladorAluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.impl.ControladorAlunoImpl;
-import br.com.projetoperiodo.model.instituto.curso.Curso;
 import br.com.projetoperiodo.model.instituto.curso.controller.ControladorCurso;
 import br.com.projetoperiodo.model.instituto.curso.controller.ControladorCursoImpl;
+import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.controller.ControladorDisciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.controller.impl.ControladorDisciplinaImpl;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
@@ -24,8 +24,11 @@ import br.com.projetoperiodo.model.relatorio.frequencia.controller.ControladorRe
 import br.com.projetoperiodo.model.relatorio.frequencia.controller.impl.ControladorRelatorioImpl;
 import br.com.projetoperiodo.model.relatorio.semana.controller.ControladorSemana;
 import br.com.projetoperiodo.model.relatorio.semana.controller.impl.ControladorSemanaImpl;
+import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
 import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImpl;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
+import br.com.projetoperiodo.util.exception.NegocioException;
 
 public class Fachada {
 
@@ -87,6 +90,17 @@ public class Fachada {
 		return new ControladorRelatorioImpl();
 	}
 
+	public EntidadeNegocio criarDisciplina() {
+		return this.getControladorDisciplina().criarEntidadeNegocio();
+	}
+
+	public EntidadeNegocio criarAluno() {
+		return this.getControladorAluno().criarEntidadeNegocio();
+	}
+	
+	public EntidadeNegocio criarUsuario() {
+		return this.getControladorUsuario().criarEntidadeNegocio();
+	}
 	public List<RelatorioFrequencia> buscarRelatorios(long chavePrimaria) {
 
 		Monitor monitor = (Monitor) this.getControladorMonitor().criarEntidadeNegocio();
@@ -95,9 +109,29 @@ public class Fachada {
 		return controladorRelatorio.buscarRelatoriosDeMonitor(monitor);
 	}
 
-	public RelatorioFrequencia buscarDetalhamentoRelatorio(long chavePrimaria) {
+	public List<Disciplina> listarDisciplinasDeAluno(EntidadeNegocio entidade) {
+		Aluno aluno = (Aluno) entidade;
+		return this.getControladorDisciplina().listarDisciplinasDeAluno(aluno);
+	}
 
-		return null;
+	public boolean validarCadastroMonitoria(EntidadeNegocio entidade) {
+		Monitor monitor = (Monitor) entidade;
+		return this.getControladorMonitor().validarCadastroMonitoria(monitor);
+	}
+
+	public EntidadeNegocio criarMonitoria(Usuario usuario, EntidadeNegocio entidade, Modalidade modalidade) {
+		Aluno aluno = (Aluno) usuario;
+		Disciplina disciplina = (Disciplina) entidade;
+		return this.getControladorMonitor().criarMonitoriaDeAluno(aluno, disciplina, modalidade);
+	}
+
+	public EntidadeNegocio cadastrarMonitoria(EntidadeNegocio entidade) {
+		Monitor monitor = (Monitor) entidade;
+		return this.getControladorMonitor().cadastrarMonitoria(monitor);
+	}
+
+	public EntidadeNegocio buscarDisciplina(String descricao) throws NegocioException {
+		return this.getControladorDisciplina().buscarDisciplina(descricao);
 	}
 
 	public void preCadastroRelatoriosMonitor(EntidadeNegocio entidadeNegocio) {
@@ -125,7 +159,13 @@ public class Fachada {
 		ControladorMonitor controladorMonitor = this.getControladorMonitor();
 		return controladorMonitor.buscarMonitoria(chavePrimaria);
 	}
-
+	public EntidadeNegocio autenticarUsuario(Usuario usuario) throws NegocioException {
+		return this.getControladorUsuario().autenticarUsuario(usuario);
+	}
+	public void cadastrarAluno(EntidadeNegocio entidade) {
+		Aluno aluno = (Aluno)entidade;
+		this.getControladorAluno().cadastrarAluno(aluno);
+	}
 	public void atualizarRelatorio(EntidadeNegocio entidade) {
 
 		RelatorioFrequencia relatorio = (RelatorioFrequencia) entidade;
@@ -142,10 +182,9 @@ public class Fachada {
 
 		return this.getControladorCurso().buscarCursoPadrao();
 	}
-	
+
 	public void removerMonitoriaDeAluno(long chavePrimaria) {
 		this.getControladorMonitor().removerMonitoria(chavePrimaria);
 	}
-	
 
 }
