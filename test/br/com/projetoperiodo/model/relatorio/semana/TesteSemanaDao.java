@@ -12,8 +12,10 @@ import org.junit.Test;
 
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
+import br.com.projetoperiodo.model.relatorio.frequencia.controller.ControladorRelatorio;
 import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
 import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
+import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
@@ -30,9 +32,10 @@ public class TesteSemanaDao {
 	
 	@Test
 	public void testeInserirSemana() {
-		int qtdInicio = dao.listar().size();
+		
+		int qtdInicio = dao.listar(" from SemanaImpl ").size();
 		dao.salvar(montarObjetoSemana());
-		int qtdFim = dao.listar().size();
+		int qtdFim = dao.listar("").size();
 		assertEquals(qtdInicio + 1, qtdFim);
 	}
 	

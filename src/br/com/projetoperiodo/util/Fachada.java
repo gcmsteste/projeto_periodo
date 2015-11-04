@@ -7,7 +7,7 @@ import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.ControladorAluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.impl.ControladorAlunoImpl;
 import br.com.projetoperiodo.model.instituto.curso.controller.ControladorCurso;
-import br.com.projetoperiodo.model.instituto.curso.controller.ControladorCursoImpl;
+import br.com.projetoperiodo.model.instituto.curso.controller.impl.ControladorCursoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.controller.ControladorDisciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.controller.impl.ControladorDisciplinaImpl;

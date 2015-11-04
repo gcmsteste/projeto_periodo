@@ -11,6 +11,7 @@ import br.com.projetoperiodo.model.instituto.disciplina.dao.DisciplinaDao;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
+import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.util.exception.NegocioException;
 
 public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements ControladorDisciplina
@@ -51,6 +52,12 @@ public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements
 		filter.put(Disciplina.ATRIBUTO_DESCRICAO, descricao);
 		
 		return (Disciplina) dao.buscar(filter);
+	}
+	
+	@Override
+	public String getNomeClasseEntidade() {
+		
+		return DisciplinaImpl.class.getSimpleName();
 	}
 	
 	

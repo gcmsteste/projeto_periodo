@@ -13,6 +13,7 @@ import br.com.projetoperiodo.model.instituto.periodo.Periodo;
 import br.com.projetoperiodo.model.instituto.periodo.controller.ControladorPeriodo;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
+import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 import br.com.projetoperiodo.util.exception.NegocioException;
@@ -127,4 +128,9 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 		dao.remover(monitor);
 	}
 
+	@Override
+	public String getNomeClasseEntidade() {
+		
+		return MonitorImpl.class.getSimpleName();
+	}
 }

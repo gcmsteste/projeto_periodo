@@ -7,4 +7,6 @@ public interface ControladorNegocio {
 
 	EntidadeNegocio criarEntidadeNegocio();
 
+	String getNomeClasseEntidade();
+
 }

@@ -33,7 +33,9 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 	public List<RelatorioFrequencia> buscarRelatoriosDeMonitor(Monitor monitor) {
 
 		StringBuilder builder = new StringBuilder();
-		builder.append(" from RelatorioFrequenciaImpl r ");
+		builder.append(" from ");
+		builder.append(this.getNomeClasseEntidade());
+		builder.append(" r ");
 		builder.append(" where r.monitor.chavePrimaria = ");
 		builder.append(monitor.getChavePrimaria());
 		return dao.listar(builder.toString());
@@ -61,7 +63,8 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(" select r from ");
-		builder.append(" RelatorioFrequenciaImpl r ");
+		builder.append(this.getNomeClasseEntidade());
+		builder.append(" r ");
 		builder.append(" where r.monitor.chavePrimaria =  ");
 		builder.append(monitor.getChavePrimaria());
 		builder.append(" and r.mes = ");
@@ -88,6 +91,12 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 		for ( RelatorioFrequencia relatorio: relatorios) {
 			dao.remover(relatorio);
 		}		
+	}
+	
+	@Override
+	public String getNomeClasseEntidade() {
+		
+		return RelatorioFrequenciaImpl.class.getSimpleName();
 	}
 
 }

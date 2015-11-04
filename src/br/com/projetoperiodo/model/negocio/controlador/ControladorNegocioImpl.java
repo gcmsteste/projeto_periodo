@@ -2,7 +2,6 @@
 package br.com.projetoperiodo.model.negocio.controlador;
 
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
-import br.com.projetoperiodo.util.exception.NegocioException;
 import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 import br.com.projetoperiodo.util.persistencia.dao.FabricaDAO;
 
@@ -20,5 +19,8 @@ public abstract class ControladorNegocioImpl implements ControladorNegocio {
 	 */
 	@Override
 	public abstract EntidadeNegocio criarEntidadeNegocio();
+	
+	@Override
+	public abstract String getNomeClasseEntidade();
 
 }

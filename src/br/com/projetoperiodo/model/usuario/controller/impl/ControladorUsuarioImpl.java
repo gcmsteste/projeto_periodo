@@ -100,8 +100,16 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 
 	@Override
 	public Usuario verificarExistenciaUsuario(Usuario usuario) {
+		
 		Usuario usuarioRequerente = dao.buscar(usuario.getLogin());
 		return usuarioRequerente;
 	}
+
+	@Override
+	public String getNomeClasseEntidade() {
+		
+		return UsuarioImpl.class.getSimpleName();
+	}
+	
 
 }

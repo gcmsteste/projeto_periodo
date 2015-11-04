@@ -11,6 +11,7 @@ import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.model.relatorio.semana.controller.ControladorSemana;
 import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
 import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
+import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Fachada;
 
 public class ControladorSemanaImpl extends ControladorNegocioImpl implements ControladorSemana{
@@ -52,6 +53,12 @@ public class ControladorSemanaImpl extends ControladorNegocioImpl implements Con
 	@Override
 	public void removerSemana(Semana semana) {
 		dao.remover(semana);
+	}
+	
+	@Override
+	public String getNomeClasseEntidade() {
+		
+		return SemanaImpl.class.getSimpleName();
 	}
 	
 

@@ -7,6 +7,7 @@ import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
+import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
@@ -37,5 +38,12 @@ public class ControladorAlunoImpl extends ControladorNegocioImpl implements Cont
 	public Aluno buscarUsuarioAluno(Usuario usuario) {
 		return dao.buscar(usuario.getChavePrimaria());
 	}
+	
+	@Override
+	public String getNomeClasseEntidade() {
+		
+		return AlunoImpl.class.getSimpleName();
+	}
 
+	
 }

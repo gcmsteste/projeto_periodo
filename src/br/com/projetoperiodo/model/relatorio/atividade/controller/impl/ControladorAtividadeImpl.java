@@ -8,7 +8,6 @@ import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.atividade.controller.ControladorAtividade;
 import br.com.projetoperiodo.model.relatorio.atividade.dao.AtividadeDao;
 import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
-import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 
 public class ControladorAtividadeImpl extends ControladorNegocioImpl implements ControladorAtividade
@@ -45,7 +44,9 @@ public class ControladorAtividadeImpl extends ControladorNegocioImpl implements 
 	public List<Atividade> buscarAtividadeDeSemana(Semana semana) {
 
 		StringBuilder builder = new StringBuilder();
-		builder.append(" from AtividadeImpl a ");
+		builder.append(" from ");
+		builder.append( this.getNomeClasseEntidade() );
+		builder.append(" a ");
 		builder.append(" where a.semana.chavePrimaria = ");
 		builder.append(semana.getChavePrimaria());
 		return dao.listar(builder.toString());
@@ -55,4 +56,9 @@ public class ControladorAtividadeImpl extends ControladorNegocioImpl implements 
 		dao.remover(atividade);
 	}
 
+	@Override
+	public String getNomeClasseEntidade() {
+		
+		return AtividadeImpl.class.getSimpleName();
+	}
 }

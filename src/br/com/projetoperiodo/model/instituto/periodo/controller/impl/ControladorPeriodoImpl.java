@@ -9,6 +9,7 @@ import br.com.projetoperiodo.model.instituto.periodo.dao.PeriodoDao;
 import br.com.projetoperiodo.model.instituto.periodo.impl.PeriodoImpl;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
+import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
@@ -71,7 +72,9 @@ public class ControladorPeriodoImpl extends ControladorNegocioImpl implements Co
 	@Override
 	public Periodo buscarPeriodo(int ano, Semestre semestre) throws NegocioException {
 		StringBuilder builder = new StringBuilder();
-		builder.append(" select p from PeriodoImpl p ");
+		builder.append(" select p from ");
+		builder.append(this.getNomeClasseEntidade());
+		builder.append(" p ");
 		builder.append(" where p.ano =  ");
 		builder.append(ano);
 		builder.append(" and ");
@@ -84,10 +87,10 @@ public class ControladorPeriodoImpl extends ControladorNegocioImpl implements Co
 		return listaDePeriodos.get(0);
 	}
 
-	public static void main(String[] args) throws NegocioException {
-		ControladorPeriodo periodo = Fachada.getInstance().getControladorPeriodo();
-
-		periodo.gerarNovoPeriodoCorrente();
+	@Override
+	public String getNomeClasseEntidade() {
+		
+		return PeriodoImpl.class.getSimpleName();
 	}
 
 }
