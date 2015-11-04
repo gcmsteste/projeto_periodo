@@ -16,9 +16,9 @@ public class TesteDisciplinaDao {
 
 	@Test
 	public void testeInserirDisciplina(){
-		int quantidadeInicio = dao.listar().size();
+		int quantidadeInicio = dao.listar("from DisciplinaImpl").size();
 	//	dao.salvar(montarObjetoDisciplina());
-		int quantidadeFim = dao.listar().size();
+		int quantidadeFim = dao.listar("from DisciplinaImpl").size();
 		Assert.assertEquals(quantidadeInicio + 1,quantidadeFim);
 
 	}
@@ -27,9 +27,9 @@ public class TesteDisciplinaDao {
 	public void TesteRemoverDisciplina(){
 		DisciplinaImpl disciplina = new DisciplinaImpl();
 		dao.salvar(disciplina);
-		int quantidadeInicio = dao.listar().size();
+		int quantidadeInicio = dao.listar("from DisciplinaImpl").size();
 		dao.remover(disciplina);
-		int quantidadeFim = dao.listar().size();
+		int quantidadeFim = dao.listar("from DisciplinaImpl").size();
 		Assert.assertEquals(quantidadeInicio - 1, quantidadeFim);
 	}
 

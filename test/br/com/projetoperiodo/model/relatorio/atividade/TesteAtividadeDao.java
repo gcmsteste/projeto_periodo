@@ -26,9 +26,9 @@ public class TesteAtividadeDao {
 	@Test
 	public void testeInserirAtividade() {
 
-		int qtdInicio = dao.listar().size();
+		int qtdInicio = dao.listar("from AtividadeImpl").size();
 		dao.salvar(montarObjetoAtividade());
-		int qtdFim = dao.listar().size();
+		int qtdFim = dao.listar("from AtividadeImpl").size();
 		Assert.assertEquals(qtdInicio + 1, qtdFim);
 	}
 	
@@ -37,9 +37,9 @@ public class TesteAtividadeDao {
 		Atividade atividade = montarObjetoAtividade();
 		dao.salvar(atividade);
 		
-		int qtdInicio = dao.listar().size();
+		int qtdInicio = dao.listar("from AtividadeImpl").size();
 		dao.remover(atividade);
-		int qtdFim = dao.listar().size();
+		int qtdFim = dao.listar("from AtividadeImpl").size();
 		Assert.assertEquals(qtdInicio - 1, qtdFim );
 	}
 	

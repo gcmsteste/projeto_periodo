@@ -44,9 +44,9 @@ public class TesteSemanaDao {
 		Semana semana = montarObjetoSemana();
 		dao.salvar(semana);
 		
-		int qtdInicio = dao.listar().size();
+		int qtdInicio = dao.listar(" from SemanaImpl ").size();
 		dao.remover(semana);
-		int qtdFim = dao.listar().size();
+		int qtdFim = dao.listar(" from SemanaImpl ").size();
 		assertEquals(qtdInicio - 1, qtdFim);
 	}
 	

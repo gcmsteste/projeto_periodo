@@ -5,23 +5,19 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
-import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
-import br.com.projetoperiodo.model.relatorio.frequencia.dao.JPARelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
-import br.com.projetoperiodo.util.persistencia.jpa.FabricaJPA;
 import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
 public class TesteRelatorioFrequenciaDao {
@@ -80,7 +76,6 @@ public class TesteRelatorioFrequenciaDao {
 		RelatorioFrequencia relatorioFrequencia = new RelatorioFrequenciaImpl();
 		relatorioFrequencia.setMes(8);
 		relatorioFrequencia.setCargaHorariaMensal(80);
-		relatorioFrequencia.setDataEntregaRelatorio(new Date());
 		relatorioFrequencia.setSemanas(montarObjetoSemana(relatorioFrequencia));
 		relatorioFrequencia.setSemanas(montarObjetoSemana(relatorioFrequencia));
 		relatorioFrequencia.setSemanas(montarObjetoSemana(relatorioFrequencia));
