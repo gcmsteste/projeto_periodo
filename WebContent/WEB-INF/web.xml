@@ -7,14 +7,7 @@
 		<welcome-file>acesso.do</welcome-file>
 	</welcome-file-list>
 
-	<servlet>
-		<servlet-name>LoginForm</servlet-name>
-		<jsp-file>/Login.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LoginForm</servlet-name>
-		<url-pattern>/login.do</url-pattern>
-	</servlet-mapping>
+	
 
 	<servlet>
 		<servlet-name>EsqueceuSenhaForm</servlet-name>
@@ -190,8 +183,17 @@
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>
-		ServletRelatorio</servlet-name>
+		<servlet-name>ServletRelatorio
+		</servlet-name>
 		<url-pattern>/relatorio.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LoginForm</servlet-name>
+		<jsp-file>/Login.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginForm</servlet-name>
+		<url-pattern>/login.do</url-pattern>
 	</servlet-mapping>
 </web-app>
