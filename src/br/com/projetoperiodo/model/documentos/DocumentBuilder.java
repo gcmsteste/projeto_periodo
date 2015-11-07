@@ -14,5 +14,6 @@ public abstract class DocumentBuilder {
 	}
 	protected abstract byte[] createDocument(RelatorioFrequencia relatorio);
 	protected abstract void inserirSemanas();
+	protected abstract void inserirNomeMonitor();
 	
 }

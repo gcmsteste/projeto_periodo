@@ -100,6 +100,7 @@ public class PDFBuilder  {
 		try {
 			DocumentDao dao = new JDBCDocumentDao();
 			reader = new PdfReader(dao.buscar());
+		
 			configurarFonteDocumento();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -370,8 +371,6 @@ public class PDFBuilder  {
 		monitor.setPeriodo(periodo);
 		relatorio.setMonitor(monitor);
 		relatorio.setMes(9);
-		byte[] s = PDFBuilder.getInstancia().gerarRelatorio(relatorio);
-		System.out.println(s);
 		
 		
 
