@@ -1,8 +1,10 @@
 
-package br.com.projetoperiodo.util.documentos;
+package br.com.projetoperiodo.model.documentos;
 
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -17,6 +19,8 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 
+import br.com.projetoperiodo.model.documentos.dao.DocumentDao;
+import br.com.projetoperiodo.model.documentos.dao.JDBCDocumentDao;
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.curso.Curso;
@@ -38,13 +42,9 @@ import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
 
-public class DescritorDocumento {
+public class PDFBuilder extends DocumentBuilder {
 
 	private PdfReader reader;
-
-	private static final String SOURCE = "C:\\Users\\Edmilson\\workspace2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\projeto_periodo\\pdf\\selection.pdf";
-
-	private static final String DEST = "C:\\Users\\Edmilson\\workspace2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\projeto_periodo\\pdf\\relatorio.pdf";
 
 	private FontSelector seletorFonte;
 
@@ -96,10 +96,11 @@ public class DescritorDocumento {
 
 	public static final int SEMANA_DESCRICAO_Y = 588;
 
-	private DescritorDocumento() {
+	private PDFBuilder() {
+		super();
 		try {
-			System.getProperty("user.dir");
-			reader = new PdfReader(SOURCE);
+			DocumentDao dao = new JDBCDocumentDao();
+			reader = new PdfReader(dao.buscar());
 			configurarFonteDocumento();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -118,9 +119,9 @@ public class DescritorDocumento {
 		reader.close();
 	}
 
-	public static DescritorDocumento getInstancia() {
+	public static PDFBuilder getInstancia() {
 
-		return new DescritorDocumento();
+		return new PDFBuilder();
 	}
 
 	private void preencherNomeMonitor(String nome, PdfContentByte conteudoDocumento) {
@@ -272,18 +273,23 @@ public class DescritorDocumento {
 		preencherHorarioSaidaAtividade(monitor, decrementoPosicaoRelativaY, conteudoDocumento);
 	}
 
-	public void gerarRelatorio(RelatorioFrequencia relatorio) {
+	public byte[] gerarRelatorio(RelatorioFrequencia relatorio) {
 
 		PdfStamper copia = null;
+		OutputStream out  = null;
 		try {
-			copia = new PdfStamper(reader, new FileOutputStream(DEST));
+			out = new ByteArrayOutputStream(); 
+			copia = new PdfStamper(reader, out);
+			
 			
 		} catch (DocumentException | IOException e1) {
 
 			e1.printStackTrace();
 		}
-		
+	
 		PdfContentByte conteudoDocumento = copia.getOverContent(1);
+		
+	
 		preencherNomeMonitor(relatorio.getMonitor().getAluno().getNome().concat(" ")
 				.concat(relatorio.getMonitor().getAluno().getSobrenome()), conteudoDocumento);
 		preencherNomeDisciplina(relatorio.getMonitor().getDisciplina().getDescricao(), conteudoDocumento);
@@ -315,6 +321,7 @@ public class DescritorDocumento {
 			preencherDescricaoQuartaSemana(relatorio.getSemana(3), conteudoDocumento);
 			preencherDescricaoQuintaSemana(relatorio.getSemana(4), conteudoDocumento);
 			copia.close();
+		
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -322,7 +329,8 @@ public class DescritorDocumento {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		byte[] content = ((ByteArrayOutputStream)out).toByteArray();
+		return content;
 	}
 
 	public static void main(String[] args) throws DocumentException, IOException {
@@ -350,10 +358,12 @@ public class DescritorDocumento {
 		Curso curso = new CursoImpl();
 		Aluno aluno = new AlunoImpl();
 		curso.setDescricao("Análise de Sistemas");
-		professor.setNome("Marcos Costa");
+		professor.setNome("Marcos");
+		professor.setSobrenome("Santana");
 		disciplina.setDescricao("Introdução à Programação");
 		disciplina.setProfessor(professor);
-		aluno.setNome("Edmilson Santana");
+		aluno.setNome("Edmilson");
+		aluno.setSobrenome("Santana");
 		monitor.setDisciplina(disciplina);
 		aluno.setMatricula("20141Y6-RC0323");
 		aluno.setCurso(curso);
@@ -361,7 +371,22 @@ public class DescritorDocumento {
 		monitor.setPeriodo(periodo);
 		relatorio.setMonitor(monitor);
 		relatorio.setMes(9);
-		DescritorDocumento.getInstancia().gerarRelatorio(relatorio);
+		byte[] s = PDFBuilder.getInstancia().gerarRelatorio(relatorio);
+		System.out.println(s);
+		
+		
 
+	}
+
+	@Override
+	protected byte[] createDocument(RelatorioFrequencia relatorio) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void inserirSemanas() {
+		// TODO Auto-generated method stub
+		
 	}
 }

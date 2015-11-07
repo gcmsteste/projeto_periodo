@@ -1,7 +1,5 @@
 package br.com.projetoperiodo.servlets.documento;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -15,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ServletEnviaDocumento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static final String PATH_RELATORIO = "\\pdf\\relatorio.pdf";
     private static final String FILE_NAME = "relatorio.pdf";
+    private static final String DOCUMENTO_RELATORIO = "documento_relatorio";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,19 +28,15 @@ public class ServletEnviaDocumento extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String contextPath = getServletContext().getRealPath("//");
-		File pdfFile = new File(contextPath + PATH_RELATORIO);
-
+		byte[] bytes = (byte[]) request.getAttribute(DOCUMENTO_RELATORIO);
+		
 		response.setContentType("application/pdf");
 		response.addHeader("Content-Disposition", "attachment; filename=" + FILE_NAME);
-		response.setContentLength((int) pdfFile.length());
+		response.setContentLength(bytes.length);
 
-		FileInputStream fileInputStream = new FileInputStream(pdfFile);
 		OutputStream responseOutputStream = response.getOutputStream();
-		int bytes;
-		while ((bytes = fileInputStream.read()) != -1) {
-			responseOutputStream.write(bytes);
-		}
+		responseOutputStream.write(bytes);
+		
 	}
 
 	/**

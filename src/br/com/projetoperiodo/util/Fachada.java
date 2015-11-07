@@ -34,8 +34,7 @@ public class Fachada {
 
 	private static Fachada fachada = null;
 
-	public Fachada() {
-	}
+	private Fachada() { }
 
 	public synchronized static Fachada getInstance() {
 
@@ -172,10 +171,10 @@ public class Fachada {
 		this.getControladorRelatorio().atualizarRelatorio(relatorio);
 	}
 
-	public void gerarDocumentoDeRelatorio(EntidadeNegocio entidade) {
+	public byte[] gerarDocumentoDeRelatorio(EntidadeNegocio entidade) {
 
 		RelatorioFrequencia relatorio = (RelatorioFrequencia) entidade;
-		this.getControladorRelatorio().gerarDocumentoDeRelatorio(relatorio);
+		return this.getControladorRelatorio().gerarDocumentoDeRelatorio(relatorio);
 	}
 
 	public EntidadeNegocio buscarCursoPadraoDeAluno() {

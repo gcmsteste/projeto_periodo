@@ -16,7 +16,7 @@ public interface ControladorRelatorio extends ControladorNegocio{
 
 	void atualizarRelatorio(RelatorioFrequencia relatorio);
 	
-	void gerarDocumentoDeRelatorio(RelatorioFrequencia relatorio);
+	byte[] gerarDocumentoDeRelatorio(RelatorioFrequencia relatorio);
 
 	void removerRelatoriosDeMonitoria(Monitor monitor); 
 }

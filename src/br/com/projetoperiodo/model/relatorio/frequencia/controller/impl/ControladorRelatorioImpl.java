@@ -3,6 +3,7 @@ package br.com.projetoperiodo.model.relatorio.frequencia.controller.impl;
 
 import java.util.List;
 
+import br.com.projetoperiodo.model.documentos.PDFBuilder;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.periodo.Periodo;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
@@ -13,7 +14,6 @@ import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaD
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.relatorio.semana.controller.ControladorSemana;
 import br.com.projetoperiodo.util.Fachada;
-import br.com.projetoperiodo.util.documentos.DescritorDocumento;
 
 public class ControladorRelatorioImpl extends ControladorNegocioImpl implements ControladorRelatorio {
 
@@ -80,9 +80,9 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 	}
 
 	@Override
-	public void gerarDocumentoDeRelatorio(RelatorioFrequencia relatorio) {
+	public byte[] gerarDocumentoDeRelatorio(RelatorioFrequencia relatorio) {
 
-		DescritorDocumento.getInstancia().gerarRelatorio(relatorio);
+		return PDFBuilder.getInstancia().gerarRelatorio(relatorio);
 
 	}
 	@Override

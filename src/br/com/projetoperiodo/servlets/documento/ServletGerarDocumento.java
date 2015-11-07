@@ -17,7 +17,7 @@ import br.com.projetoperiodo.util.constantes.Constantes;
 public class ServletGerarDocumento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String MES_RELATORIO = "mes";
-
+	private static final String DOCUMENTO_RELATORIO = "documento_relatorio";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,7 +33,7 @@ public class ServletGerarDocumento extends HttpServlet {
 		int mesRelatorio = Integer.valueOf(request.getParameter(MES_RELATORIO));
 		Monitor monitor = (Monitor) request.getSession(false).getAttribute(Constantes.ATRIBUTO_MONITORIA);
 		RelatorioFrequencia relatorio = Fachada.getInstance().buscarRelatorioMensal(monitor, mesRelatorio);
-		Fachada.getInstance().gerarDocumentoDeRelatorio(relatorio);
+		request.setAttribute(DOCUMENTO_RELATORIO, Fachada.getInstance().gerarDocumentoDeRelatorio(relatorio));
 		request.getRequestDispatcher("/enviarDocumento.do").forward(request, response);
 	}
 
