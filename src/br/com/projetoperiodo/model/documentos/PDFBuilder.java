@@ -3,7 +3,6 @@ package br.com.projetoperiodo.model.documentos;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.DateFormat;
 import java.util.Date;
@@ -42,7 +41,7 @@ import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
 
-public class PDFBuilder extends DocumentBuilder {
+public class PDFBuilder  {
 
 	private PdfReader reader;
 
@@ -378,15 +377,7 @@ public class PDFBuilder extends DocumentBuilder {
 
 	}
 
-	@Override
-	protected byte[] createDocument(RelatorioFrequencia relatorio) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	protected void inserirSemanas() {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }
