@@ -16,6 +16,7 @@
 </head>
 <body>
 	<jsp:include page="Cabecalho.jsp" />
+	
 	<form id="form1" action="cadastroAluno.do" method="post">
 		<fieldset>
 			<label>Login</label> <input type="text" name="login" /> <label
@@ -45,8 +46,8 @@
 
 			</div>
 
-			<label  id="senha">Senha</label> <input type="password" name="senha" />
-			<label  id="confirmasenha">Confirme sua senha</label> <input
+			<label id="senha">Senha</label> <input type="password" name="senha" />
+			<label id="confirmasenha">Confirme sua senha</label> <input
 				type="password" name="confirmasenha" />
 			<button type="submit" onclick="return validar()">Cadastrar</button>
 		</fieldset>
