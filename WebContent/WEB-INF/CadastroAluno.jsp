@@ -9,14 +9,14 @@
 <script src="js/jquery.js"></script>
 <link rel="stylesheet" href="css/cadastro-aluno.css" type="text/css" />
 <script type="text/javascript" src="js/cadastro-aluno.js"></script>
-
+<script type="text/javascript" src="js/validar-senha.js"></script>
 
 <title>Monitoria IFPE-TADS</title>
 
 </head>
 <body>
 	<jsp:include page="Cabecalho.jsp" />
-	<form action="cadastroAluno.do" method="post">
+	<form id="form1" action="cadastroAluno.do" method="post">
 		<fieldset>
 			<label>Login</label> <input type="text" name="login" /> <label
 				id="nome">Nome</label> <input type="text" id="nome" name="nome" />
@@ -45,10 +45,10 @@
 
 			</div>
 
-			<label id="senha">Senha</label> <input type="password" name="senha" />
-			<label id="confirmasenha">Confirme sua senha</label> <input
+			<label  id="senha">Senha</label> <input type="password" name="senha" />
+			<label  id="confirmasenha">Confirme sua senha</label> <input
 				type="password" name="confirmasenha" />
-			<button type="submit">Cadastrar</button>
+			<button type="submit" onclick="return validar()">Cadastrar</button>
 		</fieldset>
 	</form>
 
