@@ -8,7 +8,7 @@ import br.com.projetoperiodo.model.usuario.Usuario;
 public interface UsuarioDao extends EntidadeNegocioDao
 {
 	
-	public void salvar(Usuario usuario);
+	public Usuario salvar(Usuario usuario);
 	
 	public void atualizar(Usuario usuario);
 	

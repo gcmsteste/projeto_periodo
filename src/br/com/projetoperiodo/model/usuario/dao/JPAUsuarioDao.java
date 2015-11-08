@@ -22,7 +22,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 
 
 	@Override
-	public void salvar(Usuario usuario) {
+	public Usuario salvar(Usuario usuario) {
 
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
@@ -30,6 +30,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 		entityManager.persist(usuario);
 		entityTransaction.commit();
 		entityManager.close();
+		return usuario;
 
 	}
 
