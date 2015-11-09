@@ -9,6 +9,7 @@ import br.com.projetoperiodo.model.instituto.professor.dao.ProfessorDao;
 import br.com.projetoperiodo.model.relatorio.atividade.dao.AtividadeDao;
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
+import br.com.projetoperiodo.model.usuario.dao.JDBCUsuarioDao;
 import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
 import br.com.projetoperiodo.util.persistencia.dao.FabricaDAO;
 
@@ -18,7 +19,6 @@ public class FabricaJDBC extends FabricaDAO
 	@Override
 	public UsuarioDao criarUsuarioDAO() {
 
-		// TODO Auto-generated method stub
 		return null;
 	}
 
