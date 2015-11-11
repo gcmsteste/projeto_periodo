@@ -120,7 +120,7 @@ public class JDBCUsuarioDao implements UsuarioDao {
 	}
 
 	@Override
-	public void atualizar(Usuario usuario) {
+	public Usuario atualizar(Usuario usuario) {
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(" UPDATE PROJETO_PERIODO.USUARIO ");
@@ -154,6 +154,7 @@ public class JDBCUsuarioDao implements UsuarioDao {
 				throw new RuntimeException(e);
 			}
 		}
+		return usuario;
 
 	}
 

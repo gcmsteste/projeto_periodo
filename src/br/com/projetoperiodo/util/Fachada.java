@@ -190,5 +190,10 @@ public class Fachada {
 	public void alterarEstrategiaDePersistencia(String tipo) {
 		CreatorFabrica.criarFabricaDAO(tipo);
 	}
+	
+	public void alterarSenhaUsuario(EntidadeNegocio entidade) {
+		Usuario usuario = (Usuario)entidade;
+		this.getControladorUsuario().alterarSenha(usuario);
+	}
 
 }

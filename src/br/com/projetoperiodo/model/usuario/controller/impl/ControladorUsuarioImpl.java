@@ -42,6 +42,16 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 		}
 
 	}
+	
+	@Override
+	public Usuario alterarSenha(Usuario usuario) {
+		String novaSenha = usuario.getSenha();
+		String senhaCriptografada = Util.criptografarSenha(novaSenha, novaSenha, Constantes.CONSTANTE_CRIPTOGRAFIA);
+		usuario.setSenha(senhaCriptografada);
+		
+		return CreatorFabrica.getFabricaDAO().criarUsuarioDAO().atualizar(usuario);
+		
+	}
 
 	@Override
 	public void envioEmailSenha(Usuario usuario) throws NegocioException {

@@ -10,7 +10,7 @@ public interface UsuarioDao extends EntidadeNegocioDao
 	
 	public Usuario salvar(Usuario usuario);
 	
-	public void atualizar(Usuario usuario);
+	public Usuario atualizar(Usuario usuario);
 	
 	public void remover(Usuario usuario);
 	

@@ -22,4 +22,6 @@ public interface ControladorUsuario extends ControladorNegocio
 	Usuario cadastrarUsuario(Usuario usuario);
 	
 	Usuario verificarExistenciaUsuario(Usuario usuario);
+
+	Usuario alterarSenha(Usuario usuario);
 }

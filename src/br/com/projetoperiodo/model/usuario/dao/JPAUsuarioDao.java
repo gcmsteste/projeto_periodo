@@ -35,7 +35,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 	}
 
 	@Override
-	public void atualizar(Usuario usuario) {
+	public Usuario atualizar(Usuario usuario) {
 
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
@@ -43,6 +43,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 		entityManager.merge(usuario);
 		entityTransaction.commit();
 		entityManager.close();
+		return usuario;
 	}
 
 	@Override
