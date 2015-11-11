@@ -13,6 +13,9 @@ import br.com.projetoperiodo.util.persistencia.jdbc.ConnectionFactory;
 
 public class JDBCDocumentDao implements DocumentDao {
 
+	public JDBCDocumentDao() {
+		this.salvar("selection.pdf");
+	}
 	@Override
 	public void salvar(String fileName) {
 		int len;
@@ -55,4 +58,5 @@ public class JDBCDocumentDao implements DocumentDao {
 		}
 		return is;
 	}
+	
 }
