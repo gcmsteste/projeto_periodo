@@ -7,13 +7,14 @@ import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 
 public class ControladorCursoImpl extends ControladorNegocioImpl implements ControladorCurso
 {
-	private CursoDao dao;
+	
 	
 	public ControladorCursoImpl() {
-		dao = fabrica.criarCursoDAO();
+	
 	}
 
 	/* (non-Javadoc)
@@ -28,7 +29,7 @@ public class ControladorCursoImpl extends ControladorNegocioImpl implements Cont
 	@Override
 	public Curso buscarCursoPadrao() {
 
-		return dao.buscar(1l);
+		return CreatorFabrica.getFabricaDAO().criarCursoDAO().buscar(1l);
 	}
 	@Override
 	public String getNomeClasseEntidade() {

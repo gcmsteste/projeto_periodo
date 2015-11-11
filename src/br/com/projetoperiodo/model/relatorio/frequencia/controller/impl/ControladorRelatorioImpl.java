@@ -14,13 +14,14 @@ import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaD
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.relatorio.semana.controller.ControladorSemana;
 import br.com.projetoperiodo.util.Fachada;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 
 public class ControladorRelatorioImpl extends ControladorNegocioImpl implements ControladorRelatorio {
 
-	private RelatorioFrequenciaDao dao;
+
 
 	public ControladorRelatorioImpl() {
-		dao = fabrica.criarRelatorioFrequenciaDAO();
+		
 	}
 
 	@Override
@@ -38,7 +39,7 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 		builder.append(" r ");
 		builder.append(" where r.monitor.chavePrimaria = ");
 		builder.append(monitor.getChavePrimaria());
-		return dao.listar(builder.toString());
+		return CreatorFabrica.getFabricaDAO().criarRelatorioFrequenciaDAO().listar(builder.toString());
 	}
 
 	@Override
@@ -52,7 +53,7 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 			relatorio = (RelatorioFrequencia) this.criarEntidadeNegocio();
 			relatorio.setMes(mes);
 			relatorio.setMonitor(monitor);
-			dao.salvar(relatorio);
+			CreatorFabrica.getFabricaDAO().criarRelatorioFrequenciaDAO().salvar(relatorio);
 			controladorSemana.cadastrarSemanasComRelatorio(relatorio);
 		}
 
@@ -69,14 +70,14 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 		builder.append(monitor.getChavePrimaria());
 		builder.append(" and r.mes = ");
 		builder.append(mes);
-		RelatorioFrequencia relatorio = dao.listar(builder.toString()).get(0);
+		RelatorioFrequencia relatorio = CreatorFabrica.getFabricaDAO().criarRelatorioFrequenciaDAO().listar(builder.toString()).get(0);
 		return relatorio;
 	}
 
 	@Override
 	public void atualizarRelatorio(RelatorioFrequencia relatorio) {
 
-		dao.atualizar(relatorio);
+		CreatorFabrica.getFabricaDAO().criarRelatorioFrequenciaDAO().atualizar(relatorio);
 	}
 
 	@Override
@@ -89,7 +90,7 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 	public void removerRelatoriosDeMonitoria(Monitor monitor) {
 		List<RelatorioFrequencia> relatorios = this.buscarRelatoriosDeMonitor(monitor);
 		for ( RelatorioFrequencia relatorio: relatorios) {
-			dao.remover(relatorio);
+			CreatorFabrica.getFabricaDAO().criarRelatorioFrequenciaDAO().remover(relatorio);
 		}		
 	}
 	

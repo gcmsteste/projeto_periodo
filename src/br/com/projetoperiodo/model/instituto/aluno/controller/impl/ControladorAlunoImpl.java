@@ -11,13 +11,14 @@ import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 
 public class ControladorAlunoImpl extends ControladorNegocioImpl implements ControladorAluno {
 
-	private AlunoDao dao;
+
 	
 	public ControladorAlunoImpl() {
-		dao = fabrica.criarAlunoDAO();
+	
 	}
 	@Override
 	public EntidadeNegocio criarEntidadeNegocio() {
@@ -31,12 +32,12 @@ public class ControladorAlunoImpl extends ControladorNegocioImpl implements Cont
 		String senhaCriptografada = Util.criptografarSenha(
 						aluno.getSenha(), aluno.getSenha(), Constantes.CONSTANTE_CRIPTOGRAFIA);
 		aluno.setSenha(senhaCriptografada);
-		dao.salvar(aluno);
+		CreatorFabrica.getFabricaDAO().criarAlunoDAO().salvar(aluno);
 		return aluno;
 	}
 	@Override
 	public Aluno buscarUsuarioAluno(Usuario usuario) {
-		return dao.buscar(usuario.getChavePrimaria());
+		return CreatorFabrica.getFabricaDAO().criarAlunoDAO().buscar(usuario.getChavePrimaria());
 	}
 	
 	@Override

@@ -24,6 +24,15 @@ import br.com.projetoperiodo.util.persistencia.dao.FabricaDAO;
 
 public class FabricaJPA extends FabricaDAO {
 
+	private static FabricaJPA instance = null;
+	
+	private FabricaJPA() { }
+	public static FabricaJPA getInstance() {
+		if ( instance == null ) {
+			instance = new FabricaJPA();
+		}
+		return instance;
+	}
 	@Override
 	public UsuarioDao criarUsuarioDAO() {
 

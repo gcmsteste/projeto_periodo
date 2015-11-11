@@ -14,12 +14,13 @@ import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
 import br.com.projetoperiodo.util.exception.NegocioException;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 
 public class ControladorPeriodoImpl extends ControladorNegocioImpl implements ControladorPeriodo {
-	private PeriodoDao dao;
+	
 
 	public ControladorPeriodoImpl() {
-		dao = fabrica.criarPeriodoDao();
+		
 	}
 	/*
 	 * (non-Javadoc)
@@ -65,7 +66,7 @@ public class ControladorPeriodoImpl extends ControladorNegocioImpl implements Co
 
 	@Override
 	public Periodo cadastrarPeriodo(Periodo periodo) {
-		dao.salvar(periodo);
+		CreatorFabrica.getFabricaDAO().criarPeriodoDao().salvar(periodo);
 		return periodo;
 	}
 
@@ -80,7 +81,7 @@ public class ControladorPeriodoImpl extends ControladorNegocioImpl implements Co
 		builder.append(" and ");
 		builder.append(" p.semestre = ");
 		builder.append(semestre.semestre);
-		List<Periodo> listaDePeriodos = dao.listar(builder.toString());
+		List<Periodo> listaDePeriodos = CreatorFabrica.getFabricaDAO().criarPeriodoDao().listar(builder.toString());
 		if (listaDePeriodos.isEmpty()) {
 			throw new NegocioException(Constantes.ENTIDADE_NAO_ENCONTRADA);
 		}

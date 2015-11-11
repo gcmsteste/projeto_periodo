@@ -13,13 +13,14 @@ import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
 import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Fachada;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 
 public class ControladorSemanaImpl extends ControladorNegocioImpl implements ControladorSemana{
 
-	private SemanaDao dao;
+	
 	
 	public ControladorSemanaImpl() {
-		dao = fabrica.criarSemanaDAO();
+		
 	}
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.relatorio.semana.controller.ControladorSemana#criarEntidadeNegocio()
@@ -36,7 +37,7 @@ public class ControladorSemanaImpl extends ControladorNegocioImpl implements Con
 		for ( int i = 0; i < RelatorioFrequencia.QUANTIDADE_SEMANAS_POR_RELATORIO; i++) {
 			Semana semana = (Semana)this.criarEntidadeNegocio();
 			semana.setRelatorio(relatorio);
-			dao.salvar(semana);
+			CreatorFabrica.getFabricaDAO().criarSemanaDAO().salvar(semana);
 			controladorAtividade.cadastrarAtividadesComSemanaDeRelatorio(semana);
 			
 		}
@@ -48,11 +49,11 @@ public class ControladorSemanaImpl extends ControladorNegocioImpl implements Con
 		builder.append(" from SemanaImpl s ");
 		builder.append(" where s.relatorio.chavePrimaria = ");
 		builder.append(relatorio.getChavePrimaria());
-		return dao.listar(builder.toString());
+		return CreatorFabrica.getFabricaDAO().criarSemanaDAO().listar(builder.toString());
 	}
 	@Override
 	public void removerSemana(Semana semana) {
-		dao.remover(semana);
+		CreatorFabrica.getFabricaDAO().criarSemanaDAO().remover(semana);
 	}
 	
 	@Override

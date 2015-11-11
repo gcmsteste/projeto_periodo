@@ -13,14 +13,15 @@ import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.util.exception.NegocioException;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 
 public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements ControladorDisciplina
 {
-	private DisciplinaDao dao;
+	
 	
 	
 	public ControladorDisciplinaImpl() {
-		dao = fabrica.criarDisciplinaDAO();
+		
 	}
 	@Override
 	public EntidadeNegocio criarEntidadeNegocio() {
@@ -33,7 +34,7 @@ public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements
 		StringBuilder builder = new StringBuilder();
 		builder.append(" from ");
 		builder.append(" DisciplinaImpl ");
-		return dao.listar(builder.toString());
+		return  CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().listar(builder.toString());
 	}
 	@Override
 	public List<Disciplina> listarDisciplinasDeAluno(Aluno aluno) {
@@ -43,7 +44,7 @@ public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements
 		builder.append(" inner join d.pagantes p ");
 		builder.append(" where p.chavePrimaria = " );
 		builder.append(aluno.getChavePrimaria());
-		return dao.listar(builder.toString());
+		return CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().listar(builder.toString());
 	}
 	@Override
 	public Disciplina buscarDisciplina(String descricao) throws NegocioException {
@@ -51,7 +52,7 @@ public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements
 		HashMap<String, Object> filter = new HashMap<>();
 		filter.put(Disciplina.ATRIBUTO_DESCRICAO, descricao);
 		
-		return (Disciplina) dao.buscar(filter);
+		return (Disciplina) CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().buscar(filter);
 	}
 	
 	@Override

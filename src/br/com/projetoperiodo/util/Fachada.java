@@ -29,6 +29,7 @@ import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
 import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImpl;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 import br.com.projetoperiodo.util.exception.NegocioException;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 
 public class Fachada {
 
@@ -184,6 +185,10 @@ public class Fachada {
 
 	public void removerMonitoriaDeAluno(long chavePrimaria) {
 		this.getControladorMonitor().removerMonitoria(chavePrimaria);
+	}
+	
+	public void alterarEstrategiaDePersistencia(String tipo) {
+		CreatorFabrica.criarFabricaDAO(tipo);
 	}
 
 }

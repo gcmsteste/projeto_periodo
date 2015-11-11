@@ -7,9 +7,33 @@
 <!--   <link rel="shortcut icon" href="images/favicon.gif" /> -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" />
+<script src="js/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
+<script src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="css/cabecalho.css" />
+<link rel="stylesheet" type="text/css" href="css/toggle-button.css" />
 <script type="text/javascript" src="js/cabecalho.js"></script>
 <title>Monitoria IFPE-TADS</title>
+<script>
+	$(document).ready(function() {
+
+		$('a.toggler').click(function() {
+			$(this).toggleClass('off');
+			var strategy = $(this).text();
+			if (strategy == "JPA") {
+				$(this).text('JDBC');
+			} else if (strategy == "JDBC") {
+				$(this).text("JPA");
+			}
+			strategy = $(this).text();
+
+			$.post("alterarEstrategiaPersistencia", {
+				persistencia : strategy
+			});
+
+		});
+	});
+</script>
+
 </head>
 <body>
 	<!--Header Begin-->
@@ -37,6 +61,7 @@
 					<div id="menu">
 						<ul>
 							<li><a class="active" href="acesso.do"><span>Home</span></a></li>
+							<li><a href="#" class="toggler">JPA</a></li>
 						</ul>
 					</div>
 					<!--Menu END-->

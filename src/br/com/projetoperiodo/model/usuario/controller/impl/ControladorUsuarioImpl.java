@@ -13,24 +13,23 @@ import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.exception.NegocioException;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 
 public class ControladorUsuarioImpl extends ControladorNegocioImpl implements ControladorUsuario {
 
 	private final String EMAIL_ASSUNTO = "Senha Sistema de Monitoria TADS";
-	
+
 	private final String EMAIL_MENSAGEM_CONTEUDO = "Sua senha é: ";
-	
-	private UsuarioDao dao;
-	
+
 	public ControladorUsuarioImpl() {
-		dao = fabrica.criarUsuarioDAO();
+
 	}
 
 	@Override
 	public Usuario autenticarUsuario(Usuario usuario) throws NegocioException {
 
 		String senha = usuario.getSenha();
-		Usuario usuarioAutenticado = dao.buscar(usuario.getLogin());
+		Usuario usuarioAutenticado = CreatorFabrica.getFabricaDAO().criarUsuarioDAO().buscar(usuario.getLogin());
 		if (usuarioAutenticado != null) {
 			String senhaCriptografada = Util.criptografarSenha(senha, senha, Constantes.CONSTANTE_CRIPTOGRAFIA);
 			if (!usuarioAutenticado.getSenha().equals(senhaCriptografada)) {
@@ -52,20 +51,18 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 		Util.enviarEmail(usuario.getEmail(), EMAIL_ASSUNTO, novaSenha);
 	}
 
-
 	@Override
 	public void alterarSenhaUsuario(Usuario usuario) throws NegocioException {
 
 		HashMap<String, Object> filter = new HashMap<>();
 		filter.put(Usuario.ATRIBUTO_USUARIO_EMAIL, usuario.getEmail());
 		try {
-			usuario = (Usuario) dao.buscar(filter);
+			usuario = (Usuario) CreatorFabrica.getFabricaDAO().criarUsuarioDAO().buscar(filter);
 			String novaSenha = Util.gerarSenhaAleatoria();
-			String senhaCriptografada = Util.criptografarSenha(novaSenha, 
-							novaSenha, Constantes.CONSTANTE_CRIPTOGRAFIA);
+			String senhaCriptografada = Util.criptografarSenha(novaSenha, novaSenha, Constantes.CONSTANTE_CRIPTOGRAFIA);
 			usuario.setSenha(senhaCriptografada);
 			usuario.setSenhaExpirada(Boolean.TRUE);
-			dao.atualizar(usuario);
+			CreatorFabrica.getFabricaDAO().criarUsuarioDAO().atualizar(usuario);
 			usuario.setSenha(novaSenha);
 			envioEmailSenha(usuario);
 		} catch (NegocioException e) {
@@ -76,7 +73,7 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 	@Override
 	public boolean validarLogon(Usuario usuario) {
 
-		Usuario usuarioLogado = dao.buscar(usuario.getNome());
+		Usuario usuarioLogado = CreatorFabrica.getFabricaDAO().criarUsuarioDAO().buscar(usuario.getNome());
 		if (usuarioLogado.isSenhaExpirada()) {
 
 		}
@@ -91,25 +88,24 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 
 	@Override
 	public Usuario cadastrarUsuario(Usuario usuario) {
-		String senhaCriptografada = Util.criptografarSenha(
-						usuario.getSenha(), usuario.getSenha(), Constantes.CONSTANTE_CRIPTOGRAFIA);
+
+		String senhaCriptografada = Util.criptografarSenha(usuario.getSenha(), usuario.getSenha(), Constantes.CONSTANTE_CRIPTOGRAFIA);
 		usuario.setSenha(senhaCriptografada);
-		dao.salvar(usuario);
+		CreatorFabrica.getFabricaDAO().criarUsuarioDAO().salvar(usuario);
 		return usuario;
 	}
 
 	@Override
 	public Usuario verificarExistenciaUsuario(Usuario usuario) {
-		
-		Usuario usuarioRequerente = dao.buscar(usuario.getLogin());
+
+		Usuario usuarioRequerente = CreatorFabrica.getFabricaDAO().criarUsuarioDAO().buscar(usuario.getLogin());
 		return usuarioRequerente;
 	}
 
 	@Override
 	public String getNomeClasseEntidade() {
-		
+
 		return UsuarioImpl.class.getSimpleName();
 	}
-	
 
 }
