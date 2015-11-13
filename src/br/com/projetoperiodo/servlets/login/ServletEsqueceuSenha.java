@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.result.Output;
+
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
 import br.com.projetoperiodo.util.Fachada;
@@ -45,6 +47,7 @@ public class ServletEsqueceuSenha extends HttpServlet {
 		usuario.setLogin(loginUsuario);
 
 		Usuario usuarioBuscado = controladorUsuario.verificarExistenciaUsuario(usuario);
+		
 
 		try {
 			controladorUsuario.alterarSenhaUsuario(usuarioBuscado);
