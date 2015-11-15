@@ -44,13 +44,23 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 	}
 	
 	@Override
-	public Usuario alterarSenha(Usuario usuario) {
-		String novaSenha = usuario.getSenha();
-		String senhaCriptografada = Util.criptografarSenha(novaSenha, novaSenha, Constantes.CONSTANTE_CRIPTOGRAFIA);
-		usuario.setSenha(senhaCriptografada);
+	public Usuario alterarSenha(Usuario usuario, String senhaAntiga, String senhaNova) {
+		
+		try
+		{
+	
+			senhaAntiga.equals(senhaNova);
+			String senhaNovaCriptografada = Util.criptografarSenha(senhaNova, senhaNova, Constantes.CONSTANTE_CRIPTOGRAFIA);
+			usuario.setSenha(senhaNovaCriptografada);
+			
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		
 		return CreatorFabrica.getFabricaDAO().criarUsuarioDAO().atualizar(usuario);
-		
 	}
 
 	@Override

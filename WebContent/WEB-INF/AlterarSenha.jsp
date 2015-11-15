@@ -10,7 +10,7 @@
 </head>
 <body>
 	<jsp:include page="Cabecalho.jsp" />
-	<form action="alterarSenha.do" method="post">
+	<form action="Servlet_alterarSenha.do" method="post">
 		<fieldset id="fieldset1">
 		<c:choose>
 		
@@ -34,14 +34,14 @@
 			
 		</c:choose>
 			<label for="login1">Login ou E-mail</label>
-			 <input type="text" />
+			 <input type="text" id="login1"/>
 
 			<fieldset id="fieldset2">
 			<label for="senhaAntiga">Senha Antiga</label>
-				<input type="text" />
+				<input type="text" id="senhaAntiga"/>
 				
 				<label for="senhaNova">Senha Nova</label>
-				<input type="text" />
+				<input type="text" id="esnhaNova"/>
 			</fieldset>
 			<fieldset id="fieldset3">
 				<button type="submit">Alterar Senha</button>
