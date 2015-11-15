@@ -11,4 +11,6 @@ public interface ControladorAluno extends ControladorNegocio
 	Aluno cadastrarAluno(Aluno aluno);
 	
 	Aluno buscarUsuarioAluno(Usuario usuario);
+
+	boolean verificarPapelDeAlunoDoUsuario(Usuario usuario);
 }

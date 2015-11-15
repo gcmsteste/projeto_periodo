@@ -6,7 +6,7 @@ import br.com.projetoperiodo.model.instituto.professor.Professor;
 
 public interface ProfessorDao 
 {
-	public List<Professor> listar();
+	public List<Professor> listar(String condicao);
 	
 	public void salvar(Professor professor);
 	

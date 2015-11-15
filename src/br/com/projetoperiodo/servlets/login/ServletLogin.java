@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
+import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
@@ -34,10 +35,13 @@ public class ServletLogin extends HttpServlet {
 		usuario.setSenha(senha);
 		try {
 			Usuario usuarioAutenticado = (Usuario) Fachada.getInstance().autenticarUsuario(usuario);
-			Aluno aluno = (Aluno) usuarioAutenticado;
 			HttpSession session = request.getSession();
-			session.setAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO, aluno);
-			requestDispatcher = request.getRequestDispatcher("/aluno.do");
+			session.setAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO, usuarioAutenticado);
+			if( Fachada.getInstance().verificaPapelDoUsuario(usuarioAutenticado) ){
+				requestDispatcher = request.getRequestDispatcher("/aluno.do");
+			} else {
+				requestDispatcher = request.getRequestDispatcher("/professor.do");
+			}
 			requestDispatcher.forward(request, response);
 		} catch (NegocioException e) {
 			request.setAttribute(e.getMessage(), usuario.getLogin());

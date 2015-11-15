@@ -50,10 +50,10 @@ public class JPAAlunoDao implements AlunoDao {
 	}
 
 	@Override
-	public List<Aluno> listar() {
+	public List<Aluno> listar(String condicao) {
 
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
-		List<Aluno> alunos = entityManager.createQuery("from AlunoImpl").getResultList();
+		List<Aluno> alunos = entityManager.createQuery(condicao).getResultList();
 		entityManager.close();
 
 		return alunos;
@@ -70,6 +70,16 @@ public class JPAAlunoDao implements AlunoDao {
 		entityManager.close();
 
 		return aluno;
+	}
+
+	@Override
+	public Long buscarQuantidadeAlunos(String condicao) {
+
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		Long quantidade = (Long) entityManager.createQuery(condicao).getSingleResult();
+		entityManager.close();
+
+		return quantidade;
 	}
 
 }

@@ -44,11 +44,11 @@ public class JPAProfessorDao implements ProfessorDao
 		entma.close();
 	}
 
-	public List<Professor> listar()
+	public List<Professor> listar(String condicao)
 	{
 		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		@SuppressWarnings("unchecked")
-		List<Professor> professor = entma.createQuery("from ProfessorImpl").getResultList();
+		List<Professor> professor = entma.createQuery(condicao).getResultList();
 		entma.close();
 		return professor;
 		

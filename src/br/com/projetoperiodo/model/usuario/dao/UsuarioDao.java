@@ -17,7 +17,7 @@ public interface UsuarioDao extends EntidadeNegocioDao
 	public List<Usuario> listar();
 	
 	public Usuario buscar(long l);
-	
-	public Usuario buscar(String nome);
+
+	Usuario buscar(String login);
 	
 }

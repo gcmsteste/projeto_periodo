@@ -8,7 +8,6 @@ import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
-import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;

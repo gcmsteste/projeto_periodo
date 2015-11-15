@@ -16,6 +16,7 @@ import br.com.projetoperiodo.model.instituto.monitor.controller.ControladorMonit
 import br.com.projetoperiodo.model.instituto.monitor.controller.impl.ControladorMonitorImpl;
 import br.com.projetoperiodo.model.instituto.periodo.controller.ControladorPeriodo;
 import br.com.projetoperiodo.model.instituto.periodo.controller.impl.ControladorPeriodoImpl;
+import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.atividade.controller.ControladorAtividade;
 import br.com.projetoperiodo.model.relatorio.atividade.controller.impl.ControladorAtividadeImpl;
@@ -60,6 +61,7 @@ public class Fachada {
 		return new ControladorSemanaImpl();
 	}
 
+	
 	public ControladorMonitor getControladorMonitor() {
 
 		return new ControladorMonitorImpl();
@@ -194,6 +196,15 @@ public class Fachada {
 	public void alterarSenhaUsuario(EntidadeNegocio entidade) {
 		Usuario usuario = (Usuario)entidade;
 		this.getControladorUsuario().alterarSenha(usuario);
+	}
+	
+	public List<Disciplina> listarDisciplinasDeProfessor(EntidadeNegocio entidade) {
+		Professor professor = (Professor)entidade;
+		return this.getControladorDisciplina().listarDisciplinasDeProfessor(professor);
+	}
+	
+	public boolean verificaPapelDoUsuario(Usuario usuario) {
+		return this.getControladorAluno().verificarPapelDeAlunoDoUsuario(usuario);
 	}
 
 }
