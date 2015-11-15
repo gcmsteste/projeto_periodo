@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	xsi:schemaLocation='http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"  '
 	metadata-complete="false" id="WebApp_ID" version="3.1">
 	<welcome-file-list>
 		<welcome-file>acesso.do</welcome-file>
@@ -49,7 +49,8 @@
 
 	<servlet>
 		<servlet-name>ServletLogin</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.login.ServletLogin</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.login.ServletLogin
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ServletLogin</servlet-name>
@@ -73,7 +74,8 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>ServletControleAcesso</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.acesso.ServletControleAcesso</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.acesso.ServletControleAcesso
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ServletControleAcesso</servlet-name>
@@ -81,11 +83,13 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>ServletLogout</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.login.ServletLogout</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.login.ServletLogout
+		</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>ServletEsqueceuSenha</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.login.ServletEsqueceuSenha</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.login.ServletEsqueceuSenha
+		</servlet-class>
 	</servlet>
 
 	<servlet>
@@ -93,28 +97,32 @@
 		</description>
 		<display-name>ServletCadastroAluno</display-name>
 		<servlet-name>ServletCadastroAluno</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletCadastroAluno</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletCadastroAluno
+		</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
 		</description>
 		<display-name>ServletCadastroMonitoria</display-name>
 		<servlet-name>ServletCadastroMonitoria</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletCadastroMonitoria</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletCadastroMonitoria
+		</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
 		</description>
 		<display-name>ServletCadastroRelatorio</display-name>
 		<servlet-name>ServletCadastroRelatorio</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletCadastroRelatorio</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletCadastroRelatorio
+		</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
 		</description>
 		<display-name>ServletAluno</display-name>
 		<servlet-name>ServletAluno</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletAluno</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletAluno
+		</servlet-class>
 	</servlet>
 
 	<servlet>
@@ -122,7 +130,8 @@
 		</description>
 		<display-name>ServletRelatorio</display-name>
 		<servlet-name>ServletRelatorio</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletRelatorio</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletRelatorio
+		</servlet-class>
 	</servlet>
 
 	<servlet>
@@ -130,21 +139,24 @@
 		</description>
 		<display-name>ServletEnviaDocumento</display-name>
 		<servlet-name>ServletEnviaDocumento</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.documento.ServletEnviaDocumento</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.documento.ServletEnviaDocumento
+		</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
 		</description>
 		<display-name>ServletGerarDocumento</display-name>
 		<servlet-name>ServletGerarDocumento</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.documento.ServletGerarDocumento</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.documento.ServletGerarDocumento
+		</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
 		</description>
 		<display-name>ServletRemoveMonitoria</display-name>
 		<servlet-name>ServletRemoveMonitoria</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletRemoveMonitoria</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletRemoveMonitoria
+		</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -200,21 +212,30 @@
 		</description>
 		<display-name>ServletAlteraFabrica</display-name>
 		<servlet-name>ServletAlteraFabrica</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.ServletAlteraFabrica</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.ServletAlteraFabrica
+		</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
 		</description>
 		<display-name>ServletAlterarSenha</display-name>
 		<servlet-name>ServletAlterarSenha</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.login.ServletAlterarSenha</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.login.ServletAlterarSenha
+		</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
 		</description>
 		<display-name>ServletProfessor</display-name>
 		<servlet-name>ServletProfessor</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletProfessor</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletProfessor
+		</servlet-class>
+	</servlet>
+	<servlet>
+		<display-name>Servlet_alterarSenha</display-name>
+		<servlet-name>Servlet_alterarSenha</servlet-name>
+		<servlet-class>br.com.projetoperiodo.servlets.login.Servlet_alterarSenha
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginForm</servlet-name>
@@ -231,5 +252,9 @@
 	<servlet-mapping>
 		<servlet-name>ServletProfessor</servlet-name>
 		<url-pattern>/professor.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Servlet_alterarSenha</servlet-name>
+		<url-pattern>/Servlet_alterarSenha</url-pattern>
 	</servlet-mapping>
 </web-app>
