@@ -206,5 +206,10 @@ public class Fachada {
 	public boolean verificaPapelDoUsuario(Usuario usuario) {
 		return this.getControladorAluno().verificarPapelDeAlunoDoUsuario(usuario);
 	}
+	
+	public EntidadeNegocio alterarSenhaUsuario(String senhaAntiga, String senhaNova) {
+		Usuario usuario = (Usuario)entidade;
+		this.getControladorUsuario().alterarSenha(senhaAntiga, novaSenha);
+	}
 
 }

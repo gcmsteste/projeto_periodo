@@ -39,28 +39,14 @@ public class Servlet_alterarSenha extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ControladorUsuario controladorUsuario = Fachada.getInstance().getControladorUsuario();
+		
+		String senhaAntiga = request.getParameter("senhaAntiga");
+		String senhaNova = request.getParameter("senhaNova");
 
-		String loginUsuario = request.getParameter(login1);
-		String senhaAntiga = request.getParameter(senhaAntiga);
-		String senhaNova = request.getParameter(senhaNova);
+		Usuario usuarioLogado = (Usuario)request.getSession(false).getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
 		
-		Usuario usuario = (Usuario) controladorUsuario.criarEntidadeNegocio();
-		usuario.setLogin(loginUsuario);
-		Usuario usuarioBuscado = controladorUsuario.verificarExistenciaUsuario(usuario);
-		
-		try
-		{
-			controladorUsuario.alterarSenha(usuarioBuscado, senhaAntiga, senhaNova);
-			request.getRequestDispatcher("/ControladorUsuarioImpl.do").forward(request, response); 
-			
-		}
-		catch (NegocioException e)
-		{
-			e.printStackTrace();
-		}
-		
+		controladorUsuario.alterarSenha(usuarioBuscado, senhaAntiga, senhaNova);
+		request.getRequestDispatcher("/ControladorUsuarioImpl.do").forward(request, response); 	
 	}
 
 }

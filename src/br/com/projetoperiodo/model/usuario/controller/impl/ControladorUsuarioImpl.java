@@ -41,24 +41,20 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 		}
 
 	}
-	
+
 	@Override
 	public Usuario alterarSenha(Usuario usuario, String senhaAntiga, String senhaNova) {
-		
-		try
-		{
-	
+
+		try {
+
 			senhaAntiga.equals(senhaNova);
 			String senhaNovaCriptografada = Util.criptografarSenha(senhaNova, senhaNova, Constantes.CONSTANTE_CRIPTOGRAFIA);
 			usuario.setSenha(senhaNovaCriptografada);
-			
-			
-		}
-		catch (Exception e)
-		{
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return CreatorFabrica.getFabricaDAO().criarUsuarioDAO().atualizar(usuario);
 	}
 
@@ -125,6 +121,22 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 	public String getNomeClasseEntidade() {
 
 		return UsuarioImpl.class.getSimpleName();
+	}
+
+	public boolean compararSenhas(String senha, String senhaCriptografada) {
+		boolean isEqual = Boolean.TRUE;
+		senha = Util.criptografarSenha(senha, senha, Constantes.CONSTANTE_CRIPTOGRAFIA);
+		if ( !senha.equals(senhaCriptografada) ) {
+			isEqual = Boolean.FALSE;
+		}
+		return isEqual;
+	}
+
+	@Override
+	public Usuario alterarSenha(Usuario usuario) {
+
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
