@@ -8,6 +8,8 @@ import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.usuario.Usuario;
+import br.com.projetoperiodo.util.Util;
+import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 
 public class ControladorProfessorImpl extends ControladorNegocioImpl implements ControladorProfessor{
@@ -24,6 +26,9 @@ public class ControladorProfessorImpl extends ControladorNegocioImpl implements 
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.professor.controller.ControladorProfessor#getNomeClasseEntidade()
 	 */
+	
+	
+	
 	@Override
 	public String getNomeClasseEntidade() {
 
@@ -46,5 +51,16 @@ public class ControladorProfessorImpl extends ControladorNegocioImpl implements 
 		}
 		return isProfessor;
 	}
+
+	@Override
+	public Professor cadastrarProfessor(Professor professor) {
+		
+		String senhaCriptografada = Util.criptografarSenha(professor.getSenha(),professor.getSenha(), Constantes.CONSTANTE_CRIPTOGRAFIA);
+		professor.setSenha(senhaCriptografada);
+		CreatorFabrica.getFabricaDAO().criarProfessorDao().salvar(professor);
+		return professor;
+	}
+
+	
 
 }

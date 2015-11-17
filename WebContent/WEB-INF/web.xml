@@ -23,6 +23,14 @@
 		<url-pattern>/formCadastroAluno</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>CadastroProfessorForm</servlet-name>
+		<jsp-file>/CadastroProfessor.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CadastroProfessorForm</servlet-name>
+		<url-pattern>/formCadastroProfessor</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>CadastroRelatorio</servlet-name>
 		<jsp-file>/CadastroRelatorio.jsp</jsp-file>
 	</servlet>
@@ -226,6 +234,13 @@
 	<servlet>
 		<description>
 		</description>
+		<display-name>ServletCadastroProfessor</display-name>
+		<servlet-name>ServletCadastroProfessor</servlet-name>
+		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletCadastroProfessor</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
 		<display-name>ServletProfessor</display-name>
 		<servlet-name>ServletProfessor</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletProfessor
@@ -257,4 +272,9 @@
 		<servlet-name>Servlet_alterarSenha</servlet-name>
 		<url-pattern>/Servlet_alterarSenha</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServletCadastroProfessor</servlet-name>
+		<url-pattern>/cadastroProfessor.do</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

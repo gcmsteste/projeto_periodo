@@ -17,6 +17,8 @@ import br.com.projetoperiodo.model.instituto.monitor.controller.impl.Controlador
 import br.com.projetoperiodo.model.instituto.periodo.controller.ControladorPeriodo;
 import br.com.projetoperiodo.model.instituto.periodo.controller.impl.ControladorPeriodoImpl;
 import br.com.projetoperiodo.model.instituto.professor.Professor;
+import br.com.projetoperiodo.model.instituto.professor.controller.ControladorProfessor;
+import br.com.projetoperiodo.model.instituto.professor.controller.impl.ControladorProfessorImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.atividade.controller.ControladorAtividade;
 import br.com.projetoperiodo.model.relatorio.atividade.controller.impl.ControladorAtividadeImpl;
@@ -71,6 +73,11 @@ public class Fachada {
 
 		return new ControladorAlunoImpl();
 	}
+	
+	public ControladorProfessor getControladorProfessor(){
+		
+		return new ControladorProfessorImpl();
+	}
 
 	public ControladorDisciplina getControladorDisciplina() {
 
@@ -98,6 +105,10 @@ public class Fachada {
 
 	public EntidadeNegocio criarAluno() {
 		return this.getControladorAluno().criarEntidadeNegocio();
+	}
+	
+	public EntidadeNegocio criarProfessor(){
+		return this.getControladorProfessor().criarEntidadeNegocio();
 	}
 	
 	public EntidadeNegocio criarUsuario() {
@@ -168,6 +179,11 @@ public class Fachada {
 		Aluno aluno = (Aluno)entidade;
 		this.getControladorAluno().cadastrarAluno(aluno);
 	}
+	public void cadastrarProfessor(EntidadeNegocio entidade){
+		Professor professor = (Professor) entidade;
+		this.getControladorProfessor().cadastrarProfessor(professor);
+	}
+	
 	public void atualizarRelatorio(EntidadeNegocio entidade) {
 
 		RelatorioFrequencia relatorio = (RelatorioFrequencia) entidade;
