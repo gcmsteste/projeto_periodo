@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" session="false"%>
+	pageEncoding="ISO-8859-1" session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,21 +8,24 @@
 
 <script src="js/jquery.js"></script>
 <link type="text/css" rel="stylesheet" href="css/formulario.css">
+<link rel="stylesheet" href="css/cadastro-aluno.css" type="text/css" />
 <script type="text/javascript" src="js/cadastro-aluno.js"></script>
 <script type="text/javascript" src="js/validar-senha.js"></script>
+
+
 <title>Monitoria IFPE-TADS</title>
 </head>
 <body>
 	<jsp:include page="Cabecalho.jsp" />
-	
+
 	<form id="form1" action="cadastroProfessor.do" method="post">
 		<fieldset>
 			<label>Login</label> <input type="text" name="login" /> <label
 				id="nome">Nome</label> <input type="text" id="nome" name="nome" />
 			<label id="sobrenome">Sobrenome</label> <input type="text"
-				id="sobrenome" name="sobrenome" /> <label
-				id="email">E-mail</label> <input type="email" name="email"
-				id="email" /> <label>Disciplinas Lecionadas</label>
+				id="sobrenome" name="sobrenome" /> <label id="email">E-mail</label>
+			<input type="email" name="email" id="email" /> <label>Disciplinas
+				Lecionadas</label>
 			<div class="selecaoDisciplina">
 
 				<select multiple id="disciplinas">

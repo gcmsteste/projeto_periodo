@@ -55,9 +55,9 @@ public class ServletCadastroProfessor extends HttpServlet {
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
 		}
 		Professor professor = (Professor) Fachada.getInstance().criarProfessor();
+		professor.setLogin(request.getParameter("login"));
 		professor.setNome(request.getParameter("nome"));
 		professor.setSobrenome(request.getParameter("sobrenome"));
-		professor.setLogin(request.getParameter("login"));
 		professor.setEmail(request.getParameter("email"));
 		professor.setSenha(request.getParameter("senha"));
 

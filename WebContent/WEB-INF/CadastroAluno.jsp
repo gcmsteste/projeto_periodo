@@ -53,6 +53,6 @@
 		</fieldset>
 	</form>
 
-
+	<jsp:include page="Rodape.jsp" />
 </body>
 </html>
