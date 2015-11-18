@@ -59,7 +59,7 @@ public class JPADisciplinaDao implements DisciplinaDao{
 	}
 
 	@Override
-	public Disciplina buscar(int primaryK) {
+	public Disciplina buscar(long primaryK) {
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();

@@ -134,6 +134,17 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 		Fachada.getInstance().getControladorRelatorio().removerRelatoriosDeMonitoria(monitor);
 		CreatorFabrica.getFabricaDAO().criarMonitorDAO().remover(monitor);
 	}
+	
+	@Override
+	public List<Monitor> buscarMonitoriasDeDiscplina(Disciplina disciplina) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(" select m from ");
+		builder.append(this.getNomeClasseEntidade());
+		builder.append(" m ");
+		builder.append(" where m.disciplina.chavePrimaria = ");
+		builder.append(disciplina.getChavePrimaria());
+		return CreatorFabrica.getFabricaDAO().criarMonitorDAO().listar(builder.toString());
+	}
 
 	@Override
 	public String getNomeClasseEntidade() {

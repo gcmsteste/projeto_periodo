@@ -16,6 +16,6 @@ public interface DisciplinaDao extends EntidadeNegocioDao
 	
 	public List<Disciplina> listar(String condicao); 
 
-	public Disciplina buscar(int primaryK);
+	public Disciplina buscar(long primaryK);
 	
 }

@@ -9,23 +9,38 @@
 <title>Monitoria IFPE-TADS</title>
 </head>
 <body>
+
 	<jsp:include page="CabecalhoUsuarioLogado.jsp" />
+
 	<table>
 		<tr>
+			<th>Aluno</th>
 			<th>Disciplina</th>
-			<th><a href="cadastroDisciplinaProfessor.do">&nbsp;</a></th>
+			<th>Período</th>
+			<th>Modalidade</th>
+			<th><a href="cadastroMonitoria.do">&nbsp;</a></th>
 		</tr>
-		<c:forEach var="disciplina" items="${requestScope['disciplinasProfessor']}">
+		<c:forEach var="monitoria" items="${requestScope['listaMonitoriasDisciplina']}">
 			<tr>
 				<td><a
-					href="disciplina.do?chaveDisciplina=${disciplina.chavePrimaria}"> <c:out
-							value="${disciplina.descricao }" />
+					href=""> <c:out
+							value="${monitoria.aluno.nome }" /></a></td>
+				<td><a
+					href=""> <c:out
+							value="${monitoria.disciplina.descricao }" />
 				</a></td>
 				<td><a
-					href="removeDisciplinaProfessor.do?chaveDisciplina=${disciplina.chavePrimaria}">&nbsp;</a></td>
+					href=""> <c:out
+							value=" ${monitoria.periodo }" /></a></td>
+				<td><a
+					href=""> <c:out
+							value=" ${monitoria.modalidade }" /></a></td>
+				<td><a
+					href="">&nbsp;</a></td>
 			</tr>
 		</c:forEach>
 	</table>
+
 	<jsp:include page="Rodape.jsp" />
 </body>
 </html>
