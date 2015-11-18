@@ -67,6 +67,10 @@ public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements
 	}
 	
 	@Override
+	public Disciplina buscarDisciplina(long chavePrimaria) {
+		return CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().buscar(chavePrimaria);
+	}
+	@Override
 	public String getNomeClasseEntidade() {
 		
 		return DisciplinaImpl.class.getSimpleName();

@@ -146,6 +146,10 @@ public class Fachada {
 	public EntidadeNegocio buscarDisciplina(String descricao) throws NegocioException {
 		return this.getControladorDisciplina().buscarDisciplina(descricao);
 	}
+	
+	public EntidadeNegocio buscarDisciplina(long chavePrimaria) {
+		return this.getControladorDisciplina().buscarDisciplina(chavePrimaria);
+	}
 
 	public void preCadastroRelatoriosMonitor(EntidadeNegocio entidadeNegocio) {
 
@@ -223,9 +227,16 @@ public class Fachada {
 		return this.getControladorAluno().verificarPapelDeAlunoDoUsuario(usuario);
 	}
 	
+	public List<Monitor> buscarMonitoriasDeDisciplina(EntidadeNegocio entidade) {
+		Disciplina disciplina = (Disciplina)entidade;
+		return this.getControladorMonitor().buscarMonitoriasDeDiscplina(disciplina);
+	}
+	
 	public EntidadeNegocio alterarSenhaUsuario(String senhaAntiga, String senhaNova) {
-		Usuario usuario = (Usuario)entidade;
-		this.getControladorUsuario().alterarSenha(senhaAntiga, novaSenha);
+		//Usuario usuario = (Usuario)entidade;
+		
+		//this.getControladorUsuario().alterarSenha(senhaAntiga, novaSenha);
+		return null;
 	}
 
 }
