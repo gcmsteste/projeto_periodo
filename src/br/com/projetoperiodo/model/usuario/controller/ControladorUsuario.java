@@ -23,5 +23,5 @@ public interface ControladorUsuario extends ControladorNegocio
 	
 	Usuario verificarExistenciaUsuario(Usuario usuario);
 
-	Usuario alterarSenha(Usuario usuario);
+	Usuario alterarSenha(Usuario usuario, String senhaAntiga, String senhaNova);
 }

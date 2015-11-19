@@ -12,4 +12,5 @@ public interface ControladorNegocio {
 
 	Usuario alterarSenha(Usuario usuario, String senhaAntiga, String novaSenha);
 
+	
 }

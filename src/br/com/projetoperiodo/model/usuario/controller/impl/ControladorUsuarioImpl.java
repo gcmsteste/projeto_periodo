@@ -132,11 +132,6 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 		return isEqual;
 	}
 
-	@Override
-	public Usuario alterarSenha(Usuario usuario) {
 
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
