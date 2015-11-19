@@ -45,7 +45,7 @@ public class Servlet_alterarSenha extends HttpServlet {
 
 		Usuario usuarioLogado = (Usuario)request.getSession(false).getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
 		
-		controladorUsuario.alterarSenha(usuarioBuscado, senhaAntiga, senhaNova);
+	//	controladorUsuario.alterarSenha(usuarioBuscado, senhaAntiga, senhaNova);
 		request.getRequestDispatcher("/ControladorUsuarioImpl.do").forward(request, response); 	
 	}
 

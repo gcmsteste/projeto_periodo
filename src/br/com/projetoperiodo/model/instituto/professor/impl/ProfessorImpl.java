@@ -1,5 +1,6 @@
 package br.com.projetoperiodo.model.instituto.professor.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
@@ -26,28 +27,8 @@ import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 @AttributeOverrides({ @AttributeOverride(name = "chavePrimaria", column = @Column(name = "PROFESSOR_ID") )}) 
 public class ProfessorImpl extends UsuarioImpl implements Professor {
 
-	@Column(name = "PROFESSOR_SIAPE", nullable = false)
-	private String siape;
 	@OneToMany(mappedBy="professor", fetch = FetchType.LAZY, targetEntity=DisciplinaImpl.class)
-	private List<Disciplina> disciplinas;
-
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.professor.Professor#getSiape()
-	 */
-	@Override
-	public String getSiape() {
-
-		return siape;
-	}
-
-	/* (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.instituto.professor.Professor#setSiape(java.lang.String)
-	 */
-	@Override
-	public void setSiape(String siape) {
-
-		this.siape = siape;
-	}
+	private List<Disciplina> disciplinas =  new ArrayList<Disciplina>();;
 
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.professor.Professor#getDisciplina(int)
@@ -62,7 +43,7 @@ public class ProfessorImpl extends UsuarioImpl implements Professor {
 	 */
 	@Override
 	public void setDisciplina(Disciplina disciplina) {
-		disciplinas.add(disciplina);
+		this.disciplinas.add(disciplina);
 	}
 
 	

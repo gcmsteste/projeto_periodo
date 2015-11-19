@@ -30,4 +30,6 @@ public interface ControladorMonitor extends ControladorNegocio
 
 	void removerMonitoria(long chavePrimaria);
 
+	List<Monitor> buscarMonitoriasDeDiscplina(Disciplina disciplina);
+
 }
