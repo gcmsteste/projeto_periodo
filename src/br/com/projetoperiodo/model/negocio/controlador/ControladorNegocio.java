@@ -9,8 +9,4 @@ public interface ControladorNegocio {
 	EntidadeNegocio criarEntidadeNegocio();
 
 	String getNomeClasseEntidade();
-
-	Usuario alterarSenha(Usuario usuario, String senhaAntiga, String novaSenha);
-
-	
 }

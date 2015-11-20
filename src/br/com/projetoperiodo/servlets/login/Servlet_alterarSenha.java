@@ -40,13 +40,24 @@ public class Servlet_alterarSenha extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		ControladorUsuario controladorUsuario = Fachada.getInstance().getControladorUsuario();
+		
 		String senhaAntiga = request.getParameter("senhaAntiga");
 		String senhaNova = request.getParameter("senhaNova");
 
 		Usuario usuarioLogado = (Usuario)request.getSession(false).getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
 		
-	//	controladorUsuario.alterarSenha(usuarioBuscado, senhaAntiga, senhaNova);
-		request.getRequestDispatcher("/ControladorUsuarioImpl.do").forward(request, response); 	
+		boolean resultadoSenhaAntiga = 	controladorUsuario.compararSenhas(senhaAntiga, usuarioLogado.getSenha());// é esperado true
+		boolean resultadoSenhaNova = 	controladorUsuario.compararSenhas(senhaNova, usuarioLogado.getSenha());//é esperado false
+			
+		
+		if(resultadoSenhaAntiga == true && resultadoSenhaNova == false)
+		{
+			controladorUsuario.alterarSenha(usuarioLogado, senhaNova);
+			request.getRequestDispatcher("/acesso.do").forward(request, response);; 
+		}
+		
+			
 	}
 
 }

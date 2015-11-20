@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link type="text/css" rel="stylesheet" href="css/formulario.css" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script type="text/javascript" src="alterarSenha.js"></script>
+
 <title>Monitoria IFPE-TADS</title>
 
 
@@ -23,14 +23,7 @@
 		
 
 			<fieldset id="fieldset2">
-				<c:choose>
-	
-			<c:when test='${param.senhaAntiga == param.enhaNova}'>
 			
-				<p>[Você não pode utilizar a mesma senha ao alterá-la]</p>
-				
-			</c:when>
-		</c:choose>
 			<label for="senhaAntiga"></label>
 				Senha Antiga
 			<input type="password" id="senhaAntiga"/>

@@ -43,19 +43,16 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 	}
 
 	@Override
-	public Usuario alterarSenha(Usuario usuario, String senhaAntiga, String senhaNova) {
+	public void alterarSenha(Usuario usuario, String senhaNova) {
 
 		try {
 
-			senhaAntiga.equals(senhaNova);
 			String senhaNovaCriptografada = Util.criptografarSenha(senhaNova, senhaNova, Constantes.CONSTANTE_CRIPTOGRAFIA);
 			usuario.setSenha(senhaNovaCriptografada);
-
+			CreatorFabrica.getFabricaDAO().criarUsuarioDAO().atualizar(usuario);
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
-
-		return CreatorFabrica.getFabricaDAO().criarUsuarioDAO().atualizar(usuario);
 	}
 
 	@Override
@@ -122,7 +119,7 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 
 		return UsuarioImpl.class.getSimpleName();
 	}
-
+	
 	public boolean compararSenhas(String senha, String senhaCriptografada) {
 		boolean isEqual = Boolean.TRUE;
 		senha = Util.criptografarSenha(senha, senha, Constantes.CONSTANTE_CRIPTOGRAFIA);
@@ -131,7 +128,6 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 		}
 		return isEqual;
 	}
-
 
 
 }

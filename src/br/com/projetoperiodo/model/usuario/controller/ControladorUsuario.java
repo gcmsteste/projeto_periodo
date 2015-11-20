@@ -23,5 +23,7 @@ public interface ControladorUsuario extends ControladorNegocio
 	
 	Usuario verificarExistenciaUsuario(Usuario usuario);
 
-	Usuario alterarSenha(Usuario usuario, String senhaAntiga, String senhaNova);
+	void alterarSenha(Usuario usuario, String senhaNova);
+	
+	public boolean compararSenhas(String senha, String senhaCriptografada);
 }
