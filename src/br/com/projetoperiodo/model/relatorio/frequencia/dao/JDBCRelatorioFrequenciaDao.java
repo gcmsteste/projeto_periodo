@@ -13,6 +13,7 @@ import java.util.List;
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
 
 
 public class JDBCRelatorioFrequenciaDao implements RelatorioFrequenciaDao {
@@ -63,7 +64,7 @@ public class JDBCRelatorioFrequenciaDao implements RelatorioFrequenciaDao {
 	
 
 	@Override
-	public void atualizar(RelatorioFrequencia relatorio) {
+	public RelatorioFrequencia atualizar(RelatorioFrequencia relatorio) {
 
 
 		StringBuilder builder = new StringBuilder();
@@ -95,7 +96,7 @@ public class JDBCRelatorioFrequenciaDao implements RelatorioFrequenciaDao {
 			}
 		}
 		
-
+		return relatorio;
 	}
 
 	@Override
@@ -124,5 +125,12 @@ public class JDBCRelatorioFrequenciaDao implements RelatorioFrequenciaDao {
 
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Situacao> listarSituacaoDosRelatorios(String condicao) {
+
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

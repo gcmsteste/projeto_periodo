@@ -14,6 +14,7 @@ import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaD
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.relatorio.semana.controller.ControladorSemana;
 import br.com.projetoperiodo.util.Fachada;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
 import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 
 public class ControladorRelatorioImpl extends ControladorNegocioImpl implements ControladorRelatorio {
@@ -53,6 +54,7 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 			relatorio = (RelatorioFrequencia) this.criarEntidadeNegocio();
 			relatorio.setMes(mes);
 			relatorio.setMonitor(monitor);
+			relatorio.setSituacao(Situacao.ESPERA);
 			CreatorFabrica.getFabricaDAO().criarRelatorioFrequenciaDAO().salvar(relatorio);
 			controladorSemana.cadastrarSemanasComRelatorio(relatorio);
 		}
@@ -93,7 +95,31 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 			CreatorFabrica.getFabricaDAO().criarRelatorioFrequenciaDAO().remover(relatorio);
 		}		
 	}
+	@Override
+	public RelatorioFrequencia aprovarRelatorio(RelatorioFrequencia relatorio) {
+		relatorio.setSituacao(Situacao.APROVADO);
+		return CreatorFabrica.getFabricaDAO().criarRelatorioFrequenciaDAO().atualizar(relatorio);
+	}
 	
+	@Override
+	public List<Situacao> buscaSituacaoDosRelatoriosDeMonitoria(Monitor monitor) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(" select situacao from ");
+		builder.append(this.getNomeClasseEntidade());
+		builder.append(" relatorio ");
+		builder.append(" where relatorio.monitor = ");
+		builder.append(monitor.getChavePrimaria());
+		return CreatorFabrica.getFabricaDAO().criarRelatorioFrequenciaDAO().listarSituacaoDosRelatorios(builder.toString());
+	}
+	
+	public static void main(String[] args) {
+
+		ControladorRelatorio r = Fachada.getInstance().getControladorRelatorio();
+		Monitor m = (Monitor) Fachada.getInstance().getControladorMonitor().criarEntidadeNegocio();
+		m.setChavePrimaria(1l);
+		List<Situacao> situacao = r.buscaSituacaoDosRelatoriosDeMonitoria(m);
+		System.out.println(situacao);
+	}
 	@Override
 	public String getNomeClasseEntidade() {
 		

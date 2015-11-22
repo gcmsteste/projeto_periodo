@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocio;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
 
 public interface ControladorRelatorio extends ControladorNegocio{
 	
@@ -18,5 +19,9 @@ public interface ControladorRelatorio extends ControladorNegocio{
 	
 	byte[] gerarDocumentoDeRelatorio(RelatorioFrequencia relatorio);
 
-	void removerRelatoriosDeMonitoria(Monitor monitor); 
+	void removerRelatoriosDeMonitoria(Monitor monitor);
+
+	RelatorioFrequencia aprovarRelatorio(RelatorioFrequencia relatorio);
+
+	List<Situacao> buscaSituacaoDosRelatoriosDeMonitoria(Monitor monitor); 
 }

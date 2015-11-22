@@ -45,6 +45,8 @@ public class PDFBuilder  {
 
 	private PdfReader reader;
 
+	private static PDFBuilder instance;
+	
 	private FontSelector seletorFonte;
 
 	public static final int NOME_MONITOR_X = 124;
@@ -99,6 +101,7 @@ public class PDFBuilder  {
 		super();
 		try {
 			DocumentDao dao = new JDBCDocumentDao();
+			dao.salvar("selection.pdf");
 			reader = new PdfReader(dao.buscar());
 		
 			configurarFonteDocumento();
@@ -120,8 +123,10 @@ public class PDFBuilder  {
 	}
 
 	public static PDFBuilder getInstancia() {
-
-		return new PDFBuilder();
+		if ( instance == null ) {
+			instance = new PDFBuilder();
+		}
+		return instance;
 	}
 
 	private void preencherNomeMonitor(String nome, PdfContentByte conteudoDocumento) {

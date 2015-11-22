@@ -2,9 +2,9 @@
 package br.com.projetoperiodo.model.relatorio.frequencia;
 
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
-import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
 
 public interface RelatorioFrequencia extends EntidadeNegocio
 {
@@ -25,6 +25,10 @@ public interface RelatorioFrequencia extends EntidadeNegocio
 	Semana getSemana(int index);
 	
 	void setSemanas(Semana semana);
+
+	Situacao getSituacao();
+
+	void setSituacao(Situacao situacao);
 	
 	
 

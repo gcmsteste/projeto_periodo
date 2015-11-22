@@ -61,7 +61,7 @@
 					<div id="menu">
 						<ul>
 							<li><a class="active" href="acesso.do"><span>Home</span> </a></li>
-							<li><a href="#" class="toggler">JPA</a></li>
+							<!--  <li><a href="#" class="toggler">JPA</a></li> -->
 						</ul>
 					</div>
 					<!--Menu END-->

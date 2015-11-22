@@ -9,6 +9,8 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,12 +19,11 @@ import javax.persistence.Table;
 
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
-import br.com.projetoperiodo.model.instituto.professor.Professor;
-import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
 import br.com.projetoperiodo.model.negocio.entidade.impl.EntidadeNegocioImpl;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
 
 @Entity
 @Table(name = "RELATORIO_FREQUENCIA")
@@ -39,9 +40,14 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	@JoinColumn(name = "MONITOR_ID", referencedColumnName = "MONITOR_ID")
 	private Monitor monitor;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "SITUACAO_RELATORIO", columnDefinition = "ENUM('ESPERA', 'APROVADO')")
+	private Situacao situacao;
+	
 	@OneToMany(mappedBy = "relatorio", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = SemanaImpl.class)
 	private List<Semana> semanas;
 
+	
 	public RelatorioFrequenciaImpl() {
 		semanas = new ArrayList<Semana>();
 	}
@@ -129,6 +135,14 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	public void setSemanas(Semana semana) {
 
 		this.semanas.add(semana);
+	}
+	@Override
+	public Situacao getSituacao() {
+		return situacao;
+	}
+	@Override
+	public void setSituacao(Situacao situacao) {
+		this.situacao = situacao;
 	}
 
 	

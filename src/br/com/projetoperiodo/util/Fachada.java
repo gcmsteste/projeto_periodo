@@ -31,6 +31,7 @@ import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
 import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImpl;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
 import br.com.projetoperiodo.util.exception.NegocioException;
 import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 
@@ -213,6 +214,7 @@ public class Fachada {
 		CreatorFabrica.criarFabricaDAO(tipo);
 	}
 	
+	
 	public void alterarSenhaUsuario(EntidadeNegocio entidade) {
 		Usuario usuario = (Usuario)entidade;
 		this.getControladorUsuario().alterarSenha(usuario);
@@ -232,6 +234,15 @@ public class Fachada {
 		return this.getControladorMonitor().buscarMonitoriasDeDiscplina(disciplina);
 	}
 	
+	public void aprovarRelatorio( EntidadeNegocio entidade ) {
+		RelatorioFrequencia relatorio = (RelatorioFrequencia)entidade;
+		this.getControladorRelatorio().aprovarRelatorio(relatorio);
+	}
+	
+	public List<Situacao> buscarSituacaoDeRelatorios(EntidadeNegocio entidade) {
+		Monitor monitor = (Monitor)entidade;
+		return this.getControladorRelatorio().buscaSituacaoDosRelatoriosDeMonitoria(monitor);
+	}
 	public EntidadeNegocio alterarSenhaUsuario(String senhaAntiga, String senhaNova) {
 		//Usuario usuario = (Usuario)entidade;
 		

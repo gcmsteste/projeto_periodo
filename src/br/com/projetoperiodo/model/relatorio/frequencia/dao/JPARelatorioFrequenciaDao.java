@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
 import br.com.projetoperiodo.util.persistencia.jpa.FabricaJPA;
 import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 
@@ -28,7 +29,7 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	}
 
 	@Override
-	public void atualizar(RelatorioFrequencia relatorio) {
+	public RelatorioFrequencia atualizar(RelatorioFrequencia relatorio) {
 
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
@@ -36,6 +37,7 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 		entityManager.merge(relatorio);
 		entityTransaction.commit();
 		entityManager.close();
+		return relatorio;
 		
 	}
 
@@ -78,6 +80,16 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 		entityTransaction.commit();
 		entityManager.close();
 		
+	}
+
+	@Override
+	public List<Situacao> listarSituacaoDosRelatorios(String condicao) {
+
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		List<Situacao> lista = entityManager.
+						createQuery(condicao).getResultList();
+		entityManager.close();
+		return lista;
 	}
 
 }

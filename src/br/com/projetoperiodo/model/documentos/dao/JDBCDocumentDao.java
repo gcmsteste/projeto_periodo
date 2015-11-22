@@ -14,7 +14,7 @@ import br.com.projetoperiodo.util.persistencia.jdbc.ConnectionFactory;
 public class JDBCDocumentDao implements DocumentDao {
 
 	public JDBCDocumentDao() {
-		this.salvar("selection.pdf");
+		
 	}
 	@Override
 	public void salvar(String fileName) {
@@ -24,6 +24,7 @@ public class JDBCDocumentDao implements DocumentDao {
 		Connection cn = new ConnectionFactory().getConnection();
 
 		try {
+	
 			URL url = getClass().getResource(fileName);
 			File file = new File(url.getPath());
 			FileInputStream fis = new FileInputStream(file);
@@ -39,6 +40,12 @@ public class JDBCDocumentDao implements DocumentDao {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static void main(String[] args) {
+
+		DocumentDao dao = new JDBCDocumentDao();
+		dao.salvar("selection.pdf");
 	}
 
 	@Override

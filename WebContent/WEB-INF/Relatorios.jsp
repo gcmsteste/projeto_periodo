@@ -18,9 +18,15 @@
 
 
 	<table class="table-fill">
+		<thead>
+			<tr>
+				<th colspan="3">Relatórios Mensais</th>
+			</tr>
+		</thead>
 		<tbody class="table-hover">
 			<c:choose>
-				<c:when test="${sessionScope['monitoria'].periodo.semestre == 'PRIMEIRO' }">
+				<c:when
+					test="${sessionScope['monitoria'].periodo.semestre == 'PRIMEIRO' }">
 
 					<tr>
 						<td class="text-left"><a href="cadastroRelatorio.do?mes=1">Janeiro</a></td>
