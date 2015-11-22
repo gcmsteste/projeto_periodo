@@ -50,7 +50,7 @@ public class ServletRelatorioProfessor extends HttpServlet {
 		}
 		List<Situacao> listaSituacao = Fachada.getInstance().buscarSituacaoDeRelatorios(monitor);
 		request.setAttribute(SITUACAO_RELATORIOS_MONITORIA, listaSituacao);
-		request.getRequestDispatcher("/paginaPrincipalRelatoriosProfessor").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/RelatoriosProfessor.jsp").forward(request, response);
 	}
 
 	/**

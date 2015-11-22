@@ -45,7 +45,7 @@ public class ServletCadastroAluno extends HttpServlet {
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
 		}
 		request.setAttribute(LISTA_DISCIPLINAS, listaDisciplinas);
-		request.getRequestDispatcher("/formCadastroAluno").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/CadastroAluno.jsp").forward(request, response);
 	}
 
 	/**

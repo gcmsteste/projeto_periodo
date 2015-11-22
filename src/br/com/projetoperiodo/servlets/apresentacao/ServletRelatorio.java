@@ -36,7 +36,7 @@ public class ServletRelatorio extends HttpServlet {
 		long chavePrimariaMonitor = Long.valueOf(request.getParameter(CHAVE_MONITOR));
 		Monitor monitor = (Monitor) Fachada.getInstance().buscarMonitoria(chavePrimariaMonitor);
 		request.getSession(false).setAttribute(Constantes.ATRIBUTO_MONITORIA, monitor);
-		request.getRequestDispatcher("/paginaPrincipalRelatorios").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/RelatoriosAluno.jsp").forward(request, response);
 	}
 
 	/**

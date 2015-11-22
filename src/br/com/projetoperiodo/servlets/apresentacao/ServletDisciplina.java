@@ -36,7 +36,7 @@ public class ServletDisciplina extends HttpServlet {
 		Disciplina disciplina = (Disciplina) Fachada.getInstance().buscarDisciplina(chavePrimaria);
 		List<Monitor> monitoriasDisciplina = Fachada.getInstance().buscarMonitoriasDeDisciplina(disciplina);
 		request.setAttribute(LISTA_MONITORIAS_DE_DISCIPLINA, monitoriasDisciplina);
-		request.getRequestDispatcher("/monitoriasDisciplina").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/MonitoriasDisciplina.jsp").forward(request, response);
 	}
 
 	/**

@@ -42,7 +42,7 @@ public class ServletAluno extends HttpServlet {
 		Aluno alunoLogado = (Aluno) request.getSession().getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);	
 		List<Monitor> monitores = Fachada.getInstance().buscarMonitorias(alunoLogado);
 		request.setAttribute(LISTA_MONITORIAS, monitores);
-		request.getRequestDispatcher("/principalMonitor.do").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/MonitoriasAluno.jsp").forward(request, response);
 	}
 
 	/**

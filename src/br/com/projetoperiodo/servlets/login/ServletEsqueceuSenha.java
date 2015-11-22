@@ -33,7 +33,7 @@ public class ServletEsqueceuSenha extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		request.getRequestDispatcher("WEB-INF/jsp/RequisitarSenha.jsp").forward(request, response);;
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -50,7 +50,7 @@ public class ServletEsqueceuSenha extends HttpServlet {
 		
 
 		try {
-			controladorUsuario.alterarSenhaUsuario(usuarioBuscado);
+			controladorUsuario.encaminharSenhaParaUsuario(usuarioBuscado);
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
 
 		} catch (NegocioException e) {

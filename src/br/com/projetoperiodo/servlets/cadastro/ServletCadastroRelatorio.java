@@ -51,7 +51,7 @@ public class ServletCadastroRelatorio extends HttpServlet {
 		Monitor monitor = (Monitor) request.getSession(false).getAttribute(Constantes.ATRIBUTO_MONITORIA);
 		RelatorioFrequencia relatorio = Fachada.getInstance().buscarRelatorioMensal(monitor, mesRelatorio);
 		request.getSession(false).setAttribute(RELATORIO_MENSAL, relatorio);
-		request.getRequestDispatcher("/formCadastroRelatorio").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/CadastroRelatorio.jsp").forward(request, response);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class ServletCadastroRelatorio extends HttpServlet {
 			}
 		}
 		Fachada.getInstance().atualizarRelatorio(relatorio);
-		request.getRequestDispatcher("/formCadastroRelatorio").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/CadastroRelatorio.jsp").forward(request, response);
 	}
 
 }

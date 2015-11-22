@@ -214,10 +214,12 @@ public class Fachada {
 		CreatorFabrica.criarFabricaDAO(tipo);
 	}
 	
-	
-	public void alterarSenhaUsuario(EntidadeNegocio entidade) {
+	public List<Disciplina> listarDisciplinasSemProfessor() {
+		return this.getControladorDisciplina().buscarDisciplinasSemProfessor();
+	}
+	public Usuario alterarSenhaUsuario(EntidadeNegocio entidade, String senhaNova) {
 		Usuario usuario = (Usuario)entidade;
-		this.getControladorUsuario().alterarSenha(usuario);
+		return this.getControladorUsuario().alterarSenha(usuario, senhaNova);
 	}
 	
 	public List<Disciplina> listarDisciplinasDeProfessor(EntidadeNegocio entidade) {
@@ -243,11 +245,8 @@ public class Fachada {
 		Monitor monitor = (Monitor)entidade;
 		return this.getControladorRelatorio().buscaSituacaoDosRelatoriosDeMonitoria(monitor);
 	}
-	public EntidadeNegocio alterarSenhaUsuario(String senhaAntiga, String senhaNova) {
-		//Usuario usuario = (Usuario)entidade;
-		
-		//this.getControladorUsuario().alterarSenha(senhaAntiga, novaSenha);
-		return null;
+	
+	public boolean compararSenhasDeUsuario(String senha, Usuario usuario) {
+		return this.getControladorUsuario().compararSenhas(senha, usuario);
 	}
-
 }

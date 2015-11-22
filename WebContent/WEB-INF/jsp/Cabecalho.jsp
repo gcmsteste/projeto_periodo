@@ -11,7 +11,7 @@
 <script src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="css/cabecalho.css" />
 <link rel="stylesheet" type="text/css" href="css/toggle-button.css" />
-<script type="text/javascript" src="js/cabecalho.js"></script>
+
 <title>Monitoria IFPE-TADS</title>
 <script>
 	$(document).ready(function() {
@@ -61,6 +61,8 @@
 					<div id="menu">
 						<ul>
 							<li><a class="active" href="acesso.do"><span>Home</span> </a></li>
+							<li><a class="active" href="cadastroAluno.do"><span>Aluno</span> </a></li>
+							<li><a class="active" href="cadastroProfessor.do"><span>Professor</span> </a></li>
 							<!--  <li><a href="#" class="toggler">JPA</a></li> -->
 						</ul>
 					</div>

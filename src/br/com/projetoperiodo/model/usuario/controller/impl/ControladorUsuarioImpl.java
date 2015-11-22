@@ -21,7 +21,7 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 	private final String EMAIL_MENSAGEM_CONTEUDO = "Sua senha é: ";
 
 	public ControladorUsuarioImpl() {
-
+		super();
 	}
 
 	@Override
@@ -43,16 +43,12 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 	}
 
 	@Override
-	public void alterarSenha(Usuario usuario, String senhaNova) {
+	public Usuario alterarSenha(Usuario usuario, String senhaNova) {
 
-		try {
-
-			String senhaNovaCriptografada = Util.criptografarSenha(senhaNova, senhaNova, Constantes.CONSTANTE_CRIPTOGRAFIA);
-			usuario.setSenha(senhaNovaCriptografada);
-			CreatorFabrica.getFabricaDAO().criarUsuarioDAO().atualizar(usuario);
-		} catch (Exception e) {
-			e.printStackTrace(); 
-		}
+		String senhaNovaCriptografada = Util.criptografarSenha(senhaNova, senhaNova, Constantes.CONSTANTE_CRIPTOGRAFIA);
+		usuario.setSenha(senhaNovaCriptografada);
+		CreatorFabrica.getFabricaDAO().criarUsuarioDAO().atualizar(usuario);
+		return usuario;
 	}
 
 	@Override
@@ -64,17 +60,14 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 	}
 
 	@Override
-	public void alterarSenhaUsuario(Usuario usuario) throws NegocioException {
+	public void encaminharSenhaParaUsuario(Usuario usuario) throws NegocioException {
 
 		HashMap<String, Object> filter = new HashMap<>();
 		filter.put(Usuario.ATRIBUTO_USUARIO_EMAIL, usuario.getEmail());
 		try {
 			usuario = (Usuario) CreatorFabrica.getFabricaDAO().criarUsuarioDAO().buscar(filter);
 			String novaSenha = Util.gerarSenhaAleatoria();
-			String senhaCriptografada = Util.criptografarSenha(novaSenha, novaSenha, Constantes.CONSTANTE_CRIPTOGRAFIA);
-			usuario.setSenha(senhaCriptografada);
-			usuario.setSenhaExpirada(Boolean.TRUE);
-			CreatorFabrica.getFabricaDAO().criarUsuarioDAO().atualizar(usuario);
+			alterarSenha(usuario, novaSenha);
 			usuario.setSenha(novaSenha);
 			envioEmailSenha(usuario);
 		} catch (NegocioException e) {
@@ -82,15 +75,7 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 		}
 	}
 
-	@Override
-	public boolean validarLogon(Usuario usuario) {
 
-		Usuario usuarioLogado = CreatorFabrica.getFabricaDAO().criarUsuarioDAO().buscar(usuario.getNome());
-		if (usuarioLogado.isSenhaExpirada()) {
-
-		}
-		return Boolean.TRUE;
-	}
 
 	@Override
 	public EntidadeNegocio criarEntidadeNegocio() {
@@ -119,15 +104,16 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 
 		return UsuarioImpl.class.getSimpleName();
 	}
-	
-	public boolean compararSenhas(String senha, String senhaCriptografada) {
+
+	@Override
+	public boolean compararSenhas(String senha, Usuario usuario) {
+
 		boolean isEqual = Boolean.TRUE;
 		senha = Util.criptografarSenha(senha, senha, Constantes.CONSTANTE_CRIPTOGRAFIA);
-		if ( !senha.equals(senhaCriptografada) ) {
+		if (!senha.equals(usuario.getSenha())) {
 			isEqual = Boolean.FALSE;
 		}
 		return isEqual;
 	}
-
 
 }

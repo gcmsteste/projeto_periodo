@@ -58,6 +58,16 @@ public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements
 		return CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().listar(builder.toString());
 	}
 	@Override
+	public List<Disciplina> buscarDisciplinasSemProfessor() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(" from ");
+		builder.append(this.getNomeClasseEntidade());
+		builder.append(" d ");
+		builder.append(" where d.professor is null ");
+		return CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().listar(builder.toString());
+	}
+	
+	@Override
 	public Disciplina buscarDisciplina(String descricao) throws NegocioException {
 
 		HashMap<String, Object> filter = new HashMap<>();

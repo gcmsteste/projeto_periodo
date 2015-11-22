@@ -37,7 +37,7 @@ public class ServletProfessor extends HttpServlet {
 		Professor professorLogado = (Professor) request.getSession().getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);	
 		List<Disciplina> discplinas = Fachada.getInstance().listarDisciplinasDeProfessor(professorLogado);
 		request.setAttribute(DISCIPLINAS_PROFESSOR_PERIODO_CORRENTE, discplinas);
-		request.getRequestDispatcher("/principalProfessor.do").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/DisciplinasProfessor.jsp").forward(request, response);
 	}
 
 	/**

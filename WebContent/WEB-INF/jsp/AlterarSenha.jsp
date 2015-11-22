@@ -8,34 +8,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <title>Monitoria IFPE-TADS</title>
-
-
-
-        
 </head>
 <body>
-	<jsp:include page="CabecalhoAlterarSenha.jsp" />
-	
-				
-	<form action="Servlet_alterarSenha.do" method="post">
+	<jsp:include page="CabecalhoUsuarioLogado.jsp" />
+
+
+	<form action="alterarSenha.do" method="post">
 		<fieldset id="fieldset1">
-	
-		
 
 			<fieldset id="fieldset2">
-			
-			<label for="senhaAntiga"></label>
-				Senha Antiga
-			<input type="password" id="senhaAntiga"/>
-				
-				<label for="senhaNova"></label>
-					Senha Nova
-				<input type="password" id="esnhaNova"/>
+
+				<label for="senhaAntiga"></label> Senha Antiga <input
+					type="password" id="senhaAntiga" name="senhaAntiga" /> <label
+					for="senhaNova"></label> Senha Nova <input type="password"
+					id="senhaNova" name="senhaNova" />
 			</fieldset>
 			<fieldset id="fieldset3">
-			<button type="submit">Alterar Senha</button>
+				<button type="submit">Alterar Senha</button>
 			</fieldset>
-			
+
 
 		</fieldset>
 	</form>

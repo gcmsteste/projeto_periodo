@@ -20,5 +20,7 @@ public interface ControladorDisciplina extends ControladorNegocio
 	List<Disciplina> listarDisciplinasDeProfessor(Professor professor);
 
 	Disciplina buscarDisciplina(long chavePrimaria);
+
+	List<Disciplina> buscarDisciplinasSemProfessor();
 	
 }

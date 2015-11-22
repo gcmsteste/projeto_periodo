@@ -43,7 +43,7 @@ public class ServletLogin extends HttpServlet {
 			requestDispatcher.forward(request, response);
 		} catch (NegocioException e) {
 			request.setAttribute(e.getMessage(), usuario.getLogin());
-			requestDispatcher = request.getRequestDispatcher("/login.do");
+			requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp");
 			requestDispatcher.forward(request, response);
 		}
 	}

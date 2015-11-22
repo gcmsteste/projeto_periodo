@@ -47,7 +47,7 @@ public class ServletCadastroMonitoria extends HttpServlet {
 		Aluno aluno = (Aluno) request.getSession(false).getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
 		List<Disciplina> listaDisciplinas = Fachada.getInstance().listarDisciplinasDeAluno(aluno);
 		request.setAttribute(LISTA_DISCIPLINAS, listaDisciplinas);
-		request.getRequestDispatcher("/formCadastroMonitoria").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/CadastroMonitoria.jsp").forward(request, response);
 	}
 
 	/**
