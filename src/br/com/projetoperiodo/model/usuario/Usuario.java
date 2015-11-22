@@ -41,4 +41,6 @@ public interface Usuario extends EntidadeNegocio {
 
 	void setSobrenome(String sobrenome);
 
+	String getPapelUsuario();
+
 }

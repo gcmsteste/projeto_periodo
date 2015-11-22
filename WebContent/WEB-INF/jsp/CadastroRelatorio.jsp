@@ -12,16 +12,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<title>Monitoria IFPE-TADS</title>
+<title>${initParam.title}</title>
 </head>
 <body>
 	<jsp:include page="CabecalhoUsuarioLogado.jsp" />
+	<c:if test="${ not empty requestScope.ERRO_RELATORIO_NAO_APROVADO }">
+		<div id="dialog">
+			<p>O relatório não pode ser gerado pois não foi aprovado por seu
+				professor. Solicite ao professor a aprovação deste relatório.</p>
+		</div>
+	</c:if>
 	<form action="cadastroRelatorio.do" method="post">
 		<div id="accordion">
 			<h3>Primeira semana</h3>
 			<div>
 
-				<textarea rows="13" cols="30" name="descricaosemana1"><c:out value="${ sessionScope['relatorio'].semanas[0].descricao}" /></textarea>
+				<textarea rows="13" cols="30" name="descricaosemana1"><c:out
+						value="${ sessionScope['relatorio'].semanas[0].descricao}" /></textarea>
 
 				<label>Primeiro dia</label> <input type="text" class="datepicker"
 					name="semana1atividade1"
@@ -46,7 +53,8 @@
 			<h3>Segunda semana</h3>
 			<div>
 
-				<textarea rows="13" cols="30" name="descricaosemana2"><c:out value="${ sessionScope['relatorio'].semanas[1].descricao}" /></textarea>
+				<textarea rows="13" cols="30" name="descricaosemana2"><c:out
+						value="${ sessionScope['relatorio'].semanas[1].descricao}" /></textarea>
 
 				<label>Primeiro dia</label> <input type="text" class="datepicker"
 					name="semana2atividade1"
@@ -72,7 +80,8 @@
 			<h3>Terceira semana</h3>
 			<div>
 
-				<textarea rows="13" cols="30" name="descricaosemana3"><c:out value="${ sessionScope['relatorio'].semanas[2].descricao}" /></textarea>
+				<textarea rows="13" cols="30" name="descricaosemana3"><c:out
+						value="${ sessionScope['relatorio'].semanas[2].descricao}" /></textarea>
 
 				<label>Primeiro dia</label> <input type="text" class="datepicker"
 					name="semana3atividade1"
@@ -99,7 +108,8 @@
 			<h3>Quarta semana</h3>
 			<div>
 
-				<textarea rows="13" cols="30" name="descricaosemana4"><c:out value="${ sessionScope['relatorio'].semanas[3].descricao}" /></textarea>
+				<textarea rows="13" cols="30" name="descricaosemana4"><c:out
+						value="${ sessionScope['relatorio'].semanas[3].descricao}" /></textarea>
 
 				<label>Primeiro dia</label> <input type="text" class="datepicker"
 					name="semana4atividade1"
@@ -124,7 +134,8 @@
 			<h3>Quinta semana</h3>
 			<div>
 
-				<textarea rows="13" cols="30" name="descricaosemana5"><c:out value="${ sessionScope['relatorio'].semanas[4].descricao}" /></textarea>
+				<textarea rows="13" cols="30" name="descricaosemana5"><c:out
+						value="${ sessionScope['relatorio'].semanas[4].descricao}" /></textarea>
 
 				<label>Primeiro dia</label> <input type="text" class="datepicker"
 					name="semana5atividade1"

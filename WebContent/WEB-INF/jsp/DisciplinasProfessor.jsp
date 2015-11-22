@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="css/tabela.css" />
 <link rel="stylesheet" type="text/css" href="css/tabela_botoes.css" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<title>Monitoria IFPE-TADS</title>
+<title>${initParam.title}</title>
 </head>
 <body>
 	<jsp:include page="CabecalhoUsuarioLogado.jsp" />

@@ -11,7 +11,7 @@
 <script type="text/javascript" src="js/cadastro-aluno.js"></script>
 <script type="text/javascript" src="js/validar-senha.js"></script>
 
-<title>Monitoria IFPE-TADS</title>
+<title>${initParam.title}</title>
 
 </head>
 <body>

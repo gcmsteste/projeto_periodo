@@ -13,7 +13,7 @@
 <script type="text/javascript" src="js/validar-senha.js"></script>
 
 
-<title>Monitoria IFPE-TADS</title>
+<title>${initParam.title}</title>
 </head>
 <body>
 	<jsp:include page="Cabecalho.jsp" />

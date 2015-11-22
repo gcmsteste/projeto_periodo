@@ -1,6 +1,8 @@
-package br.com.projetoperiodo.servlets;
+package br.com.projetoperiodo.servlets.documento;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
 
 /**
  * Servlet implementation class ServletAprovaRelatorio
@@ -17,6 +20,7 @@ import br.com.projetoperiodo.util.constantes.Constantes;
 public class ServletAprovaRelatorio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String MES_RELATORIO = "mes";
+	public static final String SITUACAO_RELATORIOS_MONITORIA = "situacaoRelatorios";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -44,6 +48,8 @@ public class ServletAprovaRelatorio extends HttpServlet {
 		Monitor monitor = (Monitor) request.getSession(false).getAttribute(Constantes.ATRIBUTO_MONITORIA);
 		RelatorioFrequencia relatorio = Fachada.getInstance().buscarRelatorioMensal(monitor, mesRelatorio);
 		Fachada.getInstance().aprovarRelatorio(relatorio);
+		List<Situacao> listaSituacao = Fachada.getInstance().buscarSituacaoDeRelatorios(monitor);
+		request.setAttribute(SITUACAO_RELATORIOS_MONITORIA, listaSituacao);
 		request.getRequestDispatcher("/relatorioProfessor.do").forward(request, response);
 	}
 

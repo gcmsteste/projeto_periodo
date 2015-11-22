@@ -1,5 +1,8 @@
+
 package br.com.projetoperiodo.util.persistencia.jdbc;
 
+import br.com.projetoperiodo.model.documentos.dao.DocumentDao;
+import br.com.projetoperiodo.model.documentos.dao.JDBCDocumentDao;
 import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
 import br.com.projetoperiodo.model.instituto.curso.dao.CursoDao;
 import br.com.projetoperiodo.model.instituto.disciplina.dao.DisciplinaDao;
@@ -12,19 +15,21 @@ import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
 import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
 import br.com.projetoperiodo.util.persistencia.dao.FabricaDAO;
 
-public class FabricaJDBC extends FabricaDAO
-{
+public class FabricaJDBC extends FabricaDAO {
+
 	private static FabricaJDBC instance;
-	
-	private FabricaJDBC() { }
-	
+
+	private FabricaJDBC() {
+	}
+
 	public static FabricaDAO getInstance() {
-		if ( instance == null ) {
+
+		if (instance == null) {
 			instance = new FabricaJDBC();
 		}
 		return instance;
 	}
-	
+
 	@Override
 	public UsuarioDao criarUsuarioDAO() {
 
@@ -89,8 +94,14 @@ public class FabricaJDBC extends FabricaDAO
 
 	@Override
 	public PeriodoDao criarPeriodoDao() {
+
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public DocumentDao criarDocumentDao() {
+		return new JDBCDocumentDao();
 	}
 
 }

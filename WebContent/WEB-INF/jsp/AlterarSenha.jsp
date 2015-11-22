@@ -7,7 +7,7 @@
 <link type="text/css" rel="stylesheet" href="css/formulario.css" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<title>Monitoria IFPE-TADS</title>
+<title>${initParam.title}</title>
 </head>
 <body>
 	<jsp:include page="CabecalhoUsuarioLogado.jsp" />

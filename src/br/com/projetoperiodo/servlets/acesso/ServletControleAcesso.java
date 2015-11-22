@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.projetoperiodo.model.instituto.aluno.Aluno;
+import br.com.projetoperiodo.model.usuario.Usuario;
+import br.com.projetoperiodo.util.constantes.Constantes;
+
 public class ServletControleAcesso extends HttpServlet {
 	/**
 	 * 
@@ -29,7 +33,13 @@ public class ServletControleAcesso extends HttpServlet {
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp");
 			rd.forward(request, response);
 		} else {
-			rd = request.getRequestDispatcher("/aluno.do");
+			
+			Usuario usuarioLogado = (Usuario)request.getSession(false).getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
+			if (usuarioLogado.getPapelUsuario().equals(Aluno.PAPEL_ALUNO)) {
+				rd = request.getRequestDispatcher("/aluno.do");
+			} else {
+				rd = request.getRequestDispatcher("/professor.do");
+			}
 			rd.forward(request, response);
 		}
 	}

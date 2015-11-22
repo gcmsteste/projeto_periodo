@@ -29,7 +29,10 @@ public class ProfessorImpl extends UsuarioImpl implements Professor {
 
 	@OneToMany(mappedBy="professor", fetch = FetchType.LAZY, targetEntity=DisciplinaImpl.class)
 	private List<Disciplina> disciplinas =  new ArrayList<Disciplina>();;
-
+	
+	public ProfessorImpl() {
+		PAPEL = PAPEL_PROFESSOR;
+	}
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.professor.Professor#getDisciplina(int)
 	 */

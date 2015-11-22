@@ -1,5 +1,6 @@
 package br.com.projetoperiodo.util.persistencia.dao;
 
+import br.com.projetoperiodo.model.documentos.dao.DocumentDao;
 import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
 import br.com.projetoperiodo.model.instituto.curso.dao.CursoDao;
 import br.com.projetoperiodo.model.instituto.disciplina.dao.DisciplinaDao;
@@ -32,4 +33,6 @@ public abstract class FabricaDAO {
 	public abstract ProfessorDao criarProfessorDao();
 	
 	public abstract PeriodoDao criarPeriodoDao();
+	
+	public abstract DocumentDao criarDocumentDao();
 }

@@ -195,10 +195,10 @@ public class Fachada {
 		this.getControladorRelatorio().atualizarRelatorio(relatorio);
 	}
 
-	public byte[] gerarDocumentoDeRelatorio(EntidadeNegocio entidade) {
+	public byte[] gerarDocumentoDeRelatorio(EntidadeNegocio entidade, Usuario requisitante) throws NegocioException {
 
 		RelatorioFrequencia relatorio = (RelatorioFrequencia) entidade;
-		return this.getControladorRelatorio().gerarDocumentoDeRelatorio(relatorio);
+		return this.getControladorRelatorio().gerarDocumentoDeRelatorio(relatorio, requisitante);
 	}
 
 	public EntidadeNegocio buscarCursoPadraoDeAluno() {

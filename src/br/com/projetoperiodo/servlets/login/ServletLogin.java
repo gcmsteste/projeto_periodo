@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
@@ -22,8 +23,8 @@ public class ServletLogin extends HttpServlet {
 	private static final String FORM_SENHA = "senha";
 
 	@Override
-	protected synchronized void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected synchronized void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		RequestDispatcher requestDispatcher;
 
 		String login = request.getParameter(FORM_LOGIN);
@@ -35,7 +36,7 @@ public class ServletLogin extends HttpServlet {
 			Usuario usuarioAutenticado = (Usuario) Fachada.getInstance().autenticarUsuario(usuario);
 			HttpSession session = request.getSession();
 			session.setAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO, usuarioAutenticado);
-			if( Fachada.getInstance().verificaPapelDoUsuario(usuarioAutenticado) ){
+			if (usuarioAutenticado.getPapelUsuario().equals(Aluno.PAPEL_ALUNO)) {
 				requestDispatcher = request.getRequestDispatcher("/aluno.do");
 			} else {
 				requestDispatcher = request.getRequestDispatcher("/professor.do");

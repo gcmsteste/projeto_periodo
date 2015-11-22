@@ -6,10 +6,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
+import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
+import br.com.projetoperiodo.util.exception.NegocioException;
 
 /**
  * Servlet implementation class ServletGerarDocumento
@@ -32,9 +36,17 @@ public class ServletGerarDocumento extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int mesRelatorio = Integer.valueOf(request.getParameter(MES_RELATORIO));
 		Monitor monitor = (Monitor) request.getSession(false).getAttribute(Constantes.ATRIBUTO_MONITORIA);
+		Usuario usuarioLogado = (Usuario)request.getSession(false).getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
 		RelatorioFrequencia relatorio = Fachada.getInstance().buscarRelatorioMensal(monitor, mesRelatorio);
-		request.setAttribute(DOCUMENTO_RELATORIO, Fachada.getInstance().gerarDocumentoDeRelatorio(relatorio));
-		request.getRequestDispatcher("/enviarDocumento.do").forward(request, response);
+		try {
+			request.setAttribute(DOCUMENTO_RELATORIO, Fachada.getInstance().gerarDocumentoDeRelatorio(relatorio, usuarioLogado));
+			request.getRequestDispatcher("/enviarDocumento.do").forward(request, response);
+		} catch ( NegocioException e ) {
+			request.setAttribute(e.getMessage(), e);
+			request.getRequestDispatcher("/WEB-INF/jsp/CadastroRelatorio.jsp").forward(request, response);
+		}
+		
+		
 	}
 
 	/**

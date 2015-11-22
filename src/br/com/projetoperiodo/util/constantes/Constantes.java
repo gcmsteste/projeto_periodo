@@ -2,7 +2,6 @@ package br.com.projetoperiodo.util.constantes;
 
 
 public class Constantes {
-	public static final String ERRO_ACESSO_NEGADO = "ERRO_ACESSO_NEGADO";
 	
 	public static final String CONSTANTE_CRIPTOGRAFIA = "MD5";
 	
@@ -19,5 +18,14 @@ public class Constantes {
 	public static final String ATRIBUTO_USUARIO_LOGADO = "usuarioLogado";
 	 
 	public static final String ATRIBUTO_MONITORIA = "monitoria";
+	
+	public static final String PAPEL_DO_USUARIO = "papel";
+	
+	/** Parâmetros de erro **/
+	
+	public static final String ERRO_ACESSO_NEGADO = "ERRO_ACESSO_NEGADO";
+	
+	public static final String ERRO_RELATORIO_NAO_APROVADO = "ERRO_RELATORIO_NAO_APROVADO";
 	 
+	
 }

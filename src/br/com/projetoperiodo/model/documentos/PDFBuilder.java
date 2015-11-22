@@ -40,13 +40,14 @@ import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
+import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 
-public class PDFBuilder  {
+public class PDFBuilder {
 
 	private PdfReader reader;
 
 	private static PDFBuilder instance;
-	
+
 	private FontSelector seletorFonte;
 
 	public static final int NOME_MONITOR_X = 124;
@@ -99,15 +100,9 @@ public class PDFBuilder  {
 
 	private PDFBuilder() {
 		super();
-		try {
-			DocumentDao dao = new JDBCDocumentDao();
-			dao.salvar("selection.pdf");
-			reader = new PdfReader(dao.buscar());
-		
-			configurarFonteDocumento();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		CreatorFabrica.getFabricaDAO().criarDocumentDao().salvar("selection.pdf");
+
+		configurarFonteDocumento();
 	}
 
 	private void configurarFonteDocumento() {
@@ -117,13 +112,9 @@ public class PDFBuilder  {
 		this.seletorFonte.addFont(font);
 	}
 
-	public void closeReader() {
-
-		reader.close();
-	}
-
 	public static PDFBuilder getInstancia() {
-		if ( instance == null ) {
+
+		if (instance == null) {
 			instance = new PDFBuilder();
 		}
 		return instance;
@@ -138,8 +129,7 @@ public class PDFBuilder  {
 	private void preencherNomeDisciplina(String nome, PdfContentByte conteudoDocumento) {
 
 		Phrase phrase = seletorFonte.process(nome);
-		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_DISCIPLINA_X, NOME_DISCIPLINA_Y,
-				0);
+		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_DISCIPLINA_X, NOME_DISCIPLINA_Y, 0);
 	}
 
 	private void preencherCampoMes(String nome, PdfContentByte conteudoDocumento) {
@@ -151,8 +141,7 @@ public class PDFBuilder  {
 	private void preencherNomeOrientador(String nome, PdfContentByte conteudoDocumento) {
 
 		Phrase phrase = seletorFonte.process(nome);
-		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_ORIENTADOR_X, NOME_ORIENTADOR_Y,
-				0);
+		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_ORIENTADOR_X, NOME_ORIENTADOR_Y, 0);
 	}
 
 	private void preencherCampoEdital(String nome, PdfContentByte conteudoDocumento) {
@@ -184,7 +173,7 @@ public class PDFBuilder  {
 		if (monitor.getHorarioEntrada() != null) {
 			Phrase phrase = seletorFonte.process(monitor.getHorarioEntrada());
 			ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, HORARIO_ENTRADA_X,
-					ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
+							ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
 		}
 
 	}
@@ -194,7 +183,7 @@ public class PDFBuilder  {
 		if (monitor.getHorarioSaida() != null) {
 			Phrase phrase = seletorFonte.process(monitor.getHorarioSaida());
 			ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, HORARIO_SAIDA_X,
-					ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
+							ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
 		}
 
 	}
@@ -205,7 +194,7 @@ public class PDFBuilder  {
 			DateFormat formataData = DateFormat.getDateInstance();
 			Phrase phrase = seletorFonte.process(formataData.format(atividade.getData()));
 			ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, DATA_ATIVIDADE_X,
-					ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
+							ATIVIDADE_Y - decrementoPosicaoRelativaY, 0);
 		}
 
 	}
@@ -271,7 +260,8 @@ public class PDFBuilder  {
 
 	}
 
-	private void preencherAtividadesSemanais(Atividade atividade, Monitor monitor, int decrementoPosicaoRelativaY, PdfContentByte conteudoDocumento) {
+	private void preencherAtividadesSemanais(Atividade atividade, Monitor monitor, int decrementoPosicaoRelativaY,
+					PdfContentByte conteudoDocumento) {
 
 		preencherDataAtividade(atividade, decrementoPosicaoRelativaY, conteudoDocumento);
 		preencherHorarioEntradaAtividade(monitor, decrementoPosicaoRelativaY, conteudoDocumento);
@@ -281,22 +271,23 @@ public class PDFBuilder  {
 	public byte[] gerarRelatorio(RelatorioFrequencia relatorio) {
 
 		PdfStamper copia = null;
-		OutputStream out  = null;
+		OutputStream out = null;
 		try {
-			out = new ByteArrayOutputStream(); 
+			
+			reader = new PdfReader(CreatorFabrica.getFabricaDAO().criarDocumentDao().buscar());
+			out = new ByteArrayOutputStream();
 			copia = new PdfStamper(reader, out);
-			
-			
+
 		} catch (DocumentException | IOException e1) {
 
 			e1.printStackTrace();
 		}
-	
+
 		PdfContentByte conteudoDocumento = copia.getOverContent(1);
-		
-	
-		preencherNomeMonitor(relatorio.getMonitor().getAluno().getNome().concat(" ")
-				.concat(relatorio.getMonitor().getAluno().getSobrenome()), conteudoDocumento);
+
+		preencherNomeMonitor(
+						relatorio.getMonitor().getAluno().getNome().concat(" ").concat(relatorio.getMonitor().getAluno().getSobrenome()),
+						conteudoDocumento);
 		preencherNomeDisciplina(relatorio.getMonitor().getDisciplina().getDescricao(), conteudoDocumento);
 		preencherNomeOrientador(relatorio.getMonitor().getDisciplina().getProfessor().getNome(), conteudoDocumento);
 		preencherMatricula(relatorio.getMonitor().getAluno().getMatricula(), conteudoDocumento);
@@ -311,7 +302,7 @@ public class PDFBuilder  {
 
 			for (int i = 0; i < QUANTIDADE_ATIVIDADES; i++) {
 				Atividade atividade = semana.getAtividade(i);
-				if ( atividade.getData() != null) {
+				if (atividade.getData() != null) {
 					preencherAtividadesSemanais(atividade, relatorio.getMonitor(), decrementoPosicaoRelativaY, conteudoDocumento);
 				}
 				decrementoPosicaoRelativaY += 14;
@@ -326,7 +317,7 @@ public class PDFBuilder  {
 			preencherDescricaoQuartaSemana(relatorio.getSemana(3), conteudoDocumento);
 			preencherDescricaoQuintaSemana(relatorio.getSemana(4), conteudoDocumento);
 			copia.close();
-		
+
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -334,7 +325,7 @@ public class PDFBuilder  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		byte[] content = ((ByteArrayOutputStream)out).toByteArray();
+		byte[] content = ((ByteArrayOutputStream) out).toByteArray();
 		return content;
 	}
 
@@ -376,12 +367,7 @@ public class PDFBuilder  {
 		monitor.setPeriodo(periodo);
 		relatorio.setMonitor(monitor);
 		relatorio.setMes(9);
-		
-		
 
 	}
-
-
-
 
 }

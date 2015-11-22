@@ -1,5 +1,7 @@
 package br.com.projetoperiodo.util.persistencia.jpa;
 
+import br.com.projetoperiodo.model.documentos.dao.DocumentDao;
+import br.com.projetoperiodo.model.documentos.dao.JDBCDocumentDao;
 import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
 import br.com.projetoperiodo.model.instituto.aluno.dao.JPAAlunoDao;
 import br.com.projetoperiodo.model.instituto.curso.dao.CursoDao;
@@ -91,6 +93,12 @@ public class FabricaJPA extends FabricaDAO {
 	public PeriodoDao criarPeriodoDao() {
 
 		return new JPAPeriodoDao();
+	}
+	@Override
+	public DocumentDao criarDocumentDao() {
+
+		// TODO Auto-generated method stub
+		return new JDBCDocumentDao();
 	}
 
 }

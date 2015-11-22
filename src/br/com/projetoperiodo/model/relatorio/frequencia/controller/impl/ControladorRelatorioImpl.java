@@ -4,25 +4,26 @@ package br.com.projetoperiodo.model.relatorio.frequencia.controller.impl;
 import java.util.List;
 
 import br.com.projetoperiodo.model.documentos.PDFBuilder;
+import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.periodo.Periodo;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.frequencia.controller.ControladorRelatorio;
-import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.relatorio.semana.controller.ControladorSemana;
+import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.util.Fachada;
+import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
+import br.com.projetoperiodo.util.exception.NegocioException;
 import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
 
 public class ControladorRelatorioImpl extends ControladorNegocioImpl implements ControladorRelatorio {
 
-
-
 	public ControladorRelatorioImpl() {
-		
+
 	}
 
 	@Override
@@ -83,26 +84,32 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 	}
 
 	@Override
-	public byte[] gerarDocumentoDeRelatorio(RelatorioFrequencia relatorio) {
-
+	public byte[] gerarDocumentoDeRelatorio(RelatorioFrequencia relatorio, Usuario requisitante) throws NegocioException {
+		if( relatorio.getSituacao().equals(Situacao.ESPERA) && requisitante.getPapelUsuario().equals(Aluno.PAPEL_ALUNO) ) {
+			throw new NegocioException(Constantes.ERRO_RELATORIO_NAO_APROVADO);
+		}
 		return PDFBuilder.getInstancia().gerarRelatorio(relatorio);
-
 	}
+
 	@Override
 	public void removerRelatoriosDeMonitoria(Monitor monitor) {
+
 		List<RelatorioFrequencia> relatorios = this.buscarRelatoriosDeMonitor(monitor);
-		for ( RelatorioFrequencia relatorio: relatorios) {
+		for (RelatorioFrequencia relatorio : relatorios) {
 			CreatorFabrica.getFabricaDAO().criarRelatorioFrequenciaDAO().remover(relatorio);
-		}		
+		}
 	}
+
 	@Override
 	public RelatorioFrequencia aprovarRelatorio(RelatorioFrequencia relatorio) {
+
 		relatorio.setSituacao(Situacao.APROVADO);
 		return CreatorFabrica.getFabricaDAO().criarRelatorioFrequenciaDAO().atualizar(relatorio);
 	}
-	
+
 	@Override
 	public List<Situacao> buscaSituacaoDosRelatoriosDeMonitoria(Monitor monitor) {
+
 		StringBuilder builder = new StringBuilder();
 		builder.append(" select situacao from ");
 		builder.append(this.getNomeClasseEntidade());
@@ -111,7 +118,7 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 		builder.append(monitor.getChavePrimaria());
 		return CreatorFabrica.getFabricaDAO().criarRelatorioFrequenciaDAO().listarSituacaoDosRelatorios(builder.toString());
 	}
-	
+
 	public static void main(String[] args) {
 
 		ControladorRelatorio r = Fachada.getInstance().getControladorRelatorio();
@@ -120,9 +127,10 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 		List<Situacao> situacao = r.buscaSituacaoDosRelatoriosDeMonitoria(m);
 		System.out.println(situacao);
 	}
+
 	@Override
 	public String getNomeClasseEntidade() {
-		
+
 		return RelatorioFrequenciaImpl.class.getSimpleName();
 	}
 

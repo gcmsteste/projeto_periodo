@@ -11,6 +11,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Polymorphism;
 import org.hibernate.annotations.PolymorphismType;
@@ -45,7 +46,10 @@ public class UsuarioImpl extends EntidadeNegocioImpl implements Usuario {
 
 	@Column(name = "SENHA_EXPIRADA", nullable = false)
 	private boolean senhaExpirada;
-
+	
+	@Transient
+	protected  String PAPEL = "usuario";
+	
 	/*
 	 * (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.usuario.impl.Usuario#getLogin()
@@ -165,4 +169,12 @@ public class UsuarioImpl extends EntidadeNegocioImpl implements Usuario {
 
 		this.senhaExpirada = senhaExpirada;
 	}
+
+	@Override
+	public String getPapelUsuario() {
+
+		return PAPEL;
+	}
+	
+	
 }

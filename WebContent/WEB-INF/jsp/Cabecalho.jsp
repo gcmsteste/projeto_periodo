@@ -3,36 +3,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!--   <link rel="shortcut icon" href="images/favicon.gif" /> -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" />
 <script src="js/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
 <script src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
+<script src="js/trocar-persistencia.js"></script>
 <link rel="stylesheet" type="text/css" href="css/cabecalho.css" />
 <link rel="stylesheet" type="text/css" href="css/toggle-button.css" />
-
-<title>Monitoria IFPE-TADS</title>
-<script>
-	$(document).ready(function() {
-
-		$('a.toggler').click(function() {
-			$(this).toggleClass('off');
-			var strategy = $(this).text();
-			if (strategy == "JPA") {
-				$(this).text('JDBC');
-			} else if (strategy == "JDBC") {
-				$(this).text("JPA");
-			}
-			strategy = $(this).text();
-
-			$.post("alterarEstrategiaPersistencia", {
-				persistencia : strategy
-			});
-
-		});
-	});
-</script>
 
 </head>
 <body>

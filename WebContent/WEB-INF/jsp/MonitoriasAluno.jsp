@@ -7,7 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" type="text/css" href="css/tabela.css" />
 <link rel="stylesheet" type="text/css" href="css/tabela_botoes.css" />
-<title>Monitoria IFPE-TADS</title>
+<title>${initParam.title}</title>
 
 
 </head>

@@ -40,7 +40,11 @@ public class AlunoImpl extends UsuarioImpl implements Aluno
 	           joinColumns = @JoinColumn( name = "ALUNO_ID"),
 	           inverseJoinColumns = @JoinColumn(name = "DISCIPLINA_ID"))
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-
+	
+	public AlunoImpl() {
+		PAPEL = PAPEL_ALUNO;
+	}
+	
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.aluno.impl.Aluno#getMatricula()
 	 */
@@ -61,7 +65,7 @@ public class AlunoImpl extends UsuarioImpl implements Aluno
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.aluno.impl.Aluno#getCurso()
 	 */
-	
+	@Override
 	public Curso getCurso() {
 
 		return curso;
@@ -69,7 +73,7 @@ public class AlunoImpl extends UsuarioImpl implements Aluno
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.aluno.impl.Aluno#setCurso(br.com.projetoperiodo.model.instituto.curso.Curso)
 	 */
-	
+	@Override
 	public void setCurso(Curso curso) {
 
 		this.curso = curso;
@@ -77,7 +81,7 @@ public class AlunoImpl extends UsuarioImpl implements Aluno
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.aluno.impl.Aluno#getDisciplinas(int)
 	 */
-	
+	@Override
 	public Disciplina getDisciplinas(int index) {
 
 		return disciplinas.get(index);
@@ -85,11 +89,16 @@ public class AlunoImpl extends UsuarioImpl implements Aluno
 	/* (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.instituto.aluno.impl.Aluno#setDisciplinas(br.com.projetoperiodo.model.instituto.disciplina.Disciplina)
 	 */
-	
+	@Override
 	public void setDisciplinas(Disciplina disciplina) {
 
 		this.disciplinas.add(disciplina);
 	}
 	
+	@Override
+	public String getPapelUsuario() {
+	
+		return "ALUNO";
+	}
 	
 }

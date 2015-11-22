@@ -39,15 +39,9 @@ public class ServletRelatorioProfessor extends HttpServlet {
 		if (request.getSession(false) == null) {
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
 		}
-		
-		Monitor monitor = null;
-		if ( request.getParameter(CHAVE_MONITOR) != null ) {
-			long chavePrimariaMonitor = Long.valueOf(request.getParameter(CHAVE_MONITOR));
-			monitor = (Monitor) Fachada.getInstance().buscarMonitoria(chavePrimariaMonitor);
-			request.getSession(false).setAttribute(Constantes.ATRIBUTO_MONITORIA, monitor);
-		} else {
-			monitor = (Monitor) request.getSession(false).getAttribute(Constantes.ATRIBUTO_MONITORIA);
-		}
+		long chavePrimariaMonitor = Long.valueOf(request.getParameter(CHAVE_MONITOR));
+		Monitor monitor = (Monitor) Fachada.getInstance().buscarMonitoria(chavePrimariaMonitor);
+		request.getSession(false).setAttribute(Constantes.ATRIBUTO_MONITORIA, monitor);
 		List<Situacao> listaSituacao = Fachada.getInstance().buscarSituacaoDeRelatorios(monitor);
 		request.setAttribute(SITUACAO_RELATORIOS_MONITORIA, listaSituacao);
 		request.getRequestDispatcher("/WEB-INF/jsp/RelatoriosProfessor.jsp").forward(request, response);
