@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
 	<wb-module deploy-name="projeto_periodo">
 		<property name="context-root" value="projeto_periodo"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/" source-path="/WebContent/WEB-INF"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Clarice/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
