@@ -249,4 +249,8 @@ public class Fachada {
 	public boolean compararSenhasDeUsuario(String senha, Usuario usuario) {
 		return this.getControladorUsuario().compararSenhas(senha, usuario);
 	}
+	
+	public void retirarVinculoDeProfessorComDisciplina(EntidadeNegocio entidade) {
+		
+	}
 }

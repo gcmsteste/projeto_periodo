@@ -50,7 +50,7 @@ public class ServletAprovaRelatorio extends HttpServlet {
 		Fachada.getInstance().aprovarRelatorio(relatorio);
 		List<Situacao> listaSituacao = Fachada.getInstance().buscarSituacaoDeRelatorios(monitor);
 		request.setAttribute(SITUACAO_RELATORIOS_MONITORIA, listaSituacao);
-		request.getRequestDispatcher("/relatorioProfessor.do").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/RelatoriosProfessor.jsp").forward(request, response);
 	}
 
 }

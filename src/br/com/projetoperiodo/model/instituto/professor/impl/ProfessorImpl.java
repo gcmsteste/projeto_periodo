@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Polymorphism;
 import org.hibernate.annotations.PolymorphismType;
@@ -29,6 +30,9 @@ public class ProfessorImpl extends UsuarioImpl implements Professor {
 
 	@OneToMany(mappedBy="professor", fetch = FetchType.LAZY, targetEntity=DisciplinaImpl.class)
 	private List<Disciplina> disciplinas =  new ArrayList<Disciplina>();;
+	
+	@Transient
+	private final String PAPEL_PROFESSOR = "PROFESSOR";
 	
 	public ProfessorImpl() {
 		PAPEL = PAPEL_PROFESSOR;

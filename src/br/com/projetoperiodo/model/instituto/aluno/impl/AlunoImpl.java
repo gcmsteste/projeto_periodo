@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Polymorphism;
 import org.hibernate.annotations.PolymorphismType;
@@ -40,6 +41,9 @@ public class AlunoImpl extends UsuarioImpl implements Aluno
 	           joinColumns = @JoinColumn( name = "ALUNO_ID"),
 	           inverseJoinColumns = @JoinColumn(name = "DISCIPLINA_ID"))
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+	
+	@Transient
+	private final String PAPEL_ALUNO = "ALUNO";
 	
 	public AlunoImpl() {
 		PAPEL = PAPEL_ALUNO;

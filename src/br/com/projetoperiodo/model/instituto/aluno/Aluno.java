@@ -6,7 +6,7 @@ import br.com.projetoperiodo.model.usuario.Usuario;
 
 public interface Aluno extends Usuario
 {
-	final String PAPEL_ALUNO = "ALUNO";
+	
 	
 	String getMatricula();
 

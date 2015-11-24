@@ -106,5 +106,17 @@ public class SemanaImpl extends EntidadeNegocioImpl implements Semana
 
 		this.relatorio = relatorio;
 	}
+	/*
+	public long getCargaHorariaParcial() {
+		long cargaHorariaParcial = 0L;
+		for ( Atividade atividade : atividades ) {
+			String[] entrada = atividade.getHorarioEntrada().split(":");
+			String[] saida = atividade.getHorarioSaida().split(":");
+			
+			long horarioEntrada = Long.valueOf(atividade.getHorarioEntrada());
+			long horarioSaida = Long.valueOf(atividade.getHorarioSaida());
+			
+		}
+	}*/
 	
 }

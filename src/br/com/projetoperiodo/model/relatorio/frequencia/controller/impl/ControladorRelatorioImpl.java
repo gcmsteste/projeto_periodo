@@ -85,7 +85,7 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 
 	@Override
 	public byte[] gerarDocumentoDeRelatorio(RelatorioFrequencia relatorio, Usuario requisitante) throws NegocioException {
-		if( relatorio.getSituacao().equals(Situacao.ESPERA) && requisitante.getPapelUsuario().equals(Aluno.PAPEL_ALUNO) ) {
+		if( relatorio.getSituacao().equals(Situacao.ESPERA) && "ALUNO".equals(requisitante.getPapelUsuario()) ) {
 			throw new NegocioException(Constantes.ERRO_RELATORIO_NAO_APROVADO);
 		}
 		return PDFBuilder.getInstancia().gerarRelatorio(relatorio);
