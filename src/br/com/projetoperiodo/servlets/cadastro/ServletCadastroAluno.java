@@ -41,7 +41,7 @@ public class ServletCadastroAluno extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		if (request.getSession(false) != null) {
+		if (request.getSession(Boolean.FALSE) != null) {
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
 		}
 		request.setAttribute(LISTA_DISCIPLINAS, listaDisciplinas);
@@ -55,7 +55,7 @@ public class ServletCadastroAluno extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		if (request.getSession(false) != null) {
+		if (request.getSession(Boolean.FALSE) != null) {
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
 		}
 		Aluno aluno = (Aluno) Fachada.getInstance().criarAluno();

@@ -25,6 +25,8 @@ public interface Atividade extends EntidadeNegocio
 
 	void setSemana(Semana semana);
 
+	long getDuracaoEmMinutosDaAtividade();
+
 
 
 }

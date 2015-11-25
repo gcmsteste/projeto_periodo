@@ -71,8 +71,6 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	}
 
 
-
-
 	/*
 	 * (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#getCargaHorariaMensal()
@@ -90,9 +88,6 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 
 		this.cargaHorariaMensal = cargaHorariaMensal;
 	}
-
-
-
 
 	/*
 	 * (non-Javadoc)
@@ -144,7 +139,13 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	public void setSituacao(Situacao situacao) {
 		this.situacao = situacao;
 	}
-
-	
+	@Override
+	public long getCargaHorariaEmMinutos() {
+		long cargaHoraria = 0L;
+		for ( Semana semana : semanas ) {
+			cargaHoraria = semana.getCargaHorariaParcial();
+		}
+		return cargaHoraria;
+	}
 
 }

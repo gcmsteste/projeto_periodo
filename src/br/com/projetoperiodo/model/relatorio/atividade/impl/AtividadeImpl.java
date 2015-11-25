@@ -95,6 +95,25 @@ public class AtividadeImpl extends EntidadeNegocioImpl implements Atividade
 
 		this.semana = semana;
 	}
+	@Override
+	public long getDuracaoEmMinutosDaAtividade() {
+		String[] entrada = this.getHorarioEntrada().split(":");
+		String[] saida = this.getHorarioSaida().split(":");
+		long horasEntrada = Long.valueOf(entrada[0]);
+		long minutosEntrada = Long.valueOf(entrada[1]) + horasEntrada*60;
+		long horasSaida = Long.valueOf(saida[0]);
+		long minutosSaida = Long.valueOf(saida[1]) + horasSaida*60;
+		
+		return ( minutosSaida - minutosEntrada );
+	}
+	
+	public static void main(String[] args) {
+
+		AtividadeImpl atividade = new AtividadeImpl();
+		atividade.setHorarioEntrada("12:00");
+		atividade.setHorarioSaida("14:00");
+		System.out.println(atividade.getDuracaoEmMinutosDaAtividade());
+	}
 
 
 }

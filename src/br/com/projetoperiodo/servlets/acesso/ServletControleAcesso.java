@@ -34,7 +34,7 @@ public class ServletControleAcesso extends HttpServlet {
 			rd.forward(request, response);
 		} else {
 			
-			Usuario usuarioLogado = (Usuario)request.getSession(false).getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
+			Usuario usuarioLogado = (Usuario)request.getSession(Boolean.FALSE).getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);
 			if ("ALUNO".equals(usuarioLogado.getPapelUsuario())) {
 				rd = request.getRequestDispatcher("/aluno.do");
 			} else {

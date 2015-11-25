@@ -29,6 +29,8 @@ public interface RelatorioFrequencia extends EntidadeNegocio
 	Situacao getSituacao();
 
 	void setSituacao(Situacao situacao);
+
+	long getCargaHorariaEmMinutos();
 	
 	
 
