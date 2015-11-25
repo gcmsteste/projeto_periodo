@@ -33,9 +33,7 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	@Column(name = "RELATORIO_MES", nullable = false)
 	private int mes;
 
-	@Column(name = "RELATORIO_CARGA_HORARIA", nullable = false)
-	private int cargaHorariaMensal;
-
+	
 	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity = MonitorImpl.class)
 	@JoinColumn(name = "MONITOR_ID", referencedColumnName = "MONITOR_ID")
 	private Monitor monitor;
@@ -71,23 +69,6 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#getCargaHorariaMensal()
-	 */
-	public int getCargaHorariaMensal() {
-
-		return cargaHorariaMensal;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#setCargaHorariaMensal(int)
-	 */
-	public void setCargaHorariaMensal(int cargaHorariaMensal) {
-
-		this.cargaHorariaMensal = cargaHorariaMensal;
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -139,13 +120,4 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	public void setSituacao(Situacao situacao) {
 		this.situacao = situacao;
 	}
-	@Override
-	public long getCargaHorariaEmMinutos() {
-		long cargaHoraria = 0L;
-		for ( Semana semana : semanas ) {
-			cargaHoraria = semana.getCargaHorariaParcial();
-		}
-		return cargaHoraria;
-	}
-
 }

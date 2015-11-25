@@ -26,6 +26,5 @@ public interface Semana extends EntidadeNegocio
 
 	void setRelatorio(RelatorioFrequencia relatorio);
 
-	long getCargaHorariaParcial();
 
 }

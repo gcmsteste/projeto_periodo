@@ -46,4 +46,6 @@ public interface Monitor extends EntidadeNegocio
 	
 	void setHorarioSaida(String horario);
 
+	long getCargaDiariaEmMinutos();
+
 }

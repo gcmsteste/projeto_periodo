@@ -29,16 +29,15 @@ public class JDBCRelatorioFrequenciaDao implements RelatorioFrequenciaDao {
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(" INSERT INTO PROJETO_PERIODO.RELATORIO_FREQUENCIA ");
-		builder.append(" (RELATORIO_MES, RELATORIO_CARGA_HORARIA, MONITOR_ID) ");
-		builder.append(" VALUES(?, ?, ?) ");
+		builder.append(" (RELATORIO_MES, MONITOR_ID) ");
+		builder.append(" VALUES(?, ?) ");
 		PreparedStatement ptmt = null;
 		ResultSet generatedKeys = null;
 		try {
 			
 			ptmt = connection.prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
 			ptmt.setInt(1, relatorio.getMes());
-			ptmt.setInt(2, relatorio.getCargaHorariaMensal());
-			ptmt.setLong(3, relatorio.getMonitor().getChavePrimaria());
+			ptmt.setLong(2, relatorio.getMonitor().getChavePrimaria());
 			ptmt.executeUpdate();
 			connection.commit();
 			generatedKeys = ptmt.getGeneratedKeys();
@@ -69,7 +68,7 @@ public class JDBCRelatorioFrequenciaDao implements RelatorioFrequenciaDao {
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(" UPDATE PROJETO_PERIODO.RELATORIO_FREQUENCIA ");
-		builder.append(" SET RELATORIO_MES = ?, RELATORIO_CARGA_HORARIA = ?, MONITOR_ID = ? ");
+		builder.append(" SET RELATORIO_MES = ?,  MONITOR_ID = ? ");
 		builder.append(" WHERE RELATORIO_ID = ? ");
 		PreparedStatement ptmt = null;
 		ResultSet generatedKeys = null;
@@ -77,9 +76,8 @@ public class JDBCRelatorioFrequenciaDao implements RelatorioFrequenciaDao {
 			
 			ptmt = connection.prepareStatement(builder.toString());
 			ptmt.setInt(1, relatorio.getMes());
-			ptmt.setInt(2, relatorio.getCargaHorariaMensal());
-			ptmt.setLong(3, relatorio.getMonitor().getChavePrimaria());
-			ptmt.setLong(4, relatorio.getChavePrimaria());
+			ptmt.setLong(2, relatorio.getMonitor().getChavePrimaria());
+			ptmt.setLong(3, relatorio.getChavePrimaria());
 			ptmt.executeUpdate();
 			connection.commit();
 		} catch (SQLException e) {

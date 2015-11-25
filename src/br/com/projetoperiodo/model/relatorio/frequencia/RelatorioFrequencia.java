@@ -14,10 +14,6 @@ public interface RelatorioFrequencia extends EntidadeNegocio
 
 	void setMes(int mes);
 
-	int getCargaHorariaMensal();
-
-	void setCargaHorariaMensal(int cargaHorariaMensal);
-
 	Monitor getMonitor();
 
 	void setMonitor(Monitor monitor);
@@ -30,8 +26,5 @@ public interface RelatorioFrequencia extends EntidadeNegocio
 
 	void setSituacao(Situacao situacao);
 
-	long getCargaHorariaEmMinutos();
-	
-	
 
 }

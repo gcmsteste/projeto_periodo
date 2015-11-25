@@ -74,6 +74,10 @@ public class PDFBuilder {
 
 	public static final int NOME_CURSO_Y = 658;
 
+	public static final int CARGA_HORARIA_X = 240;
+
+	public static final int CARGA_HORARIA_Y = 233;
+
 	public static final int MES_X = 487;
 
 	public static final int MES_Y = 718;
@@ -100,7 +104,7 @@ public class PDFBuilder {
 
 	private PDFBuilder() {
 		super();
-		CreatorFabrica.getFabricaDAO().criarDocumentDao().salvar("selection.pdf");
+		// CreatorFabrica.getFabricaDAO().criarDocumentDao().salvar("selection.pdf");
 
 		configurarFonteDocumento();
 	}
@@ -130,6 +134,12 @@ public class PDFBuilder {
 
 		Phrase phrase = seletorFonte.process(nome);
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_LEFT, phrase, NOME_DISCIPLINA_X, NOME_DISCIPLINA_Y, 0);
+	}
+
+	private void preencherCampoCargaHoraria(String cargaHoraria, PdfContentByte conteudoDocumento) {
+
+		Phrase phrase = seletorFonte.process(cargaHoraria);
+		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, CARGA_HORARIA_X, CARGA_HORARIA_Y, 0);
 	}
 
 	private void preencherCampoMes(String nome, PdfContentByte conteudoDocumento) {
@@ -273,7 +283,7 @@ public class PDFBuilder {
 		PdfStamper copia = null;
 		OutputStream out = null;
 		try {
-			
+
 			reader = new PdfReader(CreatorFabrica.getFabricaDAO().criarDocumentDao().buscar());
 			out = new ByteArrayOutputStream();
 			copia = new PdfStamper(reader, out);
@@ -289,13 +299,15 @@ public class PDFBuilder {
 						relatorio.getMonitor().getAluno().getNome().concat(" ").concat(relatorio.getMonitor().getAluno().getSobrenome()),
 						conteudoDocumento);
 		preencherNomeDisciplina(relatorio.getMonitor().getDisciplina().getDescricao(), conteudoDocumento);
-		preencherNomeOrientador(relatorio.getMonitor().getDisciplina().getProfessor().getNome(), conteudoDocumento);
+		preencherNomeOrientador(relatorio.getMonitor().getDisciplina().getProfessor().getNome().concat(" ")
+						.concat(relatorio.getMonitor().getDisciplina().getProfessor().getSobrenome()), conteudoDocumento);
 		preencherMatricula(relatorio.getMonitor().getAluno().getMatricula(), conteudoDocumento);
 		preencherNomeCurso(relatorio.getMonitor().getAluno().getCurso().getDescricao(), conteudoDocumento);
 		preencherCampoMes(Util.obterNomeMes(relatorio.getMes()), conteudoDocumento);
 		preencherCampoAno(String.valueOf(relatorio.getMonitor().getPeriodo().getAno()), conteudoDocumento);
 		preencherCampoEdital(relatorio.getMonitor().getPeriodo().toString(), conteudoDocumento);
 
+		int quantidadeAtividades = 0;
 		int decrementoPosicaoRelativaY = 0;
 		for (int posicaoSemana = 0; posicaoSemana < QUANTIDADE_SEMANAS; posicaoSemana++) {
 			Semana semana = relatorio.getSemana(posicaoSemana);
@@ -303,13 +315,15 @@ public class PDFBuilder {
 			for (int i = 0; i < QUANTIDADE_ATIVIDADES; i++) {
 				Atividade atividade = semana.getAtividade(i);
 				if (atividade.getData() != null) {
+					quantidadeAtividades++;
 					preencherAtividadesSemanais(atividade, relatorio.getMonitor(), decrementoPosicaoRelativaY, conteudoDocumento);
 				}
 				decrementoPosicaoRelativaY += 14;
 			}
 
 		}
-
+		long cargaHorariaMensal = relatorio.getMonitor().getCargaDiariaEmMinutos() * quantidadeAtividades;
+		preencherCampoCargaHoraria(this.getCargaHorariaFormatada(cargaHorariaMensal), conteudoDocumento);
 		try {
 			preencherDescricaoPrimeiraSemana(relatorio.getSemana(0), conteudoDocumento);
 			preencherDescricaoSegundaSemana(relatorio.getSemana(1), conteudoDocumento);
@@ -329,45 +343,17 @@ public class PDFBuilder {
 		return content;
 	}
 
-	public static void main(String[] args) throws DocumentException, IOException {
+	private String getCargaHorariaFormatada(long cargaHoraria) {
 
-		RelatorioFrequencia relatorio = new RelatorioFrequenciaImpl();
-		for (int i = 0; i < 5; i++) {
-			SemanaImpl semana = new SemanaImpl();
-			semana.setDescricao("Esta é uma descrição semanal");
-			for (int j = 0; j < 5; j++) {
-				AtividadeImpl atividade = new AtividadeImpl();
-				atividade.setHorarioEntrada("14:00");
-				atividade.setHorarioSaida("18:00");
-				atividade.setData(new Date());
-				semana.setAtividades(atividade);
-			}
-			relatorio.setSemanas(semana);
-		}
-
-		Monitor monitor = new MonitorImpl();
-		Periodo periodo = new PeriodoImpl();
-		periodo.setAno(2015);
-		periodo.setSemestre(Semestre.SEGUNDO);
-		Disciplina disciplina = new DisciplinaImpl();
-		Professor professor = new ProfessorImpl();
-		Curso curso = new CursoImpl();
-		Aluno aluno = new AlunoImpl();
-		curso.setDescricao("Análise de Sistemas");
-		professor.setNome("Marcos");
-		professor.setSobrenome("Santana");
-		disciplina.setDescricao("Introdução à Programação");
-		disciplina.setProfessor(professor);
-		aluno.setNome("Edmilson");
-		aluno.setSobrenome("Santana");
-		monitor.setDisciplina(disciplina);
-		aluno.setMatricula("20141Y6-RC0323");
-		aluno.setCurso(curso);
-		monitor.setAluno(aluno);
-		monitor.setPeriodo(periodo);
-		relatorio.setMonitor(monitor);
-		relatorio.setMes(9);
-
+		long minutos = cargaHoraria % 60;
+		long horas = cargaHoraria - minutos;
+		horas = horas / 60;
+		StringBuilder builder = new StringBuilder();
+		builder.append(horas);
+		builder.append("H");
+		builder.append(minutos);
+		builder.append("M");
+		return builder.toString();
 	}
 
 }

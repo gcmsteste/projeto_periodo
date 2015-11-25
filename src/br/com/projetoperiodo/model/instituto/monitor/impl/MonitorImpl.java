@@ -184,5 +184,17 @@ public class MonitorImpl extends EntidadeNegocioImpl implements Monitor {
 		this.horario_saida = horario;
 		
 	}
+	
+	@Override
+	public long getCargaDiariaEmMinutos() {
+		String[] entrada = this.getHorarioEntrada().split(":");
+		String[] saida = this.getHorarioSaida().split(":");
+		long horasEntrada = Long.valueOf(entrada[0]);
+		long minutosEntrada = Long.valueOf(entrada[1]) + horasEntrada*60;
+		long horasSaida = Long.valueOf(saida[0]);
+		long minutosSaida = Long.valueOf(saida[1]) + horasSaida*60;
+		
+		return ( minutosSaida - minutosEntrada );
+	}
 
 }

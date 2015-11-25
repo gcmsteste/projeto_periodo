@@ -106,13 +106,6 @@ public class SemanaImpl extends EntidadeNegocioImpl implements Semana
 
 		this.relatorio = relatorio;
 	}
-	@Override
-	public long getCargaHorariaParcial() {
-		long cargaHorariaParcial = 0L;
-		for ( Atividade atividade : atividades ) {
-			cargaHorariaParcial += atividade.getDuracaoEmMinutosDaAtividade();
-		}
-		return cargaHorariaParcial;
-	}
+
 	
 }
