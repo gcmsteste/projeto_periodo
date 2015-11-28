@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,7 +26,6 @@ import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 @Table(name = "PROFESSOR")
 @PrimaryKeyJoinColumn( name = "PROFESSOR_ID" )
 @Polymorphism(type= PolymorphismType.EXPLICIT)
-@AttributeOverrides({ @AttributeOverride(name = "chavePrimaria", column = @Column(name = "PROFESSOR_ID") )}) 
 public class ProfessorImpl extends UsuarioImpl implements Professor {
 
 	@OneToMany(mappedBy="professor", fetch = FetchType.LAZY, targetEntity=DisciplinaImpl.class)
@@ -52,7 +52,10 @@ public class ProfessorImpl extends UsuarioImpl implements Professor {
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplinas.add(disciplina);
 	}
-
+	@Override
+	public int getQuantidadeDisciplinasDoProfessor() {
+		return disciplinas.size();
+	}
 	
 
 }

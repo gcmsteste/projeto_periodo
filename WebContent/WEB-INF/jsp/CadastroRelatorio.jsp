@@ -165,7 +165,7 @@
 		</fieldset>
 
 	</form>
-
+	<jsp:include page="RodapeUsuarioLogado.jsp" />
 
 </body>
 </html>

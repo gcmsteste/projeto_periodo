@@ -12,14 +12,15 @@ import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
 public class JPAProfessorDao implements ProfessorDao
 {
 	
-	public void salvar(Professor professor)
+	public Professor salvar(Professor professor)
 	{
 		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction transaction = entma.getTransaction();
 		transaction.begin();
 		entma.merge(professor);
 		transaction.commit();
-		entma.close();	
+		entma.close();
+		return professor;
 	}
 
 	public void atualizar(Professor professor)

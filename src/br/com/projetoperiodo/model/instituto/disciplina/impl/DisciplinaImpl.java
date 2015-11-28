@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,7 +41,7 @@ public class DisciplinaImpl extends EntidadeNegocioImpl implements Disciplina {
 	@JoinColumn(name = "CURSO_ID", referencedColumnName = "CURSO_ID")
 	private Curso curso;
 
-	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity = ProfessorImpl.class)
+	@ManyToOne(fetch = FetchType.EAGER, cascade= CascadeType.MERGE, optional = true, targetEntity = ProfessorImpl.class)
 	@JoinColumn(name = "PROFESSOR_ID", referencedColumnName = "PROFESSOR_ID")
 	private Professor professor;
 

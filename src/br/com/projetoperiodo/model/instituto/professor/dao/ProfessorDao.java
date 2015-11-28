@@ -8,7 +8,7 @@ public interface ProfessorDao
 {
 	public List<Professor> listar(String condicao);
 	
-	public void salvar(Professor professor);
+	public Professor salvar(Professor professor);
 	
 	public void remover(Professor professor);
 	

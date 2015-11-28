@@ -86,6 +86,10 @@ public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements
 		return DisciplinaImpl.class.getSimpleName();
 	}
 	
+	@Override
+	public void atualizarDisciplina(Disciplina disciplina ) {
+		CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().atualizar(disciplina);
+	}
 	
 	
 	

@@ -27,7 +27,9 @@ public class ServletEnviaDocumento extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		if (request.getSession(false) == null) {
+			request.getRequestDispatcher("/acesso.do").forward(request, response);
+		}
 		byte[] bytes = (byte[]) request.getAttribute(DOCUMENTO_RELATORIO);
 		
 		response.setContentType("application/pdf");

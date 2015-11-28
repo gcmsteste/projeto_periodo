@@ -28,6 +28,6 @@
 	</form>
 
 
-	<jsp:include page="Rodape.jsp" />
+	<jsp:include page="RodapeUsuarioLogado.jsp" />
 </body>
 </html>

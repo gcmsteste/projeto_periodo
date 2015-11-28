@@ -2,12 +2,14 @@ package br.com.projetoperiodo.model.instituto.professor.controller.impl;
 
 import java.util.List;
 
+import br.com.projetoperiodo.model.instituto.disciplina.controller.ControladorDisciplina;
 import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.instituto.professor.controller.ControladorProfessor;
 import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.usuario.Usuario;
+import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
@@ -54,11 +56,10 @@ public class ControladorProfessorImpl extends ControladorNegocioImpl implements 
 
 	@Override
 	public Professor cadastrarProfessor(Professor professor) {
-		
 		String senhaCriptografada = Util.criptografarSenha(professor.getSenha(),professor.getSenha(), Constantes.CONSTANTE_CRIPTOGRAFIA);
 		professor.setSenha(senhaCriptografada);
-		CreatorFabrica.getFabricaDAO().criarProfessorDao().salvar(professor);
-		return professor;
+		return CreatorFabrica.getFabricaDAO().criarProfessorDao().salvar(professor);
+		
 	}
 
 	

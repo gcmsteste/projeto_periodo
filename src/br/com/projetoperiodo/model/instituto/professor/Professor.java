@@ -10,4 +10,6 @@ public interface Professor extends Usuario {
 
 	void setDisciplina(Disciplina disciplina);
 
+	int getQuantidadeDisciplinasDoProfessor();
+
 }

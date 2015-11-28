@@ -184,9 +184,13 @@ public class Fachada {
 		Aluno aluno = (Aluno)entidade;
 		this.getControladorAluno().cadastrarAluno(aluno);
 	}
-	public void cadastrarProfessor(EntidadeNegocio entidade){
+	public Professor cadastrarProfessor(EntidadeNegocio entidade){
 		Professor professor = (Professor) entidade;
-		this.getControladorProfessor().cadastrarProfessor(professor);
+		return this.getControladorProfessor().cadastrarProfessor(professor);
+	}
+	public void atualizarDisciplina(EntidadeNegocio entidade ) {
+		Disciplina disciplina = (Disciplina)entidade;
+		this.getControladorDisciplina().atualizarDisciplina(disciplina);
 	}
 	
 	public void atualizarRelatorio(EntidadeNegocio entidade) {
@@ -250,6 +254,9 @@ public class Fachada {
 		return this.getControladorUsuario().compararSenhas(senha, usuario);
 	}
 	
+	public List<Disciplina> listarDisciplinasCadastradas() {
+		return this.getControladorDisciplina().listarDisciplinasCadastradas();
+	}
 	public void retirarVinculoDeProfessorComDisciplina(EntidadeNegocio entidade) {
 		
 	}

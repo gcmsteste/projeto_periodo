@@ -45,7 +45,9 @@ public class ServletAlterarSenha extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		if (request.getSession(false) == null) {
+			request.getRequestDispatcher("/acesso.do").forward(request, response);
+		}
 		String senhaAntiga = request.getParameter(SENHA_ANTIGA);
 		String senhaNova = request.getParameter(SENHA_NOVA);
 

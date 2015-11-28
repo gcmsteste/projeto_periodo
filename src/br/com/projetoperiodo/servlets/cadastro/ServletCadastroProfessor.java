@@ -21,9 +21,7 @@ public class ServletCadastroProfessor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String LISTA_DISCIPLINAS = "listaDisciplinas";
-
-	// TODO: Controle de concorrencia
-	private static final List<Disciplina> listaDisciplinas = Fachada.getInstance().listarDisciplinasSemProfessor();
+	private List<Disciplina> listaDisciplinas;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -42,6 +40,7 @@ public class ServletCadastroProfessor extends HttpServlet {
 		if (request.getSession(false) != null) {
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
 		}
+		listaDisciplinas = Fachada.getInstance().listarDisciplinasSemProfessor();
 		request.setAttribute(LISTA_DISCIPLINAS, listaDisciplinas);
 		request.getRequestDispatcher("/WEB-INF/jsp/CadastroProfessor.jsp").forward(request, response);
 	}
@@ -61,20 +60,19 @@ public class ServletCadastroProfessor extends HttpServlet {
 		professor.setSobrenome(request.getParameter("sobrenome"));
 		professor.setEmail(request.getParameter("email"));
 		professor.setSenha(request.getParameter("senha"));
-
+		professor = Fachada.getInstance().cadastrarProfessor(professor);
 		String[] materias = request.getParameterValues("disciplinas");
 		if (materias != null) {
 			for (int x = 0; x < materias.length; x++) {
 				Disciplina disciplina = (Disciplina) Fachada.getInstance().criarDisciplina();
-				Disciplina disciplinaRetornada = (Disciplina) Fachada.getInstance().criarDisciplina();
+				Disciplina disciplinaRetornada = null;
 				disciplina.setDescricao(materias[x]);
 
 				disciplinaRetornada = comparaDisciplinas(disciplina);
-				professor.setDisciplina(disciplinaRetornada);
+				disciplinaRetornada.setProfessor(professor);
+				Fachada.getInstance().atualizarDisciplina(disciplinaRetornada);
 			}
 		}
-
-		Fachada.getInstance().cadastrarProfessor(professor);
 
 		request.getRequestDispatcher("/acesso.do").forward(request, response);
 

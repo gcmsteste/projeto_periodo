@@ -21,12 +21,11 @@ import br.com.projetoperiodo.util.Fachada;
  */
 public class ServletCadastroAluno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String LISTA_DISCIPLINAS = "listaDisciplinas";
-	private static final ControladorDisciplina controladorDisciplina = Fachada.getInstance().getControladorDisciplina();
+	private static final String LISTA_DISCIPLINAS = "listaDisciplinas";;
 	// TODO Modificar esta estrategia, pode implicar em problemas de
 	// concorrencia
-	private static final List<Disciplina> listaDisciplinas = controladorDisciplina.listarDisciplinasCadastradas();
-
+	private static final List<Disciplina> listaDisciplinas = Fachada.getInstance().listarDisciplinasCadastradas();
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
