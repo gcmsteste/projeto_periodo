@@ -4,13 +4,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class JPAUtil {
-	private static final String PERSISTENCE_UNIT_NAME = "mysqllocal";
+	private static final String PERSISTENCE_UNIT_NAME_MYSQL = "mysqllocal";
+	private static final String PERSISTENCE_UNIT_NAME_ORACLE = "oraclelocal";
+	
 	private EntityManagerFactory factory;
 	private static JPAUtil instance = null;
 	
 	private JPAUtil() {
 		factory = Persistence.
-						createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+						createEntityManagerFactory(PERSISTENCE_UNIT_NAME_ORACLE);
 	}
 	
 	public static JPAUtil getInstance() {
