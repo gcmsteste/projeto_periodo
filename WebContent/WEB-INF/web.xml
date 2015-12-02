@@ -10,11 +10,17 @@
 		<param-name>title</param-name>
 		<param-value>Monitoria IFPE-TADS</param-value>
 	</context-param>
+
+	<error-page>
+		<exception-type>javax.servlet.ServletException</exception-type>
+		<location>/AppExceptionHandler</location>
+	</error-page>
+
 	<error-page>
 		<error-code>404</error-code>
-		<location>/Error404.html</location>
+		<location>/AppExceptionHandler</location>
 	</error-page>
-	
+
 	<listener>
 		<listener-class>br.com.projetoperiodo.listener.PersistenceListener
 		</listener-class>
@@ -228,9 +234,18 @@
 		</description>
 		<display-name>ServletRemoverVinculoProfessor</display-name>
 		<servlet-name>ServletRemoverVinculoProfessor</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletRemoverVinculoProfessor</servlet-class>
+		<servlet-class>br.com.projetoperiodo.servlets.cadastro.ServletRemoverVinculoProfessor
+		</servlet-class>
 	</servlet>
-	
+	<servlet>
+		<description>
+		</description>
+		<display-name>AppExceptionHandler</display-name>
+		<servlet-name>AppExceptionHandler</servlet-name>
+		<servlet-class>br.com.projetoperiodo.servlets.exception.AppExceptionHandler
+		</servlet-class>
+	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>ServletAlteraFabrica</servlet-name>
 		<url-pattern>/alterarEstrategiaPersistencia</url-pattern>
@@ -263,5 +278,10 @@
 		<servlet-name>ServletRemoverVinculoProfessor</servlet-name>
 		<url-pattern>/ServletRemoverVinculoProfessor</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AppExceptionHandler</servlet-name>
+		<url-pattern>/AppExceptionHandler</url-pattern>
+	</servlet-mapping>
+
 
 </web-app>
