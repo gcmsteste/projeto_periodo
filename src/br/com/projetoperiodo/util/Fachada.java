@@ -177,6 +177,12 @@ public class Fachada {
 		ControladorMonitor controladorMonitor = this.getControladorMonitor();
 		return controladorMonitor.buscarMonitoria(chavePrimaria);
 	}
+	
+	public EntidadeNegocio buscarAluno(String matricula){
+		ControladorAluno controladorAluno = this.getControladorAluno();
+		return controladorAluno.buscarAluno(matricula);
+	}
+	
 	public EntidadeNegocio autenticarUsuario(Usuario usuario) throws NegocioException {
 		return this.getControladorUsuario().autenticarUsuario(usuario);
 	}

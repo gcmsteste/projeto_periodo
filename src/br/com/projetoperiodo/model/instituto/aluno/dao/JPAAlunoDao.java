@@ -73,6 +73,20 @@ public class JPAAlunoDao implements AlunoDao {
 	}
 
 	@Override
+	public Aluno buscarPelaMatricula(String matricula){
+		
+		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityTransaction entityTrasaction = entityManager.getTransaction();
+		entityTrasaction.begin();
+		Aluno aluno = entityManager.find(AlunoImpl.class, matricula);
+		entityTrasaction.commit();
+		entityManager.close();
+
+		return aluno;
+
+	}
+	
+	@Override
 	public Long buscarQuantidadeAlunos(String condicao) {
 
 		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();

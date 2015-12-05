@@ -12,7 +12,7 @@ public class JPAUtil {
 	
 	private JPAUtil() {
 		factory = Persistence.
-						createEntityManagerFactory(PERSISTENCE_UNIT_NAME_ORACLE);
+						createEntityManagerFactory(PERSISTENCE_UNIT_NAME_MYSQL);
 	}
 	
 	public static JPAUtil getInstance() {

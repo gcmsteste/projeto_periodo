@@ -49,7 +49,9 @@
 		<servlet-name>ServletLogout</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.login.ServletLogout
 		</servlet-class>
-	</servlet>
+	</servlet><servlet>
+		<servlet-name>ServletBuscarAluno</servlet-name>
+		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletBuscarAluno</servlet-class></servlet>
 	<servlet>
 		<servlet-name>ServletEsqueceuSenha</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.login.ServletEsqueceuSenha
@@ -173,12 +175,12 @@
 		<display-name>ServletAlteraFabrica</display-name>
 		<servlet-name>ServletAlteraFabrica</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.ServletAlteraFabrica
-		</servlet-class>
+		</servlet-class><display-name>ServletAlterarSenha</display-name>
 	</servlet>
 	<servlet>
 		<description>
 		</description>
-		<display-name>ServletAlterarSenha</display-name>
+		
 		<servlet-name>ServletAlterarSenha</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.login.ServletAlterarSenha
 		</servlet-class>
@@ -245,6 +247,13 @@
 		<servlet-class>br.com.projetoperiodo.servlets.exception.AppExceptionHandler
 		</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ServletBuscarAluno</display-name>
+		<servlet-name>ServletBuscarAluno</servlet-name>
+		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletBuscarAluno</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletAlteraFabrica</servlet-name>
@@ -281,6 +290,10 @@
 	<servlet-mapping>
 		<servlet-name>AppExceptionHandler</servlet-name>
 		<url-pattern>/AppExceptionHandler</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServletBuscarAluno</servlet-name>
+		<url-pattern>/ServletBuscarAluno.do</url-pattern>
 	</servlet-mapping>
 
 

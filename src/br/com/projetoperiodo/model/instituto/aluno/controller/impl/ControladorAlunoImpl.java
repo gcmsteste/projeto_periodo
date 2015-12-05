@@ -41,6 +41,11 @@ public class ControladorAlunoImpl extends ControladorNegocioImpl implements Cont
 	}
 	
 	@Override
+	public Aluno buscarAluno(String matricula){
+		return CreatorFabrica.getFabricaDAO().criarAlunoDAO().buscarPelaMatricula(matricula);
+	}
+	
+	@Override
 	public String getNomeClasseEntidade() {
 		
 		return AlunoImpl.class.getSimpleName();

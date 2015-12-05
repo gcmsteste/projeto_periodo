@@ -10,7 +10,7 @@
 <title>${initParam.title}</title>
 </head>
 <body>
-	<jsp:include page="CabecalhoUsuarioLogado.jsp" />
+	<jsp:include page="CabecalhoProfessorLogado.jsp" />
 	<table>
 		<tr>
 			<th>Disciplina</th>

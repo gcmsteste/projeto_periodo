@@ -17,4 +17,6 @@ public interface AlunoDao
 	public Long buscarQuantidadeAlunos(String condicao);
 	
 	public Aluno buscar(long l);
+
+	Aluno buscarPelaMatricula(String matricula);
 }
