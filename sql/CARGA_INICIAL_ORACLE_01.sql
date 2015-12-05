@@ -37,7 +37,7 @@ BEGIN
     END IF;
   END COLUMN_SEQUENCES;
 END;
-
+/
 
 ----------------------------- Periodo ---------------------------------
 
@@ -62,7 +62,7 @@ BEGIN
     END IF;
   END COLUMN_SEQUENCES;
 END;
-
+/
 
 ----------------------------- Curso ---------------------------------
 
@@ -87,7 +87,7 @@ BEGIN
     END IF;
   END COLUMN_SEQUENCES;
 END;
-
+/
 ----------------------------- Professor ---------------------------------
 
 CREATE TABLE "PROJETO_PERIODO"."PROFESSOR"( 
@@ -123,7 +123,7 @@ BEGIN
     END IF;
   END COLUMN_SEQUENCES;
 END;
-
+/
 ------------------------------ Aluno -------------------------------
 
 CREATE TABLE "PROJETO_PERIODO"."ALUNO" (
@@ -189,7 +189,7 @@ BEGIN
     END IF;
   END COLUMN_SEQUENCES;
 END;
-
+/
 -------------------------------- Semana -----------------------------------
 
 CREATE SEQUENCE  "PROJETO_PERIODO"."SQ_SEMANA"  MINVALUE 1 MAXVALUE 999999999999999999999999999 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE;
@@ -215,7 +215,7 @@ BEGIN
     END IF;
   END COLUMN_SEQUENCES;
 END;
-
+/
 ----------------------------- Atividade ---------------------------
 
 CREATE SEQUENCE  "PROJETO_PERIODO"."SQ_ATIVIDADE"  MINVALUE 1 MAXVALUE 999999999999999999999999999 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE;
@@ -242,7 +242,7 @@ BEGIN
     END IF;
   END COLUMN_SEQUENCES;
 END;
-
+/
 
 ----------------------------- Documento ---------------------------------
 
@@ -268,7 +268,7 @@ BEGIN
     END IF;
   END COLUMN_SEQUENCES;
 END;
-
+/
 -----------------------------------------------------------------
 
 COMMIT;
