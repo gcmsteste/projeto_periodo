@@ -3,21 +3,21 @@ package br.com.projetoperiodo.util.persistencia.jpa;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class JPAUtil {
+public class JPAConnectionFactory {
 	private static final String PERSISTENCE_UNIT_NAME_MYSQL = "mysqllocal";
 	private static final String PERSISTENCE_UNIT_NAME_ORACLE = "oraclelocal";
 	
 	private EntityManagerFactory factory;
-	private static JPAUtil instance = null;
+	private static JPAConnectionFactory instance = null;
 	
-	private JPAUtil() {
+	private JPAConnectionFactory() {
 		factory = Persistence.
 						createEntityManagerFactory(PERSISTENCE_UNIT_NAME_MYSQL);
 	}
 	
-	public static JPAUtil getInstance() {
+	public static JPAConnectionFactory getInstance() {
 		if ( instance == null ) {
-			instance = new JPAUtil();
+			instance = new JPAConnectionFactory();
 		}
 		return instance;
 	}

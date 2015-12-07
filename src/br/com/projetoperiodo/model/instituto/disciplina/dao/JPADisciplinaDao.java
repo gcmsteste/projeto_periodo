@@ -14,13 +14,13 @@ import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.exception.NegocioException;
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAConnectionFactory;
 
 public class JPADisciplinaDao implements DisciplinaDao{
 
 	@Override
 	public void salvar(Disciplina disciplina) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.persist(disciplina);
@@ -30,7 +30,7 @@ public class JPADisciplinaDao implements DisciplinaDao{
 
 	@Override
 	public void atualizar(Disciplina disciplina) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.merge(disciplina);
@@ -40,7 +40,7 @@ public class JPADisciplinaDao implements DisciplinaDao{
 
 	@Override
 	public void remover(Disciplina disciplina) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		Disciplina disciplinaAtualizada = (Disciplina)entityManager.merge(disciplina);
@@ -51,7 +51,7 @@ public class JPADisciplinaDao implements DisciplinaDao{
 
 	@Override
 	public List<Disciplina> listar(String condicao) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		List<Disciplina> disciplinas = entityManager.createQuery(condicao).getResultList();
 		entityManager.close();
 		
@@ -60,7 +60,7 @@ public class JPADisciplinaDao implements DisciplinaDao{
 
 	@Override
 	public Disciplina buscar(long primaryK) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		Disciplina disciplina = entityManager.find(DisciplinaImpl.class, primaryK);
@@ -73,7 +73,7 @@ public class JPADisciplinaDao implements DisciplinaDao{
 	@Override
 	public Disciplina buscar(HashMap<String, Object> filter) throws NegocioException {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery  criteria = builder.createQuery(DisciplinaImpl.class);
 		Root root = criteria.from(DisciplinaImpl.class);

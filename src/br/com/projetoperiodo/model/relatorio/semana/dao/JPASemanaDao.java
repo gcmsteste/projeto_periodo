@@ -7,8 +7,8 @@ import javax.persistence.EntityTransaction;
 
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
-import br.com.projetoperiodo.util.persistencia.jpa.FabricaJPA;
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.fabrica.FabricaJPA;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAConnectionFactory;
 
 public class JPASemanaDao implements SemanaDao 
 {
@@ -16,7 +16,7 @@ public class JPASemanaDao implements SemanaDao
 	@Override
 	public void salvar(Semana semana) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.persist(semana);
@@ -28,7 +28,7 @@ public class JPASemanaDao implements SemanaDao
 	@Override
 	public void remover(Semana semana) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		semana  = (SemanaImpl)entityManager.merge(semana);
@@ -42,7 +42,7 @@ public class JPASemanaDao implements SemanaDao
 	@Override
 	public void alterar(Semana semana) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.merge(semana);
@@ -55,7 +55,7 @@ public class JPASemanaDao implements SemanaDao
 	@Override
 	public List<Semana> listar(String condicao) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		List<Semana> semanas = entityManager.
 						createQuery(condicao).getResultList();
 		entityManager.close();
@@ -65,7 +65,7 @@ public class JPASemanaDao implements SemanaDao
 	@Override
 	public Semana buscar(long primaryKey) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		SemanaImpl semana = entityManager.find(SemanaImpl.class, primaryKey);
 		entityManager.close();
 		return semana;

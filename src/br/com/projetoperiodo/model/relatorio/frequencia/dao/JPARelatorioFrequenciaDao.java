@@ -9,8 +9,8 @@ import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
-import br.com.projetoperiodo.util.persistencia.jpa.FabricaJPA;
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.fabrica.FabricaJPA;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAConnectionFactory;
 
 public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 {
@@ -18,7 +18,7 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public RelatorioFrequencia salvar(RelatorioFrequencia relatorio) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.persist(relatorio);
@@ -31,7 +31,7 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public RelatorioFrequencia atualizar(RelatorioFrequencia relatorio) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.merge(relatorio);
@@ -44,7 +44,7 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public void remover(RelatorioFrequencia relatorio) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		relatorio = entityManager.merge(relatorio);
@@ -57,7 +57,7 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public List<RelatorioFrequencia> listar(String condicao) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		List<RelatorioFrequencia> lista = entityManager.
 						createQuery(condicao).getResultList();
 		entityManager.close();
@@ -67,13 +67,13 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public RelatorioFrequencia buscar(long primaryKey) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		return entityManager.find(RelatorioFrequenciaImpl.class, primaryKey);
 	}
 	
 	@Override
 	public void remover(String condicao) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.createQuery(condicao).executeUpdate();
@@ -85,7 +85,7 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public List<Situacao> listarSituacaoDosRelatorios(String condicao) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		List<Situacao> lista = entityManager.
 						createQuery(condicao).getResultList();
 		entityManager.close();

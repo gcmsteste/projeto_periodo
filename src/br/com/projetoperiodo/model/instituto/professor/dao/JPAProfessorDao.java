@@ -7,14 +7,14 @@ import javax.persistence.EntityTransaction;
 
 import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAConnectionFactory;
 
 public class JPAProfessorDao implements ProfessorDao
 {
 	
 	public Professor salvar(Professor professor)
 	{
-		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entma =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction transaction = entma.getTransaction();
 		transaction.begin();
 		entma.merge(professor);
@@ -25,7 +25,7 @@ public class JPAProfessorDao implements ProfessorDao
 
 	public void atualizar(Professor professor)
 	{
-		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();		
+		EntityManager entma =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();		
 
 		EntityTransaction transaction = entma.getTransaction();	
 		transaction.begin();
@@ -36,7 +36,7 @@ public class JPAProfessorDao implements ProfessorDao
 
 	public void remover(Professor professor)
 	{
-		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entma =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction transaction = entma.getTransaction();
 		transaction.begin();
 		entma.merge(professor);
@@ -47,7 +47,7 @@ public class JPAProfessorDao implements ProfessorDao
 
 	public List<Professor> listar(String condicao)
 	{
-		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entma =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		@SuppressWarnings("unchecked")
 		List<Professor> professor = entma.createQuery(condicao).getResultList();
 		entma.close();
@@ -57,7 +57,7 @@ public class JPAProfessorDao implements ProfessorDao
 
 	public Professor buscar(int primaryKey)
 	{
-		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();	
+		EntityManager entma =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();	
 
 		Professor professor = (Professor) entma.find(ProfessorImpl.class,primaryKey);
 		entma.close();

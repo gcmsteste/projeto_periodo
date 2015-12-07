@@ -1,106 +1,102 @@
-
-package br.com.projetoperiodo.util.persistencia.jdbc;
+package br.com.projetoperiodo.util.persistencia.fabrica;
 
 import br.com.projetoperiodo.model.documentos.dao.DocumentDao;
 import br.com.projetoperiodo.model.documentos.dao.JDBCDocumentDao;
 import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
+import br.com.projetoperiodo.model.instituto.aluno.dao.JPAAlunoDao;
 import br.com.projetoperiodo.model.instituto.curso.dao.CursoDao;
+import br.com.projetoperiodo.model.instituto.curso.dao.JPACursoDao;
 import br.com.projetoperiodo.model.instituto.disciplina.dao.DisciplinaDao;
+import br.com.projetoperiodo.model.instituto.disciplina.dao.JPADisciplinaDao;
+import br.com.projetoperiodo.model.instituto.monitor.dao.JPAMonitorDao;
 import br.com.projetoperiodo.model.instituto.monitor.dao.MonitorDao;
+import br.com.projetoperiodo.model.instituto.periodo.dao.JPAPeriodoDao;
 import br.com.projetoperiodo.model.instituto.periodo.dao.PeriodoDao;
+import br.com.projetoperiodo.model.instituto.professor.dao.JPAProfessorDao;
 import br.com.projetoperiodo.model.instituto.professor.dao.ProfessorDao;
 import br.com.projetoperiodo.model.relatorio.atividade.dao.AtividadeDao;
+import br.com.projetoperiodo.model.relatorio.atividade.dao.JPAAtividadeDao;
+import br.com.projetoperiodo.model.relatorio.frequencia.dao.JPARelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaDao;
+import br.com.projetoperiodo.model.relatorio.semana.dao.JPASemanaDao;
 import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
+import br.com.projetoperiodo.model.usuario.dao.JPAUsuarioDao;
 import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
-import br.com.projetoperiodo.util.persistencia.dao.FabricaDAO;
 
-public class FabricaJDBC extends FabricaDAO {
+public class FabricaJPA extends FabricaDAO {
 
-	private static FabricaJDBC instance;
-
-	private FabricaJDBC() {
-	}
-
-	public static FabricaDAO getInstance() {
-
-		if (instance == null) {
-			instance = new FabricaJDBC();
+	private static FabricaJPA instance = null;
+	
+	private FabricaJPA() { }
+	public static FabricaJPA getInstance() {
+		if ( instance == null ) {
+			instance = new FabricaJPA();
 		}
 		return instance;
 	}
-
 	@Override
 	public UsuarioDao criarUsuarioDAO() {
 
-		return null;
+		return new JPAUsuarioDao();
 	}
 
 	@Override
 	public RelatorioFrequenciaDao criarRelatorioFrequenciaDAO() {
 
-		// TODO Auto-generated method stub
-		return null;
+		return new JPARelatorioFrequenciaDao();
 	}
 
 	@Override
 	public SemanaDao criarSemanaDAO() {
 
-		// TODO Auto-generated method stub
-		return null;
+		return new JPASemanaDao();
 	}
 
 	@Override
 	public AtividadeDao criarAtividadeDAO() {
 
-		// TODO Auto-generated method stub
-		return null;
+		return new JPAAtividadeDao();
 	}
 
 	@Override
 	public MonitorDao criarMonitorDAO() {
 
-		// TODO Auto-generated method stub
-		return null;
+		return new JPAMonitorDao();
 	}
 
 	@Override
 	public AlunoDao criarAlunoDAO() {
 
-		// TODO Auto-generated method stub
-		return null;
+		return new JPAAlunoDao();
 	}
 
 	@Override
 	public DisciplinaDao criarDisciplinaDAO() {
 
-		// TODO Auto-generated method stub
-		return null;
+		return new JPADisciplinaDao();
 	}
 
 	@Override
 	public CursoDao criarCursoDAO() {
 
-		// TODO Auto-generated method stub
-		return null;
+		return new JPACursoDao();
 	}
 
 	@Override
 	public ProfessorDao criarProfessorDao() {
 
-		// TODO Auto-generated method stub
-		return null;
+		return new JPAProfessorDao();
 	}
 
 	@Override
 	public PeriodoDao criarPeriodoDao() {
 
-		// TODO Auto-generated method stub
-		return null;
+		return new JPAPeriodoDao();
 	}
-
 	@Override
 	public DocumentDao criarDocumentDao() {
+
+		// TODO Auto-generated method stub
 		return new JDBCDocumentDao();
 	}
 

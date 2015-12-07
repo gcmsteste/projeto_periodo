@@ -3,7 +3,7 @@ package br.com.projetoperiodo.listener;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAConnectionFactory;
 
 /**
  * Application Lifecycle Listener implementation class PersistenceListener
@@ -29,7 +29,7 @@ public class PersistenceListener implements ServletContextListener {
      * @see ServletContextListener#contextDestroyed(ServletContextEvent)
      */
     public void contextDestroyed(ServletContextEvent sce)  { 
-        JPAUtil.destroyInstance();
+        JPAConnectionFactory.destroyInstance();
     }
 	
 }

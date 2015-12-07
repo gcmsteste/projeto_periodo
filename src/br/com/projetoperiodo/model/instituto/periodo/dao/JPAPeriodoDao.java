@@ -8,14 +8,14 @@ import javax.persistence.EntityTransaction;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.periodo.Periodo;
 import br.com.projetoperiodo.model.instituto.periodo.impl.PeriodoImpl;
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.jpa.JPAConnectionFactory;
 
 public class JPAPeriodoDao implements PeriodoDao
 {
 
 	@Override
 	public void salvar(Periodo periodo) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.persist(periodo);
@@ -26,7 +26,7 @@ public class JPAPeriodoDao implements PeriodoDao
 
 	@Override
 	public void atualizar(Periodo periodo) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.merge(periodo);
@@ -43,7 +43,7 @@ public class JPAPeriodoDao implements PeriodoDao
 
 	@Override
 	public Periodo buscar(long l) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		Periodo periodo = entityManager.find(PeriodoImpl.class, l);
@@ -55,7 +55,7 @@ public class JPAPeriodoDao implements PeriodoDao
 
 	@Override
 	public List<Periodo> listar(String condicao) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  JPAConnectionFactory.getInstance().getEntityManagerFactory().createEntityManager();
 		List<Periodo> monitores = entityManager.createQuery(condicao).getResultList();
 		entityManager.close();
 			

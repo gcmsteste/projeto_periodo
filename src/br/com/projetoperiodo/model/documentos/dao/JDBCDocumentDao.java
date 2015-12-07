@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import br.com.projetoperiodo.util.persistencia.jdbc.ConnectionFactory;
+import br.com.projetoperiodo.util.persistencia.jdbc.JDBCConnectionFactory;
 
 public class JDBCDocumentDao implements DocumentDao {
 
@@ -21,7 +21,7 @@ public class JDBCDocumentDao implements DocumentDao {
 		int len;
 		String query;
 		PreparedStatement pstmt;
-		Connection cn = new ConnectionFactory().getConnection();
+		Connection cn = new JDBCConnectionFactory().getConnection();
 
 		try {
 	
@@ -51,7 +51,7 @@ public class JDBCDocumentDao implements DocumentDao {
 	@Override
 	public InputStream buscar() {
 		InputStream is = null;
-		Connection cn = new ConnectionFactory().getConnection();
+		Connection cn = new JDBCConnectionFactory().getConnection();
 		String sql = "SELECT TEMPLATE_CONTENT FROM PROJETO_PERIODO.TEMPLATE_DOCUMENTO";
 		try {
 			PreparedStatement stmt = cn.prepareStatement(sql);
