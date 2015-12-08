@@ -1,11 +1,10 @@
 
 package br.com.projetoperiodo.util.persistencia.connection;
 
-import java.sql.Driver;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import com.mysql.jdbc.Connection;
 
 import br.com.projetoperiodo.util.persistencia.unidade.DatabaseUnit;
 
@@ -22,11 +21,10 @@ public class JDBCConnectionFactory implements ConnectionFactory {
 
 	@Override
 	public Object getConnection() {
-
-		try {
+		try {		
 			Class.forName(databaseUnit.getDriverClass());
-			DriverManager.registerDriver((Driver) databaseUnit.getDriver());
-			Connection connection = (Connection) DriverManager.getConnection(databaseUnit.getConnectionURL(), databaseUnit.getUser(),
+			DriverManager.registerDriver(databaseUnit.getDriver());
+			Connection connection = DriverManager.getConnection(databaseUnit.getConnectionURL(), databaseUnit.getUser(),
 							databaseUnit.getSenha());
 			connection.setAutoCommit(false);
 			return connection;
@@ -36,7 +34,5 @@ public class JDBCConnectionFactory implements ConnectionFactory {
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}
-
 	}
-
 }

@@ -32,12 +32,12 @@ public class MySQLDatabaseUnit implements DatabaseUnit {
 
 	@Override
 	public String getUser() {
-		return "projeto_periodo";
+		return "root";
 	}
 
 	@Override
 	public String getSenha() {
-		return "projeto_periodo";
+		return "";
 	}
 
 }

@@ -1,13 +1,34 @@
 package br.com.projetoperiodo.util.persistencia.connection;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.persistence.Persistence;
+
+import br.com.projetoperiodo.util.persistencia.unidade.DatabaseUnit;
 
 public class JPAConnectionFactory implements ConnectionFactory{
 
+	private DatabaseUnit databaseUnit;
+
+	private JPAConnectionFactory() { }
+
+	public JPAConnectionFactory(DatabaseUnit unit) {
+		this.databaseUnit = unit;
+	}
 	@Override
 	public Object getConnection() {
 
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, String> properties = new HashMap<String, String>();
+		properties.put("hibernate.connection.driver_class", databaseUnit.getDriverClass());
+		properties.put("hibernate.connection.url", databaseUnit.getConnectionURL());
+		properties.put("hibernate.connection.username", databaseUnit.getUser());
+		properties.put("hibernate.connection.password", databaseUnit.getSenha());
+		properties.put("hibernate.dialect", databaseUnit.getDialetoPersistenceUnit());
+		properties.put("hibernate.show_sql", "true");
+		properties.put("hibernate.format_sql", "true");
+
+		return Persistence.createEntityManagerFactory("local_unit",properties);
 	}
 
 }
