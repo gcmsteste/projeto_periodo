@@ -8,7 +8,7 @@ import javax.persistence.EntityTransaction;
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.periodo.Periodo;
 import br.com.projetoperiodo.model.instituto.periodo.impl.PeriodoImpl;
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.connection.JPAUtil;
 
 public class JPAPeriodoDao implements PeriodoDao
 {

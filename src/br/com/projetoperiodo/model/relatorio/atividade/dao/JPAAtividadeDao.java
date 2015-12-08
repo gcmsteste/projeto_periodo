@@ -7,8 +7,8 @@ import javax.persistence.EntityTransaction;
 
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
-import br.com.projetoperiodo.util.persistencia.jpa.FabricaJPA;
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.connection.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.fabrica.FabricaJPA;
 
 public class JPAAtividadeDao implements AtividadeDao
 {

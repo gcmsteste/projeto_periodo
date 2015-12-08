@@ -16,7 +16,7 @@ import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.exception.NegocioException;
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.connection.JPAUtil;
 
 public class JPAUsuarioDao implements UsuarioDao {
 

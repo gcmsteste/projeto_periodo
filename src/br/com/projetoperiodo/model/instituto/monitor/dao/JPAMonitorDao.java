@@ -7,7 +7,7 @@ import javax.persistence.EntityTransaction;
 
 import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.connection.JPAUtil;
 
 public class JPAMonitorDao implements MonitorDao{
 

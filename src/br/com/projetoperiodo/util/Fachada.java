@@ -33,7 +33,7 @@ import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImp
 import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
 import br.com.projetoperiodo.util.exception.NegocioException;
-import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
+import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
 
 public class Fachada {
 

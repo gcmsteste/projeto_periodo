@@ -11,7 +11,7 @@ import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.util.exception.NegocioException;
-import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
+import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
 
 public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements ControladorDisciplina
 {

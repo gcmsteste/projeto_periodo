@@ -9,8 +9,8 @@ import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
-import br.com.projetoperiodo.util.persistencia.jpa.FabricaJPA;
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.connection.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.fabrica.FabricaJPA;
 
 public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 {

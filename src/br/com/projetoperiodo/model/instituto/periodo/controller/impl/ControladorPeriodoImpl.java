@@ -14,7 +14,7 @@ import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
 import br.com.projetoperiodo.util.exception.NegocioException;
-import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
+import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
 
 public class ControladorPeriodoImpl extends ControladorNegocioImpl implements ControladorPeriodo {
 	

@@ -3,7 +3,7 @@ package br.com.projetoperiodo.listener;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.connection.JPAUtil;
 
 /**
  * Application Lifecycle Listener implementation class PersistenceListener

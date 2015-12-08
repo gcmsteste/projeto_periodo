@@ -7,7 +7,7 @@ import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
-import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
+import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
 
 public class ControladorCursoImpl extends ControladorNegocioImpl implements ControladorCurso
 {

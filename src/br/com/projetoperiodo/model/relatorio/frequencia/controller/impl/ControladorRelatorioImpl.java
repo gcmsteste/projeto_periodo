@@ -18,7 +18,7 @@ import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
 import br.com.projetoperiodo.util.exception.NegocioException;
-import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
+import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
 
 public class ControladorRelatorioImpl extends ControladorNegocioImpl implements ControladorRelatorio {
 

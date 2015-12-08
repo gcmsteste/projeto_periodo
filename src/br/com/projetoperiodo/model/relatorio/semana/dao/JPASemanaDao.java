@@ -7,8 +7,8 @@ import javax.persistence.EntityTransaction;
 
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
-import br.com.projetoperiodo.util.persistencia.jpa.FabricaJPA;
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.connection.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.fabrica.FabricaJPA;
 
 public class JPASemanaDao implements SemanaDao 
 {

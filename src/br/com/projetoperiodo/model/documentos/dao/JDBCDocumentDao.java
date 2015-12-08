@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import br.com.projetoperiodo.util.persistencia.jdbc.ConnectionFactory;
+import br.com.projetoperiodo.util.persistencia.connection.ConnectionFactory;
 
 public class JDBCDocumentDao implements DocumentDao {
 

@@ -40,7 +40,7 @@ import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
-import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
+import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
 
 public class PDFBuilder {
 

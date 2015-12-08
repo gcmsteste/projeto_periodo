@@ -7,7 +7,7 @@ import javax.persistence.EntityTransaction;
 
 import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
-import br.com.projetoperiodo.util.persistencia.jpa.JPAUtil;
+import br.com.projetoperiodo.util.persistencia.connection.JPAUtil;
 
 public class JPAProfessorDao implements ProfessorDao
 {

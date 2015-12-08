@@ -12,7 +12,7 @@ import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
-import br.com.projetoperiodo.util.persistencia.CreatorFabrica;
+import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
 
 public class ControladorProfessorImpl extends ControladorNegocioImpl implements ControladorProfessor{
 

@@ -1,4 +1,4 @@
-package br.com.projetoperiodo.util.persistencia.jpa;
+package br.com.projetoperiodo.util.persistencia.connection;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

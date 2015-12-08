@@ -1,4 +1,4 @@
-package br.com.projetoperiodo.util.persistencia.dao;
+package br.com.projetoperiodo.util.persistencia.fabrica;
 
 import br.com.projetoperiodo.model.documentos.dao.DocumentDao;
 import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;

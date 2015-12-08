@@ -1,8 +1,4 @@
-package br.com.projetoperiodo.util.persistencia;
-
-import br.com.projetoperiodo.util.persistencia.dao.FabricaDAO;
-import br.com.projetoperiodo.util.persistencia.jdbc.FabricaJDBC;
-import br.com.projetoperiodo.util.persistencia.jpa.FabricaJPA;
+package br.com.projetoperiodo.util.persistencia.fabrica;
 
 public class CreatorFabrica {
 	
