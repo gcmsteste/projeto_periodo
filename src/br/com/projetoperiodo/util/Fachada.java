@@ -108,6 +108,10 @@ public class Fachada {
 		return this.getControladorAluno().criarEntidadeNegocio();
 	}
 	
+	public EntidadeNegocio criarCurso(){
+		return this.getControladorCurso().criarEntidadeNegocio();
+	}
+	
 	public EntidadeNegocio criarProfessor(){
 		return this.getControladorProfessor().criarEntidadeNegocio();
 	}

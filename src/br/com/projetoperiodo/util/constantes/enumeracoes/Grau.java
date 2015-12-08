@@ -9,4 +9,5 @@ public enum Grau {
 	Grau(int valor) {
 		grau = valor;
 	}
+	
 }
