@@ -6,15 +6,15 @@ import br.com.projetoperiodo.model.instituto.professor.Professor;
 
 public interface ProfessorDao 
 {
-	public List<Professor> listar(String condicao);
-	
-	public Professor salvar(Professor professor);
-	
-	public void remover(Professor professor);
-	
-	public void atualizar(Professor professor);
 
+	Professor salvar(Professor professor);
+
+	void atualizar(Professor professor);
+
+	void remover(Professor professor);
+
+	List<Professor> listar();
+
+	Professor buscar(long primaryKey);
 	
-
-
 }

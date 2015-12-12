@@ -13,8 +13,8 @@ import java.util.List;
 
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.usuario.Usuario;
-import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.exception.NegocioException;
+import br.com.projetoperiodo.util.fachada.Fachada;
 
 public class JDBCUsuarioDao implements UsuarioDao {
 

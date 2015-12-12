@@ -12,9 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.usuario.Usuario;
-import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.exception.NegocioException;
+import br.com.projetoperiodo.util.fachada.Fachada;
 
 public class ServletLogin extends HttpServlet {
 

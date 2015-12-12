@@ -93,5 +93,13 @@ public class Util {
     	return meses[mes - 1];
     }
     
+    public static boolean isNull(Object object) {
+    	boolean isNull = Boolean.FALSE;
+    	if ( object == null ) {
+    		isNull = Boolean.TRUE;
+    	}
+    	return isNull;
+    }
+    
     
 }

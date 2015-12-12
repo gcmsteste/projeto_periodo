@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.controller.ControladorDisciplina;
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
+import br.com.projetoperiodo.model.instituto.monitor.Monitoria;
 import br.com.projetoperiodo.model.instituto.monitor.controller.ControladorMonitor;
-import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 import br.com.projetoperiodo.util.exception.NegocioException;
+import br.com.projetoperiodo.util.fachada.Fachada;
 
 /**
  * Servlet implementation class ServletCadastroMonitoria
@@ -72,13 +72,13 @@ public class ServletCadastroMonitoria extends HttpServlet {
 			// TODO Tratar erro de inexistencia de disciplina
 			e.printStackTrace();
 		}
-		Monitor monitor = (Monitor) Fachada.getInstance().criarMonitoria(aluno, disciplina, modalidade);
+		Monitoria monitor = (Monitoria) Fachada.getInstance().criarMonitoria(aluno, disciplina, modalidade);
 		monitor.setHorarioEntrada(horarioEntrada);
 		monitor.setHorarioSaida(horarioSaida);
 		cadastroValido = Fachada.getInstance().validarCadastroMonitoria(monitor);
 
 		if (cadastroValido) {
-			monitor = (Monitor) Fachada.getInstance().cadastrarMonitoria(monitor);
+			monitor = (Monitoria) Fachada.getInstance().cadastrarMonitoria(monitor);
 			Fachada.getInstance().preCadastroRelatoriosMonitor(monitor);
 		} else {
 			// TODO Tratar invalidade do cadastro

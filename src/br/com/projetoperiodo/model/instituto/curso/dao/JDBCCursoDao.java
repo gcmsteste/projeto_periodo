@@ -2,19 +2,15 @@ package br.com.projetoperiodo.model.instituto.curso.dao;
 
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-
 import br.com.projetoperiodo.model.instituto.curso.Curso;
-import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Grau;
+import br.com.projetoperiodo.util.fachada.Fachada;
 
 public class JDBCCursoDao implements CursoDao{
 
@@ -156,9 +152,9 @@ public class JDBCCursoDao implements CursoDao{
 		}
 		return curso;
 	}
-
+	// TODO: Fazer listar -> SELECT * FROM CURSO
 	@Override
-	public List<Curso> listar(String condicao) {
+	public List<Curso> listar() {
 		
 		return null;
 	}

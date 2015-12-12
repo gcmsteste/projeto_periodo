@@ -5,15 +5,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
-import br.com.projetoperiodo.util.persistencia.unidade.DatabaseUnit;
+import br.com.projetoperiodo.util.persistencia.persistencia.DatabaseUnit;
 
 public class JDBCConnectionFactory implements ConnectionFactory {
 
 	private DatabaseUnit databaseUnit;
 
-	private JDBCConnectionFactory() {
-	}
+	private JDBCConnectionFactory() { }
 
 	public JDBCConnectionFactory(DatabaseUnit unit) {
 		this.databaseUnit = unit;

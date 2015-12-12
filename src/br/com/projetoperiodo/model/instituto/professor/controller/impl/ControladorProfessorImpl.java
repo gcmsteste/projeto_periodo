@@ -9,9 +9,10 @@ import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.usuario.Usuario;
-import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
+import br.com.projetoperiodo.util.fachada.Fachada;
+import br.com.projetoperiodo.util.fachada.Persistencia;
 import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
 
 public class ControladorProfessorImpl extends ControladorNegocioImpl implements ControladorProfessor{
@@ -40,15 +41,9 @@ public class ControladorProfessorImpl extends ControladorNegocioImpl implements 
 	@Override
 	public boolean verificarPapelDeProfessorDoUsuario(Usuario usuario) {
 		boolean isProfessor = Boolean.TRUE;
-		StringBuilder builder = new StringBuilder();
-		builder.append(" select count(*) ");
-		builder.append(" from ");
-		builder.append(this.getNomeClasseEntidade());
-		builder.append(" a ");
-		builder.append(" where a.chavePrimaria = ");
-		builder.append(usuario.getChavePrimaria());
-		List<Professor> lista = CreatorFabrica.getFabricaDAO().criarProfessorDao().listar(builder.toString());
-		if ( lista.isEmpty() ) {
+		
+		Professor professor = (Professor) Persistencia.getInstance().buscarProfessor(usuario.getChavePrimaria());
+		if ( Util.isNull(professor) ) {
 			isProfessor = Boolean.FALSE;
 		}
 		return isProfessor;
@@ -58,8 +53,7 @@ public class ControladorProfessorImpl extends ControladorNegocioImpl implements 
 	public Professor cadastrarProfessor(Professor professor) {
 		String senhaCriptografada = Util.criptografarSenha(professor.getSenha(),professor.getSenha(), Constantes.CONSTANTE_CRIPTOGRAFIA);
 		professor.setSenha(senhaCriptografada);
-		return CreatorFabrica.getFabricaDAO().criarProfessorDao().salvar(professor);
-		
+		return (Professor) Persistencia.getInstance().salvarProfessor(professor);		
 	}
 
 	

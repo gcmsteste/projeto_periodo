@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
-import br.com.projetoperiodo.util.Fachada;
+import br.com.projetoperiodo.model.instituto.monitor.Monitoria;
 import br.com.projetoperiodo.util.constantes.Constantes;
+import br.com.projetoperiodo.util.fachada.Fachada;
 
 /**
  * Servlet implementation class ServletRelatorio
@@ -34,7 +34,7 @@ public class ServletRelatorio extends HttpServlet {
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
 		}
 		long chavePrimariaMonitor = Long.valueOf(request.getParameter(CHAVE_MONITOR));
-		Monitor monitor = (Monitor) Fachada.getInstance().buscarMonitoria(chavePrimariaMonitor);
+		Monitoria monitor = (Monitoria) Fachada.getInstance().buscarMonitoria(chavePrimariaMonitor);
 		request.getSession(false).setAttribute(Constantes.ATRIBUTO_MONITORIA, monitor);
 		request.getRequestDispatcher("/WEB-INF/jsp/RelatoriosAluno.jsp").forward(request, response);
 	}

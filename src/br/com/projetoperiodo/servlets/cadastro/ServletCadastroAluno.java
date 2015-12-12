@@ -14,7 +14,7 @@ import br.com.projetoperiodo.model.instituto.aluno.controller.ControladorAluno;
 import br.com.projetoperiodo.model.instituto.curso.Curso;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.controller.ControladorDisciplina;
-import br.com.projetoperiodo.util.Fachada;
+import br.com.projetoperiodo.util.fachada.Fachada;
 
 /**
  * Servlet implementation class ServletCadastroMonitor

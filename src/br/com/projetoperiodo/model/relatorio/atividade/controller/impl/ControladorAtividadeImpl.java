@@ -8,7 +8,7 @@ import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.atividade.controller.ControladorAtividade;
 import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
-import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
+import br.com.projetoperiodo.util.fachada.Persistencia;
 
 public class ControladorAtividadeImpl extends ControladorNegocioImpl implements ControladorAtividade
 {
@@ -35,25 +35,19 @@ public class ControladorAtividadeImpl extends ControladorNegocioImpl implements 
 		for ( int i = 0; i < Semana.QUANTIDADE_ATIVIDADES_POR_SEMANA; i++ ) {
 			atividade = (Atividade)this.criarEntidadeNegocio();
 			atividade.setSemana(semana);
-			CreatorFabrica.getFabricaDAO().criarAtividadeDAO().salvar(atividade);
+			Persistencia.getInstance().salvarAtividade(atividade);
 		
 		}
 	}
 	
 	@Override
 	public List<Atividade> buscarAtividadeDeSemana(Semana semana) {
-
-		StringBuilder builder = new StringBuilder();
-		builder.append(" from ");
-		builder.append( this.getNomeClasseEntidade() );
-		builder.append(" a ");
-		builder.append(" where a.semana.chavePrimaria = ");
-		builder.append(semana.getChavePrimaria());
-		return 	CreatorFabrica.getFabricaDAO().criarAtividadeDAO().listar(builder.toString());
+		
+		return 	Persistencia.getInstance().buscarAtividadesDeSemana(semana.getChavePrimaria());
 	}
 	@Override
 	public void removerAtividade(Atividade atividade) {
-		CreatorFabrica.getFabricaDAO().criarAtividadeDAO().remover(atividade);
+		Persistencia.getInstance().removerAtividade(atividade);
 	}
 
 	@Override

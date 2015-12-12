@@ -2,12 +2,10 @@ package br.com.projetoperiodo.model.instituto.curso.controller.impl;
 
 import br.com.projetoperiodo.model.instituto.curso.Curso;
 import br.com.projetoperiodo.model.instituto.curso.controller.ControladorCurso;
-import br.com.projetoperiodo.model.instituto.curso.dao.CursoDao;
 import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
-import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
-import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
+import br.com.projetoperiodo.util.fachada.Persistencia;
 
 public class ControladorCursoImpl extends ControladorNegocioImpl implements ControladorCurso
 {
@@ -29,7 +27,7 @@ public class ControladorCursoImpl extends ControladorNegocioImpl implements Cont
 	@Override
 	public Curso buscarCursoPadrao() {
 
-		return CreatorFabrica.getFabricaDAO().criarCursoDAO().buscar(1l);
+		return (Curso) Persistencia.getInstance().buscarCurso(1L);
 	}
 	@Override
 	public String getNomeClasseEntidade() {

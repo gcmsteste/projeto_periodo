@@ -11,6 +11,9 @@ public interface RelatorioFrequenciaDao {
 	public void remover(RelatorioFrequencia relatorio);
 	public List<RelatorioFrequencia> listar(String condicao);
 	public RelatorioFrequencia buscar(long primaryKey);
-	public List<Situacao> listarSituacaoDosRelatorios(String condicao);
 	void remover(String condicao);
+	List<Situacao> listarSituacaoDosRelatorios(long chave);
+	RelatorioFrequencia buscarRelatoriosDeMonitoriaPorMes(long chave, int mes);
+	List<RelatorioFrequencia> buscarRelatoriosDeMonitoria(long chave);
+
 }

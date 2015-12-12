@@ -7,10 +7,10 @@ import org.junit.Test;
 import com.mysql.jdbc.Connection;
 
 import br.com.projetoperiodo.model.instituto.curso.Curso;
-import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Grau;
+import br.com.projetoperiodo.util.fachada.Fachada;
 import br.com.projetoperiodo.util.persistencia.connection.JDBCConnectionFactory;
-import br.com.projetoperiodo.util.persistencia.unidade.MySQLDatabaseUnit;
+import br.com.projetoperiodo.util.persistencia.persistencia.MySQLDatabaseUnit;
 
 public class TesteJDBCCursoDao {
 	

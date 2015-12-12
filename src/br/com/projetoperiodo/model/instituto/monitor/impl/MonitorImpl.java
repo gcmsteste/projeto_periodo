@@ -21,7 +21,7 @@ import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
+import br.com.projetoperiodo.model.instituto.monitor.Monitoria;
 import br.com.projetoperiodo.model.instituto.periodo.Periodo;
 import br.com.projetoperiodo.model.instituto.periodo.impl.PeriodoImpl;
 import br.com.projetoperiodo.model.negocio.entidade.impl.EntidadeNegocioImpl;
@@ -32,7 +32,7 @@ import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 @Entity
 @Table(name = "MONITOR")
 @AttributeOverrides({@AttributeOverride(name = "chavePrimaria", column = @Column(name = "MONITOR_ID") )})
-public class MonitorImpl extends EntidadeNegocioImpl implements Monitor {
+public class MonitorImpl extends EntidadeNegocioImpl implements Monitoria {
 
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('BOLSISTA', 'VOLUNTARIO')")

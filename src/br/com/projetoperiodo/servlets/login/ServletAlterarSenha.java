@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
-import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.exception.NegocioException;
+import br.com.projetoperiodo.util.fachada.Fachada;
 
 /**
  * Servlet implementation class Servlet_alterarSenha

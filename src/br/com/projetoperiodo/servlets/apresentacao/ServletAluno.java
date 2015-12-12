@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
-import br.com.projetoperiodo.util.Fachada;
+import br.com.projetoperiodo.model.instituto.monitor.Monitoria;
 import br.com.projetoperiodo.util.constantes.Constantes;
+import br.com.projetoperiodo.util.fachada.Fachada;
 
 /**
  * Servlet implementation class ServletAluno
@@ -40,7 +40,7 @@ public class ServletAluno extends HttpServlet {
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
 		}
 		Aluno alunoLogado = (Aluno) request.getSession().getAttribute(Constantes.ATRIBUTO_USUARIO_LOGADO);	
-		List<Monitor> monitores = Fachada.getInstance().buscarMonitorias(alunoLogado);
+		List<Monitoria> monitores = Fachada.getInstance().buscarMonitorias(alunoLogado);
 		request.setAttribute(LISTA_MONITORIAS, monitores);
 		request.getRequestDispatcher("/WEB-INF/jsp/MonitoriasAluno.jsp").forward(request, response);
 	}

@@ -12,8 +12,8 @@ import org.hibernate.result.Output;
 
 import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.controller.ControladorUsuario;
-import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.exception.NegocioException;
+import br.com.projetoperiodo.util.fachada.Fachada;
 
 /**
  * Servlet implementation class ServletEsqueceuSenha

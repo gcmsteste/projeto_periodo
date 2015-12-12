@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -16,15 +17,21 @@ import br.com.projetoperiodo.model.usuario.Usuario;
 import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.exception.NegocioException;
-import br.com.projetoperiodo.util.persistencia.connection.JPAUtil;
 
 public class JPAUsuarioDao implements UsuarioDao {
+
+	private EntityManagerFactory entityManagerFactory;
+	
+
+	public JPAUsuarioDao(EntityManagerFactory entityManagerFactory) {
+		this.entityManagerFactory = entityManagerFactory;
+	}
 
 
 	@Override
 	public Usuario salvar(Usuario usuario) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.persist(usuario);
@@ -37,7 +44,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 	@Override
 	public Usuario atualizar(Usuario usuario) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.merge(usuario);
@@ -49,7 +56,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 	@Override
 	public void remover(Usuario usuario) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		Object object = entityManager.merge(usuario);
@@ -62,7 +69,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 	@Override
 	public List<Usuario> listar() {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		List<Usuario> usuarios = entityManager.createQuery
@@ -74,7 +81,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 	@Override
 	public Usuario buscar(String login) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		Query query = entityManager.createQuery("select u from UsuarioImpl u " + "where u.login = :login");
 		query.setParameter("login", login);
 		Usuario usuario = (Usuario) query.getSingleResult();
@@ -85,7 +92,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 	@Override
 	public Usuario buscar(long l) {
 
-		EntityManager entityManager = JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		Usuario usuario = (Usuario) entityManager.find(UsuarioImpl.class, l);
 		entityManager.close();
 		return usuario;
@@ -93,7 +100,7 @@ public class JPAUsuarioDao implements UsuarioDao {
 
 	@Override
 	public Usuario buscar(HashMap<String, Object> filter) throws NegocioException {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery  criteria = builder.createQuery(UsuarioImpl.class);
 		Root root = criteria.from(UsuarioImpl.class);

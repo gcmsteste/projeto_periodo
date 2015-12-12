@@ -1,5 +1,5 @@
 
-package br.com.projetoperiodo.model.documentos;
+package br.com.projetoperiodo.model.documento.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -18,15 +18,15 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 
-import br.com.projetoperiodo.model.documentos.dao.DocumentDao;
-import br.com.projetoperiodo.model.documentos.dao.JDBCDocumentDao;
+import br.com.projetoperiodo.model.documento.dao.DocumentDao;
+import br.com.projetoperiodo.model.documento.dao.JDBCDocumentDao;
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
 import br.com.projetoperiodo.model.instituto.curso.Curso;
 import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
+import br.com.projetoperiodo.model.instituto.monitor.Monitoria;
 import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
 import br.com.projetoperiodo.model.instituto.periodo.Periodo;
 import br.com.projetoperiodo.model.instituto.periodo.impl.PeriodoImpl;
@@ -178,7 +178,7 @@ public class PDFBuilder {
 		ColumnText.showTextAligned(conteudoDocumento, Element.ALIGN_RIGHT, phrase, NOME_CURSO_X, NOME_CURSO_Y, 0);
 	}
 
-	private void preencherHorarioEntradaAtividade(Monitor monitor, int decrementoPosicaoRelativaY, PdfContentByte conteudoDocumento) {
+	private void preencherHorarioEntradaAtividade(Monitoria monitor, int decrementoPosicaoRelativaY, PdfContentByte conteudoDocumento) {
 
 		if (monitor.getHorarioEntrada() != null) {
 			Phrase phrase = seletorFonte.process(monitor.getHorarioEntrada());
@@ -188,7 +188,7 @@ public class PDFBuilder {
 
 	}
 
-	private void preencherHorarioSaidaAtividade(Monitor monitor, int decrementoPosicaoRelativaY, PdfContentByte conteudoDocumento) {
+	private void preencherHorarioSaidaAtividade(Monitoria monitor, int decrementoPosicaoRelativaY, PdfContentByte conteudoDocumento) {
 
 		if (monitor.getHorarioSaida() != null) {
 			Phrase phrase = seletorFonte.process(monitor.getHorarioSaida());
@@ -270,7 +270,7 @@ public class PDFBuilder {
 
 	}
 
-	private void preencherAtividadesSemanais(Atividade atividade, Monitor monitor, int decrementoPosicaoRelativaY,
+	private void preencherAtividadesSemanais(Atividade atividade, Monitoria monitor, int decrementoPosicaoRelativaY,
 					PdfContentByte conteudoDocumento) {
 
 		preencherDataAtividade(atividade, decrementoPosicaoRelativaY, conteudoDocumento);

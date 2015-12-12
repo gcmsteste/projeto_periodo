@@ -1,15 +1,17 @@
+
 package br.com.projetoperiodo.util.persistencia.fabrica;
 
-import br.com.projetoperiodo.model.documentos.dao.DocumentDao;
-import br.com.projetoperiodo.model.documentos.dao.JDBCDocumentDao;
+import javax.persistence.EntityManagerFactory;
+
+import br.com.projetoperiodo.model.documento.dao.DocumentDao;
 import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
 import br.com.projetoperiodo.model.instituto.aluno.dao.JPAAlunoDao;
 import br.com.projetoperiodo.model.instituto.curso.dao.CursoDao;
 import br.com.projetoperiodo.model.instituto.curso.dao.JPACursoDao;
 import br.com.projetoperiodo.model.instituto.disciplina.dao.DisciplinaDao;
 import br.com.projetoperiodo.model.instituto.disciplina.dao.JPADisciplinaDao;
-import br.com.projetoperiodo.model.instituto.monitor.dao.JPAMonitorDao;
-import br.com.projetoperiodo.model.instituto.monitor.dao.MonitorDao;
+import br.com.projetoperiodo.model.instituto.monitor.dao.JPAMonitoriaDao;
+import br.com.projetoperiodo.model.instituto.monitor.dao.MonitoriaDao;
 import br.com.projetoperiodo.model.instituto.periodo.dao.JPAPeriodoDao;
 import br.com.projetoperiodo.model.instituto.periodo.dao.PeriodoDao;
 import br.com.projetoperiodo.model.instituto.professor.dao.JPAProfessorDao;
@@ -22,82 +24,89 @@ import br.com.projetoperiodo.model.relatorio.semana.dao.JPASemanaDao;
 import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
 import br.com.projetoperiodo.model.usuario.dao.JPAUsuarioDao;
 import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
+import br.com.projetoperiodo.util.persistencia.connection.JPAConnectionFactory;
+import br.com.projetoperiodo.util.persistencia.persistencia.DatabaseUnit;
 
 public class FabricaJPA extends FabricaDAO {
 
-	private static FabricaJPA instance = null;
-	// EntityManagerFactory entity = (EntityManagerFactory)connection.getConnection();
-	private FabricaJPA() { }
-	public static FabricaJPA getInstance() {
-		if ( instance == null ) {
-			instance = new FabricaJPA();
-		}
-		return instance;
+	private EntityManagerFactory entityManagerFactory = null;
+	
+	public FabricaJPA(DatabaseUnit unit) {
+		super.connectionFactory = new JPAConnectionFactory(unit);
+		this.entityManagerFactory = (EntityManagerFactory) super.connectionFactory.getConnection();
 	}
+
+
 	@Override
 	public UsuarioDao criarUsuarioDAO() {
 
-		return new JPAUsuarioDao();
+		return new JPAUsuarioDao(entityManagerFactory);
 	}
 
 	@Override
 	public RelatorioFrequenciaDao criarRelatorioFrequenciaDAO() {
 
-		return new JPARelatorioFrequenciaDao();
+		return new JPARelatorioFrequenciaDao(this.entityManagerFactory);
 	}
 
 	@Override
 	public SemanaDao criarSemanaDAO() {
 
-		return new JPASemanaDao();
+		return new JPASemanaDao(this.entityManagerFactory);
 	}
 
 	@Override
 	public AtividadeDao criarAtividadeDAO() {
 
-		return new JPAAtividadeDao();
+		return new JPAAtividadeDao(this.entityManagerFactory);
 	}
 
 	@Override
-	public MonitorDao criarMonitorDAO() {
+	public MonitoriaDao criarMonitoriaDAO() {
 
-		return new JPAMonitorDao();
+		return new JPAMonitoriaDao(entityManagerFactory);
 	}
 
 	@Override
 	public AlunoDao criarAlunoDAO() {
 
-		return new JPAAlunoDao();
+		return new JPAAlunoDao(entityManagerFactory);
 	}
 
 	@Override
 	public DisciplinaDao criarDisciplinaDAO() {
 
-		return new JPADisciplinaDao();
+		return new JPADisciplinaDao(entityManagerFactory);
 	}
 
 	@Override
 	public CursoDao criarCursoDAO() {
 
-		return new JPACursoDao();
+		return new JPACursoDao(entityManagerFactory);
 	}
 
 	@Override
 	public ProfessorDao criarProfessorDao() {
 
-		return new JPAProfessorDao();
+		return new JPAProfessorDao(entityManagerFactory);
 	}
 
 	@Override
 	public PeriodoDao criarPeriodoDao() {
 
-		return new JPAPeriodoDao();
+		return new JPAPeriodoDao(entityManagerFactory);
 	}
+
 	@Override
 	public DocumentDao criarDocumentDao() {
 
-		// TODO Auto-generated method stub
-		return new JDBCDocumentDao();
+		return null;
+	}
+
+
+	@Override
+	public void fecharFabrica() {
+		this.entityManagerFactory.close();
 	}
 
 }

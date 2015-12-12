@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.persistence.Persistence;
 
-import br.com.projetoperiodo.util.persistencia.unidade.DatabaseUnit;
+import br.com.projetoperiodo.util.persistencia.persistencia.DatabaseUnit;
 
 public class JPAConnectionFactory implements ConnectionFactory{
 

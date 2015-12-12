@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
+import br.com.projetoperiodo.model.instituto.monitor.Monitoria;
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
-import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
+import br.com.projetoperiodo.util.fachada.Fachada;
 
 /**
  * Servlet implementation class ServletCadastroRelatorio
@@ -48,7 +48,7 @@ public class ServletCadastroRelatorio extends HttpServlet {
 			request.getRequestDispatcher("/acesso.do").forward(request, response);
 		}
 		int mesRelatorio = Integer.valueOf(request.getParameter(MES_RELATORIO));
-		Monitor monitor = (Monitor) request.getSession(false).getAttribute(Constantes.ATRIBUTO_MONITORIA);
+		Monitoria monitor = (Monitoria) request.getSession(false).getAttribute(Constantes.ATRIBUTO_MONITORIA);
 		RelatorioFrequencia relatorio = Fachada.getInstance().buscarRelatorioMensal(monitor, mesRelatorio);
 		request.getSession(false).setAttribute(RELATORIO_MENSAL, relatorio);
 		request.getRequestDispatcher("/WEB-INF/jsp/CadastroRelatorio.jsp").forward(request, response);

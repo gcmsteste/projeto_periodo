@@ -8,8 +8,8 @@ import java.sql.Connection;
 import br.com.projetoperiodo.util.persistencia.connection.ConnectionFactory;
 import br.com.projetoperiodo.util.persistencia.connection.JDBCConnectionFactory;
 import br.com.projetoperiodo.util.persistencia.connection.JPAConnectionFactory;
-import br.com.projetoperiodo.util.persistencia.unidade.MySQLDatabaseUnit;
-import br.com.projetoperiodo.util.persistencia.unidade.OracleDatabaseUnit;
+import br.com.projetoperiodo.util.persistencia.persistencia.MySQLDatabaseUnit;
+import br.com.projetoperiodo.util.persistencia.persistencia.OracleDatabaseUnit;
 
 public class TesteBridge {
 

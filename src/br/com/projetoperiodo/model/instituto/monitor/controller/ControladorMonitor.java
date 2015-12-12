@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
+import br.com.projetoperiodo.model.instituto.monitor.Monitoria;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocio;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 import br.com.projetoperiodo.util.exception.NegocioException;
@@ -14,22 +14,22 @@ public interface ControladorMonitor extends ControladorNegocio
 {
 	final String MONITORIA_CADASTRADA = "MONITORIA_CADASTRADA";
 	
-	Monitor criarMonitoriaDeAluno(Aluno aluno, Disciplina disciplina, Modalidade modalidade);
+	Monitoria criarMonitoriaDeAluno(Aluno aluno, Disciplina disciplina, Modalidade modalidade);
 	
-	Monitor buscarMonitoriasDeAluno(Aluno aluno) throws NegocioException;
+	Monitoria buscarMonitoriasDeAluno(Aluno aluno) throws NegocioException;
 	
-	boolean validarCadastroMonitoria(Monitor monitor);
+	boolean validarCadastroMonitoria(Monitoria monitor);
 	
-	Monitor cadastrarMonitoria(Monitor monitor);
+	Monitoria cadastrarMonitoria(Monitoria monitor);
 	
-	List<Monitor> listarMonitorias(Aluno aluno);
+	List<Monitoria> listarMonitorias(Aluno aluno);
 
-	boolean verificaExistenciaCadastroMonitoria(Monitor monitor);
+	boolean verificaExistenciaCadastroMonitoria(Monitoria monitor);
 
-	Monitor buscarMonitoria(long chavePrimaria);
+	Monitoria buscarMonitoria(long chavePrimaria);
 
 	void removerMonitoria(long chavePrimaria);
 
-	List<Monitor> buscarMonitoriasDeDiscplina(Disciplina disciplina);
+	List<Monitoria> buscarMonitoriasDeDiscplina(Disciplina disciplina);
 
 }

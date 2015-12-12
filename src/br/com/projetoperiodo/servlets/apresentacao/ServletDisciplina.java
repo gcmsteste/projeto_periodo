@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
-import br.com.projetoperiodo.util.Fachada;
+import br.com.projetoperiodo.model.instituto.monitor.Monitoria;
+import br.com.projetoperiodo.util.fachada.Fachada;
 
 /**
  * Servlet implementation class ServletMonitoria
@@ -37,7 +37,7 @@ public class ServletDisciplina extends HttpServlet {
 		}
 		long chavePrimaria = Long.valueOf(request.getParameter(CHAVE_DISCIPLINA));
 		Disciplina disciplina = (Disciplina) Fachada.getInstance().buscarDisciplina(chavePrimaria);
-		List<Monitor> monitoriasDisciplina = Fachada.getInstance().buscarMonitoriasDeDisciplina(disciplina);
+		List<Monitoria> monitoriasDisciplina = Fachada.getInstance().buscarMonitoriasDeDisciplina(disciplina);
 		request.setAttribute(LISTA_MONITORIAS_DE_DISCIPLINA, monitoriasDisciplina);
 		request.getRequestDispatcher("/WEB-INF/jsp/MonitoriasDisciplina.jsp").forward(request, response);
 	}

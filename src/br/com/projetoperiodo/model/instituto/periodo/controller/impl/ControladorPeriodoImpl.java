@@ -10,10 +10,11 @@ import br.com.projetoperiodo.model.instituto.periodo.impl.PeriodoImpl;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
-import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
 import br.com.projetoperiodo.util.exception.NegocioException;
+import br.com.projetoperiodo.util.fachada.Fachada;
+import br.com.projetoperiodo.util.fachada.Persistencia;
 import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
 
 public class ControladorPeriodoImpl extends ControladorNegocioImpl implements ControladorPeriodo {
@@ -66,22 +67,13 @@ public class ControladorPeriodoImpl extends ControladorNegocioImpl implements Co
 
 	@Override
 	public Periodo cadastrarPeriodo(Periodo periodo) {
-		CreatorFabrica.getFabricaDAO().criarPeriodoDao().salvar(periodo);
-		return periodo;
+		return (Periodo) Persistencia.getInstance().salvarPeriodo(periodo);
 	}
 
 	@Override
 	public Periodo buscarPeriodo(int ano, Semestre semestre) throws NegocioException {
-		StringBuilder builder = new StringBuilder();
-		builder.append(" select p from ");
-		builder.append(this.getNomeClasseEntidade());
-		builder.append(" p ");
-		builder.append(" where p.ano =  ");
-		builder.append(ano);
-		builder.append(" and ");
-		builder.append(" p.semestre = ");
-		builder.append(semestre.semestre);
-		List<Periodo> listaDePeriodos = CreatorFabrica.getFabricaDAO().criarPeriodoDao().listar(builder.toString());
+		
+		List<Periodo> listaDePeriodos = Persistencia.getInstance().buscarPeriodo(ano, semestre);
 		if (listaDePeriodos.isEmpty()) {
 			throw new NegocioException(Constantes.ENTIDADE_NAO_ENCONTRADA);
 		}

@@ -3,9 +3,10 @@ package br.com.projetoperiodo.model.instituto.periodo.dao;
 import java.util.List;
 
 import br.com.projetoperiodo.model.instituto.periodo.Periodo;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
 
 public interface PeriodoDao {
-	void salvar(Periodo periodo);
+	Periodo salvar(Periodo periodo);
 
 	void atualizar(Periodo periodo);
 
@@ -13,5 +14,7 @@ public interface PeriodoDao {
 
 	Periodo buscar(long l);
 
-	List<Periodo> listar(String condicao);
+	List<Periodo> listar();
+
+	List<Periodo> buscarPeriodoPorAnoEsemestre(int ano, Semestre semestre);
 }

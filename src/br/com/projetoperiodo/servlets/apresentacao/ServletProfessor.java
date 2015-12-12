@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
 import br.com.projetoperiodo.model.instituto.professor.Professor;
-import br.com.projetoperiodo.util.Fachada;
 import br.com.projetoperiodo.util.constantes.Constantes;
+import br.com.projetoperiodo.util.fachada.Fachada;
 
 /**
  * Servlet implementation class ServletProfessor

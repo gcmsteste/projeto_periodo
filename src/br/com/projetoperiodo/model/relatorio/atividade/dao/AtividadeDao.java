@@ -15,5 +15,7 @@ public interface AtividadeDao {
 
 	public Atividade buscar(long primaryKey);
 
-	List<Atividade> listar(String condicao);
+	List<Atividade> listar();
+
+	List<Atividade> buscarAtividadesDeSemana(long chave);
 }

@@ -7,15 +7,17 @@ import br.com.projetoperiodo.model.relatorio.semana.Semana;
 
 public interface SemanaDao {
 
-	public void salvar(Semana semana);
+	public Semana salvar(Semana semana);
 
 	public void remover(Semana semana);
 
 	public void alterar(Semana semana);
 
-	public List<Semana> listar(String condicao);
-
 	public Semana buscar(long primaryKey);
+
+	List<Semana> buscarSemanasDeRelatorio(long chave);
+
+	List<Semana> listar();
 
 
 }

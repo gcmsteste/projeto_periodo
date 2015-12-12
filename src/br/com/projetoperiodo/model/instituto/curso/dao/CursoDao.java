@@ -15,6 +15,6 @@ public interface CursoDao {
 
 	Curso buscar(long primaryKey);
 
-	List<Curso> listar(String condicao);
+	List<Curso> listar();
 
 }

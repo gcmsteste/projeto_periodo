@@ -1,4 +1,4 @@
-package br.com.projetoperiodo.model.documentos.dao;
+package br.com.projetoperiodo.model.documento.dao;
 
 import java.io.InputStream;
 

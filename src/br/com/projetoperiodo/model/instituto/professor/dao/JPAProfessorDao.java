@@ -1,20 +1,26 @@
+
 package br.com.projetoperiodo.model.instituto.professor.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
 import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
-import br.com.projetoperiodo.util.persistencia.connection.JPAUtil;
 
-public class JPAProfessorDao implements ProfessorDao
-{
-	
-	public Professor salvar(Professor professor)
-	{
-		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+public class JPAProfessorDao implements ProfessorDao  {
+
+	private EntityManagerFactory entityManagerFactory;
+
+	public JPAProfessorDao(EntityManagerFactory emf) {
+		this.entityManagerFactory = emf;
+	}
+	@Override
+	public Professor salvar(Professor professor) {
+
+		EntityManager entma = entityManagerFactory.createEntityManager();
 		EntityTransaction transaction = entma.getTransaction();
 		transaction.begin();
 		entma.merge(professor);
@@ -22,21 +28,21 @@ public class JPAProfessorDao implements ProfessorDao
 		entma.close();
 		return professor;
 	}
+	@Override
+	public void atualizar(Professor professor) {
 
-	public void atualizar(Professor professor)
-	{
-		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();		
+		EntityManager entma = entityManagerFactory.createEntityManager();
 
-		EntityTransaction transaction = entma.getTransaction();	
+		EntityTransaction transaction = entma.getTransaction();
 		transaction.begin();
 		entma.merge(professor);
 		transaction.commit();
 		entma.close();
-	}	
+	}
+	@Override
+	public void remover(Professor professor) {
 
-	public void remover(Professor professor)
-	{
-		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entma = entityManagerFactory.createEntityManager();
 		EntityTransaction transaction = entma.getTransaction();
 		transaction.begin();
 		entma.merge(professor);
@@ -44,26 +50,29 @@ public class JPAProfessorDao implements ProfessorDao
 		transaction.commit();
 		entma.close();
 	}
+	
+	@Override
+	public List<Professor> listar() {
 
-	public List<Professor> listar(String condicao)
-	{
-		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entma = entityManagerFactory.createEntityManager();
 		@SuppressWarnings("unchecked")
-		List<Professor> professor = entma.createQuery(condicao).getResultList();
+		List<Professor> professor = entma.createQuery("from ProfessorImpl").getResultList();
 		entma.close();
 		return professor;
-		
+
 	}
 
-	public Professor buscar(int primaryKey)
-	{
-		EntityManager entma =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();	
+	@Override
+	public Professor buscar(long primaryKey) {
 
-		Professor professor = (Professor) entma.find(ProfessorImpl.class,primaryKey);
+		EntityManager entma = entityManagerFactory.createEntityManager();
+
+		Professor professor = (Professor) entma.find(ProfessorImpl.class, primaryKey);
 		entma.close();
 		return professor;
 	}
 
 	
+
 
 }

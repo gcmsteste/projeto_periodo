@@ -1,7 +1,7 @@
 
 package br.com.projetoperiodo.model.relatorio.frequencia;
 
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
+import br.com.projetoperiodo.model.instituto.monitor.Monitoria;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
@@ -14,9 +14,9 @@ public interface RelatorioFrequencia extends EntidadeNegocio
 
 	void setMes(int mes);
 
-	Monitor getMonitor();
+	Monitoria getMonitor();
 
-	void setMonitor(Monitor monitor);
+	void setMonitor(Monitoria monitor);
 
 	Semana getSemana(int index);
 	

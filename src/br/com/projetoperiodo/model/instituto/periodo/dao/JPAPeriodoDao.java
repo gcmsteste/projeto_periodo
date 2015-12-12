@@ -3,30 +3,34 @@ package br.com.projetoperiodo.model.instituto.periodo.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
 import br.com.projetoperiodo.model.instituto.periodo.Periodo;
 import br.com.projetoperiodo.model.instituto.periodo.impl.PeriodoImpl;
-import br.com.projetoperiodo.util.persistencia.connection.JPAUtil;
+import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
 
 public class JPAPeriodoDao implements PeriodoDao
 {
-
+	private EntityManagerFactory entityManagerFactory;
+	
+	public JPAPeriodoDao(EntityManagerFactory emf) {
+		this.entityManagerFactory = emf;
+	}
 	@Override
-	public void salvar(Periodo periodo) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+	public Periodo salvar(Periodo periodo) {
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.persist(periodo);
 		entityTransaction.commit();
 		entityManager.close();
-		
+		return periodo;
 	}
 
 	@Override
 	public void atualizar(Periodo periodo) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.merge(periodo);
@@ -37,13 +41,17 @@ public class JPAPeriodoDao implements PeriodoDao
 
 	@Override
 	public void remover(Periodo periodo) {
-		// TODO Auto-generated method stub
-		
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		entityManager.remove(periodo);
+		entityTransaction.commit();
+		entityManager.close();
 	}
 
 	@Override
 	public Periodo buscar(long l) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		Periodo periodo = entityManager.find(PeriodoImpl.class, l);
@@ -54,9 +62,28 @@ public class JPAPeriodoDao implements PeriodoDao
 	}
 
 	@Override
-	public List<Periodo> listar(String condicao) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
-		List<Periodo> monitores = entityManager.createQuery(condicao).getResultList();
+	public List<Periodo> listar() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(" from PeriodoImpl p ");
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
+		List<Periodo> monitores = entityManager.createQuery(builder.toString()).getResultList();
+		entityManager.close();
+			
+		return monitores;
+	}
+	
+	@Override
+	public List<Periodo> buscarPeriodoPorAnoEsemestre(int ano, Semestre semestre) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(" select p from ");
+		builder.append(" PeriodoImpl p ");
+		builder.append(" where p.ano =  ");
+		builder.append(ano);
+		builder.append(" and ");
+		builder.append(" p.semestre = ");
+		builder.append(semestre.semestre);
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
+		List<Periodo> monitores = entityManager.createQuery(builder.toString()).getResultList();
 		entityManager.close();
 			
 		return monitores;

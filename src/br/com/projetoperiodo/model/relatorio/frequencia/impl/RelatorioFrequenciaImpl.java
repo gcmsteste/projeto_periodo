@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import br.com.projetoperiodo.model.instituto.monitor.Monitor;
+import br.com.projetoperiodo.model.instituto.monitor.Monitoria;
 import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
 import br.com.projetoperiodo.model.negocio.entidade.impl.EntidadeNegocioImpl;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
@@ -36,7 +36,7 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	
 	@ManyToOne(fetch = FetchType.EAGER, optional = true, targetEntity = MonitorImpl.class)
 	@JoinColumn(name = "MONITOR_ID", referencedColumnName = "MONITOR_ID")
-	private Monitor monitor;
+	private Monitoria monitor;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "SITUACAO_RELATORIO", columnDefinition = "ENUM('ESPERA', 'APROVADO')")
@@ -74,7 +74,7 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	 * (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#getMonitor()
 	 */
-	public Monitor getMonitor() {
+	public Monitoria getMonitor() {
 
 		return monitor;
 	}
@@ -84,7 +84,7 @@ public class RelatorioFrequenciaImpl extends EntidadeNegocioImpl implements Rela
 	 * @see br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia#setMonitor(br.com.projetoperiodo.model.instituto.monitor.impl.
 	 * MonitorImpl)
 	 */
-	public void setMonitor(Monitor monitor) {
+	public void setMonitor(Monitoria monitor) {
 
 		this.monitor = monitor;
 	}

@@ -12,7 +12,7 @@ import br.com.projetoperiodo.model.usuario.impl.UsuarioImpl;
 import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.Constantes;
 import br.com.projetoperiodo.util.exception.NegocioException;
-import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
+import br.com.projetoperiodo.util.fachada.Persistencia;
 
 public class ControladorUsuarioImpl extends ControladorNegocioImpl implements ControladorUsuario {
 
@@ -28,7 +28,7 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 	public Usuario autenticarUsuario(Usuario usuario) throws NegocioException {
 
 		String senha = usuario.getSenha();
-		Usuario usuarioAutenticado = CreatorFabrica.getFabricaDAO().criarUsuarioDAO().buscar(usuario.getLogin());
+		Usuario usuarioAutenticado = (Usuario) Persistencia.getInstance().buscarUsuario(usuario.getLogin());
 		if (usuarioAutenticado != null) {
 			String senhaCriptografada = Util.criptografarSenha(senha, senha, Constantes.CONSTANTE_CRIPTOGRAFIA);
 			if (!usuarioAutenticado.getSenha().equals(senhaCriptografada)) {
@@ -47,7 +47,7 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 
 		String senhaNovaCriptografada = Util.criptografarSenha(senhaNova, senhaNova, Constantes.CONSTANTE_CRIPTOGRAFIA);
 		usuario.setSenha(senhaNovaCriptografada);
-		CreatorFabrica.getFabricaDAO().criarUsuarioDAO().atualizar(usuario);
+		Persistencia.getInstance().atualizarUsuario(usuario);
 		return usuario;
 	}
 
@@ -65,7 +65,7 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 		HashMap<String, Object> filter = new HashMap<>();
 		filter.put(Usuario.ATRIBUTO_USUARIO_EMAIL, usuario.getEmail());
 		try {
-			usuario = (Usuario) CreatorFabrica.getFabricaDAO().criarUsuarioDAO().buscar(filter);
+			usuario = (Usuario) Persistencia.getInstance().buscarUsuario(filter);
 			String novaSenha = Util.gerarSenhaAleatoria();
 			alterarSenha(usuario, novaSenha);
 			usuario.setSenha(novaSenha);
@@ -88,14 +88,14 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 
 		String senhaCriptografada = Util.criptografarSenha(usuario.getSenha(), usuario.getSenha(), Constantes.CONSTANTE_CRIPTOGRAFIA);
 		usuario.setSenha(senhaCriptografada);
-		CreatorFabrica.getFabricaDAO().criarUsuarioDAO().salvar(usuario);
+		Persistencia.getInstance().salvarUsuario(usuario);
 		return usuario;
 	}
 
 	@Override
 	public Usuario verificarExistenciaUsuario(Usuario usuario) {
 
-		Usuario usuarioRequerente = CreatorFabrica.getFabricaDAO().criarUsuarioDAO().buscar(usuario.getLogin());
+		Usuario usuarioRequerente = (Usuario) Persistencia.getInstance().buscarUsuario(usuario.getLogin());
 		return usuarioRequerente;
 	}
 

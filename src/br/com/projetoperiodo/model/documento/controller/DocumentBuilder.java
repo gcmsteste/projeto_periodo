@@ -1,4 +1,4 @@
-package br.com.projetoperiodo.model.documentos;
+package br.com.projetoperiodo.model.documento.controller;
 
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 

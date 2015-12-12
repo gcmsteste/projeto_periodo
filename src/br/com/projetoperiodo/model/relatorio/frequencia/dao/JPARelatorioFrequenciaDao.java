@@ -3,22 +3,26 @@ package br.com.projetoperiodo.model.relatorio.frequencia.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
-import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
 import br.com.projetoperiodo.util.persistencia.connection.JPAUtil;
-import br.com.projetoperiodo.util.persistencia.fabrica.FabricaJPA;
 
 public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 {
+	private EntityManagerFactory entityManagerFactory;
 	
+	
+	public JPARelatorioFrequenciaDao(EntityManagerFactory emf) {
+		this.entityManagerFactory = emf;
+	}
 	@Override
 	public RelatorioFrequencia salvar(RelatorioFrequencia relatorio) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.persist(relatorio);
@@ -31,7 +35,7 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public RelatorioFrequencia atualizar(RelatorioFrequencia relatorio) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.merge(relatorio);
@@ -44,7 +48,7 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public void remover(RelatorioFrequencia relatorio) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		relatorio = entityManager.merge(relatorio);
@@ -57,7 +61,7 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public List<RelatorioFrequencia> listar(String condicao) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		List<RelatorioFrequencia> lista = entityManager.
 						createQuery(condicao).getResultList();
 		entityManager.close();
@@ -67,13 +71,13 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	@Override
 	public RelatorioFrequencia buscar(long primaryKey) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		return entityManager.find(RelatorioFrequenciaImpl.class, primaryKey);
 	}
 	
 	@Override
 	public void remover(String condicao) {
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.createQuery(condicao).executeUpdate();
@@ -83,13 +87,51 @@ public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 	}
 
 	@Override
-	public List<Situacao> listarSituacaoDosRelatorios(String condicao) {
+	public List<Situacao> listarSituacaoDosRelatorios(long chave) {
 
-		EntityManager entityManager =  JPAUtil.getInstance().getEntityManagerFactory().createEntityManager();
+		StringBuilder builder = new StringBuilder();
+		builder.append(" select situacao from ");
+		builder.append(" RelatorioFrequenciaImpl relatorio ");
+		builder.append(" where relatorio.monitor = ");
+		builder.append(chave);
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		List<Situacao> lista = entityManager.
-						createQuery(condicao).getResultList();
+						createQuery(builder.toString()).getResultList();
 		entityManager.close();
 		return lista;
 	}
+	
+	@Override
+	public RelatorioFrequencia buscarRelatoriosDeMonitoriaPorMes(long chave, int mes) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(" select r from ");
+		builder.append(" RelatorioFrequenciaImpl r ");
+		builder.append(" where r.monitor.chavePrimaria =  ");
+		builder.append(chave);
+		builder.append(" and r.mes = ");
+		builder.append(mes);
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
+		RelatorioFrequencia relatorio = (RelatorioFrequencia) entityManager.
+						createQuery(builder.toString()).getSingleResult();
+		entityManager.close();
+		return relatorio;
+	}
+	
+	@Override
+	public List<RelatorioFrequencia> buscarRelatoriosDeMonitoria(long chave) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(" from ");
+		builder.append(" RelatorioFrequenciaImpl r ");
+		builder.append(" r ");
+		builder.append(" where r.monitor.chavePrimaria = ");
+		builder.append(chave);
+		EntityManager entityManager =  entityManagerFactory.createEntityManager();
+		List<RelatorioFrequencia> lista = entityManager.
+						createQuery(builder.toString()).getResultList();
+		entityManager.close();
+		return lista;
+	}
+	
+	
 
 }

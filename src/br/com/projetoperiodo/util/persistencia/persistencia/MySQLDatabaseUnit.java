@@ -1,5 +1,5 @@
 
-package br.com.projetoperiodo.util.persistencia.unidade;
+package br.com.projetoperiodo.util.persistencia.persistencia;
 
 import java.sql.Driver;
 import java.sql.SQLException;
@@ -37,7 +37,7 @@ public class MySQLDatabaseUnit implements DatabaseUnit {
 
 	@Override
 	public String getSenha() {
-		return "root";
+		return "";
 	}
 
 }

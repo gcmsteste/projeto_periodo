@@ -1,3 +1,4 @@
+
 package br.com.projetoperiodo.model.instituto.disciplina.controller.impl;
 
 import java.util.HashMap;
@@ -11,16 +12,14 @@ import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 import br.com.projetoperiodo.util.exception.NegocioException;
-import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
+import br.com.projetoperiodo.util.fachada.Persistencia;
 
-public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements ControladorDisciplina
-{
-	
-	
-	
+public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements ControladorDisciplina {
+
 	public ControladorDisciplinaImpl() {
-		
+
 	}
+
 	@Override
 	public EntidadeNegocio criarEntidadeNegocio() {
 
@@ -29,69 +28,53 @@ public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements
 
 	@Override
 	public List<Disciplina> listarDisciplinasCadastradas() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(" from ");
-		builder.append(this.getNomeClasseEntidade());
-		return  CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().listar(builder.toString());
+
+		return Persistencia.getInstance().listarDisciplinas();
 	}
-	
+
 	@Override
 	public List<Disciplina> listarDisciplinasDeProfessor(Professor professor) {
-		StringBuilder builder = new StringBuilder();
-		builder.append(" from ");
-		builder.append( this.getNomeClasseEntidade() );
-		builder.append(" d ");
-		builder.append(" where d.professor.chavePrimaria = ");
-		builder.append(professor.getChavePrimaria());
-		return CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().listar(builder.toString());
+
+		return  Persistencia.getInstance().buscarDisciplinasDeProfessor(professor);
 	}
-	
+
 	@Override
 	public List<Disciplina> listarDisciplinasDeAluno(Aluno aluno) {
-		StringBuilder builder = new StringBuilder();
-		builder.append(" select d from ");
-		builder.append(this.getNomeClasseEntidade());
-		builder.append(" d ");
-		builder.append(" inner join d.pagantes p ");
-		builder.append(" where p.chavePrimaria = " );
-		builder.append(aluno.getChavePrimaria());
-		return CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().listar(builder.toString());
+
+		return Persistencia.getInstance().buscarDisciplinasDeAluno(aluno);
 	}
+
 	@Override
 	public List<Disciplina> buscarDisciplinasSemProfessor() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(" from ");
-		builder.append(this.getNomeClasseEntidade());
-		builder.append(" d ");
-		builder.append(" where d.professor is null ");
-		return CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().listar(builder.toString());
+
+		return Persistencia.getInstance().buscarDisciplinasSemProfessor();
 	}
-	
+
 	@Override
 	public Disciplina buscarDisciplina(String descricao) throws NegocioException {
 
-		HashMap<String, Object> filter = new HashMap<>();
-		filter.put(Disciplina.ATRIBUTO_DESCRICAO, descricao);
-		
-		return (Disciplina) CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().buscar(filter);
+		HashMap<String, Object> filtro = new HashMap<>();
+		filtro.put(Disciplina.ATRIBUTO_DESCRICAO, descricao);
+
+		return (Disciplina) Persistencia.getInstance().buscarDisciplina(filtro);
 	}
-	
+
 	@Override
 	public Disciplina buscarDisciplina(long chavePrimaria) {
-		return CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().buscar(chavePrimaria);
+
+		return (Disciplina) Persistencia.getInstance().buscarDisciplina(chavePrimaria);
 	}
+
 	@Override
 	public String getNomeClasseEntidade() {
-		
+
 		return DisciplinaImpl.class.getSimpleName();
 	}
-	
+
 	@Override
-	public void atualizarDisciplina(Disciplina disciplina ) {
-		CreatorFabrica.getFabricaDAO().criarDisciplinaDAO().atualizar(disciplina);
+	public void atualizarDisciplina(Disciplina disciplina) {
+
+		Persistencia.getInstance().atualizarDisciplina(disciplina);
 	}
-	
-	
-	
 
 }
