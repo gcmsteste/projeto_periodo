@@ -125,18 +125,16 @@ public class JDBCCursoDao implements CursoDao{
 		PreparedStatement ptmt = null;
 		ResultSet result = null;
 		Curso curso = null;
-		Grau grau = null;
 		try{
 			
 			ptmt = connection.prepareStatement(builder.toString());
 			ptmt.setLong(1, primaryKey);
 			result = ptmt.executeQuery();
-			grau = auxiliar(result.getString("GRAU"));
 			
 			if(result.next()){
 				curso = (Curso) Fachada.getInstance().criarCurso();
 				curso.setChavePrimaria(result.getLong("CURSO_ID"));
-				curso.setModalidade(grau);// TODO verificar se isto é correto - ter um metodo auxiliar Static!
+				curso.setModalidade(Grau.valueOf(result.getString("GRAU")));// TODO verificar se isto é correto - ter um método auxiliar Static! R: Tem o método valueOf
 				curso.setDescricao(result.getString("CURSO_DS"));
 				curso.setUltimaAlteracao(result.getDate("ULTIMA_ALTERACAO"));
 			}
@@ -158,12 +156,7 @@ public class JDBCCursoDao implements CursoDao{
 		
 		return null;
 	}
+
 	
-	public static Grau auxiliar(String grau){
-		if(grau.equalsIgnoreCase("SUPERIOR")){
-			return Grau.SUPERIOR;
-		}else
-			return Grau.TECNICO;
-	}
 
 }

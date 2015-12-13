@@ -3,7 +3,6 @@ package br.com.projetoperiodo.util.persistencia.fabrica;
 
 import javax.persistence.EntityManagerFactory;
 
-import br.com.projetoperiodo.model.documento.dao.DocumentDao;
 import br.com.projetoperiodo.model.instituto.aluno.dao.AlunoDao;
 import br.com.projetoperiodo.model.instituto.aluno.dao.JPAAlunoDao;
 import br.com.projetoperiodo.model.instituto.curso.dao.CursoDao;
@@ -96,13 +95,6 @@ public class FabricaJPA extends FabricaDAO {
 
 		return new JPAPeriodoDao(entityManagerFactory);
 	}
-
-	@Override
-	public DocumentDao criarDocumentDao() {
-
-		return null;
-	}
-
 
 	@Override
 	public void fecharFabrica() {

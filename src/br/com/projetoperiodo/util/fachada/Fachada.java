@@ -3,8 +3,6 @@ package br.com.projetoperiodo.util.fachada;
 
 import java.util.List;
 
-import br.com.projetoperiodo.model.documento.controller.ControladorDocumento;
-import br.com.projetoperiodo.model.documento.controller.impl.ControladorDocumentoImpl;
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.ControladorAluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.impl.ControladorAlunoImpl;
@@ -60,9 +58,6 @@ public class Fachada {
 		return new ControladorAtividadeImpl();
 	}
 	
-	public ControladorDocumento getControladorDocumento() {
-		return new ControladorDocumentoImpl();
-	}
 
 	public ControladorSemana getControladorSemana() {
 
@@ -123,6 +118,10 @@ public class Fachada {
 	
 	public EntidadeNegocio criarUsuario() {
 		return this.getControladorUsuario().criarEntidadeNegocio();
+	}
+	
+	public EntidadeNegocio criarPeriodo() {
+		return this.getControladorPeriodo().criarEntidadeNegocio();
 	}
 	public List<RelatorioFrequencia> buscarRelatorios(long chavePrimaria) {
 

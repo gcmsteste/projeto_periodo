@@ -7,8 +7,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.text.DateFormat;
-import java.util.Date;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -21,29 +21,11 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 
-import br.com.projetoperiodo.model.documento.dao.DocumentDao;
-import br.com.projetoperiodo.model.documento.dao.JDBCDocumentDao;
-import br.com.projetoperiodo.model.instituto.aluno.Aluno;
-import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
-import br.com.projetoperiodo.model.instituto.curso.Curso;
-import br.com.projetoperiodo.model.instituto.curso.impl.CursoImpl;
-import br.com.projetoperiodo.model.instituto.disciplina.Disciplina;
-import br.com.projetoperiodo.model.instituto.disciplina.impl.DisciplinaImpl;
 import br.com.projetoperiodo.model.instituto.monitor.Monitoria;
-import br.com.projetoperiodo.model.instituto.monitor.impl.MonitorImpl;
-import br.com.projetoperiodo.model.instituto.periodo.Periodo;
-import br.com.projetoperiodo.model.instituto.periodo.impl.PeriodoImpl;
-import br.com.projetoperiodo.model.instituto.professor.Professor;
-import br.com.projetoperiodo.model.instituto.professor.impl.ProfessorImpl;
 import br.com.projetoperiodo.model.relatorio.atividade.Atividade;
-import br.com.projetoperiodo.model.relatorio.atividade.impl.AtividadeImpl;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
-import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.model.relatorio.semana.Semana;
-import br.com.projetoperiodo.model.relatorio.semana.impl.SemanaImpl;
 import br.com.projetoperiodo.util.Util;
-import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
-import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
 
 public class ConstrutorDocumento {
 
@@ -283,8 +265,8 @@ public class ConstrutorDocumento {
 		PdfStamper copia = null;
 		OutputStream out = null;
 		try {
-			URL url = getClass().getResource("selection.pdf");
-			File file = new File(url.getPath());
+			String path = URLDecoder.decode(getClass().getResource("selection.pdf").getPath(), "UTF-8");
+			File file = new File(path);
 			FileInputStream fis = new FileInputStream(file);
 			PdfReader reader = new PdfReader(fis);
 			out = new ByteArrayOutputStream();

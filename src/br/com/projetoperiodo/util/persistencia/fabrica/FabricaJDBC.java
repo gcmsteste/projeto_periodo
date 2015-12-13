@@ -4,10 +4,10 @@ package br.com.projetoperiodo.util.persistencia.fabrica;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import br.com.projetoperiodo.model.documento.dao.DocumentDao;
-import br.com.projetoperiodo.model.documento.dao.JDBCDocumentDao;
 import br.com.projetoperiodo.model.instituto.curso.dao.CursoDao;
 import br.com.projetoperiodo.model.instituto.curso.dao.JDBCCursoDao;
+import br.com.projetoperiodo.model.instituto.periodo.dao.JDBCPeriodoDao;
+import br.com.projetoperiodo.model.instituto.periodo.dao.PeriodoDao;
 import br.com.projetoperiodo.model.usuario.dao.JDBCUsuarioDao;
 import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
 import br.com.projetoperiodo.util.persistencia.connection.JDBCConnectionFactory;
@@ -35,12 +35,11 @@ public abstract class FabricaJDBC extends FabricaDAO {
 
 		return new JDBCCursoDao(this.connection);
 	}
-
-
+	
 	@Override
-	public DocumentDao criarDocumentDao() {
-
-		return new JDBCDocumentDao(this.connection);
+	public PeriodoDao criarPeriodoDao() {
+	
+		return new JDBCPeriodoDao(this.connection);
 	}
 	
 	@Override
@@ -49,7 +48,6 @@ public abstract class FabricaJDBC extends FabricaDAO {
 		try {
 			this.connection.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

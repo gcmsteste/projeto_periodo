@@ -213,8 +213,13 @@ public class Persistencia {
 	}
 	
 	public void alterarFabrica(String tipo, String unidade) {
+		FabricaDAO fabricaJPA = null;
+		
 		fabrica.fecharFabrica();
 		this.databaseUnit = CreatorDatabaseUnit.criarDatabaseUnit(unidade);
-		this.fabrica = CreatorFabrica.criarFabricaDAO(tipo, databaseUnit, null);
+		if( CreatorFabrica.FABRICA_JDBC.equals(tipo)) {
+			fabricaJPA = CreatorFabrica.criarFabricaDAO(CreatorFabrica.FABRICA_JPA, databaseUnit, null);
+		}
+		this.fabrica = CreatorFabrica.criarFabricaDAO(tipo, databaseUnit, fabricaJPA);
 	}
 }

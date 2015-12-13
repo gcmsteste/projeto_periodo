@@ -87,10 +87,10 @@ public class JPAPeriodoDao implements PeriodoDao
 		EntityManager entityManager =  entityManagerFactory.createEntityManager();
 		Query consulta =  entityManager.createQuery(builder.toString());
 		consulta.setParameter("semestre", semestre);
-		List<Periodo> monitores = consulta.getResultList();
+		List<Periodo> periodos = consulta.getResultList();
 		entityManager.close();
 			
-		return monitores;
+		return periodos;
 	}
 	
 	public static void main(String[] args) {

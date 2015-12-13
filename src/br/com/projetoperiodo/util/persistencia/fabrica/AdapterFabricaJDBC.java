@@ -8,6 +8,7 @@ import br.com.projetoperiodo.model.instituto.professor.dao.ProfessorDao;
 import br.com.projetoperiodo.model.relatorio.atividade.dao.AtividadeDao;
 import br.com.projetoperiodo.model.relatorio.frequencia.dao.RelatorioFrequenciaDao;
 import br.com.projetoperiodo.model.relatorio.semana.dao.SemanaDao;
+import br.com.projetoperiodo.model.usuario.dao.UsuarioDao;
 import br.com.projetoperiodo.util.persistencia.persistencia.DatabaseUnit;
 
 public class AdapterFabricaJDBC extends FabricaJDBC {
@@ -46,6 +47,12 @@ public class AdapterFabricaJDBC extends FabricaJDBC {
 	public SemanaDao criarSemanaDAO() {
 		return fabrica.criarSemanaDAO();
 	}
+	
+	@Override
+	public UsuarioDao criarUsuarioDAO() {
+	
+		return fabrica.criarUsuarioDAO();
+	}
 
 	@Override
 	public MonitoriaDao criarMonitoriaDAO() {
@@ -59,10 +66,11 @@ public class AdapterFabricaJDBC extends FabricaJDBC {
 		return fabrica.criarProfessorDao();
 	}
 
-	@Override
-	public PeriodoDao criarPeriodoDao() {
-
-		return fabrica.criarPeriodoDao();
-	}
 	
+	@Override
+	public void fecharFabrica() {
+	
+		super.fecharFabrica();
+		this.fabrica.fecharFabrica();
+	}
 }
