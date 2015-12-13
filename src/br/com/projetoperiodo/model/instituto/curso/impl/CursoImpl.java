@@ -12,6 +12,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
@@ -25,6 +26,7 @@ import br.com.projetoperiodo.util.constantes.enumeracoes.Grau;
 @Entity
 @Table(name = "CURSO")
 @AttributeOverrides({@AttributeOverride(name = "chavePrimaria", column = @Column(name = "CURSO_ID") )})
+@SequenceGenerator(name="SQ_ENTIDADE", sequenceName="SQ_CURSO")
 public class CursoImpl extends EntidadeNegocioImpl implements Curso {
 
 	@Column(name = "CURSO_DS")

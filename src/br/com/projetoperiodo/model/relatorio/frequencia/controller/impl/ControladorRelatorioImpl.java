@@ -1,6 +1,7 @@
 
 package br.com.projetoperiodo.model.relatorio.frequencia.controller.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import br.com.projetoperiodo.model.documento.controller.PDFBuilder;
@@ -47,6 +48,7 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 		for (int contador = 0; contador < 6; mes++, contador++) {
 			relatorio = (RelatorioFrequencia) this.criarEntidadeNegocio();
 			relatorio.setMes(mes);
+			relatorio.setUltimaAlteracao(Calendar.getInstance().getTime());
 			relatorio.setMonitor(monitoria);
 			relatorio.setSituacao(Situacao.ESPERA);
 			relatorio = (RelatorioFrequencia) Persistencia.getInstance().salvarRelatorio(relatorio);

@@ -1,5 +1,6 @@
 package br.com.projetoperiodo.model.relatorio.atividade.controller.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
@@ -35,6 +36,7 @@ public class ControladorAtividadeImpl extends ControladorNegocioImpl implements 
 		for ( int i = 0; i < Semana.QUANTIDADE_ATIVIDADES_POR_SEMANA; i++ ) {
 			atividade = (Atividade)this.criarEntidadeNegocio();
 			atividade.setSemana(semana);
+			atividade.setUltimaAlteracao(Calendar.getInstance().getTime());
 			Persistencia.getInstance().salvarAtividade(atividade);
 		
 		}

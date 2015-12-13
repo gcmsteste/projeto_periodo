@@ -33,10 +33,6 @@ public interface Usuario extends EntidadeNegocio {
 
 	void setUltimoAcesso(Date ultimoAcesso);
 
-	boolean isSenhaExpirada();
-
-	void setSenhaExpirada(boolean senhaExpirada);
-
 	String getSobrenome();
 
 	void setSobrenome(String sobrenome);

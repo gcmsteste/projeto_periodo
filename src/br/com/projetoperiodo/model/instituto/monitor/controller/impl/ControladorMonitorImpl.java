@@ -1,6 +1,7 @@
 
 package br.com.projetoperiodo.model.instituto.monitor.controller.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
@@ -16,7 +17,6 @@ import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 import br.com.projetoperiodo.util.exception.NegocioException;
 import br.com.projetoperiodo.util.fachada.Fachada;
 import br.com.projetoperiodo.util.fachada.Persistencia;
-import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
 
 public class ControladorMonitorImpl extends ControladorNegocioImpl implements ControladorMonitor {
 
@@ -51,6 +51,7 @@ public class ControladorMonitorImpl extends ControladorNegocioImpl implements Co
 		monitoria.setModalidade(modalidade);
 		monitoria.setAluno(aluno);
 		monitoria.setHabilitado(Boolean.TRUE);
+		monitoria.setUltimaAlteracao(Calendar.getInstance().getTime());
 		Periodo periodoCorrente = controladorPeriodo.gerarNovoPeriodoCorrente();
 		monitoria.setPeriodo(periodoCorrente);
 

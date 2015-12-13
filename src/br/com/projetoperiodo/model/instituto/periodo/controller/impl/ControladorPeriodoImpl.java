@@ -46,6 +46,7 @@ public class ControladorPeriodoImpl extends ControladorNegocioImpl implements Co
 	@Override
 	public Periodo gerarNovoPeriodoCorrente() {
 		Periodo periodo = (Periodo) criarEntidadeNegocio();
+		periodo.setUltimaAlteracao(Calendar.getInstance().getTime());
 		Calendar dataAtual = Calendar.getInstance();
 		int anoAtual = dataAtual.get(Calendar.YEAR);
 		Calendar inicioSegundoSemestre = Calendar.getInstance();

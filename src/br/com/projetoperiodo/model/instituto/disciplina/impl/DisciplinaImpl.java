@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
@@ -28,6 +29,7 @@ import br.com.projetoperiodo.model.negocio.entidade.impl.EntidadeNegocioImpl;
 @Entity
 @Table(name = "DISCIPLINA")
 @AttributeOverrides({@AttributeOverride(name = "chavePrimaria", column = @Column(name = "DISCIPLINA_ID") )})
+@SequenceGenerator(name="SQ_ENTIDADE", sequenceName="SQ_DISCIPLINA")
 public class DisciplinaImpl extends EntidadeNegocioImpl implements Disciplina {
 
 	@Column(name = "DISCIPLINA_DS")

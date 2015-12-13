@@ -1,5 +1,6 @@
 package br.com.projetoperiodo.model.instituto.professor.controller.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import br.com.projetoperiodo.model.instituto.disciplina.controller.ControladorDisciplina;
@@ -53,6 +54,7 @@ public class ControladorProfessorImpl extends ControladorNegocioImpl implements 
 	public Professor cadastrarProfessor(Professor professor) {
 		String senhaCriptografada = Util.criptografarSenha(professor.getSenha(),professor.getSenha(), Constantes.CONSTANTE_CRIPTOGRAFIA);
 		professor.setSenha(senhaCriptografada);
+		professor.setUltimaAlteracao(Calendar.getInstance().getTime());
 		return (Professor) Persistencia.getInstance().salvarProfessor(professor);		
 	}
 

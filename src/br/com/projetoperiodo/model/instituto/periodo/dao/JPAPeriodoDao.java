@@ -5,10 +5,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import br.com.projetoperiodo.model.instituto.periodo.Periodo;
 import br.com.projetoperiodo.model.instituto.periodo.impl.PeriodoImpl;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
+import br.com.projetoperiodo.util.fachada.Persistencia;
 
 public class JPAPeriodoDao implements PeriodoDao
 {
@@ -81,12 +83,19 @@ public class JPAPeriodoDao implements PeriodoDao
 		builder.append(ano);
 		builder.append(" and ");
 		builder.append(" p.semestre = ");
-		builder.append(semestre.semestre);
+		builder.append(" :semestre ");
 		EntityManager entityManager =  entityManagerFactory.createEntityManager();
-		List<Periodo> monitores = entityManager.createQuery(builder.toString()).getResultList();
+		Query consulta =  entityManager.createQuery(builder.toString());
+		consulta.setParameter("semestre", semestre);
+		List<Periodo> monitores = consulta.getResultList();
 		entityManager.close();
 			
 		return monitores;
+	}
+	
+	public static void main(String[] args) {
+		
+		Persistencia.getInstance().buscarPeriodo(2015, Semestre.SEGUNDO);
 	}
 
 }

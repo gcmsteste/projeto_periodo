@@ -60,7 +60,6 @@ public class JDBCUsuarioDao implements UsuarioDao {
 				usuario.setEmail(rs.getString("USUARIO_EMAIL"));
 				usuario.setUltimaAlteracao(rs.getDate("ULTIMA_ALTERACAO"));
 				usuario.setUltimoAcesso(rs.getDate("ULTIMO_ACESSO"));
-				usuario.setSenhaExpirada(rs.getBoolean("SENHA_EXPIRADA"));
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -80,8 +79,8 @@ public class JDBCUsuarioDao implements UsuarioDao {
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(" INSERT INTO PROJETO_PERIODO.USUARIO ");
-		builder.append(" (USUARIO_NOME, USUARIO_SOBRENOME, USUARIO_LOGIN, USUARIO_SENHA, USUARIO_EMAIL, ULTIMO_ACESSO, SENHA_EXPIRADA) ");
-		builder.append(" VALUES(?, ?, ?, ? ,?, ?, ?) ");
+		builder.append(" (USUARIO_NOME, USUARIO_SOBRENOME, USUARIO_LOGIN, USUARIO_SENHA, USUARIO_EMAIL, ULTIMO_ACESSO) ");
+		builder.append(" VALUES(?, ?, ?, ? ,?, ?) ");
 		PreparedStatement ptmt = null;
 		ResultSet generatedKeys = null;
 		try {
@@ -93,7 +92,6 @@ public class JDBCUsuarioDao implements UsuarioDao {
 			ptmt.setString(4, usuario.getSenha());
 			ptmt.setString(5, usuario.getEmail());
 			ptmt.setDate(6, (Date) usuario.getUltimoAcesso());
-			ptmt.setBoolean(7, usuario.isSenhaExpirada());
 			ptmt.executeUpdate();
 			connection.commit();
 			generatedKeys = ptmt.getGeneratedKeys();
@@ -125,7 +123,7 @@ public class JDBCUsuarioDao implements UsuarioDao {
 		StringBuilder builder = new StringBuilder();
 		builder.append(" UPDATE PROJETO_PERIODO.USUARIO ");
 		builder.append(" SET USUARIO_NOME = ?, USUARIO_SOBRENOME = ?, USUARIO_LOGIN = ?,  ");
-		builder.append(" USUARIO_SENHA= ?, USUARIO_EMAIL = ?, ULTIMO_ACESSO = ?, SENHA_EXPIRADA = ? ");
+		builder.append(" USUARIO_SENHA= ?, USUARIO_EMAIL = ?, ULTIMO_ACESSO = ? ");
 		builder.append(" WHERE USUARIO_ID = ? ");
 		PreparedStatement ptmt = null;
 		try {
@@ -137,8 +135,7 @@ public class JDBCUsuarioDao implements UsuarioDao {
 			ptmt.setString(4, usuario.getSenha());
 			ptmt.setString(5, usuario.getEmail());
 			ptmt.setDate(6, (Date) usuario.getUltimoAcesso());
-			ptmt.setBoolean(7, usuario.isSenhaExpirada());
-			ptmt.setLong(8, usuario.getChavePrimaria());
+			ptmt.setLong(7, usuario.getChavePrimaria());
 			ptmt.executeUpdate();
 			connection.commit();
 		} catch (SQLException e) {
@@ -212,7 +209,6 @@ public class JDBCUsuarioDao implements UsuarioDao {
 				usuario.setEmail(rs.getString("USUARIO_EMAIL"));
 				usuario.setUltimaAlteracao(rs.getDate("ULTIMA_ALTERACAO"));
 				usuario.setUltimoAcesso(rs.getDate("ULTIMO_ACESSO"));
-				usuario.setSenhaExpirada(rs.getBoolean("SENHA_EXPIRADA"));
 				listaUsuarios.add(usuario);
 			}
 		} catch (SQLException e) {
@@ -253,7 +249,7 @@ public class JDBCUsuarioDao implements UsuarioDao {
 				usuario.setEmail(rs.getString("USUARIO_EMAIL"));
 				usuario.setUltimaAlteracao(rs.getDate("ULTIMA_ALTERACAO"));
 				usuario.setUltimoAcesso(rs.getDate("ULTIMO_ACESSO"));
-				usuario.setSenhaExpirada(rs.getBoolean("SENHA_EXPIRADA"));
+
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -293,7 +289,6 @@ public class JDBCUsuarioDao implements UsuarioDao {
 				usuario.setEmail(rs.getString("USUARIO_EMAIL"));
 				usuario.setUltimaAlteracao(rs.getDate("ULTIMA_ALTERACAO"));
 				usuario.setUltimoAcesso(rs.getDate("ULTIMO_ACESSO"));
-				usuario.setSenhaExpirada(rs.getBoolean("SENHA_EXPIRADA"));
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

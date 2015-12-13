@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
@@ -19,7 +20,8 @@ public abstract class EntidadeNegocioImpl implements EntidadeNegocio {
 	private Date ultimaAlteracao;
 	
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name="SQ_ENTIDADE", sequenceName="SQ_ENTIDADE",initialValue=20, allocationSize=1)
+	@GeneratedValue( strategy = GenerationType.AUTO, generator="SQ_ENTIDADE")
 	protected long chavePrimaria;
 
 	public Date getUltimaAlteracao() {

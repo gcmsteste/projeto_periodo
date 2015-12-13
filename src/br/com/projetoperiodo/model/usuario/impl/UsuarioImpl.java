@@ -13,9 +13,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.Polymorphism;
-import org.hibernate.annotations.PolymorphismType;
-
 import br.com.projetoperiodo.model.negocio.entidade.impl.EntidadeNegocioImpl;
 import br.com.projetoperiodo.model.usuario.Usuario;
 
@@ -43,9 +40,6 @@ public class UsuarioImpl extends EntidadeNegocioImpl implements Usuario {
 	@Column(name = "ULTIMO_ACESSO", nullable = true)
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	private Date ultimoAcesso;
-
-	@Column(name = "SENHA_EXPIRADA", nullable = false)
-	private boolean senhaExpirada;
 	
 	@Transient
 	protected  String PAPEL = "usuario";
@@ -160,21 +154,10 @@ public class UsuarioImpl extends EntidadeNegocioImpl implements Usuario {
 		this.sobrenome = sobrenome;
 	}
 
-	public boolean isSenhaExpirada() {
-
-		return senhaExpirada;
-	}
-
-	public void setSenhaExpirada(boolean senhaExpirada) {
-
-		this.senhaExpirada = senhaExpirada;
-	}
-
 	@Override
 	public String getPapelUsuario() {
 
 		return PAPEL;
 	}
-	
-	
+
 }

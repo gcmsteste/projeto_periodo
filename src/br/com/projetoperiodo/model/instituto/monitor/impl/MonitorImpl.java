@@ -30,7 +30,7 @@ import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequencia
 import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 
 @Entity
-@Table(name = "MONITOR")
+@Table(name = "MONITORIA")
 @AttributeOverrides({@AttributeOverride(name = "chavePrimaria", column = @Column(name = "MONITOR_ID") )})
 public class MonitorImpl extends EntidadeNegocioImpl implements Monitoria {
 

@@ -1,6 +1,8 @@
 
 package br.com.projetoperiodo.model.instituto.aluno.controller.impl;
 
+import java.util.Calendar;
+
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.ControladorAluno;
 import br.com.projetoperiodo.model.instituto.aluno.impl.AlunoImpl;
@@ -30,6 +32,7 @@ public class ControladorAlunoImpl extends ControladorNegocioImpl implements Cont
 		String senhaCriptografada = Util.criptografarSenha(
 						aluno.getSenha(), aluno.getSenha(), Constantes.CONSTANTE_CRIPTOGRAFIA);
 		aluno.setSenha(senhaCriptografada);
+		aluno.setUltimaAlteracao(Calendar.getInstance().getTime());
 		Persistencia.getInstance().salvarAluno(aluno);
 		return aluno;
 	}
