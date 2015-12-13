@@ -211,4 +211,10 @@ public class Persistencia {
 	public List<RelatorioFrequencia> buscarRelatoriosMonitoria(long chave) {
 		return fabrica.criarRelatorioFrequenciaDAO().buscarRelatoriosDeMonitoria(chave);
 	}
+	
+	public void alterarFabrica(String tipo, String unidade) {
+		fabrica.fecharFabrica();
+		this.databaseUnit = CreatorDatabaseUnit.criarDatabaseUnit(unidade);
+		this.fabrica = CreatorFabrica.criarFabricaDAO(tipo, databaseUnit, null);
+	}
 }

@@ -27,7 +27,7 @@ public class JPAConnectionFactory implements ConnectionFactory{
 		properties.put("hibernate.dialect", databaseUnit.getDialetoPersistenceUnit());
 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");
-		properties.put("hibernate.id.new_generator_mappings", "true");
+		properties.put("hibernate.id.new_generator_mappings", "false");
 		return Persistence.createEntityManagerFactory("local_unit",properties);
 	}
 

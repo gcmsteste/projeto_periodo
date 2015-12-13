@@ -7,7 +7,7 @@ public abstract class ControladorNegocioImpl implements ControladorNegocio {
 
 
 	public ControladorNegocioImpl() { }
-
+	
 	/*
 	 * (non-Javadoc)
 	 * @see br.com.projetoperiodo.model.negocio.controlador.ControladorNegocio#criarEntidadeNegocio()

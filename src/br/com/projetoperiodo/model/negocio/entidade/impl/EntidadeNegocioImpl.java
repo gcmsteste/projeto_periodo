@@ -20,8 +20,7 @@ public abstract class EntidadeNegocioImpl implements EntidadeNegocio {
 	private Date ultimaAlteracao;
 	
 	@Id
-	@SequenceGenerator(name="SQ_ENTIDADE", sequenceName="SQ_ENTIDADE",initialValue=20, allocationSize=1)
-	@GeneratedValue( strategy = GenerationType.AUTO, generator="SQ_ENTIDADE")
+	@GeneratedValue( strategy = GenerationType.AUTO)
 	protected long chavePrimaria;
 
 	public Date getUltimaAlteracao() {

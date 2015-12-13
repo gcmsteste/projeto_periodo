@@ -2,12 +2,17 @@ package br.com.projetoperiodo.model.documento.dao;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import br.com.projetoperiodo.model.documento.Documento;
+import br.com.projetoperiodo.util.fachada.Fachada;
+import br.com.projetoperiodo.util.persistencia.connection.JDBCConnectionFactory;
+import br.com.projetoperiodo.util.persistencia.persistencia.MySQLDatabaseUnit;
 
 public class JDBCDocumentDao implements DocumentDao {
 
@@ -42,19 +47,29 @@ public class JDBCDocumentDao implements DocumentDao {
 	
 
 	@Override
-	public InputStream buscar() {
-		InputStream is = null;
+	public Documento buscar() {
+		Documento documento = (Documento) Fachada.getInstance().getControladorDocumento().criarEntidadeNegocio();
 		String sql = "SELECT TEMPLATE_CONTENT FROM PROJETO_PERIODO.TEMPLATE_DOCUMENTO";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			ResultSet resultSet = stmt.executeQuery();
 			while (resultSet.next()) {
-				is = resultSet.getBinaryStream(1);
+				resultSet.getBinaryStream(1);
 			}
 		} catch ( SQLException e ) {
 			e.printStackTrace();
 		}
-		return is;
+		return documento;
+	}
+	
+	public static void main(String[] args) {
+
+		JDBCDocumentDao dao = new JDBCDocumentDao((Connection) new JDBCConnectionFactory(new MySQLDatabaseUnit()).getConnection() );
+		//dao.salvar("selection.pdf");
+		Documento doc = dao.buscar();
+		doc.getConteudo();
+		
+		
 	}
 	
 }

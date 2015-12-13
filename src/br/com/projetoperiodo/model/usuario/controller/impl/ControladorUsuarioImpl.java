@@ -115,5 +115,9 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 		}
 		return isEqual;
 	}
+	@Override
+	public void alterarConfiguracoesDePersistencia(String estrategia, String banco) {
+		Persistencia.getInstance().alterarFabrica(estrategia, banco );
+	}
 
 }

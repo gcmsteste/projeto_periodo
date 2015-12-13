@@ -4,7 +4,7 @@ import br.com.projetoperiodo.util.persistencia.persistencia.DatabaseUnit;
 
 public class CreatorFabrica {
 	
-	public static final String FABRICA_JPA = "FABRICA_DAO";
+	public static final String FABRICA_JPA = "FABRICA_JPA";
 	public static final String FABRICA_JDBC = "FABRICA_JDBC";
 	
 	public static FabricaDAO criarFabricaDAO(String tipo, DatabaseUnit unit, FabricaDAO dao)  {

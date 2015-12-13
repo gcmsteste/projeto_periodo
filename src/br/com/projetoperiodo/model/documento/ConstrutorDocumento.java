@@ -1,9 +1,12 @@
 
-package br.com.projetoperiodo.model.documento.controller;
+package br.com.projetoperiodo.model.documento;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URL;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -42,11 +45,10 @@ import br.com.projetoperiodo.util.Util;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Semestre;
 import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
 
-public class PDFBuilder {
+public class ConstrutorDocumento {
 
-	private PdfReader reader;
-
-	private static PDFBuilder instance;
+	
+	private static ConstrutorDocumento instance;
 
 	private FontSelector seletorFonte;
 
@@ -102,10 +104,8 @@ public class PDFBuilder {
 
 	public static final int SEMANA_DESCRICAO_Y = 588;
 
-	private PDFBuilder() {
+	private ConstrutorDocumento() {
 		super();
-		// CreatorFabrica.getFabricaDAO().criarDocumentDao().salvar("selection.pdf");
-
 		configurarFonteDocumento();
 	}
 
@@ -116,10 +116,10 @@ public class PDFBuilder {
 		this.seletorFonte.addFont(font);
 	}
 
-	public static PDFBuilder getInstancia() {
+	public static ConstrutorDocumento getInstancia() {
 
 		if (instance == null) {
-			instance = new PDFBuilder();
+			instance = new ConstrutorDocumento();
 		}
 		return instance;
 	}
@@ -283,8 +283,10 @@ public class PDFBuilder {
 		PdfStamper copia = null;
 		OutputStream out = null;
 		try {
-
-			reader = new PdfReader(CreatorFabrica.getFabricaDAO().criarDocumentDao().buscar());
+			URL url = getClass().getResource("selection.pdf");
+			File file = new File(url.getPath());
+			FileInputStream fis = new FileInputStream(file);
+			PdfReader reader = new PdfReader(fis);
 			out = new ByteArrayOutputStream();
 			copia = new PdfStamper(reader, out);
 

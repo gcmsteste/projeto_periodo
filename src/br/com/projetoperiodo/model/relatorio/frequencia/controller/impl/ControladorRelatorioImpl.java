@@ -4,7 +4,7 @@ package br.com.projetoperiodo.model.relatorio.frequencia.controller.impl;
 import java.util.Calendar;
 import java.util.List;
 
-import br.com.projetoperiodo.model.documento.controller.PDFBuilder;
+import br.com.projetoperiodo.model.documento.ConstrutorDocumento;
 import br.com.projetoperiodo.model.instituto.monitor.Monitoria;
 import br.com.projetoperiodo.model.instituto.periodo.Periodo;
 import br.com.projetoperiodo.model.negocio.controlador.ControladorNegocioImpl;
@@ -75,7 +75,7 @@ public class ControladorRelatorioImpl extends ControladorNegocioImpl implements 
 		if (relatorio.getSituacao().equals(Situacao.ESPERA) && "ALUNO".equals(requisitante.getPapelUsuario())) {
 			throw new NegocioException(Constantes.ERRO_RELATORIO_NAO_APROVADO);
 		}
-		return PDFBuilder.getInstancia().gerarRelatorio(relatorio);
+		return ConstrutorDocumento.getInstancia().gerarRelatorio(relatorio);
 	}
 
 	@Override

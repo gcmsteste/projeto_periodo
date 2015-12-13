@@ -3,6 +3,8 @@ package br.com.projetoperiodo.util.fachada;
 
 import java.util.List;
 
+import br.com.projetoperiodo.model.documento.controller.ControladorDocumento;
+import br.com.projetoperiodo.model.documento.controller.impl.ControladorDocumentoImpl;
 import br.com.projetoperiodo.model.instituto.aluno.Aluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.ControladorAluno;
 import br.com.projetoperiodo.model.instituto.aluno.controller.impl.ControladorAlunoImpl;
@@ -33,7 +35,6 @@ import br.com.projetoperiodo.model.usuario.controller.impl.ControladorUsuarioImp
 import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
 import br.com.projetoperiodo.util.exception.NegocioException;
-import br.com.projetoperiodo.util.persistencia.fabrica.CreatorFabrica;
 
 public class Fachada {
 
@@ -57,6 +58,10 @@ public class Fachada {
 	public ControladorAtividade getControladorAtividade() {
 
 		return new ControladorAtividadeImpl();
+	}
+	
+	public ControladorDocumento getControladorDocumento() {
+		return new ControladorDocumentoImpl();
 	}
 
 	public ControladorSemana getControladorSemana() {
@@ -267,7 +272,8 @@ public class Fachada {
 	public List<Disciplina> listarDisciplinasCadastradas() {
 		return this.getControladorDisciplina().listarDisciplinasCadastradas();
 	}
-	public void retirarVinculoDeProfessorComDisciplina(EntidadeNegocio entidade) {
-		
+	public void alterarConfiguracao( String[] configuracoes ) {
+		this.getControladorUsuario().alterarConfiguracoesDePersistencia(configuracoes[0], configuracoes[1]);
 	}
+	
 }

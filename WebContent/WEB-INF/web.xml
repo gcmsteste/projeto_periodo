@@ -172,14 +172,6 @@
 	<servlet>
 		<description>
 		</description>
-		<display-name>ServletAlteraFabrica</display-name>
-		<servlet-name>ServletAlteraFabrica</servlet-name>
-		<servlet-class>br.com.projetoperiodo.servlets.ServletAlteraFabrica
-		</servlet-class><display-name>ServletAlterarSenha</display-name>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
 		
 		<servlet-name>ServletAlterarSenha</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.login.ServletAlterarSenha
@@ -254,11 +246,14 @@
 		<servlet-name>ServletBuscarAluno</servlet-name>
 		<servlet-class>br.com.projetoperiodo.servlets.apresentacao.ServletBuscarAluno</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ServletConfiguracao</display-name>
+		<servlet-name>ServletConfiguracao</servlet-name>
+		<servlet-class>br.com.projetoperiodo.servlets.configuracoes.ServletConfiguracao</servlet-class>
+	</servlet>
 
-	<servlet-mapping>
-		<servlet-name>ServletAlteraFabrica</servlet-name>
-		<url-pattern>/alterarEstrategiaPersistencia</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ServletProfessor</servlet-name>
 		<url-pattern>/professor.do</url-pattern>
@@ -294,6 +289,10 @@
 	<servlet-mapping>
 		<servlet-name>ServletBuscarAluno</servlet-name>
 		<url-pattern>/ServletBuscarAluno.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServletConfiguracao</servlet-name>
+		<url-pattern>/configuracoes.do</url-pattern>
 	</servlet-mapping>
 
 

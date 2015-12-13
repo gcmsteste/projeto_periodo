@@ -91,7 +91,7 @@
 							</a></li>
 							<li><a class="active" href="cadastroProfessor.do"><span>Professor</span>
 							</a></li>
-							<!--  <li><a href="#" class="toggler">JPA</a></li> -->
+							<li><a class="active" href="configuracoes.do"><span>Configurações</span></a></li>
 						</ul>
 					</div>
 					<!--Menu END-->
