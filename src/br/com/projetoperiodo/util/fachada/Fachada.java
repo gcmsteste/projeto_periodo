@@ -36,16 +36,16 @@ import br.com.projetoperiodo.util.exception.NegocioException;
 
 public class Fachada {
 
-	private static Fachada fachada = null;
+	private static Fachada instance = null;
 
 	private Fachada() { }
 
 	public synchronized static Fachada getInstance() {
 
-		if (fachada == null) {
-			fachada = new Fachada();
+		if (instance == null) {
+			instance = new Fachada();
 		}
-		return fachada;
+		return instance;
 	}
 
 	public ControladorUsuario getControladorUsuario() {
@@ -275,4 +275,9 @@ public class Fachada {
 		this.getControladorUsuario().alterarConfiguracoesDePersistencia(configuracoes[0], configuracoes[1]);
 	}
 	
+	public static void destroyInstance() {
+		if( instance != null ) {
+			instance = null;
+		}
+	}
 }

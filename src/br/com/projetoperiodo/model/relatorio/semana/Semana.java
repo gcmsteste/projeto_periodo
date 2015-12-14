@@ -7,8 +7,6 @@ import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 
 public interface Semana extends EntidadeNegocio
 {
-
-	final int QUANTIDADE_ATIVIDADES_POR_SEMANA = 5;
 	
 	String getDescricao();
 

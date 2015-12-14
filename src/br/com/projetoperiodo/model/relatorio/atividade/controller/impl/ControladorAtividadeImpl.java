@@ -33,7 +33,7 @@ public class ControladorAtividadeImpl extends ControladorNegocioImpl implements 
 	public void cadastrarAtividadesComSemanaDeRelatorio(Semana semana) {
 
 		Atividade atividade;
-		for ( int i = 0; i < Semana.QUANTIDADE_ATIVIDADES_POR_SEMANA; i++ ) {
+		for ( int i = 0; i < 5; i++ ) {
 			atividade = (Atividade)this.criarEntidadeNegocio();
 			atividade.setSemana(semana);
 			atividade.setUltimaAlteracao(Calendar.getInstance().getTime());

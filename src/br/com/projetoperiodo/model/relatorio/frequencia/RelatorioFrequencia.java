@@ -8,7 +8,6 @@ import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
 
 public interface RelatorioFrequencia extends EntidadeNegocio
 {
-	final int QUANTIDADE_SEMANAS_POR_RELATORIO = 5;
 	
 	int getMes();
 

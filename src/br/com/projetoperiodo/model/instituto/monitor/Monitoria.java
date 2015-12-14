@@ -10,9 +10,6 @@ import br.com.projetoperiodo.util.constantes.enumeracoes.Modalidade;
 
 public interface Monitoria extends EntidadeNegocio
 {
-
-	final String ATRIBUTO_PERIODO_MONITORIA = "periodo";
-	final String ATRIBUTO_DISCIPLINA_MONITORIA = "disciplina";
 	
 	Modalidade getModalidade();
 

@@ -34,7 +34,7 @@ public class ControladorSemanaImpl extends ControladorNegocioImpl implements Con
 	public void cadastrarSemanasComRelatorio(RelatorioFrequencia relatorio) {
 
 		ControladorAtividade controladorAtividade = Fachada.getInstance().getControladorAtividade();
-		for (int i = 0; i < RelatorioFrequencia.QUANTIDADE_SEMANAS_POR_RELATORIO; i++) {
+		for (int i = 0; i < 5; i++) {
 			Semana semana = (Semana) this.criarEntidadeNegocio();
 			semana.setRelatorio(relatorio);
 			semana.setUltimaAlteracao(Calendar.getInstance().getTime());

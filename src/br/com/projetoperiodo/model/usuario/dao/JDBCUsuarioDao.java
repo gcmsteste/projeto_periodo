@@ -31,7 +31,7 @@ public class JDBCUsuarioDao implements UsuarioDao {
 		String condicional = " WHERE ";
 		boolean criteria = false;
 		StringBuilder criterios = new StringBuilder();
-		if ( filter.containsKey(Usuario.ATRIBUTO_USUARIO_EMAIL) ) {
+		if ( filter.containsKey("email") ) {
 			criteria = true;
 			criterios.append( " USUARIO_EMAIL = ? ");
 		} 
@@ -44,8 +44,8 @@ public class JDBCUsuarioDao implements UsuarioDao {
 		try {
 
 			ptmt = connection.prepareStatement(consulta.toString());
-			if ( filter.containsKey(Usuario.ATRIBUTO_USUARIO_EMAIL) ){
-				ptmt.setString(1, (String) filter.get(Usuario.ATRIBUTO_USUARIO_EMAIL));
+			if ( filter.containsKey("email") ){
+				ptmt.setString(1, (String) filter.get("email"));
 			}
 			
 			rs = ptmt.executeQuery();

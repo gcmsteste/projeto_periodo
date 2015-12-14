@@ -19,7 +19,9 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 	private final String EMAIL_ASSUNTO = "Senha Sistema de Monitoria TADS";
 
 	private final String EMAIL_MENSAGEM_CONTEUDO = "Sua senha é: ";
-
+	private final String EMAIL_NAO_CADASTRADO = "EMAIL_NAO_CADASTRADO";
+	private final String USUARIO_NAO_CADASTRADO = "USUARIO_NAO_CADASTRADO";
+	
 	public ControladorUsuarioImpl() {
 		super();
 	}
@@ -63,7 +65,7 @@ public class ControladorUsuarioImpl extends ControladorNegocioImpl implements Co
 	public void encaminharSenhaParaUsuario(Usuario usuario) throws NegocioException {
 
 		HashMap<String, Object> filter = new HashMap<>();
-		filter.put(Usuario.ATRIBUTO_USUARIO_EMAIL, usuario.getEmail());
+		filter.put("email", usuario.getEmail());
 		try {
 			usuario = (Usuario) Persistencia.getInstance().buscarUsuario(filter);
 			String novaSenha = Util.gerarSenhaAleatoria();

@@ -9,7 +9,6 @@ import javax.persistence.EntityTransaction;
 import br.com.projetoperiodo.model.relatorio.frequencia.RelatorioFrequencia;
 import br.com.projetoperiodo.model.relatorio.frequencia.impl.RelatorioFrequenciaImpl;
 import br.com.projetoperiodo.util.constantes.enumeracoes.Situacao;
-import br.com.projetoperiodo.util.persistencia.connection.JPAUtil;
 
 public class JPARelatorioFrequenciaDao implements RelatorioFrequenciaDao
 {

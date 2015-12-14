@@ -105,9 +105,9 @@ public class JPAUsuarioDao implements UsuarioDao {
 		CriteriaQuery  criteria = builder.createQuery(UsuarioImpl.class);
 		Root root = criteria.from(UsuarioImpl.class);
 		
-		if ( filter.containsKey(Usuario.ATRIBUTO_USUARIO_EMAIL) ) {
-			criteria.where( builder.like(root.get(Usuario.ATRIBUTO_USUARIO_EMAIL), 
-							(String)filter.get(Usuario.ATRIBUTO_USUARIO_EMAIL)) );
+		if ( filter.containsKey("email") ) {
+			criteria.where( builder.like(root.get("email"), 
+							(String)filter.get("email")) );
 		}
 		Usuario usuario;
 		try {

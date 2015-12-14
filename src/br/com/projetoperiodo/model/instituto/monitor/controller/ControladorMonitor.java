@@ -12,7 +12,6 @@ import br.com.projetoperiodo.util.exception.NegocioException;
 
 public interface ControladorMonitor extends ControladorNegocio
 {
-	final String MONITORIA_CADASTRADA = "MONITORIA_CADASTRADA";
 	
 	Monitoria criarMonitoriaDeAluno(Aluno aluno, Disciplina disciplina, Modalidade modalidade);
 	

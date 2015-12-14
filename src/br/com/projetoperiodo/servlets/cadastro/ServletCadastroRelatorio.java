@@ -65,10 +65,10 @@ public class ServletCadastroRelatorio extends HttpServlet {
 		RelatorioFrequencia relatorio = (RelatorioFrequencia) request.getSession(false).getAttribute(RELATORIO_MENSAL);
 		Semana semana;
 		Atividade atividade;
-		for (int posicaoSemana = 1; posicaoSemana <= RelatorioFrequencia.QUANTIDADE_SEMANAS_POR_RELATORIO; posicaoSemana++) {
+		for (int posicaoSemana = 1; posicaoSemana <= 5; posicaoSemana++) {
 			semana = relatorio.getSemana(posicaoSemana - 1);
 			semana.setDescricao(request.getParameter("descricaosemana".concat(String.valueOf(posicaoSemana))));
-			for (int posicaoAtividade = 1; posicaoAtividade <= Semana.QUANTIDADE_ATIVIDADES_POR_SEMANA; posicaoAtividade++) {
+			for (int posicaoAtividade = 1; posicaoAtividade <= 5; posicaoAtividade++) {
 				String dataStr = request.getParameter("semana" + posicaoSemana + "atividade" + posicaoAtividade);
 				atividade = semana.getAtividade(posicaoAtividade - 1);
 

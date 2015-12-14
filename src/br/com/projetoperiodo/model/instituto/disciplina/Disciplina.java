@@ -7,8 +7,6 @@ import br.com.projetoperiodo.model.instituto.professor.Professor;
 import br.com.projetoperiodo.model.negocio.entidade.EntidadeNegocio;
 
 public interface Disciplina extends EntidadeNegocio {
-
-	final String ATRIBUTO_DESCRICAO = "descricao";
 	
 	String getDescricao();
 

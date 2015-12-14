@@ -125,9 +125,9 @@ public class JPADisciplinaDao implements DisciplinaDao{
 		CriteriaQuery  criteria = builder.createQuery(DisciplinaImpl.class);
 		Root root = criteria.from(DisciplinaImpl.class);
 		
-		if ( filter.containsKey(Disciplina.ATRIBUTO_DESCRICAO) ) {
-			criteria.where( builder.like(root.get(Disciplina.ATRIBUTO_DESCRICAO), 
-							(String)filter.get(Disciplina.ATRIBUTO_DESCRICAO)) );
+		if ( filter.containsKey("descricao") ) {
+			criteria.where( builder.like(root.get("descricao"), 
+							(String)filter.get("descricao")) );
 		}
 		Disciplina disciplina;
 		try {

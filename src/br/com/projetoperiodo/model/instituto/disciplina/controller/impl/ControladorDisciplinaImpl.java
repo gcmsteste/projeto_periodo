@@ -54,7 +54,7 @@ public class ControladorDisciplinaImpl extends ControladorNegocioImpl implements
 	public Disciplina buscarDisciplina(String descricao) throws NegocioException {
 
 		HashMap<String, Object> filtro = new HashMap<>();
-		filtro.put(Disciplina.ATRIBUTO_DESCRICAO, descricao);
+		filtro.put("descricao", descricao);
 
 		return (Disciplina) Persistencia.getInstance().buscarDisciplina(filtro);
 	}
